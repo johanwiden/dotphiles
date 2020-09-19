@@ -26,6 +26,21 @@
 (setq user-full-name "Johan Widén")
 (setq user-mail-address "j.e.widen@gmail.com")
 #+END_SRC
+** Load =.secret.el=
+   :PROPERTIES:
+   :ID:       4c960438-607d-46c0-bfe7-c193bb3fc8ca
+   :END:
+I load =~/.emacs.d/.secret.el= to keep sensible things out of version control.
+For instance, you could set your identity by customizing both =user-full-name=
+and =user-mail-address=. This is also where you want your API tokens to live.
+
+#+BEGIN_SRC emacs-lisp :results silent
+(defvar jw/paradox-github-token nil)
+
+(let ((secret.el (expand-file-name ".secret.el" "/home/jw")))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+#+END_SRC
 * Prelude tweaks
   :PROPERTIES:
   :ID:       712c68e2-f72c-4bec-b0e0-2a710904fadd
@@ -70,7 +85,7 @@ Disable guru-mode (I like using arrow keys :p)
    :ID:       b5fe3df9-e65f-4663-b656-c6f1fdfd3986
    :END:
 #+BEGIN_SRC emacs-lisp
-(setq paradox-github-token "b778485dbb7f91a92c56dd4cef512c10296d6481")
+(setq paradox-github-token jw/paradox-github-token)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 #+END_SRC
 
