@@ -1,0 +1,25 @@
+{
+  "add books dialog dir": "/home/jw/Downloads",
+  "database location dialog": "/home/jw/calibre_library",
+  "save to disk dialog": "/home/jw/Downloads/numenta",
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "pubdate",
+      true
+    ],
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "welcome_wizard_device": "default",
+  "welcome_wizard_was_run": true
+}

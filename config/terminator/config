@@ -1,0 +1,19 @@
+[global_config]
+  extra_styling = False
+  title_use_system_font = False
+[keybindings]
+  layout_launcher = None
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    show_titlebar = False
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]

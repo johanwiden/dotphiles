@@ -1,0 +1,136 @@
+{
+  "custom_colors_for_color_dialog": [
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ]
+  ], 
+  "in_paged_mode": false, 
+  "main_window_state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAL9AAAAAwAAAAAAAAEAAAAF4/wCAAAAAfsAAAAQAHQAbwBjAC0AZABvAGMAawEAAAAqAAAF4wAAAJUA////AAAAAQAAAAAAAAAA/AIAAAAB+wAAABwAYgBvAG8AawBtAGEAcgBrAHMALQBkAG8AYwBrAAAAAAD/////AAAA1wD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABmAG8AbwB0AG4AbwB0AGUAcwAtAGQAbwBjAGsAAAAAAP////8AAAA7AP///wAAA7UAAAXjAAAAAQAAAAIAAAABAAAAAvwAAAACAAAAAAAAAAEAAAAQAHQAbwBvAGwAXwBiAGEAcgMAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAASAHQAbwBvAGwAXwBiAGEAcgAyAQAAAAD/////AAAAAAAAAAA="
+  }, 
+  "multiplier": 1.0, 
+  "singleinstance": false, 
+  "viewer_open_history": [
+    "/home/jw/calibre_library/Andrzej Sapkowski/Czas Pogardy (372)/Czas Pogardy - Andrzej Sapkowski.epub", 
+    "/home/jw/calibre_library/Bartlomiej Filipek/C__ Lambda Story (465)/C__ Lambda Story - Bartlomiej Filipek.epub", 
+    "/home/jw/calibre_library/Fedor G. Pikus/Hands-On Design Patterns With C___ Solve Common C__ Problems With Modern Design Patterns and Bu (421)/Hands-On Design Patterns With C___ Solve C - Fedor G. Pikus.epub", 
+    "/home/jw/calibre_library/Jason Turner/C__ Best Practices (366)/C__ Best Practices - Jason Turner.epub", 
+    "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (430)/Ansible for DevOps - Jeff Geerling.epub", 
+    "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (436)/Ansible for DevOps - Jeff Geerling.epub", 
+    "/home/jw/calibre_library/Lana Brindley/Realtime Tuning Guide (424)/Realtime Tuning Guide - Lana Brindley.epub", 
+    "/home/jw/calibre_library/Subutai Ahmad/The HTM spatial pooler - a neocortical algorithm for online sparse distributed coding (407)/The HTM spatial pooler - a neocortical alg - Subutai Ahmad.epub", 
+    "/home/jw/calibre_library/Jeff Hawkins/Sequence Memory in Neocortex (408)/Sequence Memory in Neocortex - Jeff Hawkins.epub", 
+    "/home/jw/calibre_library/Jeff Hawkins/Object Learning with Cortical Columns (401)/Object Learning with Cortical Columns - Jeff Hawkins.epub", 
+    "/home/jw/calibre_library/Marcus Lewis/Locations in the Neocortex (402)/Locations in the Neocortex - Marcus Lewis.epub", 
+    "/home/jw/calibre_library/Jeff Hawkins/Framework for Cortical Function (400)/Framework for Cortical Function - Jeff Hawkins.epub", 
+    "/home/jw/calibre_library/Subutai Ahmad/Online Sparse Coding (407)/Online Sparse Coding - Subutai Ahmad.epub", 
+    "/home/jw/calibre_library/Fedor G. Pikus/Hands-On Design Patterns with C__ (421)/Hands-On Design Patterns with C__ - Fedor G. Pikus.epub", 
+    "/home/jw/calibre_library/Scott Chacon/Pro Git (420)/Pro Git - Scott Chacon.epub", 
+    "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (412)/Ansible for DevOps - Jeff Geerling.epub", 
+    "/home/jw/calibre_library/Michael Voss/Pro TBB (405)/Pro TBB - Michael Voss.epub", 
+    "/home/jw/calibre_library/Ivan Cukic/Functional Programming in C__ MEAP V11 (373)/Functional Programming in C__ MEAP V11 - Ivan Cukic.epub", 
+    "/home/jw/calibre_library/Unknown/Getting Started with Julia (359)/Getting Started with Julia - Unknown.epub", 
+    "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (358)/Ansible for DevOps - Jeff Geerling.epub", 
+    "/home/jw/calibre_library/Moritz Lenz/Perl 6 Fundamentals (354)/Perl 6 Fundamentals - Moritz Lenz.epub", 
+    "/home/jw/calibre_library/John Schember/Quick Start Guide (348)/Quick Start Guide - John Schember.epub"
+  ], 
+  "viewer_toc_isvisible": true, 
+  "viewer_window_geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywADAAAAAAUAAAAAHgAACf8AAAYqAAAFBAAAAB4AAAn7AAAGKgAAAAAAAAAADwAAAAUEAAAAHgAACfsAAAYq"
+  }
+}

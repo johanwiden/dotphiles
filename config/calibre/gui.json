@@ -1,0 +1,199 @@
+{
+  "Plugin Updater plugin:plugin updater dialog": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAGpAAACCAAABcYAAAPzAAABrQAAAggAAAXCAAAD7wAAAAAAAAAADwAAAAGtAAACCAAABcIAAAPv"
+  },
+  "add-saved-search-geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAALBAAACpwAABK8AAANUAAACxQAAAqcAAASrAAADUAAAAAAAAAAADwAAAALFAAACpwAABKsAAANQ"
+  },
+  "advanced search dialog current tab": 1,
+  "advanced_search_simple_tab_focused_field": "tags_box",
+  "basic_metadata_widget_splitter_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAEAAAADAAABFQAAAY8AAAEKAf////8BAAAAAQA="
+  },
+  "book_details_splitter_horizontal_state": [
+    true,
+    200
+  ],
+  "book_info_dialog_layout": [
+    {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAPXAAAAPQAAC0QAAAYYAAAD1wAAAD0AAAtEAAAGGAAAAAAAAAAADwAAAAPXAAAAPQAAC0QAAAYY"
+    },
+    {
+      "__class__": "bytearray",
+      "__value__": "AAAA/wAAAAEAAAACAAABXgAAAXAB/////wEAAAABAA=="
+    }
+  ],
+  "book_list_pin_splitter_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAEAAAACAAABAAAAAE8A/////wEAAAABAA=="
+  },
+  "cover_browser_splitter_vertical_state": [
+    false,
+    300
+  ],
+  "custom_colors_for_color_dialog": [
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ]
+  ],
+  "diff_dialog_geom": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAH1AAABCAAABbIAAATzAAAB+QAAAQgAAAWuAAAE7wAAAAAAAAAADwAAAAH5AAABCAAABa4AAATv"
+  },
+  "duplicates-question-dialog-geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAABNAAAAFQAAAp4AAAGSAAAATwAAABUAAAKcAAABkAAAAAAAAAAADwAAAABPAAAAFQAAApwAAAGQ"
+  },
+  "grid view visible": false,
+  "jobs view column layout3": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAFAQEBAAAAAAAAAAAAAAAAAGT/////AAAAhAAAAAAAAAAFAAAAZAAAAAEAAAAAAAAAZAAAAAEAAAAAAAAAZAAAAAEAAAAAAAAAZAAAAAEAAAAAAAAAZAAAAAEAAAAAAAAD6AAAAAAA"
+  },
+  "jobs_dialog_geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
+  },
+  "library_usage_stats": {
+    "/home/jw/calibre_library": 203
+  },
+  "metadata_single_gui_geom": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAnfAAAC1AAADTgAAAUvAAAJ4wAAAtQAAA00AAAFKwAAAAAAAAAADwAAAAnjAAAC1AAADTQAAAUr"
+  },
+  "metasingle_window_geometry3": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAIuAAABaQAADiYAAAQzAAACLgAAAWkAAA4mAAAEMwAAAAAAAAAADwAAAAIuAAABaQAADiYAAAQz"
+  },
+  "preferences dialog geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAWvAAABnwAACVgAAARyAAAFswAAAZ8AAAlUAAAEbgAAAAAAAAAADwAAAAWzAAABnwAACVQAAARu"
+  },
+  "previous_sort_order_BooksView": {
+    "pubdate": true,
+    "tags": false,
+    "timestamp": false
+  },
+  "quick_start_guide_added": true,
+  "quickview visible": false,
+  "quickview_dialog_books_table_widths": [
+    189,
+    189,
+    189
+  ],
+  "quickview_dialog_geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAYaAAACUQAACSEAAAOqAAAGHgAAAlEAAAkdAAADpgAAAAAAAAAADwAAAAYeAAACUQAACR0AAAOm"
+  },
+  "recently_used_languages": [
+    "English",
+    "Polish"
+  ],
+  "search bar visible": true,
+  "server3_warning_done": true,
+  "tag browser search box visible": false,
+  "tag_browser_splitter_horizontal_state": [
+    true,
+    200
+  ],
+  "viewer_image_popup_geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAR2AAAAAAAACn0AAAYRAAAEegAAAAAAAAp5AAAGDQAAAAAAAAAADwAAAAR6AAAAAAAACnkAAAYN"
+  }
+}

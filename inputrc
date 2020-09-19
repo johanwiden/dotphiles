@@ -1,0 +1,16 @@
+$include /etc/inputrc
+"\C-p":history-search-backward
+"\C-n":history-search-forward
+
+$if Bash
+  set colored-stats on
+$endif
+$if Fish
+  set colored-stats On
+$endif
+set completion-ignore-case On
+set completion-prefix-display-length 3
+set mark-symlinked-directories On
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set visible-stats On
