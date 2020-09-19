@@ -22,38 +22,13 @@ dotsyncrc
 #aptitude
 #bin:bin
 byobu
-byobu/backend
-byobu/bin
-byobu/color
-byobu/color.tmux
-byobu/datetime.tmux
-byobu/keybindings
-byobu/keybindings.tmux
-byobu/profile
-byobu/profile.tmux
-byobu/prompt
-byobu/status
-byobu/statusrc
-byobu/windows
-byobu/windows.tmux
 #ctags/ctags
 #cmus
 #curl/curlrc
 duply
-duply/my_amazon
-duply/my_amazon/conf
-duply/my_amazon/exclude
-duply/my_amazon/post
 emacs-profile
 emacs-profiles.el
-emacs.d/personal/custom/config.org
-emacs.d/personal/custom.el
-emacs.d/personal/essh.el
-emacs.d/personal/font.el
-emacs.d/personal/init.el
-emacs.d/personal/preload/super-keybind.el
-emacs.d/personal/preload/theme.el
-emacs.d/personal/prelude-modules.el
+emacs.d
 #git/gitconfig
 #git/gitignore
 #git/gitattributes
@@ -109,6 +84,7 @@ gnupg
 # Hosts to sync
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
+jw7720                           git=NONE
 #host1.example.com               git=ANY                        files=custom/dotfile    #git repo, pull from anywhere and link a custom dotfile
 #host2.example.com               git=ANY                                                #git repo, pull from anywhere
 #host3.example.com               git=ANY                                                #git repo, pull from anywhere
