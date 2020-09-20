@@ -4123,6 +4123,13 @@ One can also use helm-do-grep-ag
     (interactive "P")
     (mu-helm-rg default-directory with-types))
 #+END_SRC
+** helm-recoll
+   :PROPERTIES:
+   :ID:       c4f48e17-64a9-4a2c-9d45-d9a673597cc2
+   :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-recoll)
+#+END_SRC
 * epg Let emacs query for gpg passwords
   :PROPERTIES:
   :ID:       6e1c784d-012c-4c85-a6c3-efcf4f96ffdb
@@ -5678,3 +5685,13 @@ BEGIN_SRC emacs-lisp
   ;;                              app))))))
   ;;        helm-bookmark-default-filtered-sources)))
 END_SRC
+* org-recoll
+  :PROPERTIES:
+  :ID:       55680a55-69a6-43ef-9ba8-992c4eb6b61b
+  :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package org-recoll
+    :straight (:host github
+               :repo "alraban/org-recoll")
+  )
+#+END_SRC

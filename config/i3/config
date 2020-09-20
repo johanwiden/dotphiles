@@ -276,7 +276,7 @@ exec xrandr --output eDP-1 --off --output DP-2 --off --output DP-3 --mode 3840x1
 exec --no-startup-id /usr/bin/unclutter -b
 
 # Dynamically update recoll full text search database
-exec --no-startup-id /usr/bin/recollindex -m
+exec --no-startup-id /usr/share/recoll/examples/rclmon.sh start
 
 # Draw the desktop background.  Randomly select from a series of photos starting with ESP_
 # exec_always --no-startup-id feh --bg-scale --randomize /usr/share/backgrounds/*
