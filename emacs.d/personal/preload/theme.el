@@ -1,1 +1,2 @@
-(setq prelude-theme 'modus-vivendi)
+(setq prelude-theme nil)
+;; (setq prelude-theme 'modus-vivendi)

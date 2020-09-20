@@ -4,15 +4,37 @@
 #+LANGUAGE: en
 #+OPTIONS: num:nil
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+* straight
+  :PROPERTIES:
+  :ID:       c9ed715c-1ce6-4eff-90fa-72ab858c04de
+  :END:
+#+BEGIN_SRC emacs-lisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+    (straight-use-package 'use-package)
+    (setq straight-use-package-by-default t)
+#+END_SRC
 * Emacs lisp preferences
   :PROPERTIES:
   :ID:       b4e0f009-f406-463d-a6cb-e88ac9aa3cb0
   :END:
 #+BEGIN_SRC emacs-lisp
   (setq load-prefer-newer t)
-  (require 'auto-compile)
-  (auto-compile-on-load-mode 1)
-  (auto-compile-on-save-mode 1)
+  ;; (require 'use-package)
+  (use-package auto-compile
+   :config
+    (auto-compile-on-load-mode 1)
+    (auto-compile-on-save-mode 1))
   (add-to-list 'load-path "~/.emacs.d/personal/custom")
   ;; Get rid of pesky warnings about bytecomp interactive-p
   ;; (setq warning-minimum-level :error)
@@ -64,12 +86,18 @@ Disable guru-mode (I like using arrow keys :p)
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 #+END_SRC
-* Use-package tweaks
+* Theme
   :PROPERTIES:
-  :ID:       215049d2-c319-4806-8645-b9afd595a7c8
+  :ID:       81a815d6-cfca-4851-a440-4d79887be6cb
   :END:
+Load the theme
 #+BEGIN_SRC emacs-lisp
-  ;; (setq use-package-always-ensure t)
+  (use-package modus-vivendi-theme
+   :ensure t)
+  (setq prelude-theme 'modus-vivendi)
+  (defadvice load-theme (before theme-dont-propagate activate)
+    (mapcar #'disable-theme custom-enabled-themes))
+  (load-theme 'modus-vivendi t) ;; Dark theme
 #+END_SRC
 * Archives
    :PROPERTIES:
@@ -410,43 +438,6 @@ BEGIN_SRC emacs-lisp
        (quail-set-keyboard-layout "pc105-se")))
   (setq default-input-method "swedish-keyboard")
 END_SRC
-* quelpa
-  :PROPERTIES:
-  :ID:       4d4feec2-2880-48b1-a6d8-c7efecc0404a
-  :END:
-#+BEGIN_SRC emacs-lisp
-   (unless (and (boundp 'package--initialized)
-                    package--initialized)
-     (package-initialize))
-   (if (require 'quelpa nil t)
-       (quelpa-self-upgrade)
-     (with-temp-buffer
-       (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-       (eval-buffer)))
-   ;; install use-package and the quelpa handler
-   (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
-   (setq use-package-expand-minimally t)
-   (require 'quelpa-use-package)
-#+END_SRC
-* straight
-  :PROPERTIES:
-  :ID:       c9ed715c-1ce6-4eff-90fa-72ab858c04de
-  :END:
-#+BEGIN_SRC emacs-lisp
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 5))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
-  ;; (setq straight-use-package-by-default t)
-#+END_SRC
 * lolsmacs
   :PROPERTIES:
   :ID:       3bc6216e-1900-4d16-be19-73575aeedc1a
@@ -608,6 +599,16 @@ M-j ivy-yank-word
   ;;   )
   ;; ;; (define-key c-mode-map  [(tab)] 'company-complete)
   ;; ;; (define-key c++-mode-map  [(tab)] 'company-complete)
+#+END_SRC
+** company-auctex
+   :PROPERTIES:
+   :ID:       802b186c-9a87-40bf-89f5-d87733147af7
+   :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package company-auctex
+    :straight t
+    :config
+    (company-auctex-init))
 #+END_SRC
 ** company-quickhelp
    :PROPERTIES:
@@ -824,21 +825,21 @@ Also look at [[../fonts.el]]
   ;;   :type 'string
   ;;   :risky t)
   ;; (setq org-variable-pitch-fixed-faces
-  ;;   '(org-block 
+  ;;   '(org-block
   ;;     org-block-begin-line
-  ;;     org-block-end-line 
-  ;;     org-code 
-  ;;     org-date 
-  ;;     org-document-info-keyword 
+  ;;     org-block-end-line
+  ;;     org-code
+  ;;     org-date
+  ;;     org-document-info-keyword
   ;;     org-done
   ;;     org-formula
-  ;;     org-link 
+  ;;     org-link
   ;;     org-meta-line
-  ;;     org-property-value 
-  ;;     org-special-keyword 
-  ;;     org-table 
-  ;;     org-tag 
-  ;;     org-todo 
+  ;;     org-property-value
+  ;;     org-special-keyword
+  ;;     org-table
+  ;;     org-tag
+  ;;     org-todo
   ;;     org-verbatim))
   ;; (require 'org-variable-pitch)
   ;; (add-hook 'org-mode-hook 'org-variable-pitch-minor-mode)
@@ -1342,31 +1343,19 @@ zygospore lets you revert C-x 1 (delete-other-window) by pressing C-x 1 again
    :ID:       e75d562c-fe05-4762-8ab3-9d755008b1dd
    :END:
 #+BEGIN_SRC emacs-lisp
-  (setq org-journal-date-prefix "#+TITLE: "
-        org-journal-file-format "private-%Y-%m-%d.org"
-        org-journal-dir "~/org/roam/"
-        org-journal-carryover-items nil
-        org-journal-date-format "%Y-%m-%d")
-  (require 'org-journal)
-  (defun org-journal-today ()
-    (interactive)
-    (org-journal-new-entry t))
-  (define-key org-journal-mode-map (kbd "C-c n j") 'org-journal-new-entry)
-  (define-key org-journal-mode-map (kbd "C-c n t") 'org-journal-today)
-  ;; (use-package org-journal
-  ;;   :ensure t
-  ;;   :bind
-  ;;   ("C-c n j" . org-journal-new-entry)
-  ;;   ("C-c n t" . org-journal-today)
-  ;;   :config
-  ;;   (setq org-journal-date-prefix "#+TITLE: "
-  ;;         org-journal-file-format "private-%Y-%m-%d.org"
-  ;;         org-journal-dir "~/org/roam/"
-  ;;         org-journal-carryover-items nil
-  ;;         org-journal-date-format "%Y-%m-%d")
-  ;;   (defun org-journal-today ()
-  ;;     (interactive)
-  ;;     (org-journal-new-entry t)))
+  (use-package org-journal
+    :bind
+    ("C-c n j" . org-journal-new-entry)
+    ("C-c n t" . org-journal-today)
+    :config
+    (setq org-journal-date-prefix "#+TITLE: "
+          org-journal-file-format "private-%Y-%m-%d.org"
+          org-journal-dir "~/org/roam/"
+          org-journal-carryover-items nil
+          org-journal-date-format "%Y-%m-%d")
+    (defun org-journal-today ()
+      (interactive)
+      (org-journal-new-entry t)))
 #+END_SRC
 ** Org and org-contrib  package
    :PROPERTIES:
@@ -1392,6 +1381,45 @@ zygospore lets you revert C-x 1 (delete-other-window) by pressing C-x 1 again
   (setq org-agenda-files (directory-files "~/org-files" 'absolute "[^#]*.org$" 'no-sort))
   (setq jethro/org-agenda-directory "~/org-files/")
 
+  (use-package org-agenda
+    :straight nil
+    :init
+    (setq org-agenda-block-separator nil
+          org-agenda-start-with-log-mode t)
+    (defun jethro/switch-to-agenda ()
+      (interactive)
+      (org-agenda nil " "))
+    :bind (:map org-agenda-mode-map
+                ("i" . org-agenda-clock-in)
+                ("r" . jethro/org-process-inbox)
+                ("R" . org-agenda-refile)
+                ("c" . jethro/org-inbox-capture))
+    :config
+    (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
+    (setq org-agenda-custom-commands `((" " "Agenda"
+                                        ((agenda ""
+                                                 ((org-agenda-span 'week)
+                                                  (org-deadline-warning-days 365)))
+                                         (todo "TODO"
+                                               ((org-agenda-overriding-header "To Refile")
+                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "inbox.org")))))
+                                         (todo "TODO"
+                                               ((org-agenda-overriding-header "Emails")
+                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "emails.org")))))
+                                         (todo "NEXT"
+                                               ((org-agenda-overriding-header "In Progress")
+                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "someday.org")
+                                                                    ,(concat jethro/org-agenda-directory "projects.org")
+                                                                    ,(concat jethro/org-agenda-directory "next.org")))
+                                                ))
+                                         (todo "TODO"
+                                               ((org-agenda-overriding-header "Projects")
+                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "projects.org")))
+                                                ))
+                                         (todo "TODO"
+                                               ((org-agenda-overriding-header "One-off Tasks")
+                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "next.org")))
+                                                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled)))))))))
 
   (defun jethro/org-archive-done-tasks ()
     "Archive all done tasks."
@@ -1531,45 +1559,6 @@ zygospore lets you revert C-x 1 (delete-other-window) by pressing C-x 1 again
                 ("<S-down>" . org-clock-convenience-timestamp-down)
                 ("o" . org-clock-convenience-fill-gap)
                 ("e" . org-clock-convenience-fill-gap-both)))
-
-  (use-package org-agenda
-    :init
-    (setq org-agenda-block-separator nil
-          org-agenda-start-with-log-mode t)
-    (defun jethro/switch-to-agenda ()
-      (interactive)
-      (org-agenda nil " "))
-    :bind (:map org-agenda-mode-map
-                ("i" . org-agenda-clock-in)
-                ("r" . jethro/org-process-inbox)
-                ("R" . org-agenda-refile)
-                ("c" . jethro/org-inbox-capture))
-    :config
-    (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
-    (setq org-agenda-custom-commands `((" " "Agenda"
-                                        ((agenda ""
-                                                 ((org-agenda-span 'week)
-                                                  (org-deadline-warning-days 365)))
-                                         (todo "TODO"
-                                               ((org-agenda-overriding-header "To Refile")
-                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "inbox.org")))))
-                                         (todo "TODO"
-                                               ((org-agenda-overriding-header "Emails")
-                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "emails.org")))))
-                                         (todo "NEXT"
-                                               ((org-agenda-overriding-header "In Progress")
-                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "someday.org")
-                                                                    ,(concat jethro/org-agenda-directory "projects.org")
-                                                                    ,(concat jethro/org-agenda-directory "next.org")))
-                                                ))
-                                         (todo "TODO"
-                                               ((org-agenda-overriding-header "Projects")
-                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "projects.org")))
-                                                ))
-                                         (todo "TODO"
-                                               ((org-agenda-overriding-header "One-off Tasks")
-                                                (org-agenda-files '(,(concat jethro/org-agenda-directory "next.org")))
-                                                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled)))))))))
 #+END_SRC
 ** Writeroom
    :PROPERTIES:
@@ -1682,6 +1671,8 @@ Do not split the line on M-return
     (:map org-mode-map
           (("s-Y" . org-download-screenshot)
            ("s-y" . org-download-yank))))
+
+  (use-package image+)
   (eval-after-load 'image '(require 'image+))
 
   (eval-after-load 'image+
@@ -1709,8 +1700,6 @@ Do not split the line on M-return
    :ID:       e7d8f98d-dbf5-445a-b9c6-d513a5bcffbc
    :END:
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package org-pandoc-import
-  ;;   :quelpa (org-pandoc-import :repo "tecosaur/org-pandoc-import" :fetcher github))
   (use-package org-pandoc-import
     :straight (:host github
                :repo "tecosaur/org-pandoc-import"
@@ -1769,64 +1758,72 @@ Do not split the line on M-return
   :ID:       20fc9f56-bfa6-4515-b2e4-0142c61ec809
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package thingatpt+
-  :quelpa (thingatpt+ :repo "emacsmirror/thingatpt-plus" :fetcher github))
+  (use-package thingatpt+
+    :straight (:host github
+               :repo "emacsmirror/thingatpt-plus"))
 #+END_SRC
 * Hide-comnt
   :PROPERTIES:
   :ID:       9b5181b0-a669-4870-bd31-072bf9356901
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package hide-comnt
-  :quelpa (hide-comnt :repo "emacsmirror/hide-comnt" :fetcher github))
+  (use-package hide-comnt
+    :straight (:host github
+               :repo "emacsmirror/hide-comnt"))
 #+END_SRC
 * Thing-cmds
   :PROPERTIES:
   :ID:       e0ecc0ff-e430-42a1-8e94-291562abc8f5
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package thing-cmds
-  :quelpa (thing-cmds :repo "emacsmirror/thing-cmds" :fetcher github))
+  (use-package thing-cmds
+    :straight (:host github
+               :repo "emacsmirror/thing-cmds"))
 #+END_SRC
 * Hexrgb
   :PROPERTIES:
   :ID:       1943f4bc-e349-4d1f-bd05-7ad3e0f6cf04
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package hexrgb
-  :quelpa (hexrgb :repo "emacsmirror/hexrgb" :fetcher github))
+  (use-package hexrgb
+    :straight (:host github
+               :repo "emacsmirror/hexrgb"))
 #+END_SRC
 * Palette
   :PROPERTIES:
   :ID:       ef30a72a-f41b-48d4-ad95-d7b49a34e885
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package palette
-  :quelpa (palette :repo "emacsmirror/palette" :fetcher github))
+  (use-package palette
+    :straight (:host github
+               :repo "emacsmirror/palette"))
 #+END_SRC
 * Facemenu-plus
   :PROPERTIES:
   :ID:       dcd1720f-8c6f-40a7-8415-ce7545842f7d
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package facemenu+
-  :quelpa (facemenu+ :repo "emacsmirror/facemenu-plus" :fetcher github))
+  (use-package facemenu+
+    :straight (:host github
+               :repo "emacsmirror/facemenu-plus"))
 #+END_SRC
 * Highlight
   :PROPERTIES:
   :ID:       eef37e1a-eedd-40e2-ab1c-5285217d6ff7
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package highlight
-  :quelpa (highlight :repo "emacsmirror/highlight" :fetcher github))
+  (use-package highlight
+    :straight (:host github
+               :repo "emacsmirror/highlight"))
 #+END_SRC
 * Mouse3
   :PROPERTIES:
   :ID:       c891af77-70f2-4045-af42-5ec044ff903e
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package mouse3
-  :quelpa (mouse3 :repo "emacsmirror/mouse3" :fetcher github))
+  (use-package mouse3
+    :straight (:host github
+               :repo "emacsmirror/mouse3"))
 #+END_SRC
 * Dired
   :PROPERTIES:
@@ -1846,6 +1843,13 @@ Do not split the line on M-return
  '("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg" "wmv" "mkv" "mov" "wma")
   "Media file extensions that should launch in VLC.
 Also used for highlighting.")
+#+END_SRC
+** all-the-icons-dired
+   :PROPERTIES:
+   :ID:       b91cecc6-98f7-4ee9-a381-1bc9a8f5b2ff
+   :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons-dired)
 #+END_SRC
 ** wdired workaround
    :PROPERTIES:
@@ -1872,6 +1876,7 @@ Also used for highlighting.")
    :END:
 #+BEGIN_SRC emacs-lisp
   (use-package dired-x
+    :straight nil
     :config
     (progn
       (defun dired-virtual-revert (&optional _arg _noconfirm)
@@ -1976,6 +1981,10 @@ Also used for highlighting.")
                       ("Archives"
                        (extension "zip" "rar" "gz" "bz2" "tar")))))
   )
+
+  (use-package dired-launch
+    :straight (:host github
+               :repo "thomp/dired-launch"))
   (dired-launch-enable)
 #+END_SRC
 ** dired-ranger
@@ -2076,54 +2085,34 @@ preview files in dired
   :ID:       800c2fda-d51f-4b95-836c-0ef3edfc13db
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package dired+
-  :quelpa (dired+ :repo "emacsmirror/dired-plus" :fetcher github)
-  :config
-  (setq diredp-image-preview-in-tooltip 300)
-)
+  (use-package dired+
+    :straight (:host github
+               :repo "emacsmirror/dired-plus")
+    :config
+    (setq diredp-image-preview-in-tooltip 300)
+  )
 #+END_SRC
 * Bookmarks
   :PROPERTIES:
   :ID:       c78a6d32-0f0a-4a8c-bd9f-d7c4addc5933
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package bookmark+
-  :quelpa (bookmark+ :repo "emacsmirror/bookmark-plus" :fetcher github))
+  (use-package bookmark+
+    :straight (:host github
+               :repo "emacsmirror/bookmark-plus"))
 #+END_SRC
 * Info plus
   :PROPERTIES:
   :ID:       7eee490b-21e7-4b7d-98d3-904d6542c16f
   :END:
 #+BEGIN_SRC emacs-lisp
-(use-package info+
-  :quelpa (info+ :repo "emacsmirror/info-plus" :fetcher github)
-  :config
-  (setq Info-breadcrumbs-in-mode-line-mode t)
-)
+  (use-package info+
+    :straight (:host github
+               :repo "emacsmirror/info-plus")
+    :config
+    (setq Info-breadcrumbs-in-mode-line-mode t)
+  )
 (eval-after-load "info" '(require 'info+))
-#+END_SRC
-* Help-fns plus
-  :PROPERTIES:
-  :ID:       a36116c0-012f-429d-9ddf-3893e92c3d28
-  :END:
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package wid-edit+
-  ;;   :quelpa (wid-edit+ :repo "emacsmirror/wid-edit-plus" :fetcher github)
-  ;; )
-  ;; (use-package help-fns+
-  ;;   :quelpa (help-fns+ :repo "emacsmirror/help-fns-plus" :fetcher github)
-  ;; )
-  ;; (require 'help-fns+)
-#+END_SRC
-* Help-mode plus
-  :PROPERTIES:
-  :ID:       2cc510d5-64ad-4487-be51-04e05cff0df7
-  :END:
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package help-mode+
-  ;;   :quelpa (help-mode+ :repo "emacsmirror/help-mode-plus" :fetcher github)
-  ;; )
-  ;; (require 'help-mode+)
 #+END_SRC
 * Man
   :PROPERTIES:
@@ -2133,42 +2122,6 @@ preview files in dired
   (use-package man
     :straight t
     :init (setq Man-notify-method 'aggressive))
-#+END_SRC
-* Sunrise commander
-  :PROPERTIES:
-  :ID:       20e28545-ba8d-4d6d-a479-383ead847937
-  :END:
-** Color
-   :PROPERTIES:
-   :ID:       ccc1f01e-9cc5-42eb-958b-ea4b08098ddf
-   :END:
-#+BEGIN_SRC emacs-lisp
-  ;; (defface sr-active-path-face
-  ;;   '((((type tty) (class color) (min-colors 8))
-  ;;      :background "green" :foreground "yellow" :bold t)
-  ;;     (((type tty) (class mono)) :inverse-video t)
-  ;;     (t :background "darkgreen" :foreground "yellow" :bold t :height 120))
-  ;;   "Face of the directory path in the active pane."
-  ;;   :group 'sunrise)
-#+END_SRC
-** Package
-   :PROPERTIES:
-   :ID:       fa9e1472-f713-4ff7-a32f-0585556f615f
-   :END:
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/elpa/sunrise-commander")
-  (require 'sunrise-commander)
-  (require 'sunrise-x-modeline)
-  (require 'sunrise-x-mirror)
-  (setq sr-cursor-follows-mouse nil)
-  (bind-keys :map sr-mode-map
-             ([mouse-1] . nil)
-             ([mouse-movement] . nil)
-             ("M-O" . 'sr-synchronize-panes)
-             ("C-c C-t" . nil)
-             ("C-c C-t t" . 'sr-term)
-             ("C-c C-t c" . 'sr-term-cd)
-             ("C-c C-t n" . 'sr-term-cd-newterm))
 #+END_SRC
 * neotree
   :PROPERTIES:
@@ -2342,60 +2295,54 @@ Try to restore window configuration when quitting w3m
   :ID:       8aa5f468-f294-40ff-879f-538d2b0f720a
   :END:
 #+BEGIN_SRC emacs-lisp
+  (use-package clang-format
+    :commands clang-format-region)
+
   (use-package ccls
+    :hook ((c-mode c++-mode objc-mode) .
+           (lambda () (require 'ccls) (lsp-mode)))
     :config
+    (bind-keys :map c++-mode-map
+               :prefix "C-ö"
+               :prefix-map my-ccls-map
+               :prefix-docstring "ccls map."
+      ("C-h" . (lambda () (interactive) (ccls-navigate "U")))
+      ("C-j" . (lambda () (interactive) (ccls-navigate "R")))
+      ("C-k" . (lambda () (interactive) (ccls-navigate "L")))
+      ("C-l" . (lambda () (interactive) (ccls-navigate "D")))
+      ("m" . (lambda () (interactive) (ccls/references-not-call)))
+      ("m" . (lambda () (interactive) (ccls/references-macro)))
+      ("r" . (lambda () (interactive) (ccls/references-read)))
+      ("w" . (lambda () (interactive) (ccls/references-write)))
+      ("lp" . (lambda () (interactive) (ccls-preprocess-file)))
+      ("lf" . (lambda () (interactive) (ccls-reload)))
+      ("=" . (lambda () (interactive) (clang-format-region)))
+    )
     (setq ccls-executable "ccls")
     (setq lsp-prefer-flymake nil)
     (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-    :hook ((c-mode c++-mode objc-mode) .
-           (lambda () (require 'ccls) (lsp-mode))))
+    (setq ccls-sem-highlight-method 'font-lock)
+    (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
+    (ccls-use-default-rainbow-sem-highlight)
+    (setq
+     ccls-initialization-options
+     `(:clang
+       (:excludeArgs
+        ;; Linux's gcc options. See ccls/wiki
+        ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
+         "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
+         "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
+        :extraArgs ["--gcc-toolchain=/usr"]
+       )
+       :completion
+       (:include
+        (:blacklist
+         ["^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
+          "^/usr/(local/)?include/c\\+\\+/v1/"
+          ]))
+       :index (:trackDependency 1)))
 
-      (use-package clang-format 
-        :straight t
-        :commands clang-format-region)
-      (use-package ccls
-        :hook ((c-mode c++-mode objc-mode) .
-               (lambda () (require 'ccls) (lsp-mode)))
-        :config
-        (bind-keys :map c++-mode-map
-                   :prefix "C-ö"
-                   :prefix-map my-ccls-map
-                   :prefix-docstring "ccls map."
-          ("C-h" . (lambda () (interactive) (ccls-navigate "U")))
-          ("C-j" . (lambda () (interactive) (ccls-navigate "R")))
-          ("C-k" . (lambda () (interactive) (ccls-navigate "L")))
-          ("C-l" . (lambda () (interactive) (ccls-navigate "D")))
-          ("m" . (lambda () (interactive) (ccls/references-not-call)))
-          ("m" . (lambda () (interactive) (ccls/references-macro)))
-          ("r" . (lambda () (interactive) (ccls/references-read)))
-          ("w" . (lambda () (interactive) (ccls/references-write)))
-          ("lp" . (lambda () (interactive) (ccls-preprocess-file)))
-          ("lf" . (lambda () (interactive) (ccls-reload)))
-          ("=" . (lambda () (interactive) (clang-format-region)))
-        )
-        ;;(setq ccls-executable "/usr/bin/ccls")
-        (setq ccls-sem-highlight-method 'font-lock)
-        (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
-        (ccls-use-default-rainbow-sem-highlight)
-        (setq
-         ccls-initialization-options
-         `(:clang
-           (:excludeArgs
-            ;; Linux's gcc options. See ccls/wiki
-            ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
-             "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
-             "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-            :extraArgs ["--gcc-toolchain=/usr"]
-           )
-           :completion
-           (:include
-            (:blacklist
-             ["^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
-              "^/usr/(local/)?include/c\\+\\+/v1/"
-              ]))
-           :index (:trackDependency 1)))
-
-        (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
 
     (defun ccls/callee () (interactive) (lsp-ui-peek-find-custom "$ccls/call" '(:callee t)))
     (defun ccls/caller () (interactive) (lsp-ui-peek-find-custom "$ccls/call"))
@@ -2403,42 +2350,7 @@ Try to restore window configuration when quitting w3m
     (defun ccls/base (levels) (lsp-ui-peek-find-custom "$ccls/inheritance" `(:levels ,levels)))
     (defun ccls/derived (levels) (lsp-ui-peek-find-custom "$ccls/inheritance" `(:levels ,levels :derived t)))
     (defun ccls/member (kind) (interactive) (lsp-ui-peek-find-custom "$ccls/member" `(:kind ,kind)))
-
-    ;; References w/ Role::Role
-    ;; (defun ccls/references-read () (interactive)
-    ;;   (lsp-ui-peek-find-custom "textDocument/references"
-    ;;     (plist-put (lsp--text-document-position-params) :role 8)))
-
-    ;; ;; References w/ Role::Write
-    ;; (defun ccls/references-write ()
-    ;;   (interactive)
-    ;;   (lsp-ui-peek-find-custom "textDocument/references"
-    ;;    (plist-put (lsp--text-document-position-params) :role 16)))
-
-    ;; ;; References w/ Role::Dynamic bit (macro expansions)
-    ;; (defun ccls/references-macro () (interactive)
-    ;;   (lsp-ui-peek-find-custom "textDocument/references"
-    ;;    (plist-put (lsp--text-document-position-params) :role 64)))
-
-    ;; ;; References w/o Role::Call bit (e.g. where functions are taken addresses)
-    ;; (defun ccls/references-not-call () (interactive)
-    ;;   (lsp-ui-peek-find-custom "textDocument/references"
-    ;;    (plist-put (lsp--text-document-position-params) :excludeRole 32)))
-
-    ;; ccls/vars ccls/base ccls/derived ccls/members have a parameter while others are interactive.
-    ;; (ccls/base 1) direct bases
-    ;; (ccls/derived 1) direct derived
-    ;; (ccls/member 2) => 2 (Type) => nested classes / types in a namespace
-    ;; (ccls/member 3) => 3 (Func) => member functions / functions in a namespace
-    ;; (ccls/member 0) => member variables / variables in a namespace
-    ;; (ccls/vars 1) => field
-    ;; (ccls/vars 2) => local variable
-    ;; (ccls/vars 3) => field or local variable. 3 = 1 | 2
-    ;; (ccls/vars 4) => parameter
-
-    ;; References whose filenames are under this project
-    ;;(lsp-ui-peek-find-references nil (list :folders (vector (projectile-project-root))))
-   )
+  )
 #+END_SRC
 * lsp-mode
   :PROPERTIES:
@@ -2462,10 +2374,6 @@ Try to restore window configuration when quitting w3m
         :straight t
         :commands lsp)
 
-     ;; (use-package lsp-ui
-      ;;   :ensure t
-      ;;   :commands lsp-ui-mode)
-
       (use-package lsp-ui
         :straight t
         :commands lsp-ui-mode
@@ -2488,6 +2396,7 @@ Try to restore window configuration when quitting w3m
         (define-key lsp-ui-mode-map (kbd "C-c C-m i") 'lsp-ui-peek-find-implementation)
         (define-key lsp-ui-mode-map (kbd "C-c C-m d") 'lsp-describe-thing-at-point)
       )
+
       (use-package company-lsp
         :straight t
         :commands company-lsp)
@@ -2686,15 +2595,15 @@ Try to restore window configuration when quitting w3m
    :END:
 ielm support (for emacs lisp)
 #+BEGIN_SRC emacs-lisp
-(use-package eval-in-repl-ielm
-  :bind (:map emacs-lisp-mode-map
-         ("<C-return>" . eir-eval-in-ielm) ;; for .el files
-         :map lisp-interaction-mode-map
-         ("<C-return>" . eir-eval-in-ielm) ;; for *scratch*
-         :map Info-mode-map
-         ("<C-return>" . eir-eval-in-ielm) ;; for M-x info
-         )
-  )
+  (use-package eval-in-repl-ielm
+    :straight nil
+    :bind (:map emacs-lisp-mode-map
+           ("<C-return>" . eir-eval-in-ielm) ;; for .el files
+           :map lisp-interaction-mode-map
+           ("<C-return>" . eir-eval-in-ielm) ;; for *scratch*
+           :map Info-mode-map
+           ("<C-return>" . eir-eval-in-ielm) ;; for M-x info
+           ))
 #+END_SRC
 ** cider
    :PROPERTIES:
@@ -2713,12 +2622,12 @@ cider support (for Clojure)
    :ID:       46876707-0c7b-462c-a326-1ebb07d6e4bb
    :END:
 #+BEGIN_SRC emacs-lisp
-(use-package eval-in-repl-shell
-  :config
-  (add-hook 'sh-mode-hook
-            '(lambda()
-               (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
-  )
+  (use-package eval-in-repl-shell
+    :straight nil
+    :config
+    (add-hook 'sh-mode-hook
+              '(lambda()
+                 (local-set-key (kbd "C-<return>") 'eir-eval-in-shell))))
 #+END_SRC
 * Minor conveniences
   :PROPERTIES:
@@ -2833,8 +2742,9 @@ It provides commands for using avy to open, copy, or take a user-defined action 
    :ID:       629d6631-c28e-452f-9e01-0acb54b2de7d
    :END:
 #+BEGIN_SRC emacs-lisp
-(use-package hydra)
-(use-package hydra-examples)
+  (use-package hydra)
+  (use-package hydra-examples
+   :straight nil)
 #+END_SRC
 ** hydra-error
    :PROPERTIES:
@@ -4230,16 +4140,16 @@ One can also use helm-do-grep-ag
   :ID:       0aabe0ee-8493-478f-a3c8-b638a35dd1f1
   :END:
 #+BEGIN_SRC emacs-lisp
-    (require 'exwm)
-    (require 'exwm-randr)
-    (defun jw/env-list (env-string)
+  (use-package exwm)
+  (require 'exwm-randr)
+  (defun jw/env-list (env-string)
       "Return list of strings in environment variable env-string.
   nil if empty or undefined."
       (let ((env-var (getenv env-string)))
         (if env-var
             (split-string env-var)
           nil)))
-    (defun jw/env-str (env-string)
+  (defun jw/env-str (env-string)
       "Return string in environment variable env-string.
   nil if empty or undefined."
       (let ((env-var (getenv env-string)))
@@ -4434,7 +4344,7 @@ One can also use helm-do-grep-ag
   :END:
 #+BEGIN_SRC emacs-lisp
   (require 'ido)
-  (require 'windower)
+  (use-package windower)
   (require 'browse-url)
   (require 'exwm-manage)
 
@@ -4455,7 +4365,7 @@ One can also use helm-do-grep-ag
       (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
       (ambrevar/call-process-to-string "/usr/bin/xmodmap" "/home/jw/.Xmodmap.exwm")))
 
-  (setq browse-url-generic-program 
+  (setq browse-url-generic-program
         (or
          (executable-find (or (getenv "BROWSER") ""))
          (when (executable-find "xdg-mime")
@@ -4634,7 +4544,7 @@ One can also use helm-do-grep-ag
   :ID:       1fd4aca5-d623-49d5-9be4-54c0e96e5daf
   :END:
 #+BEGIN_SRC emacs-lisp
-  (require 'telephone-line)
+  (use-package telephone-line)
   (defun ambrevar/bottom-right-window-p ()
     "Determines whether the last (i.e. bottom-right) window of the
     active frame is showing the buffer in which this function is
@@ -4656,8 +4566,7 @@ One can also use helm-do-grep-ag
 
     (when (or (ambrevar/bottom-right-window-p)
               exwm-window-type)
-      (telephone-line-raw mode-line-misc-info t))
-  )
+      (telephone-line-raw mode-line-misc-info t)))
 
   (defun jw/input-mode-str ()
     "Return string representing input mode, if window is of type EXWM"
@@ -4675,8 +4584,7 @@ One can also use helm-do-grep-ag
 
   (defun jw/format-workspace-index-and-input-mode ()
     "Return string [workspace_index]input-mode depending on exwm-window or bottom-right window"
-    (format "%s%s" (jw/workspace-index) (jw/input-mode-str))
-  )
+    (format "%s%s" (jw/workspace-index) (jw/input-mode-str)))
 
   (defun ambrevar/telephone-line-setup ()
     (telephone-line-defsegment telephone-line-last-window-segment ()
@@ -4699,8 +4607,7 @@ One can also use helm-do-grep-ag
     (setq telephone-line-rhs
           '((accent . (telephone-line-major-mode-segment))
             (nil . (telephone-line-last-window-segment
-                    telephone-line-exwm-workspace-index))
-            ))
+                    telephone-line-exwm-workspace-index))))
 
     (setq telephone-line-primary-left-separator 'telephone-line-tan-left
           telephone-line-primary-right-separator 'telephone-line-tan-right
@@ -4764,13 +4671,13 @@ One can also use helm-do-grep-ag
   :ID:       14e9e239-d4d5-439e-b89e-4e68c2ca1567
   :END:
 #+BEGIN_SRC emacs-lisp
-(require 'cmake-mode)
-;; Add cmake listfile names to the mode list.
-(setq auto-mode-alist
-	  (append
-	   '(("CMakeLists\\.txt\\'" . cmake-mode))
-	   '(("\\.cmake\\'" . cmake-mode))
-	   auto-mode-alist))
+  (use-package cmake-mode)
+  ;; Add cmake listfile names to the mode list.
+  (setq auto-mode-alist
+      (append
+       '(("CMakeLists\\.txt\\'" . cmake-mode))
+       '(("\\.cmake\\'" . cmake-mode))
+       auto-mode-alist))
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
 (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 #+END_SRC
@@ -4792,23 +4699,16 @@ One can also use helm-do-grep-ag
   :ID:       32bfef90-d999-408a-a612-584999720b6f
   :END:
 #+BEGIN_SRC emacs-lisp
-(require 'ansi-color)
-(defun endless/colorize-compilation ()
-  "Colorize from `compilation-filter-start' to `point'."
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region
-     compilation-filter-start (point))))
+  (use-package ansi-color
+   :straight nil)
+  (defun endless/colorize-compilation ()
+    "Colorize from `compilation-filter-start' to `point'."
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region
+       compilation-filter-start (point))))
 
-(add-hook 'compilation-filter-hook
-          #'endless/colorize-compilation)
-#+END_SRC
-* function-args
-  :PROPERTIES:
-  :ID:       8bc8f0fa-fa93-488c-b4ff-fc6d1dfef279
-  :END:
-#+BEGIN_SRC emacs-lisp
-;;(require 'function-args)
-;;(fa-config-default)
+  (add-hook 'compilation-filter-hook
+            #'endless/colorize-compilation)
 #+END_SRC
 * gdb
   :PROPERTIES:
@@ -4901,15 +4801,20 @@ When popping the mark, continue popping until the cursor actually moves
         org-ref-default-bibliography '("~/org/roam/biblio/references.bib")
         org-ref-pdf-directory "~/org/roam/pdfs/")
 
-  (use-package ox)
+  (use-package ox
+   :straight nil)
 
   (use-package ox-hugo
     :straight t
     :after ox)
+
+  (use-package org-ref)
+
   (use-package org-ref-ox-hugo
     :after (org org-ref ox-hugo)
-    :quelpa (org-ref-ox-hugo :fetcher file
-                  :path "~/.emacs.d/elpa/org-ref-ox-hugo/org-ref-ox-hugo.el")
+    :straight (:host github
+               :repo "jethrokuan/org-ref-ox-hugo"
+               :files ("*.el"))
     :config
     (add-to-list 'org-ref-formatted-citation-formats
                  '("md"
@@ -5078,102 +4983,24 @@ Persistent workspaces creation and switching
     :config
     (persp-mode))
 #+END_SRC
-* treemacs
-  :PROPERTIES:
-  :ID:       1c1c01ee-ec1e-43a3-97a4-020cc278347e
-  :END:
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs
-    :straight t
-    :defer t
-    :init
-    (with-eval-after-load 'winum
-      (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-    :config
-    (progn
-      ;; (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
-      ;;       treemacs-deferred-git-apply-delay      0.5
-      ;;       treemacs-directory-name-transformer    #'identity
-      ;;       treemacs-display-in-side-window        t
-      ;;       treemacs-eldoc-display                 t
-      ;;       treemacs-file-event-delay              5000
-      ;;       treemacs-file-extension-regex          treemacs-last-period-regex-value
-      ;;       treemacs-file-follow-delay             0.2
-      ;;       treemacs-file-name-transformer         #'identity
-      ;;       treemacs-follow-after-init             t
-      ;;       treemacs-git-command-pipe              ""
-      ;;       treemacs-goto-tag-strategy             'refetch-index
-      ;;       treemacs-indentation                   2
-      ;;       treemacs-indentation-string            " "
-      ;;       treemacs-is-never-other-window         nil
-      ;;       treemacs-max-git-entries               5000
-      ;;       treemacs-missing-project-action        'ask
-      ;;       treemacs-no-png-images                 nil
-      ;;       treemacs-no-delete-other-windows       t
-      ;;       treemacs-project-follow-cleanup        nil
-      ;;       treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-      ;;       treemacs-position                      'left
-      ;;       treemacs-recenter-distance             0.1
-      ;;       treemacs-recenter-after-file-follow    nil
-      ;;       treemacs-recenter-after-tag-follow     nil
-      ;;       treemacs-recenter-after-project-jump   'always
-      ;;       treemacs-recenter-after-project-expand 'on-distance
-      ;;       treemacs-show-cursor                   nil
-      ;;       treemacs-show-hidden-files             t
-      ;;       treemacs-silent-filewatch              nil
-      ;;       treemacs-silent-refresh                nil
-      ;;       treemacs-sorting                       'alphabetic-asc
-      ;;       treemacs-space-between-root-nodes      t
-      ;;       treemacs-tag-follow-cleanup            t
-      ;;       treemacs-tag-follow-delay              1.5
-      ;;       treemacs-width                         35)
-
-      ;; The default width and height of the icons is 22 pixels. If you are
-      ;; using a Hi-DPI display, uncomment this to double the icon size.
-      ;;(treemacs-resize-icons 44)
-
-      (treemacs-follow-mode t)
-      (treemacs-filewatch-mode t)
-      (treemacs-fringe-indicator-mode t)
-      (pcase (cons (not (null (executable-find "git")))
-                   (not (null treemacs-python-executable)))
-        (`(t . t)
-         (treemacs-git-mode 'deferred))
-        (`(t . _)
-         (treemacs-git-mode 'simple))))
-    :bind
-    (:map global-map
-          ("M-0"       . treemacs-select-window)
-          ("C-x t 1"   . treemacs-delete-other-windows)
-          ("C-x t t"   . treemacs)
-          ("C-x t B"   . treemacs-bookmark)
-          ("C-x t C-t" . treemacs-find-file)
-          ("C-x t M-t" . treemacs-find-tag)))
-
-  (use-package treemacs-projectile
-    :after treemacs projectile
-    :straight t
-  )
-
-  ;; (use-package treemacs-icons-dired
-  ;;   :after treemacs dired
-  ;;   :ensure t
-  ;;   :config (treemacs-icons-dired-mode))
-
-  (use-package treemacs-magit
-    :after treemacs magit
-    :straight t
-  )
-#+END_SRC
 * emms
   :PROPERTIES:
   :ID:       05cbe54a-8624-47cf-a92d-0fb248fca5ff
   :END:
 #+BEGIN_SRC emacs-lisp
-(require 'emms-setup)
-(emms-standard)
-(emms-default-players)
-(setq emms-source-file-default-directory "/home/jw/realpolish/100-DPS--61-70/mp3/")
+  (use-package emms)
+  ;; (use-package emms-setup
+  ;;  :straight nil
+  ;;  :config
+  ;;  (emms-standard)
+  ;;  (emms-default-players)
+  ;;  (setq emms-source-file-default-directory "/home/jw/realpolish/100-DPS--61-70/mp3/")
+  ;; )
+
+  (require 'emms-setup)
+  (emms-standard)
+  (emms-default-players)
+  (setq emms-source-file-default-directory "/home/jw/realpolish/100-DPS--61-70/mp3/")
 #+END_SRC
 * elfeed
   :PROPERTIES:
@@ -5342,41 +5169,6 @@ Persistent workspaces creation and switching
                        ("LGR" "https://www.youtube.com/feeds/videos.xml?user=phreakindee" nil nil nil)
                        ))
 #+END_SRC
-* slack
-  :PROPERTIES:
-  :ID:       0d510ee9-0ec0-43e5-84e9-27e2aec6b28c
-  :END:
-BEGIN_SRC emacs-lisp
-    (use-package slack
-      :straight t
-      :commands (slack-start)
-      :init
-      ;; (setq slack-redirect-url "http://localhost:8080")
-      (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
-      (setq slack-prefer-current-team t)
-      :config
-      ;; (slack-register-team
-      ;;  :name "emacs-slack"
-      ;;  :default t
-      ;;  :client-id "11541119175.467499999414"
-      ;;  :client-secret "b78634c1141e4a962148d5f5e2828b95"
-      ;;  :token "xoxs-sssssssssss-88888888888-hhhhhhhhhhh-jjjjjjjjjj"
-      ;;  :subscribed-channels '(test-rename rrrrr)
-      ;;  :full-and-display-names t)
-
-      ;; (slack-register-team
-      ;;  :name "test"
-      ;;  :client-id "3333333333.77777777777"
-      ;;  :client-secret "cccccccccccccccccccccccccccccccc"
-      ;;  :token "xoxs-yyyyyyyyyy-zzzzzzzzzzz-hhhhhhhhhhh-llllllllll"
-      ;;  :subscribed-channels '(hoge fuga))
-  )
-  (use-package alert
-    :straight t
-    :commands (alert)
-    :init
-    (setq alert-default-style 'notifier))
-END_SRC
 * epkg
   :PROPERTIES:
   :ID:       3cf9d808-cd4f-41fc-b371-3bf584282556
@@ -5391,7 +5183,7 @@ END_SRC
   :ID:       5c13509a-8319-4332-a1fb-a5c326b81553
   :END:
 #+BEGIN_SRC emacs-lisp
-(require 'indium)
+(use-package indium)
 (add-hook 'js-mode-hook #'indium-interaction-mode)
 #+END_SRC
 * borg
@@ -5452,7 +5244,7 @@ END_SRC
     :commands (goto-address-prog-mode
                goto-address-mode))
 #+END_SRC
-* vterm currently segfaults 
+* vterm
   :PROPERTIES:
   :ID:       a312adda-f8df-4690-8b40-622ec2ece4c2
   :END:
@@ -5492,6 +5284,8 @@ END_SRC
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
    '(conda-anaconda-home "/home/jw/miniconda3/"))
+  (use-package conda)
+
   (require 'conda)
   ;; if you want interactive shell support, include:
   (conda-env-initialize-interactive-shells)
@@ -5506,6 +5300,7 @@ END_SRC
   :ID:       ba9fd1b6-f40f-47c1-b810-b45c81ac2297
   :END:
 #+BEGIN_SRC emacs-lisp
+  (use-package pyenv-mode)
   (pyenv-mode)
 #+END_SRC
 * Anaconda mode
@@ -5526,6 +5321,7 @@ END_SRC
    :END:
 #+BEGIN_SRC emacs-lisp
   (use-package esh-mode
+    :straight nil
     :init
     (setq eshell-scroll-to-bottom-on-input 'all
           eshell-error-if-no-glob t
@@ -5629,7 +5425,7 @@ END_SRC
             filename name)
         (cond
          ((eq nil args)
-          (format "Usage: 
+          (format "Usage:
   - bmk BOOKMARK to
   -- either change directory pointed to by BOOKMARK
   -- or bookmark-jump to the BOOKMARK if it is not a directory.
@@ -5649,16 +5445,16 @@ END_SRC
               ;; If it points to a directory, change to it.
               (if (file-directory-p filename)
                   (eshell/cd filename)
-                ;; otherwise, just jump to the bookmark 
+                ;; otherwise, just jump to the bookmark
                 (bookmark-jump bookmark))
             (error "%s is not a bookmark" bookmark))))))
 
-  (defun my-delete-window-on-eshell-exit () 
+  (defun my-delete-window-on-eshell-exit ()
     (when (not (one-window-p))
       (delete-window)))
 
   (advice-add 'eshell-life-is-too-much :after 'my-delete-window-on-eshell-exit)
-  
+
   :bind
     (:map eshell-mode-map
                 ("M-k" . eshell-kill-input)
@@ -5673,6 +5469,7 @@ END_SRC
   )
 
   (use-package esh-module
+    :straight nil
     :config
     (setq eshell-modules-list             ; Needs review
           '(eshell-alias
@@ -5690,17 +5487,20 @@ END_SRC
             eshell-unix)))
 
   (use-package em-dirs
+    :straight nil
     :after esh-mode
     :config
     (setq eshell-cd-on-directory t))
 
   (use-package em-tramp
+    :straight nil
     :after esh-mode
     :config
     (setq password-cache t)
     (setq password-cache-expiry 600))
 
   (use-package em-hist
+    :straight nil
     :after esh-mode
     :config
     (setq eshell-hist-ignoredups t)
@@ -5786,60 +5586,6 @@ That way we also save dired paths.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'desktop-globals-to-save 'helm-ff-history)
 #+END_SRC
-* xwidget
-  :PROPERTIES:
-  :ID:       9801c90e-7f46-4121-a1ed-f38ec4f3a0a5
-  :END:
-#+BEGIN_SRC emacs-lisp
-  ;; (require 'xwidget)
-
-  ;; (when
-  ;;     (featurep 'xwidget-internal)
-  ;;   (easy-menu-define my-xwidget-tools-menu nil "Menu for Xwidget Webkit."
-  ;;     `("Xwidget Webkit" :visible
-  ;;       (featurep 'xwidget-internal)
-  ;;       ["Browse Url ..." xwidget-webkit-browse-url :help "Ask xwidget-webkit to browse URL"]
-  ;;       ["End Edit Textarea" xwidget-webkit-end-edit-textarea :help "End editing of a webkit text area"]))
-  ;;   (easy-menu-add-item menu-bar-tools-menu nil my-xwidget-tools-menu 'separator-net)
-  ;;   (easy-menu-define my-xwidget-menu xwidget-webkit-mode-map "Menu for Xwidget Webkit."
-  ;;     '("Xwidget Webkit"
-  ;;       ["Browse Url" xwidget-webkit-browse-url :help "Ask xwidget-webkit to browse URL"]
-  ;;       ["Reload" xwidget-webkit-reload :help "Reload current url"]
-  ;;       ["Back" xwidget-webkit-back :help "Go back in history"]
-  ;;       "--"
-  ;;       ["Insert String" xwidget-webkit-insert-string :help "current webkit widget"]
-  ;;       ["End Edit Textarea" xwidget-webkit-end-edit-textarea :help "End editing of a webkit text area"]
-  ;;       "--"
-  ;;       ["Scroll Forward" xwidget-webkit-scroll-forward :help "Scroll webkit forwards"]
-  ;;       ["Scroll Backward" xwidget-webkit-scroll-backward :help "Scroll webkit backwards"]
-  ;;       "--"
-  ;;       ["Scroll Up" xwidget-webkit-scroll-up :help "Scroll webkit up"]
-  ;;       ["Scroll Down" xwidget-webkit-scroll-down :help "Scroll webkit down"]
-  ;;       "--"
-  ;;       ["Scroll Top" xwidget-webkit-scroll-top :help "Scroll webkit to the very top"]
-  ;;       ["Scroll Bottom" xwidget-webkit-scroll-bottom :help "Scroll webkit to the very bottom"]
-  ;;       "--"
-  ;;       ["Zoom In" xwidget-webkit-zoom-in :help "Increase webkit view zoom factor"]
-  ;;       ["Zoom Out" xwidget-webkit-zoom-out :help "Decrease webkit view zoom factor"]
-  ;;       "--"
-  ;;       ["Fit Width" xwidget-webkit-fit-width :help "Adjust width of webkit to window width"]
-  ;;       ["Adjust Size" xwidget-webkit-adjust-size :help "Manually set webkit size to width W, height H"]
-  ;;       ["Adjust Size Dispatch" xwidget-webkit-adjust-size-dispatch :help "Adjust size according to mode"]
-  ;;       ["Adjust Size To Content" xwidget-webkit-adjust-size-to-content :help "Adjust webkit to content size"]
-  ;;       "--"
-  ;;       ["Copy Selection As Kill" xwidget-webkit-copy-selection-as-kill :help "Get the webkit selection and put it on the kill-ring"]
-  ;;       ["Current Url" xwidget-webkit-current-url :help "Get the webkit url and place it on the kill-ring"]
-  ;;       "--"
-  ;;       ["Show Element" xwidget-webkit-show-element :help "Make webkit xwidget XW show a named element ELEMENT-SELECTOR"]
-  ;;       ["Show Id Element" xwidget-webkit-show-id-element :help "Make webkit xwidget XW show an id-element ELEMENT-ID"]
-  ;;       ["Show Id Or Named Element" xwidget-webkit-show-id-or-named-element :help "Make webkit xwidget XW show a name or element id ELEMENT-ID"]
-  ;;       ["Show Named Element" xwidget-webkit-show-named-element :help "Make webkit xwidget XW show a named element ELEMENT-NAME"]
-  ;;       "--"
-  ;;       ["Cleanup" xwidget-cleanup :help "Delete zombie xwidgets"]
-  ;;       ["Event Handler" xwidget-event-handler :help "Receive xwidget event"]
-  ;;       "--"
-  ;;       ["Xwidget Webkit Mode" xwidget-webkit-mode :help "Xwidget webkit view mode"])))
-#+END_SRC
 * google translate
   :PROPERTIES:
   :ID:       b01fb2f4-d133-4659-a4b2-c787dc8444bc
@@ -5868,14 +5614,6 @@ That way we also save dired paths.
 #+BEGIN_SRC emacs-lisp
   (setq tramp-terminal-type "tramp")
 #+END_SRC
-* sfs
-  :PROPERTIES:
-  :ID:       ebb21711-c05d-405a-92af-627043a5d5b4
-  :END:
-#+BEGIN_SRC emacs-lisp
-(use-package sfs-recoll
-  :quelpa (sfs-recoll :repo "Overdr0ne/sfs" :fetcher github))
-#+END_SRC
 * rg
   :PROPERTIES:
   :ID:       e357e8bf-20cc-418c-981d-feee6b4432a7
@@ -5884,19 +5622,6 @@ That way we also save dired paths.
   (use-package rg
     :straight t
   )
-#+END_SRC
-* xwwp
-  :PROPERTIES:
-  :ID:       869d4426-b3a1-4b09-bdfb-bdb0ec1f4c0c
-  :END:
-#+BEGIN_SRC emacs-lisp
-  (use-package xwwp-full
-    :load-path "~/projects/emacs/xwwp"
-    :custom
-    (xwwp-follow-link-completion-system 'helm)
-    :bind (:map xwidget-webkit-mode-map
-                ("v" . xwwp-follow-link)
-                ("t" . xwwp-ace-toggle)))
 #+END_SRC
 * eaf
   :PROPERTIES:
@@ -5953,15 +5678,3 @@ BEGIN_SRC emacs-lisp
   ;;                              app))))))
   ;;        helm-bookmark-default-filtered-sources)))
 END_SRC
-
-* symon
-  :PROPERTIES:
-  :ID:       e9b66fd4-4aad-40a6-8648-9a18ed3f2579
-  :END:
-#+BEGIN_SRC emacs-lisp
-  ;; (setq display-time-default-load-average nil)
-  ;; (setq display-time-day-and-date t)
-  ;; (display-time-mode t)
-  ;; (require 'symon)
-  ;; (symon-mode)
-#+END_SRC

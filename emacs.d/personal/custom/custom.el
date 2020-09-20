@@ -1,0 +1,100 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-math-abbrev-prefix "¤")
+ '(blink-cursor-mode nil)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/savefile/bookmarks")
+ '(column-number-mode t)
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(company-show-numbers t)
+ '(conda-anaconda-home "/home/jw/miniconda3/")
+ '(custom-safe-themes
+   '("f56eb33cd9f1e49c5df0080a3e8a292e83890a61a89bceeaa481a5f183e8e3ef" "1954bf313ce7c13971b0dc383616a6f1a15a53684218747d7aa975dba7110b05" "32a9ed94752294ada206a0d425969b449b16ef45ec13c0da0a109a68f7862a26" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" default))
+ '(deft-default-extension "org" t)
+ '(deft-directory "~/org/roam/" t)
+ '(deft-recursive t t)
+ '(deft-use-filter-string-for-filename t t)
+ '(dired-filter-mark-prefix "ä")
+ '(dired-filter-prefix "ö")
+ '(fci-rule-color "#383838" t)
+ '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
+ '(haskell-process-auto-import-loaded-modules t t)
+ '(haskell-process-log t t)
+ '(haskell-process-suggest-remove-import-lines t t)
+ '(haskell-process-type 'cabal-repl t)
+ '(haskell-tags-on-save t t)
+ '(inferior-haskell-wait-and-jump t t)
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3") t)
+ '(package-selected-packages
+   '(org-pandoc-import lolsmacs pdfgrep pdf-view-restore feed-discovery sdcv helm-org modus-operandi-theme modus-vivendi-theme ledger-mode wid-edit+ help-fns+ helm-ls-git help-mode+ info+ org-variable-pitch sfs-recoll elfeed-org link-hint pyenv-mode thing-cmds hide-comnt thingatpt+ palette hexrgb facemenu+ mouse3 highlight dired+ fish-completion conda org-roam-server calibredb dockerfile-mode org-noter mark-thing-at raku-mode org-roam-bibtex bibtex-completion csv-mode helm-org-rifle org-ref writeroom-mode deft yasnippet-snippets org-roam perspective eyebrowse treemacs-icons-dired treemacs-magit treemacs-projectile treemacs all-the-icons-ibuffer flycheck-rust rust-mode dumb-jump php-mode let-alist rg helm-rg bookmark+ quelpa-use-package quelpa bang pack clang-format ccls flymake-shell cmake-font-lock company-lsp lsp-ui lsp-mode cuda-mode indium slack ein request websocket helm-system-packages load-theme-buffer-local flycheck-julia julia-repl julia-mode counsel-projectile org-journal helpful helm-swoop info-colors go-mode eterm-256color epkg elfeed all-the-icons-dired google-translate ace-link helm-w3m helm-pydoc helm-tramp helm-proc helm-c-yasnippet keyword-search dired-narrow markdown-mode sunrise-commander sunrise-x-mirror sunrise-x-modeline dired-avfs zygospore pythonic anaconda-mode helm-perldoc yaml-mode nov visual-regexp visual-regexp-steroids helm-eww org-pdfview clean-aindent-mode ws-butler org-plus-contrib lua-mode helm-gtags comment-dwim-2 emms docker helm-describe-modes paperless image+ org-download eval-in-repl flycheck-pos-tip guide-key helm-themes function-args sr-speedbar cmake-mode workgroups2 pdf-tools company-quickhelp whole-line-or-region transpose-frame golden-ratio headlong key-combo company-c-headers w3m ranger peep-dired dired-ranger dired-launch dired-subtree dired-filter diredfl hungry-delete pcre2el rainbow-blocks use-package bind-key auto-compile paradox zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window))
+ '(paperless-capture-directory "/home/jw/Dokument/Scan")
+ '(paperless-root-directory "/home/jw/Dokument")
+ '(paradox-automatically-star t)
+ '(paradox-github-token t t)
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(safe-local-variable-values
+   '((org-hugo-section . "zettels")
+     (eval jethro/conditional-hugo-enable)
+     (company-c-headers-path-user "/home/jw/projects/c-demo-project/include1/" "/home/jw/projects/c-demo-project/include2/")
+     (company-clang-arguments "-I/home/jw/projects/c-demo-project/include1/" "-I/home/jw/projects/c-demo-project/include2/")
+     (eval font-lock-add-keywords nil
+           '(("(\\(dired-filter-define\\)[[:blank:]]+\\(.+\\)"
+              (1 'font-lock-keyword-face)
+              (2 'font-lock-function-name-face))))))
+ '(scroll-bar-mode nil)
+ '(size-indication-mode t)
+ '(sr-avfs-root "~/.avfs")
+ '(tool-bar-mode nil)
+ '(vc-annotate-background "#2B2B2B" t)
+ '(vc-annotate-color-map
+   '((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3")) t)
+ '(vc-annotate-very-old-color "#DC8CC3" t)
+ '(w3m-search-engine-alist
+   '(("yahoo" "https://search.yahoo.com/bin/search?p=%s" nil)
+     ("google" "https://www.google.com/search?q=%s&ie=utf-8&oe=utf-8" utf-8)
+     ("google-en" "https://www.google.com/search?q=%s&hl=en&ie=utf-8&oe=utf-8" utf-8)
+     ("google news" "https://news.google.com/news?q=%s&ie=utf-8&oe=utf-8" utf-8)
+     ("google news-en" "https://news.google.com/news?q=%s&hl=en&ie=utf-8&oe=utf-8" nil)
+     ("rpmfind" "https://rpmfind.net/linux/rpm2html/search.php?query=%s" nil)
+     ("debian-pkg" "https://packages.debian.org/search?&searchon=names&suite=stable&section=all&arch=amd64&keywords=%s" nil)
+     ("debian-bts" "https://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s" nil)
+     ("eiei" "https://www.dictionary.com/cgi-bin/dict.pl?term=%s&r=67" nil)
+     ("amazon" "https://www.amazon.com/exec/obidos/search-handle-form/250-7496892-7797857" iso-8859-1 "url=index=blended&field-keywords=%s")
+     ("emacswiki" "https://www.emacswiki.org/cgi-bin/wiki?search=%s" nil)
+     ("en.wikipedia" "https://en.wikipedia.org/wiki/Special:Search?search=%s" nil)
+     ("de.wikipedia" "https://de.wikipedia.org/wiki/Spezial:Search?search=%s" utf-8)
+     ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)))
+ '(w3m-uri-replace-alist
+   '(("\\`gg:" w3m-search-uri-replace "google")
+     ("\\`ya:" w3m-search-uri-replace "yahoo")
+     ("\\`bts:" w3m-search-uri-replace "debian-bts")
+     ("\\`dpkg:" w3m-search-uri-replace "debian-pkg")
+     ("\\`ewiki:" w3m-search-uri-replace "emacswiki")
+     ("\\`urn:ietf:rfc:\\([0-9]+\\)" w3m-pattern-uri-replace "http://www.ietf.org/rfc/rfc\\1.txt"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-roam-link ((t (:inherit org-link :foreground "#005200")))))
