@@ -40,6 +40,7 @@ config/terminator
 #ctags/ctags
 #cmus
 #curl/curlrc
+doom.d
 duply/my_amazon
 emacs-profile
 emacs-profiles.el
@@ -74,6 +75,7 @@ inputrc
 #ncmpcpp/config
 #ncmpcpp/error.log
 #postgresql/psqlrc
+prelude
 profile
 #python/pythonrc
 #python/pylintrc

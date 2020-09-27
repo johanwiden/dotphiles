@@ -442,7 +442,7 @@ END_SRC
   :PROPERTIES:
   :ID:       3bc6216e-1900-4d16-be19-73575aeedc1a
   :END:
-#+BEGIN_SRC emacs-lisp
+BEGIN_SRC emacs-lisp
   (use-package lolsmacs
     :straight (:host github
                :repo "grettke/lolsmacs"
@@ -450,7 +450,7 @@ END_SRC
   )
   (require 'lolsmacs)
   (lolsmacs-init)
-#+END_SRC
+END_SRC
 * Scroll in place
   :PROPERTIES:
   :ID:       fb9672dd-af99-474a-a7f3-c34852077218
@@ -5590,9 +5590,9 @@ Persistent workspaces creation and switching
   :END:
 When saving emacs desktop, also save Helm find-file-history.
 That way we also save dired paths.
-#+BEGIN_SRC emacs-lisp
+BEGIN_SRC emacs-lisp
   (add-to-list 'desktop-globals-to-save 'helm-ff-history)
-#+END_SRC
+END_SRC
 * google translate
   :PROPERTIES:
   :ID:       b01fb2f4-d133-4659-a4b2-c787dc8444bc

@@ -233,14 +233,6 @@ indent yanked text (with prefix arg don't indent)."
 
 (use-package bind-key)
 
-(use-package lolsmacs
-  :straight (:host github
-             :repo "grettke/lolsmacs"
-             :files ("*.el"))
-)
-(require 'lolsmacs)
-(lolsmacs-init)
-
 (global-set-key [(hyper up)]
                 (lambda ()
                   (interactive)
@@ -2928,6 +2920,8 @@ With WITH-TYPES, ask for file types to search in."
   (interactive "P")
   (mu-helm-rg default-directory with-types))
 
+(use-package helm-recoll)
+
 (setf epg-pinentry-mode 'loopback)
 (defun pinentry-emacs (desc prompt ok error)
   (let ((str (read-passwd
@@ -4180,8 +4174,6 @@ directory to make multiple eshell windows easier."
 
 (global-set-key (kbd "C-!") 'eshell-here)
 
-(add-to-list 'desktop-globals-to-save 'helm-ff-history)
-
 (use-package google-translate
   :straight t
   :config
@@ -4197,4 +4189,9 @@ directory to make multiple eshell windows easier."
 
 (use-package rg
   :straight t
+)
+
+(use-package org-recoll
+  :straight (:host github
+             :repo "alraban/org-recoll")
 )

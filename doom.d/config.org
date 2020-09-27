@@ -1,0 +1,1715 @@
+#+STARTUP: overview
+#+TITLE: Johan Widéns Emacs
+#+CREATOR: Johan Widén
+#+LANGUAGE: en
+#+OPTIONS: num:nil
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+Place your private configuration here! Remember, you do not need to run 'doom sync' after modifying this file!
+* elisp header
+  :PROPERTIES:
+  :ID:       ce5fb12b-428c-40d6-b6d6-c85f30524478
+  :END:
+#+BEGIN_SRC emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+END_SRC
+* My account settings
+  :PROPERTIES:
+  :ID:       dfbd2356-a8a4-447e-bf31-b48c4434f209
+  :END:
+Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Johan Widén"
+      user-mail-address "j.e.widen@gmail.com")
+#+END_SRC
+* Incremental search
+  :PROPERTIES:
+  :ID:       8b8193ed-9345-4580-be12-0189d9027ba7
+  :END:
+Settings copied from jethrokuan. Untested by me
+#+BEGIN_SRC emacs-lisp
+(setq search-highlight t
+      search-whitespace-regexp ".*?"
+      isearch-lax-whitespace t
+      isearch-regexp-lax-whitespace nil
+      isearch-lazy-highlight t
+      isearch-lazy-count t
+      lazy-count-prefix-format " (%s/%s) "
+      lazy-count-suffix-format nil
+      isearch-yank-on-move 'shift
+      isearch-allow-scroll 'unlimited)
+#+END_SRC
+* theme
+  :PROPERTIES:
+  :ID:       ac9acb11-2e16-4940-b68b-e567359a9f59
+  :END:
+There are two ways to load a theme. Both assume the theme is installed and
+available. You can either set `doom-theme' or manually load a theme with the
+`load-theme' function. This is the default:
+(setq doom-theme 'doom-one)
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'modus-vivendi)
+(setq modus-vivendi-theme-proportional-fonts t)
+(setq modus-vivendi-theme-rainbow-headings nil)
+(setq modus-vivendi-theme-scale-headings t)
+(setq modus-vivendi-theme-bold-constructs t)
+(setq modus-vivendi-theme-visible-fringes t)
+(setq modus-vivendi-theme-intense-paren-match nil)
+(setq modus-vivendi-theme-variable-pitch-headings t)
+#+END_SRC
+* Fonts
+  :PROPERTIES:
+  :ID:       a37bafe0-8279-40d3-b4c7-00594c2d4241
+  :END:
+TODO: Fix modus-vivendi font scaling, determine which fonts I actually want to use
+
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+- `doom-font'
+- `doom-variable-pitch-font'
+- `doom-big-font' -- used for `doom-big-font-mode'; use this for presentations or streaming.
+
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
+(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Ubuntu Mono" :size 18)
+      ;; doom-font (font-spec :family "Iosevka" :size 16)
+      doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
+      ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
+      ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
+      )
+(set-face-attribute 'default nil :font "Ubuntu Mono-18")
+;;(set-face-attribute 'default nil :font "Iosevka-16")
+(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
+;;(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 1.0)
+(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
+;;(set-face-attribute 'variable-pitch nil :family "Libre Baskerville" :height 1.0)
+(custom-set-faces!
+  '(aw-leading-char-face
+    :foreground "white" :background "red"
+    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+#+END_SRC
+* Load =.secret.el=
+  :PROPERTIES:
+  :ID:       09f7fbb1-48e9-4f32-9be4-39c8f981d7ae
+  :END:
+I load =~/.emacs.d/.secret.el= to keep sensible things out of version control.
+For instance, you could set your identity by customizing both =user-full-name=
+and =user-mail-address=. This is also where you want your API tokens to live.
+
+#+BEGIN_SRC emacs-lisp :results silent
+(defvar jw/paradox-github-token nil)
+
+(let ((secret.el (expand-file-name ".secret.el" "~")))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+#+END_SRC
+* server
+  :PROPERTIES:
+  :ID:       fbd70f3b-b2a3-4d7d-9396-e8d62e779508
+  :END:
+Allow emacs to run as a daemon
+#+BEGIN_SRC emacs-lisp
+(server-start)
+#+END_SRC
+* Better defaults
+  :PROPERTIES:
+  :ID:       903cb89e-f84c-4bab-8b65-183c03bb7af0
+  :END:
+** My defaults
+   :PROPERTIES:
+   :ID:       33c7db76-5c8e-445b-99f1-5fcdb0bf38d6
+   :END:
+#+BEGIN_SRC emacs-lisp
+(setq-default
+ help-window-select t             ; Focus new help windows when opened
+ ;;debug-on-error t
+ ;;jit-lock-defer-time 0
+ ;;fast-but-imprecise-scrolling t ; Set by doom
+ ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
+ window-combination-resize t      ; Resize windows proportionally
+ history-delete-duplicates t
+ )
+#+END_SRC
+** lolsmacs
+   :PROPERTIES:
+   :ID:       3c68f97c-2461-4d6a-9a66-80c039134b16
+   :END:
+Many settings in lolsmacs are already handled in doom.
+The doom settings are probably better. I just copy a few settings from lolsmacs.
+I want to avoid desktop, which is turned on in lolsmacs.
+#+BEGIN_SRC emacs-lisp
+(global-auto-revert-mode t)
+#+END_SRC
+* org
+  :PROPERTIES:
+  :ID:       fff596b9-2ad3-4e12-9a6e-0ebbfc92a861
+  :END:
+** org proper
+   :PROPERTIES:
+   :ID:       77b3098f-80b3-4460-9ec1-136da8238715
+   :END:
+If you use `org' and don't want your org files in the default location below,
+change `org-directory'. It must be set before org loads!
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/org/")
+(setq org-use-speed-commands t)
+#+END_SRC
+** Agenda
+   :PROPERTIES:
+   :ID:       870049d3-822d-4b71-9893-e36007769341
+   :END:
+#+BEGIN_SRC emacs-lisp
+(require 'find-lisp)
+
+(setq jethro/org-agenda-directory (file-truename "~/org-files/"))
+(setq org-agenda-files
+      (find-lisp-find-files jethro/org-agenda-directory "\.org$"))
+
+(use-package! org-agenda
+  :init
+  (setq org-agenda-block-separator nil
+        org-agenda-start-with-log-mode t)
+  (defun jethro/switch-to-agenda ()
+    (interactive)
+    (org-agenda nil " "))
+  :bind (:map org-agenda-mode-map
+              ("i" . org-agenda-clock-in)
+              ("r" . jethro/org-process-inbox)
+              ("R" . org-agenda-refile)
+              ("c" . jethro/org-inbox-capture))
+  :config
+  (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
+  (setq org-agenda-custom-commands `((" " "Agenda"
+                                      ((agenda ""
+                                               ((org-agenda-span 'week)
+                                                (org-deadline-warning-days 365)))
+                                       (todo "TODO"
+                                             ((org-agenda-overriding-header "To Refile")
+                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "inbox.org")))))
+                                       (todo "TODO"
+                                             ((org-agenda-overriding-header "Emails")
+                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "emails.org")))))
+                                       (todo "NEXT"
+                                             ((org-agenda-overriding-header "In Progress")
+                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "someday.org")
+                                                                  ,(concat jethro/org-agenda-directory "projects.org")
+                                                                  ,(concat jethro/org-agenda-directory "next.org")))
+                                              ))
+                                       (todo "TODO"
+                                             ((org-agenda-overriding-header "Projects")
+                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "projects.org")))
+                                              ))
+                                       (todo "TODO"
+                                             ((org-agenda-overriding-header "One-off Tasks")
+                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "next.org")))
+                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled)))))))))
+
+(defun jethro/org-archive-done-tasks ()
+  "Archive all done tasks."
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
+(setq org-capture-templates
+        `(("i" "inbox" entry (file ,(concat jethro/org-agenda-directory "inbox.org"))
+           "* TODO %?")
+          ("e" "email" entry (file+headline ,(concat jethro/org-agenda-directory "emails.org") "Emails")
+               "* TODO [#A] Reply: %a :@home:@school:"
+               :immediate-finish t)
+          ("c" "org-protocol-capture" entry (file ,(concat jethro/org-agenda-directory "inbox.org"))
+               "* TODO [[%:link][%:description]]\n\n %i"
+               :immediate-finish t)
+          ("w" "Weekly Review" entry (file+olp+datetree ,(concat jethro/org-agenda-directory "reviews.org"))
+           (file ,(concat jethro/org-agenda-directory "templates/weekly_review.org")))
+          ("r" "Reading" todo ""
+               ((org-agenda-files '(,(concat jethro/org-agenda-directory "reading.org")))))))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+
+(setq org-log-done 'time
+      org-log-into-drawer t
+      org-log-state-notes-insert-after-drawers nil)
+
+(setq org-tag-alist (quote (("@errand" . ?e)
+                            ("@office" . ?o)
+                            ("@home" . ?h)
+                            (:newline)
+                            ("CANCELLED" . ?c))))
+
+(setq org-fast-tag-selection-single-key nil)
+(setq org-refile-use-outline-path 'file
+      org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm
+      org-refile-targets '((org-agenda-files . (:level . 1))))
+
+(defvar jethro/org-agenda-bulk-process-key ?f
+  "Default key for bulk processing inbox items.")
+
+(defun jethro/org-process-inbox ()
+  "Called in org-agenda-mode, processes all inbox items."
+  (interactive)
+  (org-agenda-bulk-mark-regexp "inbox:")
+  (jethro/bulk-process-entries))
+
+(defvar jethro/org-current-effort "1:00"
+  "Current effort for agenda items.")
+
+(defun jethro/my-org-agenda-set-effort (effort)
+  "Set the EFFORT property for the current headline."
+  (interactive
+   (list (read-string (format "Effort [%s]: " jethro/org-current-effort) nil nil jethro/org-current-effort)))
+  (setq jethro/org-current-effort effort)
+  (org-agenda-check-no-diary)
+  (let* ((hdmarker (or (org-get-at-bol 'org-hd-marker)
+                       (org-agenda-error)))
+         (buffer (marker-buffer hdmarker))
+         (pos (marker-position hdmarker))
+         (inhibit-read-only t)
+         newhead)
+    (org-with-remote-undo buffer
+      (with-current-buffer buffer
+        (widen)
+        (goto-char pos)
+        (org-show-context 'agenda)
+        (funcall-interactively 'org-set-effort nil jethro/org-current-effort)
+        (end-of-line 1)
+        (setq newhead (org-get-heading)))
+      (org-agenda-change-all-lines newhead hdmarker))))
+
+(defun jethro/org-agenda-process-inbox-item ()
+  "Process a single item in the 'org-agenda'."
+  (org-with-wide-buffer
+   (org-agenda-set-tags)
+   (org-agenda-priority)
+   (call-interactively 'jethro/my-org-agenda-set-effort)
+   (org-agenda-refile nil nil t)))
+
+(defun jethro/bulk-process-entries ()
+  (if (not (null org-agenda-bulk-marked-entries))
+      (let ((entries (reverse org-agenda-bulk-marked-entries))
+            (processed 0)
+            (skipped 0))
+        (dolist (e entries)
+          (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
+            (if (not pos)
+                (progn (message "Skipping removed entry at %s" e)
+                       (cl-incf skipped))
+              (goto-char pos)
+              (let (org-loop-over-headlines-in-active-region) (funcall 'jethro/org-agenda-process-inbox-item))
+              ;; `post-command-hook' is not run yet.  We make sure any
+              ;; pending log note is processed.
+              (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
+                        (memq 'org-add-log-note post-command-hook))
+                (org-add-log-note))
+              (cl-incf processed))))
+        (org-agenda-redo)
+        (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
+        (message "Acted on %d entries%s%s"
+                 processed
+                 (if (= skipped 0)
+                     ""
+                   (format ", skipped %d (disappeared before their turn)"
+                           skipped))
+                 (if (not org-agenda-persistent-marks) "" " (kept marked)")))))
+
+(defun jethro/org-inbox-capture ()
+  "Capture a task in agenda mode."
+  (interactive)
+  (org-capture nil "i"))
+
+(setq org-agenda-bulk-custom-functions `((,jethro/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
+
+(defun jethro/set-todo-state-next ()
+  "Visit each parent task and change NEXT states to TODO."
+  (org-todo "NEXT"))
+
+(add-hook 'org-clock-in-hook 'jethro/set-todo-state-next 'append)
+
+(use-package! org-clock-convenience
+  :bind (:map org-agenda-mode-map
+              ("<S-up>" . org-clock-convenience-timestamp-up)
+              ("<S-down>" . org-clock-convenience-timestamp-down)
+              ("o" . org-clock-convenience-fill-gap)
+              ("e" . org-clock-convenience-fill-gap-both)))
+#+END_SRC
+** Which buffer types get org mode
+   :PROPERTIES:
+   :ID:       c9f6adc7-51b8-4a3e-92f0-97638b1b3ed4
+   :END:
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
+#+END_SRC
+** org-journal
+   :PROPERTIES:
+   :ID:       1bad0efc-f56c-4481-b6cd-ebfefdca2229
+   :END:
+#+BEGIN_SRC emacs-lisp
+(use-package! org-journal
+  :config
+  (setq org-journal-date-prefix "#+TITLE: "
+        org-journal-file-format "private-%Y-%m-%d.org"
+        org-journal-dir "~/org/roam/"
+        org-journal-carryover-items nil
+        org-journal-date-format "%Y-%m-%d"))
+#+END_SRC
+** org-pdfview
+   :PROPERTIES:
+   :ID:       288971e4-fad7-4d26-a787-ecee0fa0b90a
+   :END:
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-pdfview
+    :config
+    (add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link)))))
+  )
+#+END_SRC
+** Babel
+   :PROPERTIES:
+   :ID:       fa99e051-0c72-4e4f-b982-f6600e93bf98
+   :END:
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (require 'ob-emacs-lisp)
+  (require 'ob-ledger)
+  (require 'ob-python)
+  (require 'ob-shell)
+  (setq org-babel-load-languages '((emacs-lisp . t)
+                                   (ledger . t)
+                                   (python . t)
+                                   (shell . t)  ; in my case /bin/bash
+)))
+#+END_SRC
+
+We need to tell babel to use python3. Who uses python2 anymore anyway? And why
+doesn't ~python~ refer to the latest version!?
+#+BEGIN_SRC emacs-lisp
+(setq org-babel-python-command "python3")
+#+END_SRC
+** ox-gfm
+   :PROPERTIES:
+   :ID:       22f49616-12d4-4ca9-89ac-fc8eb3df7acc
+   :END:
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (require 'ox-gfm nil t))
+#+END_SRC
+** org-roam
+#+BEGIN_SRC emacs-lisp
+(use-package! org-roam
+  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+  :hook
+  (after-init . org-roam-mode)
+  :init
+  (map! :leader
+        :prefix "n"
+        :desc "org-roam" "l" #'org-roam
+        :desc "org-roam-insert" "i" #'org-roam-insert
+        :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
+        :desc "org-roam-find-file" "f" #'org-roam-find-file
+        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+        :desc "org-roam-insert" "i" #'org-roam-insert
+        :desc "org-roam-capture" "c" #'org-roam-capture)
+  (setq org-roam-directory (file-truename "~/org/roam/")
+        org-roam-db-location (file-truename "~/org/roam/org-roam.db")
+        org-roam-graph-exclude-matcher "private"
+        org-roam-completion-system 'helm
+        org-roam-tag-sources '(prop last-directory)
+        org-id-link-to-org-use-id t)
+  :config
+  (setq org-roam-capture-templates
+        '(("l" "lit" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "lit/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+hugo_slug: ${slug}
+,#+title: ${title}\n"
+           :unnarrowed t)
+          ("c" "concept" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "concepts/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+hugo_slug: ${slug}
+,#+title: ${title}\n"
+           :unnarrowed t)
+          ("p" "private" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "private/${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)))
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "lit/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+roam_key: ${ref}
+,#+hugo_slug: ${slug}
+,#+roam_tags: website
+,#+title: ${title}
+
+- source :: ${ref}"
+           :unnarrowed t)))
+  ;;(set-company-backend! 'org-mode '(company-capf))
+  )
+#+END_SRC
+** org-roam-protocol
+#+BEGIN_SRC emacs-lisp
+(use-package! org-roam-protocol
+  :after org-protocol)
+#+END_SRC
+** hugo-enable
+#+BEGIN_SRC emacs-lisp
+(after! (org ox-hugo)
+  (defun jethro/conditional-hugo-enable ()
+    (save-excursion
+      (if (cdr (assoc "SETUPFILE" (org-roam--extract-global-props '("SETUPFILE"))))
+          (org-hugo-auto-export-mode +1)
+        (org-hugo-auto-export-mode -1))))
+  (add-hook 'org-mode-hook #'jethro/conditional-hugo-enable))
+#+END_SRC
+** org-ref
+#+BEGIN_SRC emacs-lisp
+  (setq reftex-default-bibliography '("~/org/roam/biblio/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/org/roam/bibli/notes.org"
+        org-ref-default-bibliography '("~/org/roam/biblio/references.bib")
+        org-ref-pdf-directory "~/org/roam/pdfs/")
+#+END_SRC
+** org-noter
+#+BEGIN_SRC emacs-lisp
+(setq org-noter-always-create-frame nil
+      org-noter-notes-search-path '("~/org/roam/org-noter"))
+#+END_SRC
+** org-roam-bibtex
+#+BEGIN_SRC emacs-lisp
+(use-package! org-roam-bibtex
+  :after (org-roam)
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :config
+  (setq org-roam-bibtex-preformat-keywords
+   '("=key=" "title" "url" "file" "author-or-editor" "keywords"))
+  (setq orb-templates
+        `(("r" "ref" plain (function org-roam-capture--get-point)
+           ""
+           :file-name "lit/${slug}"
+           :head ,(concat
+                   "#+setupfile: ./hugo_setup.org\n"
+                   "#+title: ${=key=}: ${title}\n"
+                   "#+roam_key: ${ref}\n\n"
+                   "* ${title}\n"
+                   "  :PROPERTIES:\n"
+                   "  :Custom_ID: ${=key=}\n"
+                   "  :URL: ${url}\n"
+                   "  :AUTHOR: ${author-or-editor}\n"
+                   "  :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
+                   "  :NOTER_PAGE: \n"
+                   "  :END:\n")
+           :unnarrowed t))))
+#+END_SRC
+** bibtex-completion
+#+BEGIN_SRC
+(use-package! bibtex-completion
+  :config
+  (setq bibtex-completion-bibliography "~/org/roam/biblio/references.bib"
+        bibtex-completion-library-path "~/org/roam/pdfs"
+        bibtex-completion-notes-path "~/org/roam/biblio/helm-bibtex-notes"
+        bibtex-completion-pdf-field "file"
+        bibtex-completion-pdf-open-function 'org-open-file
+        bibtex-completion-notes-template-multiple-files
+         (concat
+          "#+title: ${title}\n"
+          "#+roam_key: cite:${=key=}\n"
+          "* TODO Notes\n"
+          ":PROPERTIES:\n"
+          ":Custom_ID: ${=key=}\n"
+          ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
+          ":AUTHOR: ${author-abbrev}\n"
+          ":JOURNAL: ${journaltitle}\n"
+          ":DATE: ${date}\n"
+          ":YEAR: ${year}\n"
+          ":DOI: ${doi}\n"
+          ":URL: ${url}\n"
+          ":END:\n\n"
+          )))
+#+END_SRC
+** org-roam-server
+#+BEGIN_SRC emacs-lisp
+(use-package! org-roam-server)
+#+END_SRC
+** org-recoll
+#+BEGIN_SRC emacs-lisp
+(use-package! org-recoll)
+#+END_SRC
+* line numbers
+  :PROPERTIES:
+  :ID:       b7b18ae3-e719-44f9-a0af-ec04627745c9
+  :END:
+This determines the style of line numbers in effect. If set to `nil', line
+numbers are disabled. For relative line numbers, set this to `relative'.
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type nil)
+#+END_SRC
+* Doom config documentation
+  :PROPERTIES:
+  :ID:       646c211a-fd8e-4b57-b7a8-ab7cfd3213b4
+  :END:
+Here are some additional functions/macros that could help you configure Doom:
+- `load!' for loading external *.el files relative to this one
+- `use-package!' for configuring packages
+- `after!' for running code after a package has loaded
+- `add-load-path!' for adding directories to the `load-path', relative to
+  this file. Emacs searches the `load-path' when you load packages with
+  `require' or `use-package'.
+- `map!' for binding new keys
+
+To get information about any of these functions/macros, move the cursor over
+the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+This will open documentation for it, including demos of how they are used.
+
+You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+they are implemented.
+* Helm
+** helm proper
+#+BEGIN_SRC emacs-lisp
+(use-package! helm
+  :init
+  (progn
+      (require 'helm-config)
+      (require 'helm-grep)
+      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
+      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+      (define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
+
+      (setq
+       ;; helm-net-prefer-curl t ; test if this works
+       ;; helm-scroll-amount 4 ; scroll 4 lines other window using M-<next>/M-<prior>. Default nil, 1 is suggested
+       helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
+       helm-candidate-number-limit 150
+       ;; you can customize helm-do-grep to execute ack-grep
+       helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
+       helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
+       helm-split-window-inside-p t ; open helm buffer inside current window, not occupy whole other window
+       helm-ff-file-name-history-use-recentf t
+       helm-ff-auto-update-initial-value t
+       helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
+       helm-completion-style 'helm-fuzzy
+       helm-buffers-fuzzy-matching t ; fuzzy matching buffer names when non-nil
+                                     ; useful in helm-mini that lists buffers
+       helm-buffer-skip-remote-checking t
+       helm-locate-fuzzy-match t
+       )
+      (global-set-key (kbd "C-h b b") 'helm-descbinds)
+
+      ;; use helm to list eshell history
+      (add-hook 'eshell-mode-hook
+                #'(lambda ()
+                    (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
+
+      ;; show minibuffer history with Helm
+      (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
+      (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
+
+      (helm-projectile-on)
+      (setq projectile-completion-system 'helm)
+      (setq projectile-indexing-method 'alien)
+    )
+  )
+#+END_SRC
+
+** helm-describe-modes
+#+BEGIN_SRC emacs-lisp
+(global-set-key [remap describe-mode] #'helm-describe-modes)
+#+END_SRC
+** helm-proc
+#+BEGIN_SRC emacs-lisp
+  (use-package! helm-proc)
+#+END_SRC
+** helm-pydoc
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-pydoc)
+#+END_SRC
+** helm-tramp
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-tramp)
+#+END_SRC
+** mu-helm-rg
+https://www.manueluberti.eu/emacs/2020/02/22/ripgrepping-with-helm/
+One can also use helm-do-grep-ag
+#+BEGIN_SRC emacs-lisp
+  (setq helm-grep-ag-command (concat "rg"
+                                     " --color=never"
+                                     " --smart-case"
+                                     " --no-heading"
+                                     " --line-number %s %s %s")
+        helm-grep-file-path-style 'relative)
+  (defun mu-helm-rg (directory &optional with-types)
+    "Search in DIRECTORY with RG.
+  With WITH-TYPES, ask for file types to search in."
+    (interactive "P")
+    (require 'helm-adaptive)
+    (helm-grep-ag-1 (expand-file-name directory)
+                    (helm-aif (and with-types
+                                   (helm-grep-ag-get-types))
+                        (helm-comp-read
+                         "RG type: " it
+                         :must-match t
+                         :marked-candidates t
+                         :fc-transformer 'helm-adaptive-sort
+                         :buffer "*helm rg types*"))))
+  (defun mu--project-root ()
+    "Return the project root directory or `helm-current-directory'."
+    (require 'helm-ls-git)
+    (if-let (dir (helm-ls-git-root-dir))
+        dir
+      (helm-current-directory)))
+  (defun mu-helm-project-search (&optional with-types)
+    "Search in current project with RG.
+  With WITH-TYPES, ask for file types to search in."
+    (interactive "P")
+    (mu-helm-rg (mu--project-root) with-types))
+
+  (defun mu-helm-file-search (&optional with-types)
+    "Search in `default-directory' with RG.
+  With WITH-TYPES, ask for file types to search in."
+    (interactive "P")
+    (mu-helm-rg default-directory with-types))
+#+END_SRC
+* exwm-randr
+#+BEGIN_SRC emacs-lisp
+  (use-package! exwm)
+  (require 'exwm-randr)
+  (defun jw/env-list (env-string)
+      "Return list of strings in environment variable env-string.
+  nil if empty or undefined."
+      (let ((env-var (getenv env-string)))
+        (if env-var
+            (split-string env-var)
+          nil)))
+  (defun jw/env-str (env-string)
+      "Return string in environment variable env-string.
+  nil if empty or undefined."
+      (let ((env-var (getenv env-string)))
+        (if (> (length env-var) 0)
+            env-var
+          nil)))
+
+    (defun jw/build-workspace-monitor-plist (list)
+      (let (transformed-list first second (rev-list (reverse list)))
+        (while rev-list
+          (setq second (car rev-list))
+          (setq first (string-to-number (car (cdr rev-list))))
+          (setq transformed-list (cons first (cons second transformed-list)))
+          (setq rev-list (cdr (cdr rev-list)))
+          )
+        transformed-list))
+
+    (defun jw/xrandr-output-list ()
+      "Return list of connected X11 screens, according to xrandr."
+      (interactive)
+      (let* ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+             (find-outputs
+              (lambda ()
+                (let (output-list)
+                  (call-process "/usr/bin/xrandr" nil t nil)
+                  (goto-char (point-min))
+                  (while (re-search-forward xrandr-output-regexp nil 'noerror)
+                    (setq output-list (cons (match-string 1) output-list))
+                    (forward-line))
+                  (reverse output-list))))
+             (output-list (with-temp-buffer
+                            (funcall find-outputs))))
+         output-list))
+
+    (setq jw/x11-screen-list (jw/env-list "X11_SCREEN_LIST"))
+    (setq jw/x11-screen-order-list (jw/env-list "X11_SCREEN_ORDER_LIST"))
+    (setq jw/x11-screen-mode-list (jw/env-list "X11_SCREEN_MODE_LIST"))
+    (setq jw/x11-screen-rate-list (jw/env-list "X11_SCREEN_RATE_LIST"))
+    (setq jw/x11-screen-disabled-list (jw/env-list "X11_SCREEN_DISABLED_LIST"))
+    (setq jw/exwm-workspace-list (jw/env-list "EXWM_WORKSPACE_LIST"))
+    (setq jw/x11-screen-preferred (jw/env-str "X11_SCREEN_PREFERRED"))
+    (setq jw/x11-display-dpi (jw/env-str "X11_DISPLAY_DPI"))
+    (let ((env-var (getenv "X11_SCREEN_USE_ALL_AVAILABLE")))
+      (setq jw/x11-screen-use-all-available
+            (if (and (> (length env-var) 0) (string= "yes" env-var))
+                t
+              nil)))
+
+    (setq exwm-randr-workspace-monitor-plist (jw/build-workspace-monitor-plist jw/exwm-workspace-list))
+
+    (defun jw/exwm-change-screen-hook ()
+      "Execute xrandr to select and position available screens according to X11_SCREEN_* environment variables."
+      (let* ((output-list (jw/xrandr-output-list))
+             (available-screens (seq-intersection jw/x11-screen-list output-list))
+             (available-order-screens (seq-intersection jw/x11-screen-order-list output-list))
+             ;; See "--auto" in xrandr(1) and https://github.com/ch11ng/exwm/issues/529.
+             (unavailable-screens (seq-difference jw/x11-screen-list output-list))
+             (available-disabled-screens (seq-intersection jw/x11-screen-disabled-list output-list))
+             (available-screen-modes
+              (let (mode-list
+                    mode screen
+                    (x-screen-list jw/x11-screen-list)
+                    (x-mode-list jw/x11-screen-mode-list))
+                (while x-screen-list
+                  (setq screen (car x-screen-list))
+                  (setq x-screen-list (cdr x-screen-list))
+                  (setq mode (car x-mode-list))
+                  (setq x-mode-list (cdr x-mode-list))
+                  (if (seq-contains available-screens screen)
+                      (setq mode-list (cons mode mode-list))))
+                (reverse mode-list)))
+             (available-screen-rates
+              (let (rate-list
+                    rate screen
+                    (x-screen-list jw/x11-screen-list)
+                    (x-rate-list jw/x11-screen-rate-list))
+                (while x-screen-list
+                  (setq screen (car x-screen-list))
+                  (setq x-screen-list (cdr x-screen-list))
+                  (setq rate (car x-rate-list))
+                  (setq x-rate-list (cdr x-rate-list))
+                  (if (seq-contains available-screens screen)
+                      (setq rate-list (cons rate rate-list))))
+                (reverse rate-list))))
+        (if available-screens
+            ;; Start building xrandr command line
+            (let* ((x-primary-screen
+                    (if (and jw/x11-screen-preferred (seq-contains available-screens jw/x11-screen-preferred))
+                        jw/x11-screen-preferred
+                      (car available-screens)))
+                   (screen-pos (seq-position available-screens x-primary-screen))
+                   (x-primary-mode (elt available-screen-modes screen-pos))
+                   (x-primary-rate (elt available-screen-rates screen-pos))
+                   (xrandr-dpi-args
+                    (if jw/x11-display-dpi
+                        (list jw/x11-display-dpi "--dpi")))
+                   (xrandr-primary-args (list x-primary-rate "--rate" x-primary-mode "--mode" "--primary" x-primary-screen "--output"))
+                   screen
+                   disabled-list
+                   (xrandr-disabled-args
+                    (progn
+                      (while available-disabled-screens
+                        (setq screen (car available-disabled-screens))
+                        (setq available-disabled-screens (cdr available-disabled-screens))
+                        (setq disabled-list (cons "--output" disabled-list))
+                        (setq disabled-list (cons screen disabled-list))
+                        (setq disabled-list (cons "--off" disabled-list)))
+                      disabled-list))
+                   (unavailable-screen-list unavailable-screens)
+                   u-s-list
+                   (xrandr-unavailable-screen-args
+                    (progn
+                      (while unavailable-screen-list
+                        (setq screen (car unavailable-screen-list))
+                        (setq unavailable-screen-list (cdr unavailable-screen-list))
+                        (setq u-s-list (cons "--output" u-s-list))
+                        (setq u-s-list (cons screen u-s-list))
+                        ;; (setq u-s-list (cons "--auto" u-s-list))
+                        (setq u-s-list (cons "--off" u-s-list)))
+                      u-s-list))
+                   (screen-list available-screens)
+                   rest-list
+                   (xrandr-rest-available-screen-args
+                    (if jw/x11-screen-use-all-available
+                         ;; Add remaining available screens, except the primary screen
+                         (progn
+                            (while screen-list
+                               (setq screen (car screen-list))
+                               (setq screen-list (cdr screen-list))
+                               (if (not (string= screen x-primary-screen))
+                                   (progn
+                                     (setq rest-list (cons "--output" rest-list))
+                                     (setq rest-list (cons screen rest-list))
+                                     (setq rest-list (cons "--mode" rest-list))
+                                     (setq rest-list (cons (elt available-screen-modes (seq-position available-screens screen)) rest-list))
+                                     (setq rest-list (cons "--rate" rest-list))
+                                     (setq rest-list (cons (elt available-screen-rates (seq-position available-screens screen)) rest-list)))))
+                            rest-list)
+                         ;; Disable remaining available screens, except the primary screen
+                         (progn
+                            (while screen-list
+                               (setq screen (car screen-list))
+                               (setq screen-list (cdr screen-list))
+                               (if (not (string= screen x-primary-screen))
+                                   (progn
+                                     (setq rest-list (cons "--output" rest-list))
+                                     (setq rest-list (cons screen rest-list))
+                                     (setq rest-list (cons "--off" rest-list)))))
+                            rest-list)))
+                   (screen-order-list available-order-screens)
+                   order-list
+                   left-screen
+                   (xrandr-screen-order-args
+                    (if (and jw/x11-screen-use-all-available
+                             (> (length screen-order-list) 1))
+                        (progn
+                           (setq left-screen (car screen-order-list))
+                           (setq screen-order-list (cdr screen-order-list))
+                           (while screen-order-list
+                              (setq screen (car screen-order-list))
+                              (setq screen-order-list (cdr screen-order-list))
+                              (setq order-list (cons "--output" order-list))
+                              (setq order-list (cons screen order-list))
+                              (setq order-list (cons "--right-of" order-list))
+                              (setq order-list (cons left-screen order-list))
+                              (setq left-screen screen))
+                           (reverse order-list))))
+                   (xrandr-args (reverse (append xrandr-rest-available-screen-args xrandr-unavailable-screen-args
+                                                 xrandr-disabled-args xrandr-primary-args xrandr-dpi-args))))
+               (progn
+                 (setq jw/debug-output-list output-list)
+                 (setq jw/debug-xrandr-args xrandr-args)
+                 (setq jw/debug-xrandr-order-args xrandr-screen-order-args)
+                 (apply #'call-process
+                        "/usr/bin/xrandr" nil nil nil
+                        xrandr-args)
+                 (if xrandr-screen-order-args
+                     (apply #'call-process
+                            "/usr/bin/xrandr" nil nil nil
+                            xrandr-screen-order-args)))
+            )
+          )
+        )
+      )
+
+    (add-hook 'exwm-randr-screen-change-hook 'jw/exwm-change-screen-hook)
+    (exwm-randr-enable)
+#+END_SRC
+* exwm-config
+  :PROPERTIES:
+  :ID:       0f7da169-9bb9-4bad-a7b2-6c6a5db9b6ce
+  :END:
+#+BEGIN_SRC emacs-lisp
+  (require 'ido)
+  (use-package! windower)
+  (require 'browse-url)
+  (require 'exwm-manage)
+
+  (defun ambrevar/call-process-to-string (program &rest args)
+    "Call PROGRAM with ARGS and return output.
+  See also `process-lines'."
+    ;; Or equivalently:
+    ;; (with-temp-buffer
+    ;;   (apply 'process-file program nil t nil args)
+    ;;   (buffer-string))
+    (with-output-to-string
+      (with-current-buffer standard-output
+        (apply 'process-file program nil t nil args))))
+
+  (defun jw/xmodmap ()
+    "Execute xmodmap"
+    (progn
+      (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
+      (ambrevar/call-process-to-string "/usr/bin/xmodmap" "/home/jw/.Xmodmap.exwm")))
+
+  (setq browse-url-generic-program
+        (or
+         (executable-find (or (getenv "BROWSER") ""))
+         (when (executable-find "xdg-mime")
+           (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
+             (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
+         (executable-find browse-url-chrome-program)))
+
+  (defun my-exwm-config-setup ()
+    "My modified configuration for EXWM. Based on exwm-config.el"
+    ;; Set the initial workspace number.
+    (unless (get 'exwm-workspace-number 'saved-value)
+      (setq exwm-workspace-number 4))
+    ;; Make class name the buffer name
+    (add-hook 'exwm-update-class-hook
+              (lambda ()
+              (exwm-workspace-rename-buffer exwm-class-name)))
+    ;; Global keybindings. 0-9 bcDfFgGhHijJkKlLmoOQrRwWå !"#¤%&/()= tab f2 backspace
+    (unless (get 'exwm-input-global-keys 'saved-value)
+      (setq exwm-input-global-keys
+            `(
+              ;; (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
+              (,(kbd "s-b") . helm-mini) ;; list and select buffers
+              (,(kbd "s-c") . helm-resume) ;; Continue in latest helm selection buffer
+              (,(kbd "s-G") . helm-locate) ;; locate file, based in Linux locate command
+              (,(kbd "s-g") . mu-helm-file-search) ;; Grep search in files
+              (,(kbd "s-r") . helm-run-external-command) ;; Start an application, such as google-chrome
+              (,(kbd "s-W") . helm-exwm-switch-browser) ;; Switch to some browser windows
+              (,(kbd "s-m") . (lambda () ;; Toggle display of mode-line and minibuffer, in an EXWM window
+                     (interactive)
+                     (exwm-layout-toggle-mode-line)
+                     (exwm-workspace-toggle-minibuffer)))
+              (,(kbd "s-i") . exwm-input-toggle-keyboard) ;; Toggle between "line-mode" and "char-mode" in an EXWM window
+              ;; 's-r': Reset (to line-mode).
+              (,(kbd "s-R") . exwm-reset) ;; Try to reset EXWM to a sane mode. Panic key
+              ;; Interactively select, and switch to, a workspace. Only works in non EXWM windows.
+              (,(kbd "s-w") . exwm-workspace-switch)
+              ;; 's-å': Launch application.
+              ;; (,(kbd "s-å") . (lambda (command)
+              ;;              (interactive (list (read-shell-command "$ ")))
+              ;;              (start-process-shell-command command nil command)))
+              ;; 's-N': Switch to certain a workspace.
+              ,@(mapcar (lambda (i)
+                          `(,(kbd (format "s-%d" i)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+                        (number-sequence 0 9))
+              ;; 'S-s-N': Move window to, and switch to, a certain workspace.
+              ,@(cl-mapcar (lambda (c n)
+                          `(,(kbd (format "s-%c" c)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-move-window ,n)
+                              (exwm-workspace-switch ,n))))
+                        '(?\= ?! ?\" ?# ?¤ ?% ?& ?/ ?\( ?\))
+                        (number-sequence 0 9))
+
+              ;; Bind "s-<f2>" to "slock", a simple X display locker.
+              (,(kbd "s-<f2>") . (lambda ()
+                          (interactive)
+                          (start-process "" nil "/usr/bin/slock")))
+              (,(kbd "s-h") . windmove-left)  ;; Move to window to the left of current one. Uses universal arg
+              (,(kbd "s-j") . windmove-down)  ;; Move to window below current one. Uses universal arg
+              (,(kbd "s-k") . windmove-up)    ;; Move to window above current one. Uses universal arg
+              (,(kbd "s-l") . windmove-right) ;; Move to window to the right of current one. Uses universal arg
+              ;; (,(kbd "s-f") . find-file)
+              (,(kbd "s-f") . helm-find-files)
+              (,(kbd "s-<tab>") . windower-switch-to-last-buffer) ;; Switch to last open buffer in current window
+              (,(kbd "s-o") . windower-toggle-single) ;; Toggle between multiple windows, and a single window
+              (,(kbd "s-O") . windower-toggle-split)  ;; Toggle between vertical and horizontal split. Only works with exactly two windows.
+              (,(kbd "s-H") . windower-swap-left)  ;; Swap current window with the window to the left
+              (,(kbd "s-J") . windower-swap-below) ;; Swap current window with the window below
+              (,(kbd "s-K") . windower-swap-above) ;; Swap current window with the window above
+              (,(kbd "s-L") . windower-swap-right) ;; Swap current window with the window to the right
+              (,(kbd "s-F") . exwm-floating-toggle-floating) ;; Toggle the current window between floating and non-floating states
+              (,(kbd "s-Q") . exwm-layout-toggle-fullscreen) ;; Toggle fullscreen mode
+              (,(kbd "s-D") . kill-this-buffer)
+              (,(kbd "s-<backspace>") . kill-this-buffer)
+     )))
+    ;; Line-editing shortcuts: abBcdefFknpqsvwx
+    (unless (get 'exwm-input-simulation-keys 'saved-value)
+      (setq exwm-input-simulation-keys
+            `((,(kbd "H-b") . ,(kbd "<left>"))
+              (,(kbd "H-B") . ,(kbd "C-<left>"))
+              (,(kbd "H-f") . ,(kbd "<right>"))
+              (,(kbd "H-F") . ,(kbd "C-<right>"))
+              (,(kbd "H-p") . ,(kbd "<up>"))
+              (,(kbd "H-n") . ,(kbd "<down>"))
+              (,(kbd "H-a") . ,(kbd "<home>"))
+              (,(kbd "H-e") . ,(kbd "<end>"))
+              ;; q and w are convenient if Caps Lock key is Hyper key
+              (,(kbd "H-q") . ,(kbd "<prior>"))
+              (,(kbd "H-w") . ,(kbd "<next>"))
+              (,(kbd "H-d") . ,(kbd "<delete>"))
+              (,(kbd "H-k") . ,(kbd "S-<end> <delete>"))
+              ;; cut/paste.
+              (,(kbd "H-x") . ,(kbd "C-x"))
+              (,(kbd "H-c") . ,(kbd "C-c"))
+              (,(kbd "H-v") . ,(kbd "C-v"))
+              ;; search
+              (,(kbd "H-s") . ,(kbd "C-f"))
+     )))
+    ;; Default is save-buffers-kill-terminal, but that may kill daemon before its finished
+    (global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
+    (add-hook 'exwm-update-title-hook 'ambrevar/exwm-rename-buffer-to-title)
+    ;; Ensure that EXWM input mode is displayed in mode line
+    (add-hook 'exwm-input--input-mode-change-hook
+              'force-mode-line-update)
+    ;; Called once, to configure X11 keyboard layout
+    (add-hook 'exwm-manage-finish-hook
+              'jw/xmodmap t)
+    ;; Allow resizing of non-floating windows, with mouse.
+    (setq window-divider-default-bottom-width 2
+          window-divider-default-right-width 2)
+    (window-divider-mode)
+    ;; Allow switching to EXWM buffers not belonging to current workspace.
+    ;; This behaviour takes some getting used to, I guess thats why its not default
+    (setq exwm-layout-show-all-buffers t)
+    ;; Configure Ido
+    (my-exwm-config-ido)
+    ;; Other configurations
+    (my-exwm-config-misc))
+
+  ;; This is copied from exwm-config.el
+  (defun my-exwm-config--fix/ido-buffer-window-other-frame ()
+    "Fix `ido-buffer-window-other-frame'."
+    (defalias 'exwm-config-ido-buffer-window-other-frame
+      (symbol-function #'ido-buffer-window-other-frame))
+    (defun ido-buffer-window-other-frame (buffer)
+      "This is a version redefined by EXWM.
+
+  You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
+      (with-current-buffer (window-buffer (selected-window))
+        (if (and (derived-mode-p 'exwm-mode)
+                 exwm--floating-frame)
+            ;; Switch from a floating frame.
+            (with-current-buffer buffer
+              (if (and (derived-mode-p 'exwm-mode)
+                       exwm--floating-frame
+                       (eq exwm--frame exwm-workspace--current))
+                  ;; Switch to another floating frame.
+                  (frame-root-window exwm--floating-frame)
+                ;; Do not switch if the buffer is not on the current workspace.
+                (or (get-buffer-window buffer exwm-workspace--current)
+                    (selected-window))))
+          (with-current-buffer buffer
+            (when (derived-mode-p 'exwm-mode)
+              (if (eq exwm--frame exwm-workspace--current)
+                  (when exwm--floating-frame
+                    ;; Switch to a floating frame on the current workspace.
+                    (frame-selected-window exwm--floating-frame))
+                ;; Do not switch to exwm-mode buffers on other workspace (which
+                ;; won't work unless `exwm-layout-show-all-buffers' is set)
+                (unless exwm-layout-show-all-buffers
+                  (selected-window)))))))))
+
+  (defun my-exwm-config-ido ()
+    "Configure Ido to work with EXWM."
+    ;; (ido-mode 1)
+    (add-hook 'exwm-init-hook #'my-exwm-config--fix/ido-buffer-window-other-frame))
+
+  (defun my-exwm-config-misc ()
+    "Other configurations."
+    ;; Make more room
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1))
+
+  ;; Rename buffer to window title.
+  (defun ambrevar/exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
+
+  (my-exwm-config-setup) ;; Does not start X11 or EXWM. Start should be done from commandline.
+#+END_SRC
+* telephone-line
+  :PROPERTIES:
+  :ID:       1fd4aca5-d623-49d5-9be4-54c0e96e5daf
+  :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package! telephone-line)
+  (defun ambrevar/bottom-right-window-p ()
+    "Determines whether the last (i.e. bottom-right) window of the
+    active frame is showing the buffer in which this function is
+    executed."
+    (let* ((frame (selected-frame))
+           (right-windows (window-at-side-list frame 'right))
+           (bottom-windows (window-at-side-list frame 'bottom))
+           (last-window (car (seq-intersection right-windows bottom-windows))))
+      (eq (current-buffer) (window-buffer last-window))))
+
+  (defun jw/telephone-misc-if-exwm-or-last-window ()
+    "Renders the mode-line-misc-info string for display in the
+    mode-line if the currently active window is the last one in the
+    frame, or an exwm window.
+
+    The idea is to not display information like the current time,
+    load, battery levels on all buffers.
+    And to display input mode only in exwm windows."
+
+    (when (or (ambrevar/bottom-right-window-p)
+              exwm-window-type)
+      (telephone-line-raw mode-line-misc-info t)))
+
+  (defun jw/input-mode-str ()
+    "Return string representing input mode, if window is of type EXWM"
+    (if exwm-window-type
+        (if (eq exwm--input-mode 'line-mode)
+          (format "l")
+          (format "c"))
+      (format "")))
+
+  (defun jw/workspace-index ()
+    "Return string representing current EXWM workspace index"
+    (if (ambrevar/bottom-right-window-p)
+      (format "[%s]" (exwm-workspace--position (selected-frame)))
+      (format "")))
+
+  (defun jw/format-workspace-index-and-input-mode ()
+    "Return string [workspace_index]input-mode depending on exwm-window or bottom-right window"
+    (format "%s%s" (jw/workspace-index) (jw/input-mode-str)))
+
+  (defun ambrevar/telephone-line-setup ()
+    (telephone-line-defsegment telephone-line-last-window-segment ()
+      (jw/telephone-misc-if-exwm-or-last-window))
+
+    ;; Display the current EXWM workspace index in the mode-line
+    (telephone-line-defsegment telephone-line-exwm-workspace-index ()
+      (jw/format-workspace-index-and-input-mode))
+
+    ;; Define a highlight font for ~ important ~ information in the last
+    ;; window.
+    (defface special-highlight '((t (:foreground "white" :background "#5f627f"))) "")
+    (add-to-list 'telephone-line-faces
+                 '(highlight . (special-highlight . special-highlight)))
+
+    (setq telephone-line-lhs
+          '((nil . (telephone-line-position-segment))
+            (accent . (telephone-line-buffer-segment))))
+
+    (setq telephone-line-rhs
+          '((accent . (telephone-line-major-mode-segment))
+            (nil . (telephone-line-last-window-segment
+                    telephone-line-exwm-workspace-index))))
+
+    (setq telephone-line-primary-left-separator 'telephone-line-tan-left
+          telephone-line-primary-right-separator 'telephone-line-tan-right
+          telephone-line-secondary-left-separator 'telephone-line-tan-hollow-left
+          telephone-line-secondary-right-separator 'telephone-line-tan-hollow-right)
+
+    (telephone-line-mode 1))
+
+  (ambrevar/telephone-line-setup)
+#+END_SRC
+* helm-exwm
+#+BEGIN_SRC emacs-lisp
+(use-package! helm-exwm
+  :config
+  (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
+  (setq helm-exwm-source (helm-exwm-build-source))
+  (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
+                                    helm-exwm-source
+                                    helm-source-recentf)))
+#+END_SRC
+* epkg
+#+BEGIN_SRC emacs-lisp
+(setq epkg-repository "~/epkgs/")
+#+END_SRC
+* Scroll in place
+#+BEGIN_SRC emacs-lisp
+(global-set-key [(hyper up)]
+                (lambda ()
+                  (interactive)
+                  (let ((scroll-preserve-screen-position nil))
+                    (scroll-down 1))) )
+(global-set-key [(hyper down)]
+                (lambda ()
+                  (interactive)
+                  (let ((scroll-preserve-screen-position nil))
+                    (scroll-up 1))) )
+#+END_SRC
+
+* Copy paste
+#+BEGIN_SRC emacs-lisp
+(setq save-interprogram-paste-before-kill t)
+#+END_SRC
+
+* Regular expressions
+Use perl regular expression syntax.
+#+BEGIN_SRC emacs-lisp
+(pcre-mode t)
+#+END_SRC
+
+This package highlights matches and previews replacements in query replace.
+#+BEGIN_SRC emacs-lisp
+(use-package! visual-regexp
+  :bind (;; Replace the regular query replace with the regexp query
+         ;; replace provided by this package.
+         ("M-%" . vr/query-replace)))
+#+END_SRC
+
+This package allows the use of other regexp engines for visual-regexp.
+#+BEGIN_SRC emacs-lisp
+(use-package! visual-regexp-steroids
+  :after visual-regexp
+  :config
+  ;; Use Perl-style regular expressions by default.
+  (setq vr/engine 'pcre2el))
+#+END_SRC
+* Swiper
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-s") 'swiper)
+#+END_SRC
+
+* Cursor
+With zenburn the cursor-color will be black for all but the initial frame unless we do some workaround.
+#+BEGIN_SRC emacs-lisp
+(set-cursor-color "firebrick")
+(setq hcz-set-cursor-color-color "")
+(setq hcz-set-cursor-color-buffer "")
+
+(defun my-set-cursor-color ()
+  "Change cursor color according to themes/init.el"
+  ;; set-cursor-color is somewhat costly, so we only call it when needed:
+  (let ((color "firebrick"))
+    (unless (and
+             (string= color hcz-set-cursor-color-color)
+             (string= (buffer-name) hcz-set-cursor-color-buffer))
+      (set-cursor-color (setq hcz-set-cursor-color-color color))
+      (setq hcz-set-cursor-color-buffer (buffer-name)))))
+
+(add-hook 'post-command-hook 'my-set-cursor-color)
+#+END_SRC
+
+* Handling of whitespace
+** whitespace variables
+#+BEGIN_SRC emacs-lisp
+  ;; show unncessary whitespace that can mess up your diff
+  ;; (add-hook 'diff-mode-hook
+  ;;           (lambda ()
+  ;;             (setq-local whitespace-style
+  ;;                         '(face
+  ;;                           tabs
+  ;;                           tab-mark
+  ;;                           spaces
+  ;;                           space-mark
+  ;;                           trailing
+  ;;                           indentation::space
+  ;;                           indentation::tab
+  ;;                           newline
+  ;;                           newline-mark))
+  ;;             (whitespace-mode 1)))
+
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (setq-local whitespace-style
+                          (append whitespace-style '(trailing))))
+            t) ; Add near end of hooks list of functions
+
+  (add-hook 'prog-mode-hook
+            (lambda () (interactive)
+              (setq show-trailing-whitespace 1)))
+#+END_SRC
+** hungry-delete
+   :PROPERTIES:
+   :ID:       ffd0ffa4-9598-4679-8a71-a20198e2ab30
+   :END:
+#+BEGIN_SRC emacs-lisp
+(use-package! hungry-delete
+  :config
+  (global-hungry-delete-mode))
+#+END_SRC
+
+* Window handling
+Move between windows with Shift-arrow keys
+#+BEGIN_SRC emacs-lisp
+(windmove-default-keybindings)
+(global-set-key (kbd "<kp-4>") 'windmove-left)
+(global-set-key (kbd "<kp-6>") 'windmove-right)
+(global-set-key (kbd "<kp-8>") 'windmove-up)
+(global-set-key (kbd "<kp-2>") 'windmove-down)
+#+END_SRC
+* ibuffer
+#+BEGIN_SRC emacs-lisp
+(setq ibuffer-saved-filter-groups
+      '(("home"
+         ("dired" (mode . dired-mode))
+         ("org" (name .  ".*org$"))
+;;          ("helm" (predicate string-match "Helm" mode-name))
+         ("web" (or (mode .  web-mode) (mode .  js2-mode)))
+         ("shell" (or (mode . eshell-mode) (mode .  shell-mode)))
+         ("programming" (or (mode . python-mode) (mode . c++-mode)))
+         ("emacs" (or (name . "^\\*scratch\\*$")
+                      (name . "^\\*Bookmark List\\*$")
+                      (name . "^\\*Compile-Log\\*$")
+                      (name . "^\\*Messages\\*$")))
+         ("emacs-config" (or (filename . ".emacs.d")
+                             (filename . "emacs-config")))
+         ("martinowen.net" (filename . "martinowen.net"))
+         ("Org" (or (mode . org-mode)
+                    (filename . "OrgMode")))
+         ("code" (filename . "code"))
+         ("Web Dev" (or (mode . html-mode)
+                        (mode . css-mode)))
+         ("Subversion" (name . "\*svn"))
+         ("Magit" (name . "\*magit"))
+         ("ERC" (mode . erc-mode))
+         ("Help" (or (name . "\*Help\*")
+                     (name . "\*Apropos\*")
+                     (name . "\*info\*"))))))
+(add-hook 'ibuffer-mode-hook
+          '(lambda ()
+             (ibuffer-auto-mode 1)
+             (ibuffer-switch-to-saved-filter-groups "home")))
+(setq ibuffer-expert t)
+(setq ibuffer-show-empty-filter-groups nil)
+#+END_SRC
+
+* Python
+#+BEGIN_SRC emacs-lisp
+(setq python-shell-interpreter "python3")
+#+END_SRC
+* Thingatpt-plus
+#+BEGIN_SRC emacs-lisp
+(use-package! thingatpt+)
+#+END_SRC
+
+* Hide-comnt
+#+BEGIN_SRC emacs-lisp
+(use-package! hide-comnt)
+#+END_SRC
+
+* Thing-cmds
+#+BEGIN_SRC emacs-lisp
+  (use-package! thing-cmds)
+#+END_SRC
+* Hexrgb
+#+BEGIN_SRC emacs-lisp
+(use-package! hexrgb)
+#+END_SRC
+* Palette
+#+BEGIN_SRC emacs-lisp
+  (use-package! palette)
+#+END_SRC
+* Facemenu-plus
+#+BEGIN_SRC emacs-lisp
+  (use-package! facemenu+)
+#+END_SRC
+* Highlight
+#+BEGIN_SRC emacs-lisp
+  (use-package! highlight)
+#+END_SRC
+* Mouse3
+#+BEGIN_SRC emacs-lisp
+  (use-package! mouse3)
+#+END_SRC
+* Dired
+** Settings
+#+BEGIN_SRC emacs-lisp
+(setq dired-clean-up-buffers-too nil) ; Avoid pesky questions about deleting orphan buffers
+(defconst my-dired-media-files-extensions
+ '("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg" "wmv" "mkv" "mov" "wma")
+  "Media file extensions that should launch in VLC.
+Also used for highlighting.")
+#+END_SRC
+** Filter
+#+BEGIN_SRC emacs-lisp
+  (bind-keys :map dired-mode-map
+             ("ö" . dired-filter-map)
+             ("ä" . dired-filter-mark-map))
+  (use-package! dired-filter
+    :config
+    (setq dired-filter-group-saved-groups
+       (make-list 1 '("default"
+                      ("Epub"
+                       (extension . "epub"))
+                      ("PDF"
+                       (extension . "pdf"))
+                      ("LaTeX"
+                       (extension "tex" "bib"))
+                      ("Org"
+                       (extension . "org"))
+                      ("Archives"
+                       (extension "zip" "rar" "gz" "bz2" "tar")))))
+  )
+  #+END_SRC
+** Narrow
+Narrow dired to match filter
+#+BEGIN_SRC emacs-lisp
+(use-package! dired-narrow
+  :commands dired-narrow
+  :init
+  (map! :map dired-mode-map
+        :desc "Live filtering" "å" #'dired-narrow))
+#+END_SRC
+** Launch
+Launch application associated with file
+#+BEGIN_SRC emacs-lisp
+(use-package! dired-launch)
+(dired-launch-enable)
+#+END_SRC
+** Init
+#+BEGIN_SRC emacs-lisp
+(defun my-dired-init ()
+  "Bunch of stuff to run for dired, either immediately or when it's loaded."
+  (bind-keys :map dired-mode-map
+    ("<delete>" . dired-unmark-backward)
+    ("<backspace>" . dired-up-directory))
+
+  (dired-filter-mode t)
+  (dired-filter-group-mode t)
+  ;; (dired-collapse-mode 1)
+  (visual-line-mode -1)
+  (toggle-truncate-lines 1))
+(add-hook 'dired-mode-hook 'my-dired-init)
+#+END_SRC
+* Dired plus
+#+BEGIN_SRC emacs-lisp
+  (use-package! dired+
+    :config
+    (setq diredp-image-preview-in-tooltip 300))
+#+END_SRC
+
+* Bookmarks
+#+BEGIN_SRC emacs-lisp
+  (use-package bookmark+)
+#+END_SRC
+
+* w3m
+** w3m proper
+Text based internet browser
+#+BEGIN_SRC emacs-lisp
+  (use-package! w3m
+    :config
+    (setq w3m-key-binding 'info)
+     (define-key w3m-mode-map [up] 'previous-line)
+     (define-key w3m-mode-map [down] 'next-line)
+     (define-key w3m-mode-map [left] 'backward-char)
+     (define-key w3m-mode-map [right] 'forward-char)
+    (setq w3m-default-display-inline-images t)
+    (setq w3m-make-new-session t)
+    (setq w3m-use-cookies t)
+    (setq w3m-default-save-directory "~/Downloads/")
+    (add-hook 'w3m-display-hook
+            (lambda (url)
+              (rename-buffer
+               (format "*w3m: %s*"
+                       (or w3m-current-title w3m-current-url)) t)))
+    (defun wicked/w3m-open-current-page-in-chrome ()
+      "Open the current URL in Google Chrome."
+      (interactive)
+      (browse-url-chrome w3m-current-url)) ;; (1)
+
+    (defun wicked/w3m-open-link-or-image-in-chrome ()
+      "Open the current link or image in Chrome."
+      (interactive)
+      (browse-url-chrome (or (w3m-anchor) ;; (2)
+                             (w3m-image)))) ;; (3)
+    (define-key w3m-mode-map (kbd "f") 'wicked/w3m-open-current-page-in-chrome)
+    (define-key w3m-mode-map (kbd "F") 'wicked/w3m-open-link-or-image-in-chrome)
+  )
+#+END_SRC
+** w3m search engines
+w3m-search search engines
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "w3m-search"
+  '(progn
+    (add-to-list 'w3m-search-engine-alist
+                 '("archwiki"
+                   "https://wiki.archlinux.org/index.php?search=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("ask"
+                   "https://www.ask.com/web?q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("bbcnews"
+                   "http://search.bbc.co.uk/search?scope=all&tab=ns&q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("cia"
+                   "https://www.cia.gov/search?q=%s&site=CIA&client=CIA&proxystylesheet=CIA&output=xml_no_dtd&myAction=%2Fsearch&submitMethod=get"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("cpan"
+                   "https://metacpan.org/search?q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("debian-wiki"
+                   "https://wiki.debian.org/FindPage?action=fullsearch&titlesearch=0&value=%s&submit=Search+Text"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("loc"
+                   "http://www.loc.gov/search/?q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("py2doc"
+                   "http://docs.python.org/2/search.html?q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("py3doc"
+                   "http://docs.python.org/3/search.html?q=%s"
+                   nil))
+    (add-to-list 'w3m-search-engine-alist
+                 '("reddit"
+                   "http://www.reddit.com/search?q=%s"
+                   nil))
+   )
+)
+#+END_SRC
+** ace-link
+Use ace-link
+#+BEGIN_SRC emacs-lisp
+  (use-package! ace-link
+    :config
+    (ace-link-setup-default))
+#+END_SRC
+** Follow links in w3m
+Follow links in w3m. For keybindings see [[*launcher map]]
+#+BEGIN_SRC emacs-lisp
+  (setq browse-url-mosaic-program nil)
+  (setq browse-url-browser-function 'w3m-browse-url
+        browse-url-new-window-flag t)
+  (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+  (autoload 'browse-url-interactive-arg "browse-url")
+#+END_SRC
+** helm-w3m
+   :PROPERTIES:
+   :ID:       bd7f3c36-cb10-47fb-9eea-02fd8fd049bf
+   :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package! helm-w3m)
+#+END_SRC
+
+* launcher map
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'launcher-map)
+(define-key launcher-map "c" #'link-hint-copy-link)
+(define-key launcher-map "C" #'org-capture)
+(define-key launcher-map "d" #'helpful-at-point)
+(define-key launcher-map "e" #'er/expand-region)
+(define-key launcher-map "E" #'er/contract-region)
+(define-key launcher-map "f" #'find-dired)
+(define-key launcher-map "g" #'w3m-search)
+(define-key launcher-map "j" #'org-journal-new-entry)
+(define-key launcher-map "l" #'browse-url-at-point)
+(define-key launcher-map "o" #'link-hint-open-link)
+(define-key launcher-map "t" #'proced) ; top
+;;(define-key launcher-map "u" #'my/copy-id-to-clipboard)
+(define-key launcher-map "w" #'w3m-goto-url)
+(global-set-key (kbd "H-l") 'launcher-map)
+#+END_SRC
+
+* elfeed
+** elfeed proper
+#+BEGIN_SRC emacs-lisp
+  ;;shortcut functions
+  (defun bjm/elfeed-show-all ()
+    (interactive)
+    (bookmark-maybe-load-default-file)
+    (bookmark-jump "elfeed-all"))
+  (defun bjm/elfeed-show-emacs ()
+    (interactive)
+    (bookmark-maybe-load-default-file)
+    (bookmark-jump "elfeed-emacs"))
+  (defun bjm/elfeed-show-daily ()
+    (interactive)
+    (bookmark-maybe-load-default-file)
+    (bookmark-jump "elfeed-daily"))
+  ;;functions to support syncing .elfeed between machines
+  ;;makes sure elfeed reads index from disk before launching
+  (defun bjm/elfeed-load-db-and-open ()
+    "Wrapper to load the elfeed db from disk before opening"
+    (interactive)
+    (elfeed-db-load)
+    (elfeed)
+    (elfeed-search-update--force))
+
+  ;;write to disk when quiting
+  (defun bjm/elfeed-save-db-and-bury ()
+    "Wrapper to save the elfeed db to disk before burying buffer"
+    (interactive)
+    (elfeed-db-save)
+    (quit-window))
+  (defun mz/elfeed-browse-url (&optional use-generic-p)
+      "Visit the current entry in your browser using `browse-url'.
+    If there is a prefix argument, visit the current entry in the
+    browser defined by `browse-url-generic-program'."
+      (interactive "P")
+      (let ((entries (elfeed-search-selected)))
+        (cl-loop for entry in entries
+                 do (if use-generic-p
+                        (browse-url-chrome (elfeed-entry-link entry))
+                      (browse-url (elfeed-entry-link entry))))
+        (mapc #'elfeed-search-update-entry entries)
+        (unless (or elfeed-search-remain-on-entry (use-region-p))
+        ;;(forward-line)
+  )))
+  (defun elfeed-mark-all-as-read ()
+    (interactive)
+    (mark-whole-buffer)
+    (elfeed-search-untag-all-unread))
+  (use-package! elfeed
+    :bind (:map elfeed-search-mode-map
+               ("A" . bjm/elfeed-show-all)
+               ("E" . bjm/elfeed-show-emacs)
+               ("D" . bjm/elfeed-show-daily)
+               ("b" . mz/elfeed-browse-url)
+               ("B" . elfeed-search-browse-url)
+               ("j" . mz/make-and-run-elfeed-hydra)
+               ("m" . elfeed-toggle-star)
+               ("q" . bjm/elfeed-save-db-and-bury))
+    :config
+    (defalias 'elfeed-toggle-star
+       (elfeed-expose #'elfeed-search-toggle-all 'star))
+  )
+#+END_SRC
+** elfeed-org
+#+BEGIN_SRC emacs-lisp
+  ;; Load elfeed-org
+  (use-package! elfeed-org
+    :init
+    (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
+    :config
+    (elfeed-org))
+  (defun z/hasCap (s) ""
+    (let ((case-fold-search nil))
+    (string-match-p "[[:upper:]]" s)))
+  (defun z/get-hydra-option-key (s)
+    "returns single upper case letter (converted to lower) or first"
+    (interactive)
+    (let ( (loc (z/hasCap s)))
+    (if loc
+      (downcase (substring s loc (+ loc 1)))
+      (substring s 0 1)
+  )))
+  (defun mz/make-elfeed-cats (tags)
+    "Returns a list of lists. Each one is line for the hydra configuratio in the form
+    (c function hint)"
+    (interactive)
+    (mapcar (lambda (tag)
+      (let* (
+             (tagstring (symbol-name tag))
+             (c (z/get-hydra-option-key tagstring)))
+        (list c (append '(elfeed-search-set-filter) (list (format "@6-months-ago +%s" tagstring) ))tagstring  )))
+      tags))
+  (defmacro mz/make-elfeed-hydra ()
+    `(defhydra mz/hydra-elfeed ()
+      "filter"
+      ,@(mz/make-elfeed-cats (elfeed-db-get-all-tags))
+      ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
+      ("M" elfeed-toggle-star "Mark")
+      ("A" (elfeed-search-set-filter "@6-months-ago") "All")
+      ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
+      ("Q" bjm/elfeed-save-db-and-bury "Quit Elfeed" :color blue)
+      ("q" nil "quit" :color blue)
+  ))
+  (defun mz/make-and-run-elfeed-hydra ()
+    ""
+    (interactive)
+    (mz/make-elfeed-hydra)
+    (mz/hydra-elfeed/body))
+  (defun my-elfeed-tag-sort (a b)
+    (let* ((a-tags (format "%s" (elfeed-entry-tags a)))
+           (b-tags (format "%s" (elfeed-entry-tags b))))
+      (if (string= a-tags b-tags)
+          (< (elfeed-entry-date b) (elfeed-entry-date a)))
+      (string< a-tags b-tags)))
+  (setf elfeed-search-sort-function #'my-elfeed-tag-sort)
+#+END_SRC
+
+* novel
+#+BEGIN_SRC emacs-lisp
+(use-package! nov
+  :init
+  (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
+  :bind
+  (:map nov-mode-map
+        ("<home>" . move-beginning-of-line)
+        ("<end>" . move-end-of-line)
+        ))
+#+END_SRC
+
+* calibredb
+#+BEGIN_SRC emacs-lisp
+  (use-package! calibredb
+    :config
+    (setq sql-sqlite-program "/usr/bin/sqlite3")
+    (setq calibredb-root-dir (expand-file-name "~/calibre_library"))
+    (setq calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
+    (setq calibredb-program "/usr/bin/calibredb")
+    (setq calibredb-library-alist '(("~/calibre_library")))
+  )
+#+END_SRC
+
+* fish-completion
+#+BEGIN_SRC emacs-lisp
+(when (and (executable-find "fish")
+           (require 'fish-completion nil t))
+  (global-fish-completion-mode))
+#+END_SRC
+* mixed-pitch
+#+BEGIN_SRC emacs-lisp
+(use-package! mixed-pitch)
+#+END_SRC
+
+* smartparens
+#+BEGIN_SRC emacs-lisp
+(use-package! smartparens)
+#+END_SRC

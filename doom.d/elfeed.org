@@ -1,0 +1,174 @@
+* Blogs                                                              :elfeed:
+  :PROPERTIES:
+  :ID:       f51dd552-4612-46b8-bf75-b604f510eb46
+  :END:
+** entry-title: \(linux\|linus\|ubuntu\|kde\|gnome\)                  :linux:
+   :PROPERTIES:
+   :ID:       7b07b0ab-18fe-4a3f-93aa-e1b2f33abffb
+   :END:
+** http://feeds.feedburner.com/InformationIsBeautiful
+   :PROPERTIES:
+   :ID:       cb2f35f1-1bbd-41a0-9d79-9c391c52ae89
+   :END:
+** [[http://orgmode.org][Org Mode Links supported as well]]
+   :PROPERTIES:
+   :ID:       bddaca98-3f4f-4e3f-afe7-7c743642b9ce
+   :END:
+** Software Development                                                 :dev:
+   :PROPERTIES:
+   :ID:       d406bf49-342c-4e5f-a7d1-f6225155f734
+   :END:
+*** Emacs                                                    :emacs:mustread:
+    :PROPERTIES:
+    :ID:       1d96b437-ed6e-419d-8a09-007545c70325
+    :END:
+**** https://nullprogram.com/feed
+     :PROPERTIES:
+     :ID:       d85259bc-c187-4599-9c05-a6e04c23024c
+     :END:
+**** entry-title: \(emacs\|org-mode\)
+     :PROPERTIES:
+     :ID:       76fe759b-47ad-4adb-b305-88532c968cc8
+     :END:
+**** https://www.reddit.com/r/emacs/.rss
+     :PROPERTIES:
+     :ID:       8d9163fb-0c2e-4ca4-8610-7511bf2901b6
+     :END:
+**** http://pragmaticemacs.com/feed/
+     :PROPERTIES:
+     :ID:       f4c85abe-cfc2-4dc4-bd39-46a941c14a57
+     :END:
+**** [[https://200ok.ch/atom.xml][200 OK]]
+     :PROPERTIES:
+     :ID:       d74cfd3b-eb2b-4cb4-9681-c5110e650205
+     :END:
+*** [[https://irreal.org/blog/?feed=rss2][Irreal]]
+    :PROPERTIES:
+    :ID:       eaa6011b-ad46-4ca2-a387-9e60f5d3ebea
+    :END:
+*** [[https://irreal.org/blog/?feed=comments-rss2][Comments for Irreal]]
+    :PROPERTIES:
+    :ID:       6b57073c-8f81-4e9f-9a9e-7d9c529d4fca
+    :END:
+*** [[https://jherrlin.github.io/index.xml][jherrlin]]
+    :PROPERTIES:
+    :ID:       37764ae9-e9aa-4ed2-8c8c-6484e0692120
+    :END:
+** cpp                                                         :cpp:
+   :PROPERTIES:
+   :ID:       ef1616e9-98ae-4426-86d9-7261d3c0cb76
+   :END:
+*** [[https://feeds.feedburner.com/abseilio][Abseil]]
+    :PROPERTIES:
+    :ID:       81ad2bf6-0965-48d8-95cb-133994be7769
+    :END:
+*** [[https://akrzemi1.wordpress.com/feed/][Andrzej's C++ blog]]
+    :PROPERTIES:
+    :ID:       b6abd86c-0d66-46ab-9a78-9e79c77c8c9a
+    :END:
+*** [[https://quuxplusone.github.io/blog/feed.xml][Arthur O’Dwyer]]
+    :PROPERTIES:
+    :ID:       fd62a651-8cd7-4226-beb5-d63ba323cefd
+    :END:
+*** [[https://brevzin.github.io/feed.xml][Barry Revzin]]
+    :PROPERTIES:
+    :ID:       6579f011-aa15-42b6-aa08-6ea41157eb0c
+    :END:
+*** [[https://www.bfilipek.com/feeds/posts/default?alt=rss][Bartek's coding blog]]
+    :PROPERTIES:
+    :ID:       6d34a7ff-ec2a-44ae-ad6c-f544ba7ba46a
+    :END:
+*** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky's website]]
+    :PROPERTIES:
+    :ID:       72e474f1-8e33-4877-825c-9273a8a25bc1
+    :END:
+*** [[https://fluentcpp.com/feed/][Fluent C++]]
+    :PROPERTIES:
+    :ID:       c4ec07c3-d975-4cef-8ca1-0afbe2f91065
+    :END:
+*** [[https://foonathan.net/post/feed.xml][foonathan::blog()]]
+    :PROPERTIES:
+    :ID:       7fd474f3-6d37-4ea9-8609-87df0db306ba
+    :END:
+*** [[https://mariusbancila.ro/blog/feed/][Marius Bancila's Blog]]
+    :PROPERTIES:
+    :ID:       e081bba6-995a-4bb4-87df-e9f1d34dae68
+    :END:
+*** [[https://isocpp.org/blog/rss][Standard C++]]
+    :PROPERTIES:
+    :ID:       b4dcab66-f6db-4dbf-a8e3-6b0a03fe93db
+    :END:
+*** [[https://blog.feabhas.com/category/programming/rss][C/C++ Programming – Sticky Bits – Powered by Feabhas]]
+    :PROPERTIES:
+    :ID:       9b1fd1b5-6c6f-4677-b2e2-7c55f02844e4
+    :END:
+*** [[https://herbsutter.com/feed/][Sutter’s Mill]]
+    :PROPERTIES:
+    :ID:       e4a72b4f-5bad-448c-9010-3a2e07fc514c
+    :END:
+*** [[https://herbsutter.com/comments/feed/][Comments for Sutter’s Mill]]
+    :PROPERTIES:
+    :ID:       d1d2e7f6-b05d-41cd-ab33-1fa2370e64b6
+    :END:
+*** [[https://botondballo.wordpress.com/feed/][There's Waldo!]]
+    :PROPERTIES:
+    :ID:       a0350304-8f0d-4fd7-8a82-1e8f33b610de
+    :END:
+*** [[https://botondballo.wordpress.com/comments/feed/][Comments for There's Waldo!]]
+    :PROPERTIES:
+    :ID:       2d8935d0-ab6a-49af-aaaa-64f6a83d06af
+    :END:
+*** [[https://vector-of-bool.github.io/feed.xml][vector&lt;bool&gt;{ true, true, false };]]
+    :PROPERTIES:
+    :ID:       878d2ddd-4875-446a-9c06-065aff96aeb4
+    :END:
+** Neural networks
+   :PROPERTIES:
+   :ID:       302d76f2-1c72-4f8d-82f1-78d10125d685
+   :END:
+*** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
+    :PROPERTIES:
+    :ID:       975eb647-949b-4ae9-8a42-982f36f720f9
+    :END:
+** daily                                                       :daily:
+   :PROPERTIES:
+   :ID:       eaee8d95-2802-4ebb-9502-15be3f8e2bd4
+   :END:
+*** http://telescoper.wordpress.com/feed/
+    :PROPERTIES:
+    :ID:       5ca50f35-530b-49c5-9d05-71bfcd02e379
+    :END:
+*** [[https://dilbert.com/feed.rss][Dilbert Daily Strip]]
+    :PROPERTIES:
+    :ID:       0233623b-3457-4502-a745-ca63bf7879b7
+    :END:
+*** http://xkcd.com/rss.xml
+    :PROPERTIES:
+    :ID:       611989ab-36dd-44e6-a113-e4848e3aefd6
+    :END:
+*** https://timharford.com/feed/
+    :PROPERTIES:
+    :ID:       ec76762e-9668-4ad7-8d18-c2f3eb4e966b
+    :END:
+*** http://understandinguncertainty.org/rss.xml
+    :PROPERTIES:
+    :ID:       ddebe329-0bf1-4ffd-8b10-b2b98dd86d7c
+    :END:
+*** https://swedroid.se/feed/
+    :PROPERTIES:
+    :ID:       ba6e0aa4-227e-4185-aa2f-1b6a8d879db2
+    :END:
+
+
+*** [[https://medium.com/feed/@steve.yegge][Steve Yegge]]
+    :PROPERTIES:
+    :ID:       6e3ddd01-4bd0-44ac-982b-7330099fbb02
+    :END:
+*** [[https://blog.plover.com/index.rss][Mark Dominus]]
+    :PROPERTIES:
+    :ID:       2a05add2-c2c5-4529-bdf0-ded9e1a42262
+    :END:
+*** [[http://occasionallycogent.com/feed.xml][James Cash]]
+    :PROPERTIES:
+    :ID:       666d9b7c-28fe-4d16-819e-917952391c17
+    :END:

@@ -1,7 +1,7 @@
 {
   "Plugin Updater plugin:plugin updater dialog": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAGpAAACCAAABcYAAAPzAAABrQAAAggAAAXCAAAD7wAAAAAAAAAADwAAAAGtAAACCAAABcIAAAPv"
+    "__value__": "AdnQywADAAAAAAoPAAAAAQAADkQAAAXWAAAKDwAAAAEAAA5EAAAF1gAAAAAAAAAADwAAAAoPAAAAAQAADkQAAAXW"
   },
   "add-saved-search-geometry": {
     "__class__": "bytearray",
@@ -151,7 +151,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 203
+    "/home/jw/calibre_library": 205
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -159,7 +159,7 @@
   },
   "metasingle_window_geometry3": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAIuAAABaQAADiYAAAQzAAACLgAAAWkAAA4mAAAEMwAAAAAAAAAADwAAAAIuAAABaQAADiYAAAQz"
+    "__value__": "AdnQywADAAAAAAJCAAABaQAADkIAAAQ3AAACRgAAAWkAAA4+AAAEMwAAAAAAAAAADwAAAAJGAAABaQAADj4AAAQz"
   },
   "preferences dialog geometry": {
     "__class__": "bytearray",

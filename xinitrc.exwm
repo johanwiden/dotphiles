@@ -80,7 +80,7 @@ xsetroot -cursor_name left_ptr
 
 # Dynamically update recoll full text search database
 # /usr/bin/recollindex -m &
-/usr/share/recoll/examples/rclmon.sh start
+/usr/share/recoll/examples/rclmon.sh start &
 
 # Enable "Num Lock" mode, on keyboard keypad
 /usr/bin/numlockx on &

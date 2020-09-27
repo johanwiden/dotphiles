@@ -1,2 +1,5 @@
 (("default" . ((user-emacs-directory . "~/.emacs.d")))
- ("exwm-setup" . ((user-emacs-directory . "~/exwm-setup/.emacs.d"))))
+ ("doom" . ((user-emacs-directory . "~/doom")))
+ ("exwm-setup" . ((user-emacs-directory . "~/exwm-setup/.emacs.d")))
+ ("prelude" . ((user-emacs-directory . "~/prelude"))) 
+)

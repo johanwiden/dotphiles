@@ -11160,6 +11160,114 @@
       "wws_family_name": "Iosevka",
       "wws_subfamily_name": "Thin Oblique"
     },
+    "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Bold.ttf||155428:1354230000.0": {
+      "family_name": "Libre Baskerville",
+      "font-family": "Libre Baskerville",
+      "font-stretch": "normal",
+      "font-style": "normal",
+      "font-weight": "bold",
+      "fs_type": 0,
+      "full_name": "Libre Baskerville Bold",
+      "is_bold": true,
+      "is_italic": false,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 3,
+      "panose": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Bold.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Bold",
+      "weight": 700,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Italic.ttf||172212:1354230000.0": {
+      "family_name": "Libre Baskerville",
+      "font-family": "Libre Baskerville",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Libre Baskerville Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 3,
+      "panose": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Italic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Italic",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Regular.ttf||154676:1354230000.0": {
+      "family_name": "Libre Baskerville",
+      "font-family": "Libre Baskerville",
+      "font-stretch": "normal",
+      "font-style": "normal",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Libre Baskerville",
+      "is_bold": false,
+      "is_italic": false,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": true,
+      "is_wws": false,
+      "os2_version": 3,
+      "panose": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Libre Baskerville/Libre_Baskerville_Regular.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Regular",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
     "/home/jw/.local/share/fonts/Unknown Vendor/TrueType/Victor Mono/Victor_Mono_Bold.ttf||156964:1593447140.0": {
       "family_name": "Victor Mono",
       "font-family": "Victor Mono",
@@ -11916,7 +12024,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/all-the-icons.ttf||44732:1532430816.1245415": {
+    "/home/jw/.local/share/fonts/all-the-icons.ttf||44732:1600679877.1854687": {
       "family_name": "all-the-icons",
       "font-family": "all-the-icons",
       "font-stretch": "normal",
@@ -11952,13 +12060,13 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/file-icons.ttf||173892:1532430815.5525422": {
+    "/home/jw/.local/share/fonts/file-icons.ttf||350644:1600679876.9854689": {
       "family_name": "file-icons",
       "font-family": "file-icons",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "normal",
-      "fs_type": 8,
+      "fs_type": 0,
       "full_name": "file-icons",
       "is_bold": false,
       "is_italic": false,
@@ -11966,12 +12074,12 @@
       "is_otf": false,
       "is_regular": true,
       "is_wws": false,
-      "os2_version": 1,
+      "os2_version": 3,
       "panose": [
-        2,
         0,
-        5,
-        3,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -11982,13 +12090,13 @@
       "path": "/home/jw/.local/share/fonts/file-icons.ttf",
       "preferred_family_name": null,
       "preferred_subfamily_name": null,
-      "subfamily_name": "icons",
+      "subfamily_name": "Regular",
       "weight": 400,
       "width": 5,
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/fontawesome.ttf||152796:1532430814.972543": {
+    "/home/jw/.local/share/fonts/fontawesome.ttf||152796:1600679876.34947": {
       "family_name": "FontAwesome",
       "font-family": "FontAwesome",
       "font-stretch": "normal",
@@ -12024,7 +12132,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/material-design-icons.ttf||128180:1532430813.3125455": {
+    "/home/jw/.local/share/fonts/material-design-icons.ttf||128180:1600679875.7094707": {
       "family_name": "Material Icons",
       "font-family": "Material Icons",
       "font-stretch": "normal",
@@ -12060,7 +12168,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/octicons.ttf||52544:1532430814.4045439": {
+    "/home/jw/.local/share/fonts/octicons.ttf||52544:1600679876.13347": {
       "family_name": "github-octicons",
       "font-family": "github-octicons",
       "font-stretch": "normal",
@@ -12096,7 +12204,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/weathericons.ttf||99564:1532430813.8725448": {
+    "/home/jw/.local/share/fonts/weathericons.ttf||99564:1600679875.9174705": {
       "family_name": "Weather Icons",
       "font-family": "Weather Icons",
       "font-stretch": "normal",
@@ -84636,7 +84744,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/openoffice/opens___.ttf||207544:1594018810.0": {
+    "/usr/share/fonts/truetype/openoffice/opens___.ttf||207544:1598309881.0": {
       "family_name": "OpenSymbol",
       "font-family": "OpenSymbol",
       "font-stretch": "normal",
