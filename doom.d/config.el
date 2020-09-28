@@ -56,6 +56,7 @@
  ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
  window-combination-resize t      ; Resize windows proportionally
  history-delete-duplicates t
+ major-mode 'org-mode
  )
 
 (global-auto-revert-mode t)
@@ -258,6 +259,8 @@
   (require 'ob-ledger)
   (require 'ob-python)
   (require 'ob-shell)
+  (require 'ob-core)
+  (require 'ob-tangle)
   (setq org-babel-load-languages '((emacs-lisp . t)
                                    (ledger . t)
                                    (python . t)
@@ -1022,8 +1025,8 @@
 
   (add-hook 'org-mode-hook
             (lambda ()
-              (setq-local whitespace-style
-                          (append whitespace-style '(trailing))))
+              (setq whitespace-style
+                    (append whitespace-style '(trailing))))
             t) ; Add near end of hooks list of functions
 
   (add-hook 'prog-mode-hook
