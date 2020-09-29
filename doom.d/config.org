@@ -130,7 +130,6 @@ Allow emacs to run as a daemon
  ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
  window-combination-resize t      ; Resize windows proportionally
  history-delete-duplicates t
- major-mode 'org-mode
  )
 #+END_SRC
 ** lolsmacs
@@ -142,6 +141,12 @@ The doom settings are probably better. I just copy a few settings from lolsmacs.
 I want to avoid desktop, which is turned on in lolsmacs.
 #+BEGIN_SRC emacs-lisp
 (global-auto-revert-mode t)
+#+END_SRC
+* projectile
+#+BEGIN_SRC
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-enable-caching t)
 #+END_SRC
 * org
   :PROPERTIES:
@@ -582,6 +587,7 @@ they are implemented.
   (progn
       (require 'helm-config)
       (require 'helm-grep)
+      (require 'helm-projectile)
       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
       (define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
@@ -1243,31 +1249,43 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 * Handling of whitespace
 ** whitespace variables
 #+BEGIN_SRC emacs-lisp
-  ;; show unncessary whitespace that can mess up your diff
-  ;; (add-hook 'diff-mode-hook
-  ;;           (lambda ()
-  ;;             (setq-local whitespace-style
-  ;;                         '(face
-  ;;                           tabs
-  ;;                           tab-mark
-  ;;                           spaces
-  ;;                           space-mark
-  ;;                           trailing
-  ;;                           indentation::space
-  ;;                           indentation::tab
-  ;;                           newline
-  ;;                           newline-mark))
-  ;;             (whitespace-mode 1)))
+(global-whitespace-mode t) ; Tell Doom that I want control over whitespace-style
+(setq-default whitespace-style
+              '(face
+                tabs
+                trailing
+                empty
+                )
+              )
+;; show unncessary whitespace that can mess up your diff
+;; (add-hook 'diff-mode-hook
+;;           (lambda ()
+;;             (setq-local whitespace-style
+;;                         '(face
+;;                           tabs
+;;                           tab-mark
+;;                           spaces
+;;                           space-mark
+;;                           trailing
+;;                           indentation::space
+;;                           indentation::tab
+;;                           newline
+;;                           newline-mark))
+;;             (whitespace-mode 1)))
 
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (setq whitespace-style
-                    (append whitespace-style '(trailing))))
-            t) ; Add near end of hooks list of functions
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             (setq-local whitespace-style
+;;                   (append whitespace-style '(trailing))))
+;;           t) ; Add near end of hooks list of functions
 
-  (add-hook 'prog-mode-hook
-            (lambda () (interactive)
-              (setq show-trailing-whitespace 1)))
+(add-hook 'prog-mode-hook
+          (lambda () (interactive)
+            (setq show-trailing-whitespace 1)))
+
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (whitespace-mode -1)))
 #+END_SRC
 ** hungry-delete
    :PROPERTIES:
@@ -1715,4 +1733,106 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 * smartparens
 #+BEGIN_SRC emacs-lisp
 (use-package! smartparens)
+#+END_SRC
+
+* Hydra
+** hydra-helm
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-helm (:hint nil :color pink)
+        "
+                                                                          ╭──────┐
+   Navigation   Other  Sources     Mark             Do             Help   │ Helm │
+  ╭───────────────────────────────────────────────────────────────────────┴──────╯
+        ^_k_^         _K_       _p_   [_m_] mark         [_v_] view         [_H_] helm help
+        ^^↑^^         ^↑^       ^↑^   [_t_] toggle all   [_d_] delete       [_s_] source help
+    _h_ ←   → _l_     _c_       ^ ^   [_u_] unmark all   [_f_] follow: %(helm-attr 'follow)
+        ^^↓^^         ^↓^       ^↓^    ^ ^               [_y_] yank selection
+        ^_j_^         _J_       _n_    ^ ^               [_w_] toggle windows
+  --------------------------------------------------------------------------------
+        "
+        ("<tab>" helm-keyboard-quit "back" :exit t)
+        ("<escape>" nil "quit")
+        ("\\" (insert "\\") "\\" :color blue)
+        ("h" helm-beginning-of-buffer)
+        ("j" helm-next-line)
+        ("k" helm-previous-line)
+        ("l" helm-end-of-buffer)
+        ("g" helm-beginning-of-buffer)
+        ("G" helm-end-of-buffer)
+        ("n" helm-next-source)
+        ("p" helm-previous-source)
+        ("K" helm-scroll-other-window-down)
+        ("J" helm-scroll-other-window)
+        ("c" helm-recenter-top-bottom-other-window)
+        ("m" helm-toggle-visible-mark)
+        ("t" helm-toggle-all-marks)
+        ("u" helm-unmark-all)
+        ("H" helm-help)
+        ("s" helm-buffer-help)
+        ("v" helm-execute-persistent-action)
+        ("d" helm-persistent-delete-marked)
+        ("y" helm-yank-selection)
+        ("w" helm-toggle-resplit-and-swap-windows)
+        ("f" helm-follow-mode))
+
+(define-key helm-map (kbd "H-o") 'hydra-helm/body)
+#+END_SRC
+** hydra-projectile
+   :PROPERTIES:
+   :ID:       2e013630-fe3e-44d0-9e57-8d65e03f18d5
+   :END:
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-projectile-other-window (:color teal)
+  "projectile-other-window"
+  ("f"  projectile-find-file-other-window        "file")
+  ("g"  projectile-find-file-dwim-other-window   "file dwim")
+  ("d"  projectile-find-dir-other-window         "dir")
+  ("b"  projectile-switch-to-buffer-other-window "buffer")
+  ("q"  nil                                      "cancel" :color blue))
+
+;; (use-package ggtags
+;;   :config
+;;   (add-hook 'c-mode-common-hook
+;;             (lambda ()
+;;               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+;;                 (ggtags-mode 1))))
+;;   )
+
+(defhydra hydra-projectile (:color teal
+                            :hint nil)
+  "
+     PROJECTILE: %(projectile-project-root)
+
+     Find File            Search/Tags          Buffers                Cache
+------------------------------------------------------------------------------------------
+_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+ _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
+ _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
+  _r_: recent file                                               ^^^^_z_: cache current
+  _d_: dir
+
+"
+  ("a"   projectile-ag)
+  ("b"   projectile-switch-to-buffer)
+  ("c"   projectile-invalidate-cache)
+  ("d"   projectile-find-dir)
+  ("s-f" projectile-find-file)
+  ("ff"  projectile-find-file-dwim)
+  ("fd"  projectile-find-file-in-directory)
+  ("g"   ggtags-update-tags)
+  ("s-g" ggtags-update-tags)
+  ("i"   projectile-ibuffer)
+  ("K"   projectile-kill-buffers)
+  ("s-k" projectile-kill-buffers)
+  ("m"   projectile-multi-occur)
+  ("o"   projectile-multi-occur)
+  ("s-p" projectile-switch-project "switch project")
+  ("p"   projectile-switch-project)
+  ("s"   projectile-switch-project)
+  ("r"   projectile-recentf)
+  ("x"   projectile-remove-known-project)
+  ("X"   projectile-cleanup-known-projects)
+  ("z"   projectile-cache-current-file)
+  ("`"   hydra-projectile-other-window/body "other window")
+  ("q"   nil "cancel" :color blue))
 #+END_SRC
