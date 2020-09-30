@@ -46,6 +46,7 @@
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
 (package! dired-narrow)
+(package! dired-ranger)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
 (package! elfeed)

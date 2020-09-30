@@ -65,9 +65,9 @@
        word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       dired             ; making dired pretty [functional]. +icons is incompatible with dired-filter
+       (dired +ranger)   ; making dired pretty [functional]. +icons is incompatible with dired-filter
        electric          ; smarter, keyword-based electric-indent
-       ibuffer         ; interactive buffer management
+       ibuffer           ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 

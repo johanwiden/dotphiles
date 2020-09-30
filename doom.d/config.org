@@ -75,7 +75,8 @@ font string. You generally only need these two:
 #+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Ubuntu Mono" :size 18)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
-      doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
+      doom-variable-pitch-font (font-spec :family "Overpass" :size 15)
+      ;;doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
       ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
       ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
       )
@@ -83,7 +84,8 @@ font string. You generally only need these two:
 ;;(set-face-attribute 'default nil :font "Iosevka-16")
 (set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
 ;;(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 1.0)
-(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
+(set-face-attribute 'variable-pitch nil :family "Overpass" :height 1.0)
+;;(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
 ;;(set-face-attribute 'variable-pitch nil :family "Libre Baskerville" :height 1.0)
 (custom-set-faces!
   '(aw-leading-char-face
@@ -1424,6 +1426,30 @@ Launch application associated with file
 #+BEGIN_SRC emacs-lisp
 (use-package! dired-launch)
 (dired-launch-enable)
+#+END_SRC
+** dired-ranger
+   :PROPERTIES:
+   :ID:       893b721b-b1be-4ee0-8a1a-5cecf64432c2
+   :END:
+#+BEGIN_SRC emacs-lisp
+  (use-package! dired-ranger
+    :config
+    (setq dired-ranger-bookmark-LRU ?l)
+    ;; (bind-keys :map dired-mode-map
+    ;;            :prefix "c"
+    ;;            :prefix-map dired-ranger-map
+    ;;            :prefix-docstring "Map for ranger operations."
+    ;;   ("c" . dired-ranger-copy)
+    ;;   ("p" . dired-ranger-paste)
+    ;;   ("m" . dired-ranger-move))
+    :bind (:map dired-mode-map
+                ("W" . dired-ranger-copy)
+                ("X" . dired-ranger-move)
+                ("Y" . dired-ranger-paste)
+                ("'" . dired-ranger-bookmark)
+                ("l" . dired-ranger-bookmark-visit))
+  )
+(ranger-override-dired-mode -1)
 #+END_SRC
 ** Init
 #+BEGIN_SRC emacs-lisp
