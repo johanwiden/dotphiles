@@ -149,6 +149,7 @@ I want to avoid desktop, which is turned on in lolsmacs.
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
+(setq projectile-switch-project-action #'projectile-dired) ; Was +workspaces-set-project-action-fn
 #+END_SRC
 * org
   :PROPERTIES:
@@ -1287,7 +1288,8 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 
 (add-hook 'vterm-mode-hook
           (lambda ()
-            (whitespace-mode -1)))
+            (whitespace-mode -1)
+            (setq whitespace-style nil)))
 #+END_SRC
 ** hungry-delete
    :PROPERTIES:
