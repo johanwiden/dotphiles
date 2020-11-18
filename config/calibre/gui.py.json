@@ -46,6 +46,10 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "reilly",
+    "ccnbook",
+    "universal transform or",
+    "reward functio",
     "spectrum",
     "robotics",
     "robotics and",
@@ -53,8 +57,6 @@
     "resynthesiz",
     "from molecule",
     "scellier",
-    "reilly",
-    "ccnbook",
     "Ansible for dev",
     "c++ lambda",
     "neural representation",
@@ -68,16 +70,14 @@
     "object",
     "cisek",
     "ansible",
-    "authors:\"=Andrew Shitov\"",
-    "lisp",
-    "clojure"
+    "authors:\"=Andrew Shitov\""
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
   },
   "match_tags_type": "any",
-  "new_version_notification": true,
+  "new_version_notification": false,
   "oldest_news": 60,
   "overwrite_author_title_metadata": true,
   "plugin_search_history": [],

@@ -1,11 +1,11 @@
 {
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAeAAAAAFAAADv8AAAYqAAAHggAAABQAAA7/AAAGKgAAAAAAAAAADwAAAAeCAAAAFAAADv8AAAYq"
+    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAJUA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAowD///8AAAABAAAAAAAAAAD8AgAAAAP7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAABmAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAANcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD///8AAAd+AAAGFwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAAAAAABAAAAHgBhAGMAdABpAG8AbgBzAF8AdABvAG8AbABiAGEAcgIAAAAA/////wAAAAAAAAAA"
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawEAAAAAAAAGFgAAAIgA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlwD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACAAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOwA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM0A////AAAD+AAABhYAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "session_data": {
@@ -31,8 +31,44 @@
         ],
         "key": "/home/jw/calibre_library/Randall C. O'Reilly/Computational Cognitive Neuroscience (554)/Computational Cognitive Neuroscience - Randall C. O'Reilly.epub",
         "pathtoebook": "/home/jw/calibre_library/Randall C. O'Reilly/Computational Cognitive Neuroscience (554)/Computational Cognitive Neuroscience - Randall C. O'Reilly.epub",
-        "timestamp": "2020-08-06T11:26:19.060Z",
+        "timestamp": "2020-11-18T14:00:52.742Z",
         "title": "Computational Cognitive Neuroscience"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/fritz_erik_rudberg_brev.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/fritz_erik_rudberg_brev.md",
+        "timestamp": "2020-11-01T20:35:48.509Z",
+        "title": "fritz erik rudberg brev"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/elsa_amalia_lindaure.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/elsa_amalia_lindaure.md",
+        "timestamp": "2020-10-30T09:29:05.347Z",
+        "title": "elsa amalia lindaure"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/fritz_adam_rudberg.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/fritz_adam_rudberg.md",
+        "timestamp": "2020-10-30T09:00:19.873Z",
+        "title": "fritz adam rudberg"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/samuel_eseen.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/samuel_eseen.md",
+        "timestamp": "2020-10-30T08:36:07.639Z",
+        "title": "samuel eseen"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/daniel_westling.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/daniel_westling.md",
+        "timestamp": "2020-10-29T22:38:39.809Z",
+        "title": "daniel westling"
+      },
+      {
+        "key": "/home/jw/släktforskning/ancestry.se/media/johannes_fortelius.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/johannes_fortelius.md",
+        "timestamp": "2020-10-29T22:10:26.231Z",
+        "title": "johannes fortelius"
       },
       {
         "authors": [
