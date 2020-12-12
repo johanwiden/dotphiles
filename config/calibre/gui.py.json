@@ -46,7 +46,11 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "chang",
     "reilly",
+    "filipek",
+    "urakubo",
+    "doeller",
     "ccnbook",
     "universal transform or",
     "reward functio",
@@ -63,14 +67,10 @@
     "synaptic and nonsynap",
     "memris",
     "geerling",
-    "filipek",
     "an evaluation",
     "zyarah",
     "a spiking",
-    "object",
-    "cisek",
-    "ansible",
-    "authors:\"=Andrew Shitov\""
+    "object"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",

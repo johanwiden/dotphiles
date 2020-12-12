@@ -47,14 +47,12 @@ available. You can either set `doom-theme' or manually load a theme with the
 `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 #+BEGIN_SRC emacs-lisp
+(require 'modus-themes)                 ; common code
+(require 'modus-operandi-theme)         ; light theme
+(require 'modus-vivendi-theme)          ; dark theme
+(setq modus-themes-variable-pitch-headings t)
+(setq modus-themes-scale-headings t)
 (setq doom-theme 'modus-vivendi)
-(setq modus-vivendi-theme-proportional-fonts t)
-(setq modus-vivendi-theme-rainbow-headings nil)
-(setq modus-vivendi-theme-scale-headings t)
-(setq modus-vivendi-theme-bold-constructs t)
-(setq modus-vivendi-theme-visible-fringes t)
-(setq modus-vivendi-theme-intense-paren-match nil)
-(setq modus-vivendi-theme-variable-pitch-headings t)
 #+END_SRC
 * Fonts
   :PROPERTIES:
@@ -553,6 +551,13 @@ doesn't ~python~ refer to the latest version!?
 ** org-recoll
 #+BEGIN_SRC emacs-lisp
 (use-package! org-recoll)
+#+END_SRC
+** org-similarity
+#+BEGIN_SRC emacs-lisp
+(use-package! org-similarity
+  :config
+  (setq org-similarity-directory org-roam-directory)
+  )
 #+END_SRC
 * line numbers
   :PROPERTIES:

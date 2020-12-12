@@ -139,7 +139,7 @@
   },
   "duplicates-question-dialog-geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAABQAAAAFgAAAr0AAAGRAAAAUAAAABYAAAK9AAABkQAAAAAAAAAADwAAAABQAAAAFgAAAr0AAAGR"
+    "__value__": "AdnQywADAAAAAABSAAAAGAAAAv8AAAGTAAAAUgAAABgAAAL/AAABkwAAAAAAAAAADwAAAABSAAAAGAAAAv8AAAGT"
   },
   "grid view visible": false,
   "jobs view column layout3": {
@@ -151,7 +151,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 219
+    "/home/jw/calibre_library": 240
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -159,7 +159,7 @@
   },
   "metasingle_window_geometry3": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAABAAABGQAADyAAAAPjAAAAAQAAARkAAA8gAAAD4wAAAAAAAAAADwAAAAABAAABGQAADyAAAAPj"
+    "__value__": "AdnQywADAAAAAAD5AAABpwAADTAAAAVtAAAA+QAAAacAAA0wAAAFbQAAAAAAAAAADwAAAAD5AAABpwAADTAAAAVt"
   },
   "preferences dialog geometry": {
     "__class__": "bytearray",
@@ -179,12 +179,16 @@
   ],
   "quickview_dialog_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAYaAAACUQAACSEAAAOqAAAGHgAAAlEAAAkdAAADpgAAAAAAAAAADwAAAAYeAAACUQAACR0AAAOm"
+    "__value__": "AdnQywADAAAAAAYfAAACUgAACdAAAAOnAAAGHwAAAlIAAAnQAAADpwAAAAAAAAAADwAAAAYfAAACUgAACdAAAAOn"
   },
   "recently_used_languages": [
     "English",
     "Polish"
   ],
+  "scheduler_dialog_geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAXnAAABzQAACSYAAAQkAAAF5wAAAc0AAAkmAAAEJAAAAAAAAAAADwAAAAXnAAABzQAACSYAAAQk"
+  },
   "search bar visible": true,
   "server3_warning_done": true,
   "tag browser search box visible": false,

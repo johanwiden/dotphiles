@@ -70,7 +70,8 @@
   :recipe (:host github :repo "emacsmirror/highlight"))
 (package! hungry-delete)
 (package! mixed-pitch)
-(package! modus-vivendi-theme)
+(package! modus-themes
+  :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
 (package! mouse3
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
@@ -80,6 +81,8 @@
   :recipe (:host github :repo "alraban/org-recoll"))
 (package! org-roam-bibtex)
 (package! org-roam-server)
+(package! org-similarity
+  :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
 (package! telephone-line)
