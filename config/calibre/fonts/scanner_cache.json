@@ -12816,7 +12816,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationMono-Bold.ttf||302688:1559563240.8000562": {
+    "/opt/calibre/resources/fonts/liberation/LiberationMono-Bold.ttf||304680:1608013390.088503": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -12852,7 +12852,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationMono-BoldItalic.ttf||278692:1559563240.8467228": {
+    "/opt/calibre/resources/fonts/liberation/LiberationMono-BoldItalic.ttf||281016:1608013390.088503": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -12888,7 +12888,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationMono-Italic.ttf||275740:1559563240.8467228": {
+    "/opt/calibre/resources/fonts/liberation/LiberationMono-Italic.ttf||278536:1608013390.088503": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -12924,7 +12924,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationMono-Regular.ttf||314408:1559563240.8533895": {
+    "/opt/calibre/resources/fonts/liberation/LiberationMono-Regular.ttf||316128:1608013390.088503": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -12960,7 +12960,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSans-Bold.ttf||356140:1559563240.8800561": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSans-Bold.ttf||412304:1608013390.0918362": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -12996,7 +12996,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSans-BoldItalic.ttf||351672:1559563240.8900561": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSans-BoldItalic.ttf||407164:1608013390.0918362": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -13032,7 +13032,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSans-Italic.ttf||357416:1559563240.9033895": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSans-Italic.ttf||413688:1608013390.0918362": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -13068,7 +13068,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSans-Regular.ttf||352308:1559563240.930056": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSans-Regular.ttf||408856:1608013390.0918362": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -13104,7 +13104,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Bold.ttf||367460:1559563240.9433894": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Bold.ttf||367760:1608013390.0918362": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -13140,7 +13140,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSerif-BoldItalic.ttf||372716:1559563240.9633894": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSerif-BoldItalic.ttf||374332:1608013390.0918362": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -13176,7 +13176,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Italic.ttf||371712:1559563240.9700563": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Italic.ttf||373208:1608013390.0918362": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -13212,7 +13212,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Regular.ttf||390836:1559563241.006723": {
+    "/opt/calibre/resources/fonts/liberation/LiberationSerif-Regular.ttf||390888:1608013390.0918362": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -24732,7 +24732,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||207544:1604306698.0": {
+    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||207544:1615831272.0": {
       "family_name": "OpenSymbol",
       "font-family": "OpenSymbol",
       "font-stretch": "normal",

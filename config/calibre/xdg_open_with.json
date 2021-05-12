@@ -1,0 +1,19 @@
+{
+  "choose-open-with-program-dialog-geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAUbAAABsQAACB8AAAOkAAAFGwAAAbEAAAgfAAADpAAAAAAAAAAADwAAAAUbAAABsQAACB8AAAOk"
+  },
+  "entries": {
+    "pdf": [
+      {
+        "Exec": [
+          "/usr/bin/evince",
+          "%f"
+        ],
+        "MimeType": [],
+        "Name": "evince",
+        "uuid": "6e7db2f2-4234-4c37-962c-62e8fcfa235f"
+      }
+    ]
+  }
+}

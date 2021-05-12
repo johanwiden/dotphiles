@@ -1,24 +1,30 @@
 {
   "add books dialog dir": "/home/jw/Downloads",
+  "choose-open-with-program-manually": "/usr/bin",
   "database location dialog": "/home/jw/calibre_library",
   "notified-version-updates": {
     "__class__": "set",
     "__value__": [
+      "5.17",
+      "5.9",
+      "5.11",
+      "5.10",
+      "5.8",
       "5.4"
     ]
   },
   "save to disk dialog": "/home/jw/Downloads/numenta",
   "sort_history": [
     [
-      "timestamp",
-      false
-    ],
-    [
       "pubdate",
       true
     ],
     [
       "timestamp",
+      false
+    ],
+    [
+      "size",
       false
     ],
     [

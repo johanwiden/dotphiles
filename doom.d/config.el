@@ -484,6 +484,21 @@
     (interactive "P")
     (mu-helm-rg default-directory with-types))
 
+(defun my/helm-insert-kill-ring ()
+  "Get an entry from the kill ring and insert."
+  (interactive)
+  (require 'helm-ring)
+  (let* ((helm-kill-ring-actions '(("Get" . identity)))
+         (delete-range (when (region-active-p)
+                         (cons (region-beginning) (region-end))))
+         (result (helm-show-kill-ring)))
+    (when result
+      (deactivate-mark)
+      (when delete-range
+        (goto-char (car delete-range))
+        (delete-char (- (cdr delete-range) (car delete-range))))
+      (insert (substring-no-properties result)))))
+
   (use-package! exwm)
   (require 'exwm-randr)
   (defun jw/env-list (env-string)
@@ -698,11 +713,18 @@
       (with-current-buffer standard-output
         (apply 'process-file program nil t nil args))))
 
+  ;; (defun jw/xmodmap ()
+  ;;   "Execute xmodmap"
+  ;;   (progn
+  ;;     (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
+  ;;     (ambrevar/call-process-to-string "/usr/bin/touch" "/tmp/jw_xmodmap")
+  ;;     (ambrevar/call-process-to-string "/usr/bin/xmodmap" "/home/jw/.Xmodmap.exwm")))
+
   (defun jw/xmodmap ()
     "Execute xmodmap"
     (progn
-      (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
-      (ambrevar/call-process-to-string "/usr/bin/xmodmap" "/home/jw/.Xmodmap.exwm")))
+      ;; (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
+      (ambrevar/call-process-to-string "/home/jw/bin/set_xmodmap.sh")))
 
   (setq browse-url-generic-program
         (or
@@ -714,13 +736,14 @@
 
   (defun my-exwm-config-setup ()
     "My modified configuration for EXWM. Based on exwm-config.el"
+    (setq exwm-manage-force-tiling t)
     ;; Set the initial workspace number.
     (unless (get 'exwm-workspace-number 'saved-value)
       (setq exwm-workspace-number 4))
     ;; Make class name the buffer name
     (add-hook 'exwm-update-class-hook
               (lambda ()
-              (exwm-workspace-rename-buffer exwm-class-name)))
+                (exwm-workspace-rename-buffer exwm-class-name)))
     ;; Global keybindings. 0-9 bcDfFgGhHijJkKlLmoOQrRwWå !"#¤%&/()= tab f2 backspace
     (unless (get 'exwm-input-global-keys 'saved-value)
       (setq exwm-input-global-keys
@@ -733,9 +756,9 @@
               (,(kbd "s-r") . helm-run-external-command) ;; Start an application, such as google-chrome
               (,(kbd "s-W") . helm-exwm-switch-browser) ;; Switch to some browser windows
               (,(kbd "s-m") . (lambda () ;; Toggle display of mode-line and minibuffer, in an EXWM window
-                     (interactive)
-                     (exwm-layout-toggle-mode-line)
-                     (exwm-workspace-toggle-minibuffer)))
+                                (interactive)
+                                (exwm-layout-toggle-mode-line)
+                                (exwm-workspace-toggle-minibuffer)))
               (,(kbd "s-i") . exwm-input-toggle-keyboard) ;; Toggle between "line-mode" and "char-mode" in an EXWM window
               ;; 's-r': Reset (to line-mode).
               (,(kbd "s-R") . exwm-reset) ;; Try to reset EXWM to a sane mode. Panic key
@@ -754,18 +777,18 @@
                         (number-sequence 0 9))
               ;; 'S-s-N': Move window to, and switch to, a certain workspace.
               ,@(cl-mapcar (lambda (c n)
-                          `(,(kbd (format "s-%c" c)) .
-                            (lambda ()
-                              (interactive)
-                              (exwm-workspace-move-window ,n)
-                              (exwm-workspace-switch ,n))))
-                        '(?\= ?! ?\" ?# ?¤ ?% ?& ?/ ?\( ?\))
-                        (number-sequence 0 9))
+                             `(,(kbd (format "s-%c" c)) .
+                               (lambda ()
+                                 (interactive)
+                                 (exwm-workspace-move-window ,n)
+                                 (exwm-workspace-switch ,n))))
+                           '(?\= ?! ?\" ?# ?¤ ?% ?& ?/ ?\( ?\))
+                           (number-sequence 0 9))
 
               ;; Bind "s-<f2>" to "slock", a simple X display locker.
               (,(kbd "s-<f2>") . (lambda ()
-                          (interactive)
-                          (start-process "" nil "/usr/bin/slock")))
+                                   (interactive)
+                                   (start-process "" nil "/usr/bin/slock")))
               (,(kbd "s-h") . windmove-left)  ;; Move to window to the left of current one. Uses universal arg
               (,(kbd "s-j") . windmove-down)  ;; Move to window below current one. Uses universal arg
               (,(kbd "s-k") . windmove-up)    ;; Move to window above current one. Uses universal arg
@@ -773,8 +796,8 @@
               ;; (,(kbd "s-f") . find-file)
               (,(kbd "s-f") . helm-find-files)
               (,(kbd "s-<tab>") . windower-switch-to-last-buffer) ;; Switch to last open buffer in current window
-              (,(kbd "s-o") . windower-toggle-single) ;; Toggle between multiple windows, and a single window
-              (,(kbd "s-O") . windower-toggle-split)  ;; Toggle between vertical and horizontal split. Only works with exactly two windows.
+              (,(kbd "s-s") . windower-toggle-single) ;; Toggle between multiple windows, and a single window
+              (,(kbd "s-S") . windower-toggle-split)  ;; Toggle between vertical and horizontal split. Only works with exactly two windows.
               (,(kbd "s-H") . windower-swap-left)  ;; Swap current window with the window to the left
               (,(kbd "s-J") . windower-swap-below) ;; Swap current window with the window below
               (,(kbd "s-K") . windower-swap-above) ;; Swap current window with the window above
@@ -783,7 +806,7 @@
               (,(kbd "s-Q") . exwm-layout-toggle-fullscreen) ;; Toggle fullscreen mode
               (,(kbd "s-D") . kill-this-buffer)
               (,(kbd "s-<backspace>") . kill-this-buffer)
-     )))
+              )))
     ;; Line-editing shortcuts: abBcdefFknpqsvwx
     (unless (get 'exwm-input-simulation-keys 'saved-value)
       (setq exwm-input-simulation-keys
@@ -806,7 +829,7 @@
               (,(kbd "H-v") . ,(kbd "C-v"))
               ;; search
               (,(kbd "H-s") . ,(kbd "C-f"))
-     )))
+              )))
     ;; Default is save-buffers-kill-terminal, but that may kill daemon before its finished
     (global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
     (add-hook 'exwm-update-title-hook 'ambrevar/exwm-rename-buffer-to-title)
@@ -1198,9 +1221,9 @@ Also used for highlighting.")
     :config
     (setq diredp-image-preview-in-tooltip 300))
 
-  (use-package bookmark+)
+  (use-package! bookmark+)
 
-  (use-package bookmark+)
+  (use-package! bookmark+)
 
   (use-package! w3m
     :config
@@ -1426,14 +1449,30 @@ Also used for highlighting.")
         ("<end>" . move-end-of-line)
         ))
 
+  ;; (defun my-window-displaying-calibredb-entry-p (window)
+  ;;   (equal (with-current-buffer (window-buffer window) major-mode)
+  ;;          'calibredb-show))
+
+  ;; (defun my-position-calibredb-entry-buffer (buffer alist)
+  ;;   (let ((agenda-window (car (cl-remove-if-not #'my-window-displaying-calibredb-entry-p (window-list)))))
+  ;;     (when agenda-window
+  ;;       (set-window-buffer agenda-window  buffer)
+  ;;       agenda-window)))
+
   (use-package! calibredb
     :config
     (setq sql-sqlite-program "/usr/bin/sqlite3")
+    (setq calibredb-program "/usr/bin/calibredb")
     (setq calibredb-root-dir (expand-file-name "~/calibre_library"))
     (setq calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
-    (setq calibredb-program "/usr/bin/calibredb")
     (setq calibredb-library-alist '(("~/calibre_library")))
-  )
+
+    ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
+    )
+
+  (use-package! good-scroll
+    :config
+    (good-scroll-mode 1))
 
 (when (and (executable-find "fish")
            (require 'fish-completion nil t))
@@ -1446,6 +1485,37 @@ Also used for highlighting.")
 (use-package! smartparens)
 
 (use-package! smartparens)
+
+  (use-package! hyperbole
+    :config
+    (require 'hyperbole)
+    ;; (hyperbole-mode 1)
+    (setq hsys-org-enable-smart-keys t)
+    (global-set-key (kbd "s-<return>") 'hkey-either)
+    (global-set-key (kbd "S-s-<return>") 'assist-key)
+    (global-set-key (kbd "<mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<double-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<triple-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<drag-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<left-fringe> <mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<left-fringe> <down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<left-fringe> <drag-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<right-fringe> <mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<right-fringe> <down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<right-fringe> <drag-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<vertical-line> <mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<vertical-line> <down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<vertical-line> <drag-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<mode-line> <mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<mode-line> <down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<mode-line> <drag-mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<header-line> <mouse-9>") 'action-mouse-key-emacs)
+    (global-set-key (kbd "<header-line> <down-mouse-9>") 'action-key-depress-emacs)
+    (global-set-key (kbd "<header-line> <drag-mouse-9>") 'action-mouse-key-emacs)
+    (hkey-ace-window-setup)
+    ;; (global-set-key (kbd "s-o") 'hkey-operate)
+    )
 
 (defhydra hydra-helm (:hint nil :color pink)
         "
@@ -1539,3 +1609,17 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("z"   projectile-cache-current-file)
   ("`"   hydra-projectile-other-window/body "other window")
   ("q"   nil "cancel" :color blue))
+
+;; Change "Jane Joplin & John B Doe_" -> "Jane Joplin_ & Doe, John B"
+(fset 'jw/swap_author
+      (kmacro-lambda-form [?\M-b left ?\M-d ?\M-x ?s ?e ?a ?r ?c ?h ?- ?b ?a ?c ?k ?w ?a ?r ?d ?s backspace return ?& return ?\C-f ?\C-y ?, ?\M-b ?\M-b ?\M-f] 0 "%d"))
+
+;; Replace "," with " &"
+(fset 'jw/comma_to_ampersand
+      (kmacro-lambda-form [?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?s ?t ?r ?i ?n ?g return ?, return ?  ?& return] 0 "%d"))
+
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
+;; (setq session-use-package t nil (session))
+;; session will be save if a buffer is save to a file.
+(add-hook 'after-save-hook #'session-save-session)

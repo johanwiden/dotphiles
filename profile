@@ -40,6 +40,8 @@ export HTM_SERVER="/home/jw/projects/htm-community/nupic-history-server"
 export CELL_VIZ="/home/jw/projects/numenta/cell-viz"
 export HTM_VIZ="/home/jw/projects/htm-community/htm-school-viz"
 
+export NODE_PATH=${NODE_PATH}:$(npm root -g)
+
 # if [[ -x /usr/bin/google-drive-ocamlfuse ]]; then
 #     mount | grep -q google_drive
 #     if [[ $? -ne 0 ]]; then

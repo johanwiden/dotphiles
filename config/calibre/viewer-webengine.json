@@ -5,7 +5,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawEAAAAAAAAGFgAAAIgA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlwD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACAAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOwA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM0A////AAAD+AAABhYAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawEAAAAAAAAGFgAAAI8A////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAnwD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACCAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPMA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANUA////AAAD+AAABhYAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "session_data": {
@@ -21,6 +21,197 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "Sanja Fidler"
+        ],
+        "key": "/home/jw/calibre_library/Sanja Fidler/Towards Scalable Representations of Object Categories_ Learning a Hierarchy of Parts (728)/Towards Scalable Representations of Object - Sanja Fidler.pdf",
+        "pathtoebook": "/home/jw/calibre_library/Sanja Fidler/Towards Scalable Representations of Object Categories_ Learning a Hierarchy of Parts (728)/Towards Scalable Representations of Object - Sanja Fidler.pdf",
+        "timestamp": "2021-02-10T09:25:10.238Z",
+        "title": "cvprpaper_final.dvi"
+      },
+      {
+        "authors": [
+          "Aleksander Sołżenicyn"
+        ],
+        "key": "/home/jw/calibre_library/Aleksander Solzenicyn/Oddzial chorych na raka (701)/Oddzial chorych na raka - Aleksander Solzenicyn.epub",
+        "pathtoebook": "/home/jw/calibre_library/Aleksander Solzenicyn/Oddzial chorych na raka (701)/Oddzial chorych na raka - Aleksander Solzenicyn.epub",
+        "timestamp": "2021-01-13T21:39:32.025Z",
+        "title": "Oddział chorych na raka"
+      },
+      {
+        "authors": [
+          "Michaił Bułhakow"
+        ],
+        "key": "/home/jw/calibre_library/Michail Bulhakow/Mistrz i Malgorzata (702)/Mistrz i Malgorzata - Michail Bulhakow.epub",
+        "pathtoebook": "/home/jw/calibre_library/Michail Bulhakow/Mistrz i Malgorzata (702)/Mistrz i Malgorzata - Michail Bulhakow.epub",
+        "timestamp": "2021-01-13T21:38:43.487Z",
+        "title": "Mistrz i Małgorzata"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki",
+          "Borys Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Slimak na zboczu (661)/Slimak na zboczu - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Slimak na zboczu (661)/Slimak na zboczu - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:22:06.201Z",
+        "title": "Ślimak na zboczu"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki",
+          "Borys Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Zuk w mrowisku (660)/Zuk w mrowisku - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Zuk w mrowisku (660)/Zuk w mrowisku - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:20:42.596Z",
+        "title": "Żuk w mrowisku"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Trudno byc bogiem (659)/Trudno byc bogiem - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Trudno byc bogiem (659)/Trudno byc bogiem - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:05:28.885Z",
+        "title": "Trudno być bogiem"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Przyjaciel z Piekla (658)/Przyjaciel z Piekla - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Przyjaciel z Piekla (658)/Przyjaciel z Piekla - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:04:05.269Z",
+        "title": "Przyjaciel z Piekła"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Przenicowany swiat (657)/Przenicowany swiat - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Przenicowany swiat (657)/Przenicowany swiat - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:03:02.292Z",
+        "title": "Przenicowany świat"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Pora deszczow (656)/Pora deszczow - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Pora deszczow (656)/Pora deszczow - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T11:01:48.192Z",
+        "title": "Pora deszczów"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Poniedzialek zaczyna sie w sobote (655)/Poniedzialek zaczyna sie w sobote - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Poniedzialek zaczyna sie w sobote (655)/Poniedzialek zaczyna sie w sobote - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:59:49.220Z",
+        "title": "Poniedziałek zaczyna się w sobotę"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Poludnie, XXII wiek (654)/Poludnie, XXII wiek - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Poludnie, XXII wiek (654)/Poludnie, XXII wiek - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:58:48.296Z",
+        "title": "Poludnie, XXII wiek"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Miliard lat przed koncem swiata (653)/Miliard lat przed koncem swiata - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Miliard lat przed koncem swiata (653)/Miliard lat przed koncem swiata - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:57:33.871Z",
+        "title": "Miliard lat przed koncem swiata"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Miasto skazane (652)/Miasto skazane - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Miasto skazane (652)/Miasto skazane - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:56:09.979Z",
+        "title": "Miasto skazane"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Lot na Amaltee, Stazysci (651)/Lot na Amaltee, Stazysci - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Lot na Amaltee, Stazysci (651)/Lot na Amaltee, Stazysci - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:54:45.748Z",
+        "title": "Lot na Amaltee, Stazysci"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Koniec akcji ,,Arka_ (650)/Koniec akcji ,,Arka_ - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Koniec akcji ,,Arka_ (650)/Koniec akcji ,,Arka_ - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:53:31.865Z",
+        "title": "Koniec akcji „Arka”"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Hotel pod poleglym alpinista (649)/Hotel pod poleglym alpinista - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Hotel pod poleglym alpinista (649)/Hotel pod poleglym alpinista - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:51:45.394Z",
+        "title": "Hotel pod poległym alpinistą"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Fale tlumia wiatr (648)/Fale tlumia wiatr - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Fale tlumia wiatr (648)/Fale tlumia wiatr - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:41:19.165Z",
+        "title": "Fale tłumią wiatr"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Drapieznosc naszego wieku (647)/Drapieznosc naszego wieku - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Drapieznosc naszego wieku (647)/Drapieznosc naszego wieku - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:39:58.377Z",
+        "title": "Drapieznosc naszego wieku"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Bialy stozek Alaidu (646)/Bialy stozek Alaidu - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Bialy stozek Alaidu (646)/Bialy stozek Alaidu - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:38:02.769Z",
+        "title": "Biały stożek Ałaidu"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Alfa Eridana (645)/Alfa Eridana - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Alfa Eridana (645)/Alfa Eridana - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T10:35:44.774Z",
+        "title": "Alfa Eridana"
+      },
+      {
+        "authors": [
+          "Arkadij Strugacki"
+        ],
+        "key": "/home/jw/calibre_library/Arkadij Strugacki/Piknik na skraju drogi (644)/Piknik na skraju drogi - Arkadij Strugacki.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Piknik na skraju drogi (644)/Piknik na skraju drogi - Arkadij Strugacki.epub",
+        "timestamp": "2020-12-23T09:43:24.098Z",
+        "title": "Piknik na skraju drogi"
+      },
       {
         "authors": [
           "Randall C. O’Reilly",
@@ -51,69 +242,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/fritz_adam_rudberg.md",
         "timestamp": "2020-10-30T09:00:19.873Z",
         "title": "fritz adam rudberg"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/samuel_eseen.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/samuel_eseen.md",
-        "timestamp": "2020-10-30T08:36:07.639Z",
-        "title": "samuel eseen"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/daniel_westling.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/daniel_westling.md",
-        "timestamp": "2020-10-29T22:38:39.809Z",
-        "title": "daniel westling"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/johannes_fortelius.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/johannes_fortelius.md",
-        "timestamp": "2020-10-29T22:10:26.231Z",
-        "title": "johannes fortelius"
-      },
-      {
-        "authors": [
-          "Jeff Geerling"
-        ],
-        "key": "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (573)/Ansible for DevOps - Jeff Geerling.epub",
-        "pathtoebook": "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (573)/Ansible for DevOps - Jeff Geerling.epub",
-        "timestamp": "2020-08-05T19:48:47.902Z",
-        "title": "Ansible for DevOps"
-      },
-      {
-        "authors": [
-          "Bartłomiej Filipek"
-        ],
-        "key": "/home/jw/calibre_library/Bartlomiej Filipek/C__ Lambda Story (517)/C__ Lambda Story - Bartlomiej Filipek.epub",
-        "pathtoebook": "/home/jw/calibre_library/Bartlomiej Filipek/C__ Lambda Story (517)/C__ Lambda Story - Bartlomiej Filipek.epub",
-        "timestamp": "2020-06-19T20:17:10.840Z",
-        "title": "C++ Lambda Story"
-      },
-      {
-        "authors": [
-          "Bartłomiej Filipek"
-        ],
-        "key": "/home/jw/calibre_library/Bartlomiej Filipek/C__ Lambda Story (465)/C__ Lambda Story - Bartlomiej Filipek.epub",
-        "pathtoebook": "/home/jw/calibre_library/Bartlomiej Filipek/C__ Lambda Story (465)/C__ Lambda Story - Bartlomiej Filipek.epub",
-        "timestamp": "2020-06-19T20:11:21.565Z",
-        "title": "C++ Lambda Story"
-      },
-      {
-        "authors": [
-          "Janusz Korczak"
-        ],
-        "key": "/home/jw/calibre_library/Janusz Korczak/Krol Macius Pierwszy (476)/Krol Macius Pierwszy - Janusz Korczak.epub",
-        "pathtoebook": "/home/jw/calibre_library/Janusz Korczak/Krol Macius Pierwszy (476)/Krol Macius Pierwszy - Janusz Korczak.epub",
-        "timestamp": "2020-05-09T14:15:12.817Z",
-        "title": "Król Maciuś Pierwszy"
-      },
-      {
-        "authors": [
-          "Emmanuelle Courtiol"
-        ],
-        "key": "/home/jw/calibre_library/Emmanuelle Courtiol/The olfactory thalamus_ unanswered questions about the role of the mediodorsal thalamic nucleus (474)/The olfactory thalamus_ unanswered questio - Emmanuelle Courtiol.epub",
-        "pathtoebook": "/home/jw/calibre_library/Emmanuelle Courtiol/The olfactory thalamus_ unanswered questions about the role of the mediodorsal thalamic nucleus (474)/The olfactory thalamus_ unanswered questio - Emmanuelle Courtiol.epub",
-        "timestamp": "2020-05-09T06:39:11.777Z",
-        "title": "The olfactory thalamus: unanswered questions about the role of the mediodorsal thalamic nucleus in olfaction"
       }
     ],
     "user_stylesheet": "article,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nnav,\nsection,\nsummary {\n  display: block;\n}\naudio,\ncanvas,\nvideo {\n  display: inline-block;\n}\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n[hidden] {\n  display: none;\n}\nhtml {\n  font-family: sans-serif;\n  -webkit-text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%;\n}\nbody {\n  margin: 0;\n}\na:focus {\n  outline: thin dotted;\n}\na:active,\na:hover {\n  outline: 0;\n}\nh1 {\n  font-size: 2em;\n}\nabbr[title] {\n  border-bottom: 1px dotted;\n}\nb,\nstrong {\n  font-weight: bold;\n}\ndfn {\n  font-style: italic;\n}\nmark {\n  background: #ff0;\n  color: #000;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, serif;\n  font-size: 1em;\n}\npre {\n  white-space: pre-wrap;\n  word-wrap: break-word;\n}\nq {\n  quotes: \"\\201C\" \"\\201D\" \"\\2018\" \"\\2019\";\n}\nsmall {\n  font-size: 80%;\n}\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\nsup {\n  top: -0.5em;\n}\nsub {\n  bottom: -0.25em;\n}\nimg {\n  border: 0;\n}\nsvg:not(:root) {\n  overflow: hidden;\n}\nfigure {\n  margin: 0;\n}\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\nlegend {\n  border: 0;\n  padding: 0;\n}\nbutton,\ninput,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: 100%;\n  margin: 0;\n}\nbutton,\ninput {\n  line-height: normal;\n}\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer;\n}\nbutton[disabled],\ninput[disabled] {\n  cursor: default;\n}\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -moz-box-sizing: content-box;\n  -webkit-box-sizing: content-box;\n  box-sizing: content-box;\n}\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\ntextarea {\n  overflow: auto;\n  vertical-align: top;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\nhtml {\n  font-family: 'PT Sans', sans-serif;\n}\npre,\ncode {\n  font-family: 'Inconsolata', sans-serif;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'PT Sans Narrow', sans-serif;\n  font-weight: 700;\n}\nhtml {\n  background-color: #073642;\n  color: #839496;\n}\nbody {\n  background-color: #002b36;\n  margin: 0 auto;\n  max-width: 23cm;\n  border: 1pt solid #586e75;\n  padding: 1em;\n}\ncode {\n  background-color: #073642;\n  padding: 2px;\n}\na {\n  color: #b58900;\n}\na:visited {\n  color: #cb4b16;\n}\na:hover {\n  color: #cb4b16;\n}\nh1 {\n  color: #d33682;\n}\nh2,\nh3,\nh4,\nh5,\nh6 {\n  color: #859900;\n}\npre {\n  background-color: #002b36;\n  color: #839496;\n  border: 1pt solid #586e75;\n  padding: 1em;\n  box-shadow: 5pt 5pt 8pt #073642;\n}\npre code {\n  background-color: #002b36;\n}\nh1 {\n  font-size: 2.8em;\n}\nh2 {\n  font-size: 2.4em;\n}\nh3 {\n  font-size: 1.8em;\n}\nh4 {\n  font-size: 1.4em;\n}\nh5 {\n  font-size: 1.3em;\n}\nh6 {\n  font-size: 1.15em;\n}\n.tag {\n  background-color: #073642;\n  color: #d33682;\n  padding: 0 0.2em;\n}\n.todo,\n.next,\n.done {\n  color: #002b36;\n  background-color: #dc322f;\n  padding: 0 0.2em;\n}\n.tag {\n  -webkit-border-radius: 0.35em;\n  -moz-border-radius: 0.35em;\n  border-radius: 0.35em;\n}\n.TODO {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #2aa198;\n}\n.NEXT {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #268bd2;\n}\n.ACTIVE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #268bd2;\n}\n.DONE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #859900;\n}\n.WAITING {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #cb4b16;\n}\n.HOLD {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #d33682;\n}\n.NOTE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #d33682;\n}\n.CANCELLED {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #859900;\n}\n"

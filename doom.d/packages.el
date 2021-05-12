@@ -36,17 +36,29 @@
 ;; This is required for some packages whose default branch isn't 'master' (which
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
+
+;; Use `:pin' to specify a particular commit to install.
+;(package! builtin-package :pin "1a2b3c4d5e")
+
+
+;; Doom's packages are pinned to a specific commit and updated from release to
+;; release. The `unpin!' macro allows you to unpin single packages...
+;(unpin! pinned-package)
+;; ...or multiple packages
+;(unpin! pinned-package another-pinned-package)
+;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
+;(unpin! t)
 (package! ace-link)
 (package! ag)
 (package! bibtex-completion)
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
-(package! calibredb)
+(package! calibredb
+  :recipe (:local-repo "calibredb" :branch "develop"))
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
 (package! dired-narrow)
-(package! dired-ranger)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
 (package! elfeed)
@@ -56,6 +68,8 @@
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)
+(package! good-scroll
+  :recipe (:host github :repo "io12/good-scroll.el"))
 (package! helm-exwm)
 (package! helm-proc)
 (package! helm-projectile)
@@ -69,6 +83,9 @@
 (package! highlight
   :recipe (:host github :repo "emacsmirror/highlight"))
 (package! hungry-delete)
+;; (package! hyperbole)
+(package! hyperbole
+  :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! mixed-pitch)
 (package! modus-themes
   :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
@@ -85,6 +102,7 @@
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
+(package! session)
 (package! telephone-line)
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
@@ -94,15 +112,3 @@
 (package! visual-regexp-steroids)
 (package! w3m)
 (package! windower)
-
-;; Use `:pin' to specify a particular commit to install.
-;(package! builtin-package :pin "1a2b3c4d5e")
-
-
-;; Doom's packages are pinned to a specific commit and updated from release to
-;; release. The `unpin!' macro allows you to unpin single packages...
-;(unpin! pinned-package)
-;; ...or multiple packages
-;(unpin! pinned-package another-pinned-package)
-;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
-;(unpin! t)

@@ -1,8 +1,51 @@
 {
   "Plugin Updater plugin:plugin updater dialog": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAoPAAAAAQAADkQAAAXWAAAKDwAAAAEAAA5EAAAF1gAAAAAAAAAADwAAAAoPAAAAAQAADkQAAAXW"
+    "__value__": "AdnQywADAAAAAAoQAAAAFQAADmUAAAXqAAAKEAAAABUAAA5lAAAF6gAAAAAAAAAADwAAAAoQAAAAFQAADmUAAAXq"
   },
+  "action-layout-toolbar": [
+    "Add Books",
+    "Edit Metadata",
+    null,
+    "Convert Books",
+    "View",
+    null,
+    "Store",
+    "Donate",
+    "Fetch News",
+    "Help",
+    null,
+    "Remove Books",
+    "Choose Library",
+    "Save To Disk",
+    "Connect Share",
+    "Tweak ePub",
+    "Preferences",
+    "Job Spy"
+  ],
+  "action-layout-toolbar-device": [
+    "Add Books",
+    "Edit Metadata",
+    null,
+    "Convert Books",
+    "View",
+    "Send To Device",
+    null,
+    null,
+    "Location Manager",
+    null,
+    null,
+    "Fetch News",
+    "Save To Disk",
+    "Store",
+    "Connect Share",
+    null,
+    "Remove Books",
+    null,
+    "Help",
+    "Preferences",
+    "Job Spy"
+  ],
   "add-saved-search-geometry": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAALBAAACpwAABK8AAANUAAACxQAAAqcAAASrAAADUAAAAAAAAAAADwAAAALFAAACpwAABKsAAANQ"
@@ -35,6 +78,13 @@
     false,
     300
   ],
+  "cover_grid_color": [
+    80,
+    80,
+    80
+  ],
+  "cover_grid_show_title": true,
+  "cover_grid_texture": null,
   "custom_colors_for_color_dialog": [
     [
       255,
@@ -133,13 +183,18 @@
       255
     ]
   ],
+  "default_author_link": "search-wikipedia",
   "diff_dialog_geom": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAAH1AAABCAAABbIAAATzAAAB+QAAAQgAAAWuAAAE7wAAAAAAAAAADwAAAAH5AAABCAAABa4AAATv"
   },
   "duplicates-question-dialog-geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAABSAAAAGAAAAv8AAAGTAAAAUgAAABgAAAL/AAABkwAAAAAAAAAADwAAAABSAAAAGAAAAv8AAAGT"
+    "__value__": "AdnQywADAAAAAABUAAAAGgAAA0EAAAGVAAAAVAAAABoAAANBAAABlQAAAAAAAAAADwAAAABUAAAAGgAAA0EAAAGV"
+  },
+  "edit-open-with-programs-geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAZRAAAB9QAACMgAAAOEAAAGUQAAAfUAAAjIAAADhAAAAAAAAAAADwAAAAZRAAAB9QAACMgAAAOE"
   },
   "grid view visible": false,
   "jobs view column layout3": {
@@ -151,7 +206,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 240
+    "/home/jw/calibre_library": 300
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -159,15 +214,16 @@
   },
   "metasingle_window_geometry3": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAD5AAABpwAADTAAAAVtAAAA+QAAAacAAA0wAAAFbQAAAAAAAAAADwAAAAD5AAABpwAADTAAAAVt"
+    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
   },
   "preferences dialog geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAWvAAABnwAACVgAAARyAAAFswAAAZ8AAAlUAAAEbgAAAAAAAAAADwAAAAWzAAABnwAACVQAAARu"
+    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
   },
   "previous_sort_order_BooksView": {
     "pubdate": true,
-    "tags": false,
+    "size": false,
+    "tags": true,
     "timestamp": false
   },
   "quick_start_guide_added": true,
@@ -179,11 +235,11 @@
   ],
   "quickview_dialog_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAYfAAACUgAACdAAAAOnAAAGHwAAAlIAAAnQAAADpwAAAAAAAAAADwAAAAYfAAACUgAACdAAAAOn"
+    "__value__": "AdnQywADAAAAAAYgAAACUwAACfEAAAOoAAAGIAAAAlMAAAnxAAADqAAAAAAAAAAADwAAAAYgAAACUwAACfEAAAOo"
   },
   "recently_used_languages": [
-    "English",
-    "Polish"
+    "Polish",
+    "English"
   ],
   "scheduler_dialog_geometry": {
     "__class__": "bytearray",
@@ -191,11 +247,14 @@
   },
   "search bar visible": true,
   "server3_warning_done": true,
+  "show_emblems": false,
+  "show_layout_buttons": true,
   "tag browser search box visible": false,
   "tag_browser_splitter_horizontal_state": [
-    true,
+    false,
     200
   ],
+  "toolbar_icon_size": "small",
   "viewer_image_popup_geometry": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAAR2AAAAAAAACn0AAAYRAAAEegAAAAAAAAp5AAAGDQAAAAAAAAAADwAAAAR6AAAAAAAACnkAAAYN"
