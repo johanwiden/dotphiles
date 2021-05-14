@@ -1802,6 +1802,7 @@ Follow links in w3m. For keybindings see [[*launcher map]]
     (setq calibredb-root-dir (expand-file-name "~/calibre_library"))
     (setq calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
     (setq calibredb-library-alist '(("~/calibre_library")))
+    (setq calibredb-date-width 0)
 
     ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
     )
