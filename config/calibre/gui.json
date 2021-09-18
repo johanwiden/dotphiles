@@ -206,7 +206,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 300
+    "/home/jw/calibre_library": 338
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -221,6 +221,7 @@
     "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
   },
   "previous_sort_order_BooksView": {
+    "authors": true,
     "pubdate": true,
     "size": false,
     "tags": true,
@@ -238,8 +239,8 @@
     "__value__": "AdnQywADAAAAAAYgAAACUwAACfEAAAOoAAAGIAAAAlMAAAnxAAADqAAAAAAAAAAADwAAAAYgAAACUwAACfEAAAOo"
   },
   "recently_used_languages": [
-    "Polish",
-    "English"
+    "English",
+    "Polish"
   ],
   "scheduler_dialog_geometry": {
     "__class__": "bytearray",

@@ -46,6 +46,11 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "krakauer",
+    "stru",
+    "monday",
+    "doomed",
+    "struga",
     "george",
     "dileep",
     "fidler",
@@ -65,16 +70,11 @@
     "bastos",
     "lillicrap",
     "hopfield",
-    "hinton",
-    "lindsay",
-    "serre",
-    "Barrett",
-    "spectrum",
-    "chang"
+    "hinton"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
+    "__value__": "AdnQywADAAAAAAAAAAAAAAAAA/MAAALjAAAAAAAAAAAAAAT9AAAGFQAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYV"
   },
   "match_tags_type": "any",
   "new_version_notification": true,

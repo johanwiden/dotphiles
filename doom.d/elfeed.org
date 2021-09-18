@@ -7,6 +7,8 @@
 **** https://nullprogram.com/feed
 **** entry-title: \(emacs\|org-mode\)
 **** https://www.reddit.com/r/emacs/.rss
+**** https://www.reddit.com/r/doomemacs/.rss
+**** https://www.reddit.com/r/planetemacs/.rss
 **** https://www.reddit.com/r/qutebrowser/.rss
 **** http://pragmaticemacs.com/feed/
 **** [[https://200ok.ch/atom.xml][200 OK]]
@@ -32,9 +34,14 @@
 *** [[https://botondballo.wordpress.com/feed/][There's Waldo!]]
 *** [[https://botondballo.wordpress.com/comments/feed/][Comments for There's Waldo!]]
 *** [[https://vector-of-bool.github.io/feed.xml][vector&lt;bool&gt;{ true, true, false };]]
+** Math
+*** [[https://www.allendowney.com/blog/feed/][Allen Downey]]
 ** Neural networks
 *** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
 *** [[https://colah.github.io/rss.xml][Christopher Olah]]
+*** [[https://lilianweng.github.io/lil-log/feed.xml][Lilian Weng]]
+** AI
+*** [[http://bach.ai/feed.xml][Joscha Bach]]
 ** daily                                                       :daily:
 *** http://telescoper.wordpress.com/feed/
 *** [[https://news.cision.com/se/c-a-g-group-ab/ListItems?format=rss][CAG]]

@@ -60,6 +60,11 @@
 
 (global-auto-revert-mode t)
 
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(setq projectile-switch-project-action #'projectile-dired) ; Was +workspaces-set-project-action-fn
+
 (setq org-directory "~/org/")
 (setq org-use-speed-commands t)
 
@@ -239,19 +244,15 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
-(use-package! org-journal
-  :config
+;; (use-package! org-journal
+;;   :defer t
+;;   :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "private-%Y-%m-%d.org"
         org-journal-dir "~/org/roam/"
         org-journal-carryover-items nil
-        org-journal-date-format "%Y-%m-%d"))
-
-(after! org
-  (use-package! org-pdfview
-    :config
-    (add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link)))))
-  )
+        org-journal-date-format "%Y-%m-%d")
+;; )
 
 (after! org
   (require 'ob-emacs-lisp)
@@ -271,72 +272,31 @@
 (after! org
   (require 'ox-gfm nil t))
 
-(use-package! org-roam
-  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
-  :hook
-  (after-init . org-roam-mode)
-  :init
-  (map! :leader
-        :prefix "n"
-        :desc "org-roam" "l" #'org-roam
-        :desc "org-roam-insert" "i" #'org-roam-insert
-        :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
-        :desc "org-roam-find-file" "f" #'org-roam-find-file
-        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
-        :desc "org-roam-insert" "i" #'org-roam-insert
-        :desc "org-roam-capture" "c" #'org-roam-capture)
+(setq org-roam-v2-ack t)
+;; (use-package! org-roam
+;;  :init
   (setq org-roam-directory (file-truename "~/org/roam/")
         org-roam-db-location (file-truename "~/org/roam/org-roam.db")
-        org-roam-graph-exclude-matcher "private"
-        org-roam-completion-system 'helm
-        org-roam-tag-sources '(prop last-directory)
         org-id-link-to-org-use-id t)
-  :config
-  (setq org-roam-capture-templates
-        '(("l" "lit" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+hugo_slug: ${slug}
-#+title: ${title}\n"
-           :unnarrowed t)
-          ("c" "concept" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "concepts/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+hugo_slug: ${slug}
-#+title: ${title}\n"
-           :unnarrowed t)
-          ("p" "private" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "private/${slug}"
-           :head "#+title: ${title}\n"
-           :unnarrowed t)))
-  (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+roam_key: ${ref}
-#+hugo_slug: ${slug}
-#+roam_tags: website
-#+title: ${title}
+;;  )
 
-- source :: ${ref}"
-           :unnarrowed t)))
-  ;;(set-company-backend! 'org-mode '(company-capf))
-  )
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 (use-package! org-roam-protocol
   :after org-protocol)
-
-(after! (org ox-hugo)
-  (defun jethro/conditional-hugo-enable ()
-    (save-excursion
-      (if (cdr (assoc "SETUPFILE" (org-roam--extract-global-props '("SETUPFILE"))))
-          (org-hugo-auto-export-mode +1)
-        (org-hugo-auto-export-mode -1))))
-  (add-hook 'org-mode-hook #'jethro/conditional-hugo-enable))
 
 (setq reftex-default-bibliography '("~/org/roam/biblio/references.bib"))
 
@@ -371,8 +331,6 @@
                    "  :NOTER_PAGE: \n"
                    "  :END:\n")
            :unnarrowed t))))
-
-(use-package! org-roam-server)
 
 (use-package! org-recoll)
 

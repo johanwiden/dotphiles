@@ -143,7 +143,10 @@ I want to avoid desktop, which is turned on in lolsmacs.
 (global-auto-revert-mode t)
 #+END_SRC
 * projectile
-#+BEGIN_SRC
+:PROPERTIES:
+:ID:       38c69c0e-172b-419a-99e7-2b71bd77c0a5
+:END:
+#+BEGIN_SRC emacs-lisp
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
@@ -354,25 +357,27 @@ change `org-directory'. It must be set before org loads!
    :ID:       1bad0efc-f56c-4481-b6cd-ebfefdca2229
    :END:
 #+BEGIN_SRC emacs-lisp
-(use-package! org-journal
-  :config
+;; (use-package! org-journal
+;;   :defer t
+;;   :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "private-%Y-%m-%d.org"
         org-journal-dir "~/org/roam/"
         org-journal-carryover-items nil
-        org-journal-date-format "%Y-%m-%d"))
+        org-journal-date-format "%Y-%m-%d")
+;; )
 #+END_SRC
-** org-pdfview
+** org-pdfview Disabled (no longer maintained), use org-pdftools instead
    :PROPERTIES:
    :ID:       288971e4-fad7-4d26-a787-ecee0fa0b90a
    :END:
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (after! org
   (use-package! org-pdfview
     :config
     (add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link)))))
   )
-#+END_SRC
++END_SRC
 ** Babel
    :PROPERTIES:
    :ID:       fa99e051-0c72-4e4f-b982-f6600e93bf98
@@ -406,70 +411,48 @@ doesn't ~python~ refer to the latest version!?
   (require 'ox-gfm nil t))
 #+END_SRC
 ** org-roam
+:PROPERTIES:
+:ID:       6279e719-3e34-4c47-bb70-29eab08e9c36
+:END:
 #+BEGIN_SRC emacs-lisp
-(use-package! org-roam
-  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
-  :hook
-  (after-init . org-roam-mode)
-  :init
-  (map! :leader
-        :prefix "n"
-        :desc "org-roam" "l" #'org-roam
-        :desc "org-roam-insert" "i" #'org-roam-insert
-        :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
-        :desc "org-roam-find-file" "f" #'org-roam-find-file
-        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
-        :desc "org-roam-insert" "i" #'org-roam-insert
-        :desc "org-roam-capture" "c" #'org-roam-capture)
+(setq org-roam-v2-ack t)
+;; (use-package! org-roam
+;;  :init
   (setq org-roam-directory (file-truename "~/org/roam/")
         org-roam-db-location (file-truename "~/org/roam/org-roam.db")
-        org-roam-graph-exclude-matcher "private"
-        org-roam-completion-system 'helm
-        org-roam-tag-sources '(prop last-directory)
         org-id-link-to-org-use-id t)
-  :config
-  (setq org-roam-capture-templates
-        '(("l" "lit" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-,#+hugo_slug: ${slug}
-,#+title: ${title}\n"
-           :unnarrowed t)
-          ("c" "concept" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "concepts/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-,#+hugo_slug: ${slug}
-,#+title: ${title}\n"
-           :unnarrowed t)
-          ("p" "private" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "private/${slug}"
-           :head "#+title: ${title}\n"
-           :unnarrowed t)))
-  (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-,#+roam_key: ${ref}
-,#+hugo_slug: ${slug}
-,#+roam_tags: website
-,#+title: ${title}
+;;  )
+#+END_SRC
+** org-roam-ui
+:PROPERTIES:
+:ID:       a62b9c68-c0c1-4f41-9e14-396733af5710
+:END:
+#+BEGIN_SRC emacs-lisp
+(use-package! websocket
+    :after org-roam)
 
-- source :: ${ref}"
-           :unnarrowed t)))
-  ;;(set-company-backend! 'org-mode '(company-capf))
-  )
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 #+END_SRC
 ** org-roam-protocol
+:PROPERTIES:
+:ID:       b30bf97d-12b8-4c40-8acc-2600a7dec676
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! org-roam-protocol
   :after org-protocol)
 #+END_SRC
 ** hugo-enable
-#+BEGIN_SRC emacs-lisp
+BEGIN_SRC emacs-lisp
 (after! (org ox-hugo)
   (defun jethro/conditional-hugo-enable ()
     (save-excursion
@@ -477,8 +460,11 @@ doesn't ~python~ refer to the latest version!?
           (org-hugo-auto-export-mode +1)
         (org-hugo-auto-export-mode -1))))
   (add-hook 'org-mode-hook #'jethro/conditional-hugo-enable))
-#+END_SRC
+END_SRC
 ** org-ref
+:PROPERTIES:
+:ID:       f1c71478-d0fb-4643-8e3a-a33756f59caa
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq reftex-default-bibliography '("~/org/roam/biblio/references.bib"))
 
@@ -488,11 +474,17 @@ doesn't ~python~ refer to the latest version!?
         org-ref-pdf-directory "~/org/roam/pdfs/")
 #+END_SRC
 ** org-noter
+:PROPERTIES:
+:ID:       31e4d0a0-ede9-4087-bea3-557db2b9c856
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq org-noter-always-create-frame nil
       org-noter-notes-search-path '("~/org/roam/org-noter"))
 #+END_SRC
 ** org-roam-bibtex
+:PROPERTIES:
+:ID:       d0d4c67a-b1c2-4c32-8533-73f38c58b3c9
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! org-roam-bibtex
   :after (org-roam)
@@ -544,15 +536,17 @@ doesn't ~python~ refer to the latest version!?
           ":END:\n\n"
           )))
 #+END_SRC
-** org-roam-server
-#+BEGIN_SRC emacs-lisp
-(use-package! org-roam-server)
-#+END_SRC
 ** org-recoll
+:PROPERTIES:
+:ID:       cd3427e8-5b55-4317-a141-2e528f082fad
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! org-recoll)
 #+END_SRC
 ** org-similarity
+:PROPERTIES:
+:ID:       54c02488-a6d8-42d8-9b2b-1a50ca5cd342
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! org-similarity
   :config
@@ -589,6 +583,9 @@ You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 they are implemented.
 * Helm
 ** helm proper
+:PROPERTIES:
+:ID:       0f3f620f-db2b-46c4-8891-9d4860237a80
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! helm
   :init
@@ -637,22 +634,37 @@ they are implemented.
 #+END_SRC
 
 ** helm-describe-modes
+:PROPERTIES:
+:ID:       aee4f068-4309-4cc1-a4ba-71a942e1670f
+:END:
 #+BEGIN_SRC emacs-lisp
 (global-set-key [remap describe-mode] #'helm-describe-modes)
 #+END_SRC
 ** helm-proc
+:PROPERTIES:
+:ID:       cccad4c9-601a-43fd-aead-01b20494bb32
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! helm-proc)
 #+END_SRC
 ** helm-pydoc
+:PROPERTIES:
+:ID:       cdd2e45b-442a-4942-80ed-1773a8e6e00c
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package helm-pydoc)
 #+END_SRC
 ** helm-tramp
+:PROPERTIES:
+:ID:       79ee5efd-7f95-47d6-8a58-93e8a2cd8eef
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package helm-tramp)
 #+END_SRC
 ** mu-helm-rg
+:PROPERTIES:
+:ID:       81498544-301d-467f-b170-b1c728bfdb8b
+:END:
 https://www.manueluberti.eu/emacs/2020/02/22/ripgrepping-with-helm/
 One can also use helm-do-grep-ag
 #+BEGIN_SRC emacs-lisp
@@ -695,6 +707,9 @@ One can also use helm-do-grep-ag
     (mu-helm-rg default-directory with-types))
 #+END_SRC
 ** insert from kill-ring
+:PROPERTIES:
+:ID:       50cf5b22-8878-4ad0-8384-3c60633ea8cf
+:END:
 #+BEGIN_SRC emacs-lisp
 (defun my/helm-insert-kill-ring ()
   "Get an entry from the kill ring and insert."
@@ -712,6 +727,9 @@ One can also use helm-do-grep-ag
       (insert (substring-no-properties result)))))
 #+END_SRC
 * exwm-randr
+:PROPERTIES:
+:ID:       57969c61-76ac-408b-8895-9da84587e280
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! exwm)
   (require 'exwm-randr)
@@ -1200,6 +1218,9 @@ One can also use helm-do-grep-ag
   (ambrevar/telephone-line-setup)
 #+END_SRC
 * helm-exwm
+:PROPERTIES:
+:ID:       c1970c10-cefe-4040-936d-629ad5505942
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! helm-exwm
   :config
@@ -1228,10 +1249,16 @@ BEGIN_SRC emacs-lisp
   (exwm-input-set-key (kbd "C-c M-F") #'exwm-float-mode))
 END_SRC
 * epkg
+:PROPERTIES:
+:ID:       1564d129-1b92-4425-9b9f-7bc8bfe79be9
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq epkg-repository "~/epkgs/")
 #+END_SRC
 * Scroll in place
+:PROPERTIES:
+:ID:       a9a07e87-5d3c-4245-983a-82509f176c74
+:END:
 #+BEGIN_SRC emacs-lisp
 (global-set-key [(hyper up)]
                 (lambda ()
@@ -1246,11 +1273,17 @@ END_SRC
 #+END_SRC
 
 * Copy paste
+:PROPERTIES:
+:ID:       ba586bd3-ae75-4d5e-8ca5-13bab674ffe1
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq save-interprogram-paste-before-kill t)
 #+END_SRC
 
 * Regular expressions
+:PROPERTIES:
+:ID:       c96ce881-ffad-4e30-a7f0-290f66d6ae3c
+:END:
 Use perl regular expression syntax.
 #+BEGIN_SRC emacs-lisp
 (pcre-mode t)
@@ -1273,11 +1306,17 @@ This package allows the use of other regexp engines for visual-regexp.
   (setq vr/engine 'pcre2el))
 #+END_SRC
 * Swiper
+:PROPERTIES:
+:ID:       e76004cf-be64-440c-bb63-0479de64ee63
+:END:
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-s") 'swiper)
 #+END_SRC
 
 * Cursor
+:PROPERTIES:
+:ID:       bacc8d81-b02a-4a7e-8879-44e9a19b1d3e
+:END:
 With zenburn the cursor-color will be black for all but the initial frame unless we do some workaround.
 #+BEGIN_SRC emacs-lisp
 (set-cursor-color "firebrick")
@@ -1299,6 +1338,9 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 
 * Handling of whitespace
 ** whitespace variables
+:PROPERTIES:
+:ID:       95bf0b35-c333-4b75-b6ab-1912022aa096
+:END:
 #+BEGIN_SRC emacs-lisp
 (global-whitespace-mode t) ; Tell Doom that I want control over whitespace-style
 (setq-default whitespace-style
@@ -1350,6 +1392,9 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 #+END_SRC
 
 * Window handling
+:PROPERTIES:
+:ID:       ed5f2f78-7bbb-4e11-82a4-aef8a5b0d97b
+:END:
 Move between windows with Shift-arrow keys
 #+BEGIN_SRC emacs-lisp
 (windmove-default-keybindings)
@@ -1359,6 +1404,9 @@ Move between windows with Shift-arrow keys
 (global-set-key (kbd "<kp-2>") 'windmove-down)
 #+END_SRC
 * ibuffer
+:PROPERTIES:
+:ID:       283daa60-cebe-4208-9eb3-86f87f66ff7c
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq ibuffer-saved-filter-groups
       '(("home"
@@ -1395,45 +1443,75 @@ Move between windows with Shift-arrow keys
 #+END_SRC
 
 * Python
+:PROPERTIES:
+:ID:       6a3e0c4b-12be-4cbb-9131-e94369f2e494
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq python-shell-interpreter "python3")
 #+END_SRC
 * Thingatpt-plus
+:PROPERTIES:
+:ID:       df3657ef-cc26-4e6e-8b12-7cfad1b03c2c
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! thingatpt+)
 #+END_SRC
 
 * Hide-comnt
+:PROPERTIES:
+:ID:       e2388ad7-3f34-46b9-8adf-47bac898eb68
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! hide-comnt)
 #+END_SRC
 
 * Thing-cmds
+:PROPERTIES:
+:ID:       76e24063-31ea-402a-89d0-4990a32ba8aa
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! thing-cmds)
 #+END_SRC
 * Hexrgb
+:PROPERTIES:
+:ID:       78ea1431-f4fc-4ac3-aaf4-d044b940cdcb
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! hexrgb)
 #+END_SRC
 * Palette
+:PROPERTIES:
+:ID:       b0e62fac-1624-4a6b-83cf-aedb8981981b
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! palette)
 #+END_SRC
 * Facemenu-plus
+:PROPERTIES:
+:ID:       f62a3f6f-2cbc-4299-baf0-07edc3e36a97
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! facemenu+)
 #+END_SRC
 * Highlight
+:PROPERTIES:
+:ID:       e28d708e-0e64-4d75-82f2-a6a298d5dc56
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! highlight)
 #+END_SRC
 * Mouse3
+:PROPERTIES:
+:ID:       0bcf11b6-277a-4076-8366-7ef0788fa2c9
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! mouse3)
 #+END_SRC
 * Dired
 ** Settings
+:PROPERTIES:
+:ID:       642ede15-57ff-46cf-95ad-7bcf62a41839
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq dired-clean-up-buffers-too nil) ; Avoid pesky questions about deleting orphan buffers
 (defconst my-dired-media-files-extensions
@@ -1442,6 +1520,9 @@ Move between windows with Shift-arrow keys
 Also used for highlighting.")
 #+END_SRC
 ** Filter
+:PROPERTIES:
+:ID:       d12c758c-c200-4b3c-b582-a40fa1d07b73
+:END:
 #+BEGIN_SRC emacs-lisp
   (bind-keys :map dired-mode-map
              ("ö" . dired-filter-map)
@@ -1463,6 +1544,9 @@ Also used for highlighting.")
   )
   #+END_SRC
 ** Narrow
+:PROPERTIES:
+:ID:       5814ac05-2b1a-4b97-b813-4476602351bb
+:END:
 Narrow dired to match filter
 #+BEGIN_SRC emacs-lisp
 (use-package! dired-narrow
@@ -1472,6 +1556,9 @@ Narrow dired to match filter
         :desc "Live filtering" "å" #'dired-narrow))
 #+END_SRC
 ** Launch
+:PROPERTIES:
+:ID:       a20d1812-e114-4272-b688-8af503934f08
+:END:
 Launch application associated with file
 #+BEGIN_SRC emacs-lisp
 (use-package! dired-launch)
@@ -1502,6 +1589,9 @@ Launch application associated with file
 (ranger-override-dired-mode -1)
 #+END_SRC
 ** Init
+:PROPERTIES:
+:ID:       392b13af-61d4-4495-803f-a9e11f493184
+:END:
 #+BEGIN_SRC emacs-lisp
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's loaded."
@@ -1517,6 +1607,9 @@ Launch application associated with file
 (add-hook 'dired-mode-hook 'my-dired-init)
 #+END_SRC
 * Dired plus
+:PROPERTIES:
+:ID:       08d77230-4abb-4dce-9ec6-054e8d20f90c
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! dired+
     :config
@@ -1524,12 +1617,18 @@ Launch application associated with file
 #+END_SRC
 
 * Bookmarks
+:PROPERTIES:
+:ID:       e4d07c0e-35c6-4736-85ed-319ecc744bd6
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! bookmark+)
 #+END_SRC
 
 * w3m
 ** w3m proper
+:PROPERTIES:
+:ID:       edbe3fc4-4052-4ad6-9228-79f673adafbd
+:END:
 Text based internet browser
 #+BEGIN_SRC emacs-lisp
   (use-package! w3m
@@ -1563,6 +1662,9 @@ Text based internet browser
   )
 #+END_SRC
 ** w3m search engines
+:PROPERTIES:
+:ID:       09757828-6e59-49b5-9e9e-63620ec8f776
+:END:
 w3m-search search engines
 #+BEGIN_SRC emacs-lisp
 (eval-after-load "w3m-search"
@@ -1611,6 +1713,9 @@ w3m-search search engines
 )
 #+END_SRC
 ** ace-link
+:PROPERTIES:
+:ID:       9304220d-e768-4ee5-9dba-98691ebb255e
+:END:
 Use ace-link
 #+BEGIN_SRC emacs-lisp
   (use-package! ace-link
@@ -1618,6 +1723,9 @@ Use ace-link
     (ace-link-setup-default))
 #+END_SRC
 ** Follow links in w3m
+:PROPERTIES:
+:ID:       b045ca5b-93db-49ec-aa5e-aabcbd2484ce
+:END:
 Follow links in w3m. For keybindings see [[*launcher map]]
 #+BEGIN_SRC emacs-lisp
   (setq browse-url-mosaic-program nil)
@@ -1635,6 +1743,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+END_SRC
 
 * launcher map
+:PROPERTIES:
+:ID:       34f0cfed-5dfd-4c4d-95d6-d403e1dadcfd
+:END:
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'launcher-map)
 (define-key launcher-map "c" #'link-hint-copy-link)
@@ -1655,6 +1766,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 
 * elfeed
 ** elfeed proper
+:PROPERTIES:
+:ID:       5bf22928-79d7-4418-8d70-2d7277d51751
+:END:
 #+BEGIN_SRC emacs-lisp
   ;;shortcut functions
   (defun bjm/elfeed-show-all ()
@@ -1718,6 +1832,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
   )
 #+END_SRC
 ** elfeed-org
+:PROPERTIES:
+:ID:       4dc75ae1-0956-44c3-8faf-b8352ac076fd
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Load elfeed-org
   (use-package! elfeed-org
@@ -1772,6 +1889,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+END_SRC
 
 * novel
+:PROPERTIES:
+:ID:       05e8da14-d5e3-4d94-843a-aba8a75d373a
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! nov
   :init
@@ -1784,6 +1904,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+END_SRC
 
 * calibredb
+:PROPERTIES:
+:ID:       c7ecb172-a8f4-491f-8e9b-6df0a3f86959
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; (defun my-window-displaying-calibredb-entry-p (window)
   ;;   (equal (with-current-buffer (window-buffer window) major-mode)
@@ -1809,28 +1932,43 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+END_SRC
 
 * good-scroll
+:PROPERTIES:
+:ID:       edf93ee6-0e81-4e8a-a933-9969c26201d1
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! good-scroll
     :config
     (good-scroll-mode 1))
 #+END_SRC
 * fish-completion
+:PROPERTIES:
+:ID:       3937ebe5-daf8-440c-b717-343a1d8bde99
+:END:
 #+BEGIN_SRC emacs-lisp
 (when (and (executable-find "fish")
            (require 'fish-completion nil t))
   (global-fish-completion-mode))
 #+END_SRC
 * mixed-pitch
+:PROPERTIES:
+:ID:       63900c51-386b-4b96-a5fc-1673097242d0
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! mixed-pitch)
 #+END_SRC
 
 * smartparens
+:PROPERTIES:
+:ID:       d4c48025-9aaa-4b27-b0d7-6d47baac03cf
+:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! smartparens)
 #+END_SRC
 
 * hyperbole
+:PROPERTIES:
+:ID:       2f2277b1-fae3-4dad-bd53-aae4dd0b4a66
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package! hyperbole
     :config
@@ -1865,6 +2003,9 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+END_SRC
 * Hydra
 ** hydra-helm
+:PROPERTIES:
+:ID:       6b0ec6a8-4ee3-4381-aaf8-4d927019617e
+:END:
 #+BEGIN_SRC emacs-lisp
 (defhydra hydra-helm (:hint nil :color pink)
         "
@@ -1966,6 +2107,9 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 #+END_SRC
 
 * keyboard macros
+:PROPERTIES:
+:ID:       482c830d-910a-4148-81d1-957dca7eb66b
+:END:
 #+BEGIN_SRC emacs-lisp
 ;; Change "Jane Joplin & John B Doe_" -> "Jane Joplin_ & Doe, John B"
 (fset 'jw/swap_author
@@ -1976,6 +2120,9 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
       (kmacro-lambda-form [?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?s ?t ?r ?i ?n ?g return ?, return ?  ?& return] 0 "%d"))
 #+END_SRC
 * session
+:PROPERTIES:
+:ID:       1a73babb-8d06-4aec-92c6-9bc577269aeb
+:END:
 #+BEGIN_SRC emacs-lisp
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)

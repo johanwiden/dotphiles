@@ -94,11 +94,12 @@
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
 (package! org-clock-convenience)
-(package! org-pdfview)
 (package! org-recoll
   :recipe (:host github :repo "alraban/org-recoll"))
 (package! org-roam-bibtex)
-(package! org-roam-server)
+(unpin! org-roam)
+(package! websocket)
+(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! palette

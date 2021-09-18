@@ -57,5 +57,6 @@ export EDITOR="$VISUAL"
 export GDK_CORE_DEVICE_EVENTS=1
 # exec dbus-launch --exit-with-session emacs --eval "(progn (require 'exwm) (exwm-enable))"
 # "exwm-enable" has to be called before the frame is spawned.
-/usr/local/bin/emacs --daemon --eval "(require 'exwm)" -f exwm-enable
-exec /usr/local/bin/emacsclient -c
+/usr/local/bin/emacs --eval "(require 'exwm)" -f exwm-enable
+#/usr/local/bin/emacs --daemon --eval "(require 'exwm)" -f exwm-enable
+#exec /usr/local/bin/emacsclient -c
