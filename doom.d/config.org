@@ -54,6 +54,29 @@ available. You can either set `doom-theme' or manually load a theme with the
 (setq modus-themes-scale-headings t)
 (setq doom-theme 'modus-vivendi)
 #+END_SRC
+** Switch themes (github-alphapapa)
+:PROPERTIES:
+:ID:       5ae6e18a-fa30-4d8e-8d6d-0fbc3695ab47
+:END:
+For users of counsel, the second one is already implemented, as counsel-load-theme-action (non-interactive version) or counsel-load-theme (with completion).
+#+BEGIN_SRC emacs-lisp
+(defun ap/load-doom-theme (theme)
+  "Disable active themes and load a Doom theme."
+  (interactive
+   (list (intern (completing-read
+                  "Theme: " (->> (custom-available-themes)
+                              (-map #'symbol-name)
+                              (--select (string-prefix-p "doom-" it)))))))
+  (ap/switch-theme theme))
+
+(defun ap/switch-theme (theme)
+  "Disable active themes and load THEME."
+  (interactive
+   (list (intern (completing-read
+                  "Theme: " (mapcar #'symbol-name (custom-available-themes))))))
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme theme 'no-confirm))
+#+END_SRC
 * Fonts
   :PROPERTIES:
   :ID:       a37bafe0-8279-40d3-b4c7-00594c2d4241
@@ -1926,6 +1949,7 @@ Follow links in w3m. For keybindings see [[*launcher map]]
     (setq calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
     (setq calibredb-library-alist '(("~/calibre_library")))
     (setq calibredb-date-width 0)
+    (setq calibredb-download-dir (expand-file-name "~/Downloads"))
 
     ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
     )
@@ -2129,4 +2153,11 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 ;; (setq session-use-package t nil (session))
 ;; session will be save if a buffer is save to a file.
 (add-hook 'after-save-hook #'session-save-session)
+#+END_SRC
+* zoxide
+:PROPERTIES:
+:ID:       0e8c9114-8740-4818-9860-f8951bb19ca9
+:END:
+#+BEGIN_SRC emacs-lisp
+(use-package! zoxide)
 #+END_SRC

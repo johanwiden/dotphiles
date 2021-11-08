@@ -1,0 +1,21 @@
+"regex","rule","priority"
+"[:][a-z]","uppercase",100
+"[-][a-z]","uppercase",100
+"[.][a-z]","uppercase",100
+"[&][a-z]","uppercase",100
+"[_][a-z]","lowercase",100
+"[ ][a-z]","uppercase",100
+"[a-z][ ]","lowercase",100
+"[a-z][:]","lowercase",100
+"[a-z][-]","lowercase",100
+"[a-z][&]","lowercase",100
+"[a-z][_]","lowercase",100
+"deletemenow","delete",200
+"[a-z][.]","lowercase",100
+"^Fiction[:]","titlecase",900
+"^Factual[:]","titlecase",900
+"[#]","addspace_left",200
+"[#]","addspace_right",200
+"^[a-z]","uppercase",950
+"[a-z]+","lowercase",999
+"[S][F]","uppercase",90

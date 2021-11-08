@@ -53,6 +53,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+GUIX_PROFILE="/home/jw/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+GUIX_PROFILE="/home/jw/.config/guix/current"
+. "$GUIX_PROFILE/etc/profile"
+#export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0
+
 # gpg has to be started here (or in .xinitrc.exwm), if we want to have encryption in exwm
 gpg-connect-agent /bye
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

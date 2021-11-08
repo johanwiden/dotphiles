@@ -55,6 +55,7 @@
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb
   :recipe (:local-repo "calibredb" :branch "develop"))
+;; (package! calibredb)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
@@ -69,8 +70,15 @@
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)
+(package! gitconfig-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitignore-mode.el")))
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
+(package! guix)
 (package! helm-exwm)
 (package! helm-proc)
 (package! helm-projectile)
@@ -114,3 +122,4 @@
 (package! visual-regexp-steroids)
 (package! w3m)
 (package! windower)
+(package! zoxide)

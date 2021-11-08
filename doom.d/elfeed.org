@@ -11,11 +11,12 @@
 **** https://www.reddit.com/r/planetemacs/.rss
 **** https://www.reddit.com/r/qutebrowser/.rss
 **** http://pragmaticemacs.com/feed/
-**** [[https://200ok.ch/atom.xml][200 OK]]
+**** [[https://sachachua.com/blog/category/emacs-news/feed/index.xml][Emacs news (Sacha Chua)]]
 **** [[https://irreal.org/blog/?feed=rss2][Irreal]]
 **** [[https://irreal.org/blog/?feed=comments-rss2][Comments for Irreal]]
 **** [[https://jherrlin.github.io/index.xml][jherrlin]]
 **** [[https://ambrevar.xyz/atom.xml][ambrevar]]
+**** [[https://gh-issues-to-rss.herokuapp.com/melpa/melpa?m=pc][melpa]]
 
 ** cpp                                                         :cpp:
 *** [[https://feeds.feedburner.com/abseilio][Abseil]]
@@ -38,7 +39,6 @@
 *** [[https://www.allendowney.com/blog/feed/][Allen Downey]]
 ** Neural networks
 *** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
-*** [[https://colah.github.io/rss.xml][Christopher Olah]]
 *** [[https://lilianweng.github.io/lil-log/feed.xml][Lilian Weng]]
 ** AI
 *** [[http://bach.ai/feed.xml][Joscha Bach]]
@@ -53,5 +53,4 @@
 *** https://swedroid.se/feed/
 *** [[https://medium.com/feed/@steve.yegge][Steve Yegge]]
 *** [[https://writings.stephenwolfram.com/feed/][Stephen Wolfram]]
-*** [[https://blog.plover.com/index.rss][Mark Dominus]]
 *** [[http://occasionallycogent.com/feed.xml][James Cash]]

@@ -20988,7 +20988,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Bold.ttf||276920:1459491242.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Bold.ttf||327032:1618823410.0": {
       "family_name": "Rasa",
       "font-family": "Rasa",
       "font-stretch": "normal",
@@ -21001,14 +21001,14 @@
       "is_oblique": false,
       "is_otf": false,
       "is_regular": false,
-      "is_wws": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        8,
+        3,
+        6,
         4,
         0,
         0,
@@ -21024,7 +21024,79 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Light.ttf||257916:1459491242.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-BoldItalic.ttf||192932:1618823410.0": {
+      "family_name": "Rasa",
+      "font-family": "Rasa",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "bold",
+      "fs_type": 0,
+      "full_name": "Rasa Bold Italic",
+      "is_bold": true,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        8,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-BoldItalic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Bold Italic",
+      "weight": 700,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Italic.ttf||193616:1618823410.0": {
+      "family_name": "Rasa",
+      "font-family": "Rasa",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Rasa Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        5,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Italic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Italic",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Light.ttf||313424:1618823410.0": {
       "family_name": "Rasa Light",
       "font-family": "Rasa Light",
       "font-stretch": "normal",
@@ -21036,15 +21108,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        3,
+        3,
+        6,
         4,
         0,
         0,
@@ -21060,7 +21132,43 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Medium.ttf||276044:1459491242.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-LightItalic.ttf||192376:1618823410.0": {
+      "family_name": "Rasa Light",
+      "font-family": "Rasa Light",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "300",
+      "fs_type": 0,
+      "full_name": "Rasa Light Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        3,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-LightItalic.ttf",
+      "preferred_family_name": "Rasa",
+      "preferred_subfamily_name": "Light Italic",
+      "subfamily_name": "Italic",
+      "weight": 300,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Medium.ttf||318012:1618823410.0": {
       "family_name": "Rasa Medium",
       "font-family": "Rasa Medium",
       "font-stretch": "normal",
@@ -21072,15 +21180,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        6,
+        3,
+        6,
         4,
         0,
         0,
@@ -21096,27 +21204,63 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Regular.ttf||271452:1459491242.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-MediumItalic.ttf||192728:1618823410.0": {
+      "family_name": "Rasa Medium",
+      "font-family": "Rasa Medium",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "500",
+      "fs_type": 0,
+      "full_name": "Rasa Medium Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        6,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-MediumItalic.ttf",
+      "preferred_family_name": "Rasa",
+      "preferred_subfamily_name": "Medium Italic",
+      "subfamily_name": "Italic",
+      "weight": 500,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-Regular.ttf||317916:1618823410.0": {
       "family_name": "Rasa",
       "font-family": "Rasa",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "normal",
       "fs_type": 0,
-      "full_name": "Rasa",
+      "full_name": "Rasa Regular",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
       "is_regular": true,
-      "is_wws": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        5,
+        3,
+        6,
         4,
         0,
         0,
@@ -21132,7 +21276,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-SemiBold.ttf||276288:1459491242.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-SemiBold.ttf||318492:1618823410.0": {
       "family_name": "Rasa SemiBold",
       "font-family": "Rasa SemiBold",
       "font-stretch": "normal",
@@ -21144,15 +21288,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        7,
+        3,
+        6,
         4,
         0,
         0,
@@ -21168,7 +21312,43 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Bold.ttf||86708:1459491248.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-SemiBoldItalic.ttf||192616:1618823410.0": {
+      "family_name": "Rasa SemiBold",
+      "font-family": "Rasa SemiBold",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "600",
+      "fs_type": 0,
+      "full_name": "Rasa SemiBold Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        7,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Rasa-SemiBoldItalic.ttf",
+      "preferred_family_name": "Rasa",
+      "preferred_subfamily_name": "SemiBold Italic",
+      "subfamily_name": "Italic",
+      "weight": 600,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Bold.ttf||150452:1618823410.0": {
       "family_name": "Yrsa",
       "font-family": "Yrsa",
       "font-stretch": "normal",
@@ -21181,14 +21361,14 @@
       "is_oblique": false,
       "is_otf": false,
       "is_regular": false,
-      "is_wws": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        8,
+        3,
+        6,
         4,
         0,
         0,
@@ -21204,7 +21384,79 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Light.ttf||81228:1459491248.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-BoldItalic.ttf||189584:1618823410.0": {
+      "family_name": "Yrsa",
+      "font-family": "Yrsa",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "bold",
+      "fs_type": 0,
+      "full_name": "Yrsa Bold Italic",
+      "is_bold": true,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        8,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-BoldItalic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Bold Italic",
+      "weight": 700,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Italic.ttf||190212:1618823410.0": {
+      "family_name": "Yrsa",
+      "font-family": "Yrsa",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Yrsa Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        5,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Italic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Italic",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Light.ttf||151048:1618823410.0": {
       "family_name": "Yrsa Light",
       "font-family": "Yrsa Light",
       "font-stretch": "normal",
@@ -21216,15 +21468,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        3,
+        3,
+        6,
         4,
         0,
         0,
@@ -21240,7 +21492,43 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Medium.ttf||88304:1459491248.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-LightItalic.ttf||188968:1618823410.0": {
+      "family_name": "Yrsa Light",
+      "font-family": "Yrsa Light",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "300",
+      "fs_type": 0,
+      "full_name": "Yrsa Light Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        3,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-LightItalic.ttf",
+      "preferred_family_name": "Yrsa",
+      "preferred_subfamily_name": "Light Italic",
+      "subfamily_name": "Italic",
+      "weight": 300,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Medium.ttf||150104:1618823410.0": {
       "family_name": "Yrsa Medium",
       "font-family": "Yrsa Medium",
       "font-stretch": "normal",
@@ -21252,15 +21540,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        6,
+        3,
+        6,
         4,
         0,
         0,
@@ -21276,27 +21564,63 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Regular.ttf||86172:1459491248.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-MediumItalic.ttf||189288:1618823410.0": {
+      "family_name": "Yrsa Medium",
+      "font-family": "Yrsa Medium",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "500",
+      "fs_type": 0,
+      "full_name": "Yrsa Medium Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        6,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-MediumItalic.ttf",
+      "preferred_family_name": "Yrsa",
+      "preferred_subfamily_name": "Medium Italic",
+      "subfamily_name": "Italic",
+      "weight": 500,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-Regular.ttf||150688:1618823410.0": {
       "family_name": "Yrsa",
       "font-family": "Yrsa",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "normal",
       "fs_type": 0,
-      "full_name": "Yrsa",
+      "full_name": "Yrsa Regular",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
       "is_regular": true,
-      "is_wws": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        5,
+        3,
+        6,
         4,
         0,
         0,
@@ -21312,7 +21636,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-SemiBold.ttf||86568:1459491248.0": {
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-SemiBold.ttf||150572:1618823410.0": {
       "family_name": "Yrsa SemiBold",
       "font-family": "Yrsa SemiBold",
       "font-stretch": "normal",
@@ -21324,15 +21648,15 @@
       "is_italic": false,
       "is_oblique": false,
       "is_otf": false,
-      "is_regular": false,
-      "is_wws": true,
+      "is_regular": true,
+      "is_wws": false,
       "os2_version": 4,
       "panose": [
         2,
-        13,
-        0,
-        0,
-        0,
+        2,
+        7,
+        3,
+        6,
         4,
         0,
         0,
@@ -21343,6 +21667,42 @@
       "preferred_family_name": "Yrsa",
       "preferred_subfamily_name": "SemiBold",
       "subfamily_name": "Regular",
+      "weight": 600,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-SemiBoldItalic.ttf||189216:1618823410.0": {
+      "family_name": "Yrsa SemiBold",
+      "font-family": "Yrsa SemiBold",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "600",
+      "fs_type": 0,
+      "full_name": "Yrsa SemiBold Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        2,
+        7,
+        3,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/fonts-yrsa-rasa/Yrsa-SemiBoldItalic.ttf",
+      "preferred_family_name": "Yrsa",
+      "preferred_subfamily_name": "SemiBold Italic",
+      "subfamily_name": "Italic",
       "weight": 600,
       "width": 5,
       "wws_family_name": null,
@@ -24300,7 +24660,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationMono-Bold.ttf||304804:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationMono-Bold.ttf||304804:1615753028.0": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -24336,7 +24696,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationMono-BoldItalic.ttf||281156:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationMono-BoldItalic.ttf||281156:1615753028.0": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -24372,7 +24732,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationMono-Italic.ttf||278664:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationMono-Italic.ttf||278664:1615753028.0": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -24408,7 +24768,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationMono-Regular.ttf||316264:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationMono-Regular.ttf||316264:1615753028.0": {
       "family_name": "Liberation Mono",
       "font-family": "Liberation Mono",
       "font-stretch": "normal",
@@ -24444,7 +24804,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf||412436:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf||412436:1615753028.0": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -24480,7 +24840,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSans-BoldItalic.ttf||407300:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSans-BoldItalic.ttf||407300:1615753028.0": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -24516,7 +24876,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSans-Italic.ttf||413824:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSans-Italic.ttf||413824:1615753028.0": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -24552,7 +24912,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf||408988:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf||408988:1615753028.0": {
       "family_name": "Liberation Sans",
       "font-family": "Liberation Sans",
       "font-stretch": "normal",
@@ -24588,7 +24948,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf||367896:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf||367896:1615753028.0": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -24624,7 +24984,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSerif-BoldItalic.ttf||374468:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSerif-BoldItalic.ttf||374468:1615753028.0": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -24660,7 +25020,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Italic.ttf||373340:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Italic.ttf||373340:1615753028.0": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -24696,7 +25056,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf||391024:1611000762.0": {
+    "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf||391024:1615753028.0": {
       "family_name": "Liberation Serif",
       "font-family": "Liberation Serif",
       "font-stretch": "normal",
@@ -24732,7 +25092,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||207992:1627882319.0": {
+    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||207992:1633787044.0": {
       "family_name": "OpenSymbol",
       "font-family": "OpenSymbol",
       "font-stretch": "normal",
@@ -30096,7 +30456,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf||10847160:1601340963.0": {
+    "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf||10082968:1626543032.0": {
       "family_name": "Noto Color Emoji",
       "font-family": "Noto Color Emoji",
       "font-stretch": "normal",
@@ -116820,7 +117180,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/sinhala/lklug.ttf||306452:1330307580.0": {
+    "/usr/share/fonts/truetype/sinhala/lklug.ttf||306452:1619344519.0": {
       "family_name": "LKLUG",
       "font-family": "LKLUG",
       "font-stretch": "normal",
@@ -121284,7 +121644,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/unifont/unifont.ttf||12279720:1609052293.0": {
+    "/usr/share/fonts/truetype/unifont/unifont.ttf||12279760:1614286339.0": {
       "family_name": "Unifont",
       "font-family": "Unifont",
       "font-stretch": "normal",
@@ -121320,7 +121680,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/unifont/unifont_csur.ttf||1268316:1609052293.0": {
+    "/usr/share/fonts/truetype/unifont/unifont_csur.ttf||1268372:1614286339.0": {
       "family_name": "Unifont CSUR",
       "font-family": "Unifont CSUR",
       "font-stretch": "normal",
@@ -121356,7 +121716,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/unifont/unifont_sample.ttf||2873368:1609052293.0": {
+    "/usr/share/fonts/truetype/unifont/unifont_sample.ttf||2873392:1614286339.0": {
       "family_name": "Unifont Sample",
       "font-family": "Unifont Sample",
       "font-stretch": "normal",
@@ -121392,7 +121752,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/unifont/unifont_upper.ttf||1994720:1609052293.0": {
+    "/usr/share/fonts/truetype/unifont/unifont_upper.ttf||1994756:1614286339.0": {
       "family_name": "Unifont Upper",
       "font-family": "Unifont Upper",
       "font-stretch": "normal",

@@ -1,0 +1,4 @@
+"target","regex","split_string_1","split_string_2","split_string_3","split_string_4"
+"#mytagliketest","^.+$","-",":","&","_"
+"#mytagliketest","[/]+","/","","",""
+"tags","[@]+","@","^","",""
