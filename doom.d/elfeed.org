@@ -16,6 +16,7 @@
 **** [[https://irreal.org/blog/?feed=comments-rss2][Comments for Irreal]]
 **** [[https://jherrlin.github.io/index.xml][jherrlin]]
 **** [[https://ambrevar.xyz/atom.xml][ambrevar]]
+**** [[https://karthinks.com/index.xml][karthinks]]
 **** [[https://gh-issues-to-rss.herokuapp.com/melpa/melpa?m=pc][melpa]]
 
 ** cpp                                                         :cpp:

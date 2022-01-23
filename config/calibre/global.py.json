@@ -71,6 +71,7 @@
   "migrated": false,
   "network_timeout": 5,
   "new_book_tags": [],
+  "numeric_collation": false,
   "output_format": "pdf",
   "read_file_metadata": true,
   "saved_searches": {},

@@ -65,6 +65,8 @@
   :recipe (:host github :repo "emacsmirror/dired-plus"))
 (package! elfeed)
 (package! elfeed-org)
+(package! embark)
+(package! engine-mode)
 (package! epkg)
 (package! exwm)
 (package! facemenu+
@@ -79,6 +81,7 @@
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
 (package! guix)
+(package! helm-bibtex)
 (package! helm-exwm)
 (package! helm-proc)
 (package! helm-projectile)
@@ -91,10 +94,12 @@
   :recipe (:host github :repo "emacsmirror/hide-comnt"))
 (package! highlight
   :recipe (:host github :repo "emacsmirror/highlight"))
+(package! hledger-mode)
 (package! hungry-delete)
 ;; (package! hyperbole)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
+(package! marginalia)
 (package! mixed-pitch)
 (package! modus-themes
   :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
@@ -102,9 +107,14 @@
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
 (package! org-clock-convenience)
+(package! org-menu
+  :recipe (:host github :repo "sheijk/org-menu"))
 (package! org-recoll
   :recipe (:host github :repo "alraban/org-recoll"))
-(package! org-roam-bibtex)
+(package! org-ref-cite
+  :recipe (:host github :repo "jkitchin/org-ref-cite"))
+(package! org-ref-cite-core
+  :recipe (:local-repo "org-ref-cite"))
 (unpin! org-roam)
 (package! websocket)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
