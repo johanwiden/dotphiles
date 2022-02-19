@@ -719,7 +719,9 @@
 
   (defun my-exwm-config-setup ()
     "My modified configuration for EXWM. Based on exwm-config.el"
-    (setq exwm-manage-force-tiling t)
+    ;; Setting exwm-manage-force-tiling t has the unfortunate side effect that new floating windows
+    ;; are unresponsive for a considerable time (30 seconds or so)
+    ;; (setq exwm-manage-force-tiling t)
     ;; Set the initial workspace number.
     (unless (get 'exwm-workspace-number 'saved-value)
       (setq exwm-workspace-number 4))
