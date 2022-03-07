@@ -6,7 +6,11 @@
  '(bmkp-last-as-first-bookmark-file "/home/jw/.emacs.d/.local/etc/bookmarks")
  '(session-use-package t nil (session))
  '(warning-suppress-log-types '((emacs) (emacs)))
- '(warning-suppress-types '((emacs))))
+ '(warning-suppress-types
+   '(((defvaralias losing-value woman-topic-history))
+     ((defvaralias losing-value woman-topic-history))
+     (org-element-cache)
+     (emacs))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

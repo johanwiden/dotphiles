@@ -10,6 +10,7 @@
   "filetype_mapping": {},
   "plugin_customization": {},
   "plugins": {
-    "Job Spy": "/home/jw/.config/calibre/plugins/Job Spy.zip"
+    "Job Spy": "/home/jw/.config/calibre/plugins/Job Spy.zip",
+    "Zotero Metadata Importer": "/home/jw/.config/calibre/plugins/Zotero Metadata Importer.zip"
   }
 }

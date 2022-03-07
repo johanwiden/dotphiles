@@ -68,8 +68,11 @@ available. You can either set `doom-theme' or manually load a theme with the
 (require 'modus-themes)                 ; common code
 (require 'modus-operandi-theme)         ; light theme
 (require 'modus-vivendi-theme)          ; dark theme
-(setq modus-themes-variable-pitch-headings t)
-(setq modus-themes-scale-headings t)
+(setq modus-themes-completions
+      (quote ((matches . (extrabold background intense))
+              (selection . (semibold accented intense))
+              (popup . (accented)))))
+
 (setq doom-theme 'modus-vivendi)
 #+END_SRC
 ** Switch themes (github-alphapapa)
@@ -398,15 +401,16 @@ change `org-directory'. It must be set before org loads!
    :ID:       1bad0efc-f56c-4481-b6cd-ebfefdca2229
    :END:
 #+BEGIN_SRC emacs-lisp
-;; (use-package! org-journal
+(use-package! org-journal
 ;;   :defer t
-;;   :config
+  :after org
+  :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "private-%Y-%m-%d.org"
         org-journal-dir "~/org/roam/"
         org-journal-carryover-items nil
         org-journal-date-format "%Y-%m-%d")
-;; )
+)
 #+END_SRC
 ** org-pdfview Disabled (no longer maintained), use org-pdftools instead
    :PROPERTIES:

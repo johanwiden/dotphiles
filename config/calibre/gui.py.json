@@ -74,13 +74,14 @@
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAT+AAAAAAAACPEAAALjAAAE/gAAAAAAAAn4AAAGEQAAAAAAAAAADwAAAAT+AAAAAAAACfgAAAYR"
+    "__value__": "AdnQywADAAAAAAn7AAAAAAAADvcAAAYRAAAJ+wAAAAAAAA73AAAGEQAAAAAAAAAADwAAAAn7AAAAAAAADvcAAAYR"
   },
   "match_tags_type": "any",
   "new_version_notification": true,
   "oldest_news": 60,
   "overwrite_author_title_metadata": true,
   "plugin_search_history": [
+    "zotero",
     "spy",
     "job"
   ],

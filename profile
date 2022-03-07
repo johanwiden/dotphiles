@@ -53,6 +53,14 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# perl5
+PATH="/home/jw/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/jw/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/jw/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/jw/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/jw/perl5"; export PERL_MM_OPT;
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 GUIX_PROFILE="/home/jw/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"

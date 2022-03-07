@@ -56,6 +56,7 @@
 (package! calibredb
   :recipe (:local-repo "calibredb" :branch "develop"))
 ;; (package! calibredb)
+(package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))

@@ -1,11 +1,11 @@
 {
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
+    "__value__": "AdnQywADAAAAAAUEAAAAaAAACgMAAAS2AAAFBAAAAI0AAAoDAAAEtgAAAAAAAAAADwAAAAUEAAAAjQAACgMAAAS2"
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAI8A////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAnwD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACCAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPMA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANUA////AAAE/gAABhYAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIgA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlwD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACAAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOwA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM0A////AAAFAAAABCoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "session_data": {
@@ -22,225 +22,154 @@
     },
     "standalone_recently_opened": [
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Bialy stozek Alaidu (646)/Bialy stozek Alaidu - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Bialy stozek Alaidu (646)/Bialy stozek Alaidu - Arkadij Strugacki.epub",
-        "timestamp": "2021-09-12T07:26:28.682Z",
-        "title": "Biały stożek Ałaidu"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",
+        "timestamp": "2022-02-06T10:55:44.123Z",
+        "title": "Peder Jensen Bagge dä"
       },
       {
-        "authors": [
-          "Boris Strugatsky"
-        ],
-        "key": "/home/jw/calibre_library/Boris Strugatsky/Monday Starts on Saturday (964)/Monday Starts on Saturday - Boris Strugatsky.epub",
-        "pathtoebook": "/home/jw/calibre_library/Boris Strugatsky/Monday Starts on Saturday (964)/Monday Starts on Saturday - Boris Strugatsky.epub",
-        "timestamp": "2021-06-16T11:09:04.689Z",
-        "title": "Monday Starts on Saturday"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Iver_Jensen_Jernskjæg_Baden.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Iver_Jensen_Jernskjæg_Baden.md",
+        "timestamp": "2022-02-05T12:46:55.874Z",
+        "title": "Iver Jensen Jernskjæg Baden"
       },
       {
-        "authors": [
-          "Arkady Strugatsky"
-        ],
-        "key": "/home/jw/calibre_library/Arkady Strugatsky/Doomed City (966)/Doomed City - Arkady Strugatsky.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkady Strugatsky/Doomed City (966)/Doomed City - Arkady Strugatsky.epub",
-        "timestamp": "2021-06-16T11:06:27.372Z",
-        "title": "Doomed City"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Mads_Pedersen_Bagge.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Mads_Pedersen_Bagge.md",
+        "timestamp": "2022-02-05T09:23:45.636Z",
+        "title": "Mads Pedersen Bagge"
       },
       {
-        "key": "/home/jw/calibre_library/Unknown/Far Rainbow (983)/Far Rainbow - Unknown.epub",
-        "pathtoebook": "/home/jw/calibre_library/Unknown/Far Rainbow (983)/Far Rainbow - Unknown.epub",
-        "timestamp": "2021-06-14T23:15:39.617Z",
-        "title": "03e6e9f11f284c98c6093595fc0e684d"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Catharina_Magdalena_Leuhusen.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Catharina_Magdalena_Leuhusen.md",
+        "timestamp": "2022-02-01T16:27:57.992Z",
+        "title": "Catharina Magdalena Leuhusen"
       },
       {
-        "key": "/home/jw/calibre_library/Unknown/Space Apprentice (982)/Space Apprentice - Unknown.epub",
-        "pathtoebook": "/home/jw/calibre_library/Unknown/Space Apprentice (982)/Space Apprentice - Unknown.epub",
-        "timestamp": "2021-06-14T22:51:19.861Z",
-        "title": "1ddfe030601141d4b754a39b9d6d7feb"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Olga_Ragnhild_Westerlund.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Olga_Ragnhild_Westerlund.md",
+        "timestamp": "2022-02-01T16:03:05.386Z",
+        "title": "Olga Ragnhild Westerlund"
       },
       {
-        "authors": [
-          "Arkady Strugatsky"
-        ],
-        "key": "/home/jw/calibre_library/Arkady Strugatsky/Roadside Picnic (961)/Roadside Picnic - Arkady Strugatsky.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkady Strugatsky/Roadside Picnic (961)/Roadside Picnic - Arkady Strugatsky.epub",
-        "timestamp": "2021-06-13T17:59:05.590Z",
-        "title": "9780575093133"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Johannes_Vultejus.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Johannes_Vultejus.md",
+        "timestamp": "2022-02-01T14:25:04.782Z",
+        "title": "Johannes Vultejus"
       },
       {
-        "authors": [
-          "Sanja Fidler"
-        ],
-        "key": "/home/jw/calibre_library/Sanja Fidler/Towards Scalable Representations of Object Categories_ Learning a Hierarchy of Parts (728)/Towards Scalable Representations of Object - Sanja Fidler.pdf",
-        "pathtoebook": "/home/jw/calibre_library/Sanja Fidler/Towards Scalable Representations of Object Categories_ Learning a Hierarchy of Parts (728)/Towards Scalable Representations of Object - Sanja Fidler.pdf",
-        "timestamp": "2021-02-10T09:25:10.238Z",
-        "title": "cvprpaper_final.dvi"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Christina_Larsdotter_von_Köllen.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Christina_Larsdotter_von_Köllen.md",
+        "timestamp": "2022-02-01T13:58:26.897Z",
+        "title": "Christina Larsdotter von Köllen"
       },
       {
-        "authors": [
-          "Aleksander Sołżenicyn"
-        ],
-        "key": "/home/jw/calibre_library/Aleksander Solzenicyn/Oddzial chorych na raka (701)/Oddzial chorych na raka - Aleksander Solzenicyn.epub",
-        "pathtoebook": "/home/jw/calibre_library/Aleksander Solzenicyn/Oddzial chorych na raka (701)/Oddzial chorych na raka - Aleksander Solzenicyn.epub",
-        "timestamp": "2021-01-13T21:39:32.025Z",
-        "title": "Oddział chorych na raka"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Andreas_Valdemari_Regiomigius.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Andreas_Valdemari_Regiomigius.md",
+        "timestamp": "2022-02-01T13:44:46.447Z",
+        "title": "Andreas Valdemari Regiomigius"
       },
       {
-        "authors": [
-          "Michaił Bułhakow"
-        ],
-        "key": "/home/jw/calibre_library/Michail Bulhakow/Mistrz i Malgorzata (702)/Mistrz i Malgorzata - Michail Bulhakow.epub",
-        "pathtoebook": "/home/jw/calibre_library/Michail Bulhakow/Mistrz i Malgorzata (702)/Mistrz i Malgorzata - Michail Bulhakow.epub",
-        "timestamp": "2021-01-13T21:38:43.487Z",
-        "title": "Mistrz i Małgorzata"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Christoffer_Torstensson_af_Forstenaätten.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Christoffer_Torstensson_af_Forstenaätten.md",
+        "timestamp": "2022-02-01T13:13:51.521Z",
+        "title": "Christoffer Torstensson af Forstenaätten"
       },
       {
-        "authors": [
-          "Arkadij Strugacki",
-          "Borys Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Slimak na zboczu (661)/Slimak na zboczu - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Slimak na zboczu (661)/Slimak na zboczu - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:22:06.201Z",
-        "title": "Ślimak na zboczu"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Daniel_Torkelsson_Svinhufvud_af_Västergötland.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Daniel_Torkelsson_Svinhufvud_af_Västergötland.md",
+        "timestamp": "2022-02-01T13:01:00.295Z",
+        "title": "Daniel Torkelsson Svinhufvud af Västergötland"
       },
       {
-        "authors": [
-          "Arkadij Strugacki",
-          "Borys Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Zuk w mrowisku (660)/Zuk w mrowisku - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Zuk w mrowisku (660)/Zuk w mrowisku - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:20:42.596Z",
-        "title": "Żuk w mrowisku"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_2.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_2.md",
+        "timestamp": "2022-02-01T12:12:58.787Z",
+        "title": "Seved Svensson Ribbing 2"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Trudno byc bogiem (659)/Trudno byc bogiem - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Trudno byc bogiem (659)/Trudno byc bogiem - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:05:28.885Z",
-        "title": "Trudno być bogiem"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_1.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_1.md",
+        "timestamp": "2022-02-01T12:12:48.387Z",
+        "title": "Seved Svensson Ribbing 1"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Przyjaciel z Piekla (658)/Przyjaciel z Piekla - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Przyjaciel z Piekla (658)/Przyjaciel z Piekla - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:04:05.269Z",
-        "title": "Przyjaciel z Piekła"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_3.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_3.md",
+        "timestamp": "2022-02-01T11:39:37.916Z",
+        "title": "Laurentius Lars Svenonius Bure 3"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Przenicowany swiat (657)/Przenicowany swiat - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Przenicowany swiat (657)/Przenicowany swiat - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:03:02.292Z",
-        "title": "Przenicowany świat"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_2.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_2.md",
+        "timestamp": "2022-02-01T11:39:08.558Z",
+        "title": "Laurentius Lars Svenonius Bure 2"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Pora deszczow (656)/Pora deszczow - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Pora deszczow (656)/Pora deszczow - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T11:01:48.192Z",
-        "title": "Pora deszczów"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_1.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_1.md",
+        "timestamp": "2022-02-01T11:38:54.870Z",
+        "title": "Laurentius Lars Svenonius Bure 1"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Poniedzialek zaczyna sie w sobote (655)/Poniedzialek zaczyna sie w sobote - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Poniedzialek zaczyna sie w sobote (655)/Poniedzialek zaczyna sie w sobote - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:59:49.220Z",
-        "title": "Poniedziałek zaczyna się w sobotę"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Frida_Sofia_Sunna.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Frida_Sofia_Sunna.md",
+        "timestamp": "2022-02-01T11:08:37.561Z",
+        "title": "Frida Sofia Sunna"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Poludnie, XXII wiek (654)/Poludnie, XXII wiek - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Poludnie, XXII wiek (654)/Poludnie, XXII wiek - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:58:48.296Z",
-        "title": "Poludnie, XXII wiek"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart_2.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart_2.md",
+        "timestamp": "2022-02-01T10:50:46.048Z",
+        "title": "Hans Johannes Stuart 2"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Miliard lat przed koncem swiata (653)/Miliard lat przed koncem swiata - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Miliard lat przed koncem swiata (653)/Miliard lat przed koncem swiata - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:57:33.871Z",
-        "title": "Miliard lat przed koncem swiata"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Stuart_adel.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Stuart_adel.md",
+        "timestamp": "2022-02-01T10:50:31.746Z",
+        "title": "Stuart adel"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Miasto skazane (652)/Miasto skazane - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Miasto skazane (652)/Miasto skazane - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:56:09.979Z",
-        "title": "Miasto skazane"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart.md",
+        "timestamp": "2022-02-01T10:50:21.784Z",
+        "title": "Hans Johannes Stuart"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Lot na Amaltee, Stazysci (651)/Lot na Amaltee, Stazysci - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Lot na Amaltee, Stazysci (651)/Lot na Amaltee, Stazysci - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:54:45.748Z",
-        "title": "Lot na Amaltee, Stazysci"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Anders_Stuart_dy.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Anders_Stuart_dy.md",
+        "timestamp": "2022-02-01T10:21:19.918Z",
+        "title": "Anders Stuart dy"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Koniec akcji ,,Arka_ (650)/Koniec akcji ,,Arka_ - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Koniec akcji ,,Arka_ (650)/Koniec akcji ,,Arka_ - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:53:31.865Z",
-        "title": "Koniec akcji „Arka”"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_notering.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_notering.md",
+        "timestamp": "2022-02-01T10:14:32.561Z",
+        "title": "Hans Stuart notering"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Hotel pod poleglym alpinista (649)/Hotel pod poleglym alpinista - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Hotel pod poleglym alpinista (649)/Hotel pod poleglym alpinista - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:51:45.394Z",
-        "title": "Hotel pod poległym alpinistą"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_stämning.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_stämning.md",
+        "timestamp": "2022-02-01T10:14:14.104Z",
+        "title": "Hans Stuart stämning"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Fale tlumia wiatr (648)/Fale tlumia wiatr - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Fale tlumia wiatr (648)/Fale tlumia wiatr - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:41:19.165Z",
-        "title": "Fale tłumią wiatr"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Israel_Soposinsky_Sterner.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Israel_Soposinsky_Sterner.md",
+        "timestamp": "2022-02-01T10:03:42.993Z",
+        "title": "Israel Soposinsky Sterner"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Drapieznosc naszego wieku (647)/Drapieznosc naszego wieku - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Drapieznosc naszego wieku (647)/Drapieznosc naszego wieku - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:39:58.377Z",
-        "title": "Drapieznosc naszego wieku"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Peder_Severinsson_Kijl.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Peder_Severinsson_Kijl.md",
+        "timestamp": "2022-02-01T08:37:04.942Z",
+        "title": "Peder Severinsson Kijl"
       },
       {
-        "authors": [
-          "Arkadij Strugacki"
-        ],
-        "key": "/home/jw/calibre_library/Arkadij Strugacki/Alfa Eridana (645)/Alfa Eridana - Arkadij Strugacki.epub",
-        "pathtoebook": "/home/jw/calibre_library/Arkadij Strugacki/Alfa Eridana (645)/Alfa Eridana - Arkadij Strugacki.epub",
-        "timestamp": "2020-12-23T10:35:44.774Z",
-        "title": "Alfa Eridana"
+        "key": "/home/jw/släktforskning/ancestry.se/media/Elisabet_Juliana_Sevedsdotter_Lilliehöök_af_Fårdala.md",
+        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Elisabet_Juliana_Sevedsdotter_Lilliehöök_af_Fårdala.md",
+        "timestamp": "2022-01-31T14:45:00.262Z",
+        "title": "Elisabet Juliana Sevedsdotter Lilliehöök af Fårdala"
       }
     ],
     "user_stylesheet": "article,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nnav,\nsection,\nsummary {\n  display: block;\n}\naudio,\ncanvas,\nvideo {\n  display: inline-block;\n}\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n[hidden] {\n  display: none;\n}\nhtml {\n  font-family: sans-serif;\n  -webkit-text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%;\n}\nbody {\n  margin: 0;\n}\na:focus {\n  outline: thin dotted;\n}\na:active,\na:hover {\n  outline: 0;\n}\nh1 {\n  font-size: 2em;\n}\nabbr[title] {\n  border-bottom: 1px dotted;\n}\nb,\nstrong {\n  font-weight: bold;\n}\ndfn {\n  font-style: italic;\n}\nmark {\n  background: #ff0;\n  color: #000;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, serif;\n  font-size: 1em;\n}\npre {\n  white-space: pre-wrap;\n  word-wrap: break-word;\n}\nq {\n  quotes: \"\\201C\" \"\\201D\" \"\\2018\" \"\\2019\";\n}\nsmall {\n  font-size: 80%;\n}\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\nsup {\n  top: -0.5em;\n}\nsub {\n  bottom: -0.25em;\n}\nimg {\n  border: 0;\n}\nsvg:not(:root) {\n  overflow: hidden;\n}\nfigure {\n  margin: 0;\n}\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\nlegend {\n  border: 0;\n  padding: 0;\n}\nbutton,\ninput,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: 100%;\n  margin: 0;\n}\nbutton,\ninput {\n  line-height: normal;\n}\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer;\n}\nbutton[disabled],\ninput[disabled] {\n  cursor: default;\n}\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  -moz-box-sizing: content-box;\n  -webkit-box-sizing: content-box;\n  box-sizing: content-box;\n}\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\ntextarea {\n  overflow: auto;\n  vertical-align: top;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\nhtml {\n  font-family: 'PT Sans', sans-serif;\n}\npre,\ncode {\n  font-family: 'Inconsolata', sans-serif;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'PT Sans Narrow', sans-serif;\n  font-weight: 700;\n}\nhtml {\n  background-color: #073642;\n  color: #839496;\n}\nbody {\n  background-color: #002b36;\n  margin: 0 auto;\n  max-width: 23cm;\n  border: 1pt solid #586e75;\n  padding: 1em;\n}\ncode {\n  background-color: #073642;\n  padding: 2px;\n}\na {\n  color: #b58900;\n}\na:visited {\n  color: #cb4b16;\n}\na:hover {\n  color: #cb4b16;\n}\nh1 {\n  color: #d33682;\n}\nh2,\nh3,\nh4,\nh5,\nh6 {\n  color: #859900;\n}\npre {\n  background-color: #002b36;\n  color: #839496;\n  border: 1pt solid #586e75;\n  padding: 1em;\n  box-shadow: 5pt 5pt 8pt #073642;\n}\npre code {\n  background-color: #002b36;\n}\nh1 {\n  font-size: 2.8em;\n}\nh2 {\n  font-size: 2.4em;\n}\nh3 {\n  font-size: 1.8em;\n}\nh4 {\n  font-size: 1.4em;\n}\nh5 {\n  font-size: 1.3em;\n}\nh6 {\n  font-size: 1.15em;\n}\n.tag {\n  background-color: #073642;\n  color: #d33682;\n  padding: 0 0.2em;\n}\n.todo,\n.next,\n.done {\n  color: #002b36;\n  background-color: #dc322f;\n  padding: 0 0.2em;\n}\n.tag {\n  -webkit-border-radius: 0.35em;\n  -moz-border-radius: 0.35em;\n  border-radius: 0.35em;\n}\n.TODO {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #2aa198;\n}\n.NEXT {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #268bd2;\n}\n.ACTIVE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #268bd2;\n}\n.DONE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #859900;\n}\n.WAITING {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #cb4b16;\n}\n.HOLD {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #d33682;\n}\n.NOTE {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #d33682;\n}\n.CANCELLED {\n  -webkit-border-radius: 0.2em;\n  -moz-border-radius: 0.2em;\n  border-radius: 0.2em;\n  background-color: #859900;\n}\n"

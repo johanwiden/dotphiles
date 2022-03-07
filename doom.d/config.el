@@ -17,8 +17,11 @@
 (require 'modus-themes)                 ; common code
 (require 'modus-operandi-theme)         ; light theme
 (require 'modus-vivendi-theme)          ; dark theme
-(setq modus-themes-variable-pitch-headings t)
-(setq modus-themes-scale-headings t)
+(setq modus-themes-completions
+      (quote ((matches . (extrabold background intense))
+              (selection . (semibold accented intense))
+              (popup . (accented)))))
+
 (setq doom-theme 'modus-vivendi)
 
 (defun ap/load-doom-theme (theme)
@@ -261,15 +264,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
-;; (use-package! org-journal
+(use-package! org-journal
 ;;   :defer t
-;;   :config
+  :after org
+  :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "private-%Y-%m-%d.org"
         org-journal-dir "~/org/roam/"
         org-journal-carryover-items nil
         org-journal-date-format "%Y-%m-%d")
-;; )
+)
 
 (after! org
   (require 'ob-emacs-lisp)
