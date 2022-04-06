@@ -50,12 +50,12 @@
 ;(unpin! t)
 (package! ace-link)
 (package! ag)
+(package! arxiv-mode)
 (package! bibtex-completion)
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb
   :recipe (:local-repo "calibredb" :branch "develop"))
-;; (package! calibredb)
 (package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
@@ -64,6 +64,10 @@
 (package! dired-ranger)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
+;; (package! eis
+;;   :recipe (:local-repo "eis"))
+(package! eis
+  :recipe (:host github :repo "bkaestner/eis.el"))
 (package! elfeed)
 (package! elfeed-org)
 (package! embark)
@@ -81,7 +85,6 @@
 			 :files ("gitignore-mode.el")))
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
-(package! guix)
 (package! helm-bibtex)
 (package! helm-exwm)
 (package! helm-proc)
@@ -97,7 +100,6 @@
   :recipe (:host github :repo "emacsmirror/highlight"))
 (package! hledger-mode)
 (package! hungry-delete)
-;; (package! hyperbole)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! marginalia)

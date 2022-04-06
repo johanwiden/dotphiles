@@ -47,6 +47,10 @@
     "Preferences",
     "Job Spy"
   ],
+  "add-custom-news-source-geometry": {
+    "__class__": "bytearray",
+    "__value__": "AdnQywADAAAAAAXGAAAB7wAACUkAAARrAAAFxgAAAhQAAAlJAAAEawAAAAAAAAAADwAAAAXGAAACFAAACUkAAARr"
+  },
   "add-saved-search-geometry": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAALBAAACpwAABK8AAANUAAACxQAAAqcAAASrAAADUAAAAAAAAAAADwAAAALFAAACpwAABKsAAANQ"
@@ -207,7 +211,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 386
+    "/home/jw/calibre_library": 398
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -245,7 +249,7 @@
   ],
   "scheduler_dialog_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAXnAAABzQAACSYAAAQkAAAF5wAAAc0AAAkmAAAEJAAAAAAAAAAADwAAAAXnAAABzQAACSYAAAQk"
+    "__value__": "AdnQywADAAAAAAXnAAABqAAACSYAAAQkAAAF5wAAAc0AAAkmAAAEJAAAAAAAAAAADwAAAAXnAAABzQAACSYAAAQk"
   },
   "search bar visible": true,
   "server3_warning_done": true,

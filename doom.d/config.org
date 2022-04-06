@@ -72,6 +72,7 @@ available. You can either set `doom-theme' or manually load a theme with the
       (quote ((matches . (extrabold background intense))
               (selection . (semibold accented intense))
               (popup . (accented)))))
+(setq modus-themes-mixed-fonts t)
 
 (setq doom-theme 'modus-vivendi)
 #+END_SRC
@@ -174,6 +175,9 @@ Allow emacs to run as a daemon
  ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
  window-combination-resize t      ; Resize windows proportionally
  history-delete-duplicates t
+ next-error-message-highlight t
+ completions-detailed t
+ describe-bindings-outline t
  )
 #+END_SRC
 ** lolsmacs
@@ -2120,6 +2124,11 @@ Follow links in w3m. For keybindings see [[*launcher map]]
     (setq calibredb-library-alist '(("~/calibre_library")))
     (setq calibredb-date-width 0)
     (setq calibredb-download-dir (expand-file-name "~/Downloads"))
+    (setq calibredb-library-alist '(("/home/jw/calibre_library")
+                                    ("https://bookserver.archive.org/catalog/")
+                                    ("http://arxiv.maplepop.com/catalog/")
+                                    ("https://m.gutenberg.org/ebooks.opds/")
+                                    ))
 
     ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
     )
@@ -2166,7 +2175,7 @@ Follow links in w3m. For keybindings see [[*launcher map]]
 #+BEGIN_SRC emacs-lisp
   (use-package! hyperbole
     :config
-    (require 'hyperbole)
+    ;; (require 'hyperbole)
     ;; (hyperbole-mode 1)
     (setq hsys-org-enable-smart-keys t)
     (global-set-key (kbd "s-<return>") 'hkey-either)
@@ -2344,6 +2353,11 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   )
 #+END_SRC
 
+* cc-mode
+#+BEGIN_SRC emacs-lisp
+(set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
+#+END_SRC
+
 * engine-mode
 engine-mode is a global minor mode for Emacs. It enables you to easily define search engines, bind them to keybindings, and query them from the comfort of your editor.
 #+BEGIN_SRC emacs-lisp
@@ -2361,6 +2375,13 @@ Enabled in init.el: common-lisp
 (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
+#+END_SRC
+
+* arxiv-mode
+#+BEGIN_SRC emacs-lisp
+(use-package! arxiv-mode
+  :ensure t
+  )
 #+END_SRC
 
 * emacs-with-nyxt
@@ -2497,7 +2518,7 @@ Defaults to Sly because it has better integration with Nyxt."
 (defun emacs-with-nyxt-start-and-connect-to-nyxt (&optional no-maximize)
   "Start Nyxt with swank capabilities. Optionally skip window maximization with NO-MAXIMIZE."
   (interactive)
-  (async-shell-command (format "nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
+  (async-shell-command (format "/usr/bin/nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
                                ))
   (while (not (emacs-with-nyxt-connected-p))
     (message (format "Starting %s connection..." cl-ide))

@@ -19,6 +19,9 @@
 **** [[https://karthinks.com/index.xml][karthinks]]
 **** [[https://gh-issues-to-rss.herokuapp.com/melpa/melpa?m=pc][melpa]]
 
+** browser
+*** [[https://nyxt.atlas.engineer/feed][nyxt.atlas.engineer]]
+
 ** cpp                                                         :cpp:
 *** [[https://feeds.feedburner.com/abseilio][Abseil]]
 *** [[https://akrzemi1.wordpress.com/feed/][Andrzej's C++ blog]]
@@ -40,12 +43,16 @@
 *** [[https://www.allendowney.com/blog/feed/][Allen Downey]]
 ** Neural networks
 *** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
+*** [[https://deepmind.com/blog/feed/basic/][deepmind]]
+*** [[https://googleaiblog.blogspot.com][Google AI blog]]
 *** [[https://lilianweng.github.io/lil-log/feed.xml][Lilian Weng]]
+*** [[https://yoshuabengio.org/feed/][Yoshua Bengio]]
 ** AI
 *** [[http://bach.ai/feed.xml][Joscha Bach]]
 ** daily                                                       :daily:
 *** http://telescoper.wordpress.com/feed/
 *** [[https://news.cision.com/se/c-a-g-group-ab/ListItems?format=rss][CAG]]
+*** [[https://technologyreview.com/feed/][MIT technology review]]
 *** [[https://rodneybrooks.com/feed/][Rodney Brooks]]
 *** [[https://dilbert.com/feed.rss][Dilbert Daily Strip]]
 *** http://xkcd.com/rss.xml

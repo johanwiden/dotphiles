@@ -21,6 +21,7 @@
       (quote ((matches . (extrabold background intense))
               (selection . (semibold accented intense))
               (popup . (accented)))))
+(setq modus-themes-mixed-fonts t)
 
 (setq doom-theme 'modus-vivendi)
 
@@ -76,6 +77,9 @@
  ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
  window-combination-resize t      ; Resize windows proportionally
  history-delete-duplicates t
+ next-error-message-highlight t
+ completions-detailed t
+ describe-bindings-outline t
  )
 
 (global-auto-revert-mode t)
@@ -1582,6 +1586,11 @@ Also used for highlighting.")
     (setq calibredb-library-alist '(("~/calibre_library")))
     (setq calibredb-date-width 0)
     (setq calibredb-download-dir (expand-file-name "~/Downloads"))
+    (setq calibredb-library-alist '(("/home/jw/calibre_library")
+                                    ("https://bookserver.archive.org/catalog/")
+                                    ("http://arxiv.maplepop.com/catalog/")
+                                    ("https://m.gutenberg.org/ebooks.opds/")
+                                    ))
 
     ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
     )
@@ -1600,7 +1609,7 @@ Also used for highlighting.")
 
   (use-package! hyperbole
     :config
-    (require 'hyperbole)
+    ;; (require 'hyperbole)
     ;; (hyperbole-mode 1)
     (setq hsys-org-enable-smart-keys t)
     (global-set-key (kbd "s-<return>") 'hkey-either)
@@ -1747,6 +1756,8 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   (setq hledger-jfile "/home/jw/Dokument/hledger/test/test1.journal")
   )
 
+(set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
+
 (require 'engine-mode)
 (engine-mode t)
 
@@ -1757,6 +1768,10 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
+
+(use-package! arxiv-mode
+  :ensure t
+  )
 
 (require 'org)
 (require 's)
@@ -1890,7 +1905,7 @@ Defaults to Sly because it has better integration with Nyxt."
 (defun emacs-with-nyxt-start-and-connect-to-nyxt (&optional no-maximize)
   "Start Nyxt with swank capabilities. Optionally skip window maximization with NO-MAXIMIZE."
   (interactive)
-  (async-shell-command (format "nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
+  (async-shell-command (format "/usr/bin/nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
                                ))
   (while (not (emacs-with-nyxt-connected-p))
     (message (format "Starting %s connection..." cl-ide))

@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# vim:fileencoding=utf-8
+from calibre.web.feeds.news import AutomaticNewsRecipe
+
+class BasicUserRecipe1647086600(AutomaticNewsRecipe):
+    title          = 'internet archive'
+    oldest_article = 60
+    max_articles_per_feed = 100
+    auto_cleanup   = True
+
+    feeds          = [
+        ('internet archive', 'https://bookserver.archive.org/catalog/'),
+    ]
