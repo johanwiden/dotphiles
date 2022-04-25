@@ -42,7 +42,6 @@ Gtk/OverlayScrolling 1
 Net/EnableEventSounds 1
 Net/IconThemeName "Humanity"
 Gtk/ShowUnicodeMenu 0
-Gtk/SessionBusId "56c1a838ab8456e2f5c9544b5ed27b99"
 Gtk/CursorBlinkTimeout 10
 Gtk/ButtonImages 0
 Gtk/TitlebarRightClick "menu"

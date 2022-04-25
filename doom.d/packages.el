@@ -125,6 +125,8 @@
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
+(package! pdftotext
+  :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! session)
 (package! telephone-line)
 (package! thingatpt+

@@ -80,6 +80,7 @@
  next-error-message-highlight t
  completions-detailed t
  describe-bindings-outline t
+ calc-make-windows-dedicated t
  )
 
 (global-auto-revert-mode t)
@@ -1771,6 +1772,33 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 
 (use-package! arxiv-mode
   :ensure t
+  )
+
+(use-package! pdftotext
+  ;; For prettyness
+  ;; (add-hook 'pdftotext-mode-hook #'spell-fu-mode-disable)
+  ;; (add-hook 'pdftotext-mode-hook (lambda () (page-break-lines-mode 1)))
+  ;; I have no idea why this is needed
+  ;; (map! :map pdftotext-mode-map
+  ;;       "<mouse-4>" (cmd! (scroll-down mouse-wheel-scroll-amount-horizontal))
+  ;;       "<mouse-5>" (cmd! (scroll-up mouse-wheel-scroll-amount-horizontal)))
+  )
+
+(defun pdftotext-enable ()
+  "Enable pdftotext-mode."
+  (interactive)
+  (after! pdf-tools (pdftotext-install))
+  )
+
+(defun pdftotext-disable ()
+  "Disable pdftotext-mode."
+  (interactive)
+  (after! pdf-tools (progn
+                      (pdftotext-uninstall)
+                      (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
+                      (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)
+                      )
+    )
   )
 
 (require 'org)

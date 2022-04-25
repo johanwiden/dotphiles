@@ -178,6 +178,7 @@ Allow emacs to run as a daemon
  next-error-message-highlight t
  completions-detailed t
  describe-bindings-outline t
+ calc-make-windows-dedicated t
  )
 #+END_SRC
 ** lolsmacs
@@ -2383,6 +2384,37 @@ Enabled in init.el: common-lisp
   :ensure t
   )
 #+END_SRC
+
+* pdftottext
+#+BEGIN_SRC emacs-lisp
+(use-package! pdftotext
+  ;; For prettyness
+  ;; (add-hook 'pdftotext-mode-hook #'spell-fu-mode-disable)
+  ;; (add-hook 'pdftotext-mode-hook (lambda () (page-break-lines-mode 1)))
+  ;; I have no idea why this is needed
+  ;; (map! :map pdftotext-mode-map
+  ;;       "<mouse-4>" (cmd! (scroll-down mouse-wheel-scroll-amount-horizontal))
+  ;;       "<mouse-5>" (cmd! (scroll-up mouse-wheel-scroll-amount-horizontal)))
+  )
+
+(defun pdftotext-enable ()
+  "Enable pdftotext-mode."
+  (interactive)
+  (after! pdf-tools (pdftotext-install))
+  )
+
+(defun pdftotext-disable ()
+  "Disable pdftotext-mode."
+  (interactive)
+  (after! pdf-tools (progn
+                      (pdftotext-uninstall)
+                      (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
+                      (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)
+                      )
+    )
+  )
+
+ #+END_SRC
 
 * emacs-with-nyxt
 #+BEGIN_SRC emacs-lisp
