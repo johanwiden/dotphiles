@@ -56,49 +56,6 @@ Settings copied from jethrokuan. Untested by me
       isearch-yank-on-move 'shift
       isearch-allow-scroll 'unlimited)
 #+END_SRC
-* theme
-  :PROPERTIES:
-  :ID:       ac9acb11-2e16-4940-b68b-e567359a9f59
-  :END:
-There are two ways to load a theme. Both assume the theme is installed and
-available. You can either set `doom-theme' or manually load a theme with the
-`load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-#+BEGIN_SRC emacs-lisp
-(require 'modus-themes)                 ; common code
-(require 'modus-operandi-theme)         ; light theme
-(require 'modus-vivendi-theme)          ; dark theme
-(setq modus-themes-completions
-      (quote ((matches . (extrabold background intense))
-              (selection . (semibold accented intense))
-              (popup . (accented)))))
-(setq modus-themes-mixed-fonts t)
-
-(setq doom-theme 'modus-vivendi)
-#+END_SRC
-** Switch themes (github-alphapapa)
-:PROPERTIES:
-:ID:       5ae6e18a-fa30-4d8e-8d6d-0fbc3695ab47
-:END:
-For users of counsel, the second one is already implemented, as counsel-load-theme-action (non-interactive version) or counsel-load-theme (with completion).
-#+BEGIN_SRC emacs-lisp
-(defun ap/load-doom-theme (theme)
-  "Disable active themes and load a Doom theme."
-  (interactive
-   (list (intern (completing-read
-                  "Theme: " (->> (custom-available-themes)
-                              (-map #'symbol-name)
-                              (--select (string-prefix-p "doom-" it)))))))
-  (ap/switch-theme theme))
-
-(defun ap/switch-theme (theme)
-  "Disable active themes and load THEME."
-  (interactive
-   (list (intern (completing-read
-                  "Theme: " (mapcar #'symbol-name (custom-available-themes))))))
-  (mapc #'disable-theme custom-enabled-themes)
-  (load-theme theme 'no-confirm))
-#+END_SRC
 * Fonts
   :PROPERTIES:
   :ID:       a37bafe0-8279-40d3-b4c7-00594c2d4241
@@ -134,6 +91,153 @@ font string. You generally only need these two:
   '(aw-leading-char-face
     :foreground "white" :background "red"
     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+#+END_SRC
+* Fontaine
+#+BEGIN_SRC emacs-lisp
+(setq fontaine-presets
+      '((small
+         :default-family "Hack"
+         :default-weight normal
+         :default-height 75
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+         :variable-pitch-family "Noto Sans"
+         :variable-pitch-weight normal
+         :variable-pitch-height 1.0
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)
+        (regular
+         :default-family "Iosevka Comfy"
+         :default-weight normal
+         :default-height 100
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+         :variable-pitch-family "FiraGO"
+         :variable-pitch-weight normal
+         :variable-pitch-height 1.05
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)
+        (medium
+         :default-family "Source Code Pro"
+         :default-weight normal
+         :default-height 110
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+         :variable-pitch-family "Source Sans Pro"
+         :variable-pitch-weight normal
+         :variable-pitch-height 1.05
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight semibold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)
+        (large
+         :default-family "Iosevka Comfy"
+         :default-weight semilight
+         :default-height 160
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+         :variable-pitch-family "FiraGO"
+         :variable-pitch-weight normal
+         :variable-pitch-height 1.05
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)
+        (presentation
+         :default-family "Iosevka Comfy"
+         :default-weight semilight
+         :default-height 170
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+         :variable-pitch-family "FiraGO"
+         :variable-pitch-weight normal
+         :variable-pitch-height 1.05
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)))
+
+(use-package! fontaine
+  ;; :config
+  ;; (fontaine-restore-latest-preset)
+
+  ;; ;; Set `fontaine-recovered-preset' or fall back to desired style from
+  ;; ;; `fontaine-presets'.
+  ;; (if-let ((state fontaine-recovered-preset))
+  ;;     (fontaine-set-preset state)
+  ;;   (fontaine-set-preset 'regular))
+
+  ;; ;; The other side of `fontaine-restore-latest-preset'.
+  ;; (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset)
+  )
+#+END_SRC
+* theme
+  :PROPERTIES:
+  :ID:       ac9acb11-2e16-4940-b68b-e567359a9f59
+  :END:
+There are two ways to load a theme. Both assume the theme is installed and
+available. You can either set `doom-theme' or manually load a theme with the
+`load-theme' function. This is the default:
+(setq doom-theme 'doom-one)
+#+BEGIN_SRC emacs-lisp
+(use-package! modus-themes
+  :ensure
+  :init
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-completions
+        (quote ((matches . (extrabold background intense))
+                (selection . (semibold accented intense))
+                (popup . (accented)))))
+  (setq modus-themes-mixed-fonts t)
+  ;; (setq modus-themes-italic-constructs t
+  ;;       modus-themes-bold-constructs nil
+  ;;       modus-themes-region '(bg-only no-extend))
+
+  ;; Load the theme files before enabling a theme
+  (modus-themes-load-themes)
+  :config
+  ;; Load the theme of your choice:
+  (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+  (setq doom-theme 'modus-vivendi)
+  ;; :bind ("<f5>" . modus-themes-toggle)
+  )
+#+END_SRC
+** Switch themes (github-alphapapa)
+:PROPERTIES:
+:ID:       5ae6e18a-fa30-4d8e-8d6d-0fbc3695ab47
+:END:
+For users of counsel, the second one is already implemented, as counsel-load-theme-action (non-interactive version) or counsel-load-theme (with completion).
+#+BEGIN_SRC emacs-lisp
+(defun ap/load-doom-theme (theme)
+  "Disable active themes and load a Doom theme."
+  (interactive
+   (list (intern (completing-read
+                  "Theme: " (->> (custom-available-themes)
+                              (-map #'symbol-name)
+                              (--select (string-prefix-p "doom-" it)))))))
+  (ap/switch-theme theme))
+
+(defun ap/switch-theme (theme)
+  "Disable active themes and load THEME."
+  (interactive
+   (list (intern (completing-read
+                  "Theme: " (mapcar #'symbol-name (custom-available-themes))))))
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme theme 'no-confirm))
 #+END_SRC
 * Load =.secret.el=
   :PROPERTIES:
@@ -180,6 +284,7 @@ Allow emacs to run as a daemon
  describe-bindings-outline t
  calc-make-windows-dedicated t
  )
+(after! recentf (setq recentf-max-saved-items 1000))
 #+END_SRC
 ** lolsmacs
    :PROPERTIES:
@@ -214,6 +319,7 @@ change `org-directory'. It must be set before org loads!
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "~/org/")
 (setq org-use-speed-commands t)
+(setq org-attach-id-dir "~/org/attachments/")
 #+END_SRC
 ** Agenda
    :PROPERTIES:
@@ -739,6 +845,15 @@ One can also use helm-do-grep-ag
         (goto-char (car delete-range))
         (delete-char (- (cdr delete-range) (car delete-range))))
       (insert (substring-no-properties result)))))
+#+END_SRC
+** org-ql
+#+BEGIN_SRC emacs-lisp
+(use-package! org-ql)
+(use-package! helm-org-ql)
+#+END_SRC
+** helm-org-rifle
+#+BEGIN_SRC emacs-lisp
+(use-package! helm-org-rifle)
 #+END_SRC
 * citeproc
 #+BEGIN_SRC emacs-lisp
@@ -2179,7 +2294,7 @@ Follow links in w3m. For keybindings see [[*launcher map]]
     ;; (require 'hyperbole)
     ;; (hyperbole-mode 1)
     (setq hsys-org-enable-smart-keys t)
-    (global-set-key (kbd "s-<return>") 'hkey-either)
+    (global-set-key (kbd "H-<return>") 'hkey-either)
     (global-set-key (kbd "S-s-<return>") 'assist-key)
     (global-set-key (kbd "<mouse-9>") 'action-mouse-key-emacs)
     (global-set-key (kbd "<double-mouse-9>") 'action-mouse-key-emacs)
@@ -2352,6 +2467,14 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ;; The default location is too opinionated.
   (setq hledger-jfile "/home/jw/Dokument/hledger/test/test1.journal")
   )
+
+;; Out of sync with hledger
+;; (use-package! flycheck-hledger
+;;   :after (flycheck hledger-mode)
+;;   :demand t)
+
+(load "~/.doom.d/ob-hledger")
+(require 'ob-hledger)
 #+END_SRC
 
 * cc-mode

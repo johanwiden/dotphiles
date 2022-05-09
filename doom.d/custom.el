@@ -4,6 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "/home/jw/.emacs.d/.local/etc/bookmarks")
+ '(safe-local-variable-values
+   '((eval ispell-change-dictionary "en_US")
+     (eval org-expiry-deinsinuate)))
  '(session-use-package t nil (session))
  '(warning-suppress-log-types '((emacs) (emacs)))
  '(warning-suppress-types

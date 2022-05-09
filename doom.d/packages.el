@@ -55,7 +55,7 @@
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb
-  :recipe (:local-repo "calibredb" :branch "develop"))
+  :recipe (:local-repo "calibredb"))
 (package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
@@ -77,6 +77,8 @@
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)
+;; (package! flycheck-hledger)
+(package! fontaine)
 (package! gitconfig-mode
 	  :recipe (:host github :repo "magit/git-modes"
 			 :files ("gitconfig-mode.el")))
@@ -87,6 +89,8 @@
   :recipe (:host github :repo "io12/good-scroll.el"))
 (package! helm-bibtex)
 (package! helm-exwm)
+(package! helm-org-ql)
+(package! helm-org-rifle)
 (package! helm-proc)
 (package! helm-projectile)
 (package! helm-pydoc)
@@ -112,6 +116,7 @@
 (package! org-clock-convenience)
 (package! org-menu
   :recipe (:host github :repo "sheijk/org-menu"))
+(package! org-ql)
 (package! org-recoll
   :recipe (:host github :repo "alraban/org-recoll"))
 (package! org-ref-cite
