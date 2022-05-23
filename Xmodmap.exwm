@@ -3,3 +3,5 @@ clear Lock
 add mod3 = Hyper_R
 ! Disable Insert key
 keycode 118 =
+! circumflex should not be a dead key
+keycode  35 = dead_diaeresis asciicircum dead_diaeresis asciicircum dead_tilde dead_caron dead_tilde

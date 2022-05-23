@@ -33,82 +33,34 @@
     :foreground "white" :background "red"
     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
 
+;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
-      '((small
-         :default-family "Hack"
-         :default-weight normal
-         :default-height 75
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-weight
-         :fixed-pitch-height 1.0
-         :variable-pitch-family "Noto Sans"
-         :variable-pitch-weight normal
-         :variable-pitch-height 1.0
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight bold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)
+      '((tiny
+         :default-family "Iosevka Comfy Wide Fixed"
+         :default-height 70)
+        (small
+         :default-family "Iosevka Comfy Fixed"
+         :default-height 90)
         (regular
-         :default-family "Iosevka Comfy"
-         :default-weight normal
-         :default-height 100
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-weight
-         :fixed-pitch-height 1.0
-         :variable-pitch-family "FiraGO"
-         :variable-pitch-weight normal
-         :variable-pitch-height 1.05
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight bold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)
-        (medium
+         :default-height 100)
+        (source-code
          :default-family "Source Code Pro"
-         :default-weight normal
-         :default-height 110
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-weight
-         :fixed-pitch-height 1.0
          :variable-pitch-family "Source Sans Pro"
-         :variable-pitch-weight normal
-         :variable-pitch-height 1.05
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight semibold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)
+         :default-height 110
+         :bold-weight semibold)
+        (medium
+         :default-weight semilight
+         :default-height 140)
         (large
-         :default-family "Iosevka Comfy"
          :default-weight semilight
-         :default-height 160
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-weight
-         :fixed-pitch-height 1.0
-         :variable-pitch-family "FiraGO"
-         :variable-pitch-weight normal
-         :variable-pitch-height 1.05
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight bold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)
-        (presentation
+         :default-height 180
+         :bold-weight extrabold)
+        (t ; our shared fallback properties
          :default-family "Iosevka Comfy"
-         :default-weight semilight
-         :default-height 170
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-weight
-         :fixed-pitch-height 1.0
-         :variable-pitch-family "FiraGO"
-         :variable-pitch-weight normal
-         :variable-pitch-height 1.05
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight bold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)))
+         :default-weight normal
+         :variable-pitch-family "Iosevka Comfy Duo"
+         ;; :variable-pitch-family "FiraGO"
+         :variable-pitch-height 1.05)))
 
 (use-package! fontaine
   ;; :config
@@ -1323,6 +1275,8 @@
 (use-package! hungry-delete
   :config
   (global-hungry-delete-mode))
+
+(use-package! unfill)
 
 (windmove-default-keybindings)
 (global-set-key (kbd "<kp-4>") 'windmove-left)

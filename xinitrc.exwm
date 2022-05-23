@@ -40,6 +40,8 @@ xsetroot -cursor_name left_ptr
 
 # Enable "Num Lock" mode, on keyboard keypad
 /usr/bin/numlockx on &
+# circumflex should not be a dead key. For some reason, putting this in .Xmodmap.exwm has no effect
+xmodmap -e "keycode  35 = dead_diaeresis asciicircum dead_diaeresis asciicircum dead_tilde dead_caron dead_tilde"
 
 # Uncomment the following block to use the exwm-xim module.
 #export XMODIFIERS=@im=exwm-xim

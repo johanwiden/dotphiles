@@ -54,8 +54,9 @@
 (package! bibtex-completion)
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
-(package! calibredb
-  :recipe (:local-repo "calibredb"))
+(package! calibredb)
+;; (package! calibredb
+;;   :recipe (:local-repo "calibredb"))
 (package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
@@ -138,6 +139,7 @@
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
+(package! unfill)
 (package! visual-regexp)
 (package! visual-regexp-steroids)
 (package! w3m)
