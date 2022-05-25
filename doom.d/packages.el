@@ -90,11 +90,14 @@
   :recipe (:host github :repo "io12/good-scroll.el"))
 (package! helm-bibtex)
 (package! helm-exwm)
+(package! helm-ls-git)
 (package! helm-org-ql)
 (package! helm-org-rifle)
+(package! helm-pages)
 (package! helm-proc)
 (package! helm-projectile)
 (package! helm-pydoc)
+(package! helm-swoop)
 (package! helm-tramp)
 (package! helm-w3m)
 (package! hexrgb
@@ -107,6 +110,7 @@
 (package! hungry-delete)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
+(package! imenu-anywhere)
 (package! marginalia)
 (package! mixed-pitch)
 (package! modus-themes

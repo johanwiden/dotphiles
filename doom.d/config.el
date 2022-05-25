@@ -140,6 +140,19 @@
 
 (global-auto-revert-mode t)
 
+(defmacro defkeys (mapname &rest body)
+  `(let ((defs '(,@body)))
+     (while defs
+       (define-key ,mapname
+                   (if (vectorp (car defs))
+                       (car defs)
+                     (read-kbd-macro (car defs)))
+                   (if (or (listp (cadr defs)) (functionp (cadr defs)))
+                       (cadr defs)
+                     (if `(keymapp (bound-and-true-p ,(cadr defs)))
+                         (eval (cadr defs)))))
+       (setq defs (cddr defs)))))
+
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
@@ -464,6 +477,10 @@
 
 (global-set-key [remap describe-mode] #'helm-describe-modes)
 
+  (use-package! helm-ls-git)
+
+  (use-package! helm-pages)
+
   (use-package! helm-proc)
 
   (use-package helm-pydoc)
@@ -508,6 +525,10 @@
     (interactive "P")
     (mu-helm-rg default-directory with-types))
 
+  (use-package! helm-swoop)
+
+  (use-package! imenu-anywhere)
+
 (defun my/helm-insert-kill-ring ()
   "Get an entry from the kill ring and insert."
   (interactive)
@@ -527,6 +548,33 @@
 (use-package! helm-org-ql)
 
 (use-package! helm-org-rifle)
+
+(define-prefix-command 'C-z-map)
+(global-set-key (kbd "C-z") 'C-z-map)
+(defkeys global-map
+       "C-z ,"   helm-pages
+       "C-z C-b" helm-buffers-list
+       "C-z a"   mu-helm-project-search
+       "C-z b"   helm-filtered-bookmarks
+       "C-z c"   helm-company
+       "C-z d"   helm-dabbrev
+       "C-z e"   helm-calcul-expression
+       "C-z g"   helm-google-suggest
+       "C-z h"   helm-descbinds
+       "C-z i"   helm-imenu-anywhere
+       "C-z k"   helm-show-kill-ring
+       "C-z f"   helm-find-files
+       "C-z m"   helm-mini
+       "C-z o"   helm-occur
+       "C-z p"   helm-browse-project
+       "C-z q"   helm-apropos
+       "C-z r"   helm-recentf
+       "C-z s"   helm-swoop
+       "C-z C-c" helm-colors
+       "C-z x"   helm-M-x
+       "C-z y"   helm-yas-complete
+       "C-z C-g" helm-ls-git-ls
+       "C-z SPC" helm-all-mark-rings)
 
 (use-package! citeproc)
 (use-package! oc
@@ -1036,7 +1084,9 @@
   (setq helm-exwm-source (helm-exwm-build-source))
   (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
                                     helm-exwm-source
-                                    helm-source-recentf)))
+                                    helm-source-recentf
+                                    helm-source-bookmarks))
+  )
 
 (setq epkg-repository "~/epkgs/")
 

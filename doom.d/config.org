@@ -248,6 +248,22 @@ I want to avoid desktop, which is turned on in lolsmacs.
 #+BEGIN_SRC emacs-lisp
 (global-auto-revert-mode t)
 #+END_SRC
+* macro defkeys
+#+BEGIN_SRC emacs-lisp
+(defmacro defkeys (mapname &rest body)
+  `(let ((defs '(,@body)))
+     (while defs
+       (define-key ,mapname
+                   (if (vectorp (car defs))
+                       (car defs)
+                     (read-kbd-macro (car defs)))
+                   (if (or (listp (cadr defs)) (functionp (cadr defs)))
+                       (cadr defs)
+                     (if `(keymapp (bound-and-true-p ,(cadr defs)))
+                         (eval (cadr defs)))))
+       (setq defs (cddr defs)))))
+#+END_SRC
+
 * projectile
 :PROPERTIES:
 :ID:       38c69c0e-172b-419a-99e7-2b71bd77c0a5
@@ -712,6 +728,14 @@ they are implemented.
 #+BEGIN_SRC emacs-lisp
 (global-set-key [remap describe-mode] #'helm-describe-modes)
 #+END_SRC
+** helm-ls-git
+#+BEGIN_SRC emacs-lisp
+  (use-package! helm-ls-git)
+#+END_SRC
+** helm-pages
+#+BEGIN_SRC emacs-lisp
+  (use-package! helm-pages)
+#+END_SRC
 ** helm-proc
 :PROPERTIES:
 :ID:       cccad4c9-601a-43fd-aead-01b20494bb32
@@ -778,6 +802,14 @@ One can also use helm-do-grep-ag
     (interactive "P")
     (mu-helm-rg default-directory with-types))
 #+END_SRC
+** helm-swoop
+#+BEGIN_SRC emacs-lisp
+  (use-package! helm-swoop)
+#+END_SRC
+** imenu-anywhere
+#+BEGIN_SRC emacs-lisp
+  (use-package! imenu-anywhere)
+#+END_SRC
 ** insert from kill-ring
 :PROPERTIES:
 :ID:       50cf5b22-8878-4ad0-8384-3c60633ea8cf
@@ -806,6 +838,36 @@ One can also use helm-do-grep-ag
 ** helm-org-rifle
 #+BEGIN_SRC emacs-lisp
 (use-package! helm-org-rifle)
+#+END_SRC
+** helm key bindings in C-z map
+Rebind C-z, by default it is suspend-frame
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'C-z-map)
+(global-set-key (kbd "C-z") 'C-z-map)
+(defkeys global-map
+       "C-z ,"   helm-pages
+       "C-z C-b" helm-buffers-list
+       "C-z a"   mu-helm-project-search
+       "C-z b"   helm-filtered-bookmarks
+       "C-z c"   helm-company
+       "C-z d"   helm-dabbrev
+       "C-z e"   helm-calcul-expression
+       "C-z g"   helm-google-suggest
+       "C-z h"   helm-descbinds
+       "C-z i"   helm-imenu-anywhere
+       "C-z k"   helm-show-kill-ring
+       "C-z f"   helm-find-files
+       "C-z m"   helm-mini
+       "C-z o"   helm-occur
+       "C-z p"   helm-browse-project
+       "C-z q"   helm-apropos
+       "C-z r"   helm-recentf
+       "C-z s"   helm-swoop
+       "C-z C-c" helm-colors
+       "C-z x"   helm-M-x
+       "C-z y"   helm-yas-complete
+       "C-z C-g" helm-ls-git-ls
+       "C-z SPC" helm-all-mark-rings)
 #+END_SRC
 * citeproc
 #+BEGIN_SRC emacs-lisp
@@ -1337,7 +1399,9 @@ One can also use helm-do-grep-ag
   (setq helm-exwm-source (helm-exwm-build-source))
   (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
                                     helm-exwm-source
-                                    helm-source-recentf)))
+                                    helm-source-recentf
+                                    helm-source-bookmarks))
+  )
 #+END_SRC
 * exwm-float
 Turned off for now, since I force floating windows to be non floating.
@@ -2413,7 +2477,6 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 #+BEGIN_SRC emacs-lisp
 (use-package! zoxide)
 #+END_SRC
-
 * hledger-mode
 #+BEGIN_SRC emacs-lisp
 (use-package! hledger-mode
