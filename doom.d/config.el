@@ -212,19 +212,24 @@
   (interactive)
   (org-map-entries 'org-archive-subtree "/DONE" 'file))
 
-(setq org-capture-templates
-        `(("i" "inbox" entry (file ,(concat jethro/org-agenda-directory "inbox.org"))
-           "* TODO %?")
-          ("e" "email" entry (file+headline ,(concat jethro/org-agenda-directory "emails.org") "Emails")
-               "* TODO [#A] Reply: %a :@home:@school:"
-               :immediate-finish t)
-          ("c" "org-protocol-capture" entry (file ,(concat jethro/org-agenda-directory "inbox.org"))
-               "* TODO [[%:link][%:description]]\n\n %i"
-               :immediate-finish t)
-          ("w" "Weekly Review" entry (file+olp+datetree ,(concat jethro/org-agenda-directory "reviews.org"))
-           (file ,(concat jethro/org-agenda-directory "templates/weekly_review.org")))
-          ("r" "Reading" todo ""
-               ((org-agenda-files '(,(concat jethro/org-agenda-directory "reading.org")))))))
+(after! org (progn
+              (add-to-list
+               'org-capture-templates
+               `("P" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+                 "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?"))
+              (add-to-list
+               'org-capture-templates
+               `("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+                 "* %? [[%:link][%:description]] \nCaptured On: %U"))
+              (add-to-list
+               'org-capture-templates
+               `("l" "Link" entry (file+headline ,(concat org-directory "notes.org") "Links")
+                 "* %a %^g\n %?\n %T\n %i"))
+              (add-to-list
+               'org-capture-templates
+               `("w" "Web site" entry (file "")
+                 "* %a :website:\n\n%U %?\n\n%:initial"))
+              ))
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -321,20 +326,20 @@
   (interactive)
   (org-capture nil "i"))
 
-(setq org-agenda-bulk-custom-functions `((,jethro/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
+;; (setq org-agenda-bulk-custom-functions `((,jethro/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
 
 (defun jethro/set-todo-state-next ()
   "Visit each parent task and change NEXT states to TODO."
   (org-todo "NEXT"))
 
-(add-hook 'org-clock-in-hook 'jethro/set-todo-state-next 'append)
+;; (add-hook 'org-clock-in-hook 'jethro/set-todo-state-next 'append)
 
-(use-package! org-clock-convenience
-  :bind (:map org-agenda-mode-map
-              ("<S-up>" . org-clock-convenience-timestamp-up)
-              ("<S-down>" . org-clock-convenience-timestamp-down)
-              ("o" . org-clock-convenience-fill-gap)
-              ("e" . org-clock-convenience-fill-gap-both)))
+;; (use-package! org-clock-convenience
+;;   :bind (:map org-agenda-mode-map
+;;               ("<S-up>" . org-clock-convenience-timestamp-up)
+;;               ("<S-down>" . org-clock-convenience-timestamp-down)
+;;               ("o" . org-clock-convenience-fill-gap)
+;;               ("e" . org-clock-convenience-fill-gap-both)))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
@@ -392,9 +397,6 @@
 
 (use-package! org-roam-protocol
   :after org-protocol)
-
-(setq org-noter-always-create-frame nil
-      org-noter-notes-search-path '("~/org/roam/org-noter"))
 
 (use-package! bibtex-completion
   :config
@@ -1544,6 +1546,73 @@ Also used for highlighting.")
 
   (use-package! helm-w3m)
 
+(defun xah-html-decode-percent-encoded-url ()
+  "Decode percent encoded URL of current line or selection.
+
+Example:
+ %28D%C3%BCrer%29
+becomes
+ (Dürer)
+
+Example:
+ %E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8
+becomes
+ 文本编辑器
+
+URL `http://xahlee.info/emacs/emacs/emacs_url_percent_decode.html'
+Version 2018-10-26"
+  (interactive)
+  (let ( $p1 $p2 $input-str $newStr)
+    (if (use-region-p)
+        (setq $p1 (region-beginning) $p2 (region-end))
+      (setq $p1 (line-beginning-position) $p2 (line-end-position)))
+    (setq $input-str (buffer-substring-no-properties $p1 $p2))
+    (require 'url-util)
+    (setq $newStr (url-unhex-string $input-str))
+    (if (string-equal $newStr $input-str)
+        (progn (message "no change" ))
+      (progn
+        (delete-region $p1 $p2)
+        (insert (decode-coding-string $newStr 'utf-8))))))
+
+(defun jw/clean-org-protocol-l-result ()
+  "Decode percent encoded result from org-protocol, capture key l. Delete text before url, add newline before title."
+  (interactive)
+  (save-excursion
+    (mark-paragraph)
+    (xah-html-decode-percent-encoded-url)
+    (goto-char (region-beginning))
+    (if (re-search-forward "org-protocol.*url=" nil t)
+        (replace-match "" nil nil))
+    (if (search-forward "&title=" nil t)
+        (replace-match "\ntitle=" nil nil))
+    (if (search-forward "&body=" nil t)
+        (replace-match "\nbody=" nil nil))
+    )
+  )
+
+(defun tina/test-finalize ()
+  (let ((key  (plist-get org-capture-plist :key))
+        (desc (plist-get org-capture-plist :description)))
+    (if org-note-abort
+        (message "Template with key %s and description “%s” aborted" key desc)
+      (message "Template with key %s and description “%s” run successfully" key desc))))
+
+(defun jw/hook-clean-org-protocol-l-result ()
+  "Wrapper around jw/clean-org-protocol-l-result, for add to hook."
+  (when (and (not org-note-abort)
+             (equal (plist-get org-capture-plist :key) "l"))
+    (jw/clean-org-protocol-l-result))
+  )
+
+;; https://emacs.stackexchange.com/questions/45270/in-org-mode-how-can-i-make-a-post-capture-hook-run-only-for-certain-capture-tem
+;; (after! org (add-hook 'org-capture-after-finalize-hook 'tina/test-finalize))
+(after! org
+  (add-hook 'org-capture-prepare-finalize-hook 'jw/hook-clean-org-protocol-l-result))
+
+(use-package! org-protocol-capture-html)
+;; (require 'org-protocol-capture-html)
+
 (define-prefix-command 'launcher-map)
 (define-key launcher-map "c" #'link-hint-copy-link)
 (define-key launcher-map "C" #'org-capture)
@@ -1922,7 +1991,15 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
     )
   )
 
-(require 'org)
+(use-package! xah-math-input
+  :config
+(xah-math-input--add-to-hash
+ '(
+   ["zws" "​"]
+   ))
+  )
+
+;; (require 'org)
 (require 's)
 (require 'sly)
 
@@ -1973,11 +2050,12 @@ Defaults to Sly because it has better integration with Nyxt."
         (emacs-with-nyxt-eval s-exps-string)
       (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide)))))
 
-(add-to-list
- 'org-capture-templates
- `("wN" "Web link" entry (file+headline ,(car org-agenda-files) "Links to read later")
-   "* TODO %?%a :readings: \nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"Fri\"))\n"
-   :immediate-finish t :empty-lines 2))
+(after! org
+  (add-to-list
+   'org-capture-templates
+   `("N" "Web link" entry (file+headline ,(car org-agenda-files) "Links to read later")
+     "* TODO %?%a :readings: \nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"Fri\"))\n"
+     :immediate-finish t :empty-lines 2)))
 
 (defun on/slug-string (title)  (let ((slug-trim-chars '(;; Combining Diacritical Marks https://www.unicode.org/charts/PDF/U0300.pdf
                                                         768 ; U+0300 COMBINING GRAVE ACCENT

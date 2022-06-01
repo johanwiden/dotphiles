@@ -130,6 +130,8 @@
   :recipe (:local-repo "org-ref-cite"))
 (unpin! org-roam)
 (package! websocket)
+(package! org-protocol-capture-html
+  :recipe (:host github :repo "alphapapa/org-protocol-capture-html"))
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
@@ -148,4 +150,6 @@
 (package! visual-regexp-steroids)
 (package! w3m)
 (package! windower)
+(package! xah-math-input
+  :recipe (:host github :repo "DiamondBond/xah-math-input"))
 (package! zoxide)
