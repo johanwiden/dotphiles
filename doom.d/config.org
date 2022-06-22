@@ -1719,6 +1719,20 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 * Unfill
 #+BEGIN_SRC emacs-lisp
 (use-package! unfill)
+
+;; https://stackoverflow.com/questions/42595418/how-to-remove-hyphens-during-fill-paragraph
+(defadvice fill-delete-newlines (before my-before-fill-delete-newlines)
+  "Replace -\\n with an empty string when calling `unfill-paragraph' or `unfill-region'."
+  (when (or (eq this-command 'unfill-paragraph)
+            (eq this-command 'unfill-region))
+    ;; (setq jw/arg0 (ad-get-arg 0))
+    ;; (setq jw/arg1 (ad-get-arg 1))
+    (goto-char (ad-get-arg 0))
+    (while (search-forward "-\n" (ad-get-arg 1) t)
+      (replace-match "")
+      (ad-set-arg 1 (- (ad-get-arg 1) 2)))))
+
+(ad-activate 'fill-delete-newlines)
 #+END_SRC
 
 * Window handling
@@ -2629,9 +2643,6 @@ Enabled in init.el: common-lisp
  #+END_SRC
 
 * xah-math-input
-:PROPERTIES:
-:ID:       0e8c9114-8740-4818-9860-f8951bb19ca9
-:END:
 #+BEGIN_SRC emacs-lisp
 (use-package! xah-math-input
   :config

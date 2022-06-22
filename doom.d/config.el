@@ -1330,6 +1330,20 @@
 
 (use-package! unfill)
 
+;; https://stackoverflow.com/questions/42595418/how-to-remove-hyphens-during-fill-paragraph
+(defadvice fill-delete-newlines (before my-before-fill-delete-newlines)
+  "Replace -\\n with an empty string when calling `unfill-paragraph' or `unfill-region'."
+  (when (or (eq this-command 'unfill-paragraph)
+            (eq this-command 'unfill-region))
+    ;; (setq jw/arg0 (ad-get-arg 0))
+    ;; (setq jw/arg1 (ad-get-arg 1))
+    (goto-char (ad-get-arg 0))
+    (while (search-forward "-\n" (ad-get-arg 1) t)
+      (replace-match "")
+      (ad-set-arg 1 (- (ad-get-arg 1) 2)))))
+
+(ad-activate 'fill-delete-newlines)
+
 (windmove-default-keybindings)
 (global-set-key (kbd "<kp-4>") 'windmove-left)
 (global-set-key (kbd "<kp-6>") 'windmove-right)

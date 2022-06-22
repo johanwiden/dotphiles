@@ -159,6 +159,11 @@ vterm_printf(){
     fi
 }
 
+vterm_prompt_end(){
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+PS1=$PS1'\[$(vterm_prompt_end)\]'
+
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
