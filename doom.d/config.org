@@ -265,6 +265,25 @@ From https://github.com/amno1/.emacs.d/blob/main/init.org
        (setq defs (cddr defs)))))
 #+END_SRC
 
+* hippie expand
+#+BEGIN_SRC emacs-lisp
+(setq hippie-expand-try-functions-list
+      '(try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-line
+        try-expand-dabbrev-visible
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+
+(after! yasnippet
+  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
+
+(map! [remap dabbrev-expand] #'hippie-expand)
+#+END_SRC
+
 * projectile
 :PROPERTIES:
 :ID:       38c69c0e-172b-419a-99e7-2b71bd77c0a5
@@ -495,6 +514,7 @@ change `org-directory'. It must be set before org loads!
         org-journal-dir "~/org/roam/"
         org-journal-carryover-items nil
         org-journal-date-format "%Y-%m-%d")
+  (add-to-list 'org-agenda-files org-journal-dir)
 )
 #+END_SRC
 ** Babel
@@ -1849,6 +1869,8 @@ Move between windows with Shift-arrow keys
 :ID:       0bcf11b6-277a-4076-8366-7ef0788fa2c9
 :END:
 #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "S-<down-mouse-1>") #'mouse-set-mark)
+  ;; was: mouse-appearance-menu
   (use-package! mouse3)
 #+END_SRC
 * Dired
@@ -2602,6 +2624,23 @@ Enabled in init.el: common-lisp
 (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
+(use-package! helm-sly
+  :after sly-mrepl
+  :config
+  (add-hook 'sly-mrepl-hook #'company-mode)
+  (require 'helm-company)
+
+  (defun ambrevar/indent-and-helm-company (arg)
+    "Indent then call `helm-company'.
+  Good substitute for `sly-mrepl-indent-and-complete-symbol'."
+    (interactive "P")
+    (indent-for-tab-command arg)
+    (helm-company))
+
+  (define-key sly-mrepl-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
+  (add-hook 'lisp-mode-hook #'company-mode)
+  (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
+  )
 #+END_SRC
 
 * arxiv-mode
@@ -2787,11 +2826,11 @@ Defaults to Sly because it has better integration with Nyxt."
 (defun emacs-with-nyxt-start-and-connect-to-nyxt (&optional no-maximize)
   "Start Nyxt with swank capabilities. Optionally skip window maximization with NO-MAXIMIZE."
   (interactive)
-  (async-shell-command (format "/usr/bin/nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
-                               ))
+  ;; (async-shell-command (format "/home/jw/.local/bin/nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
+  ;;                              ))
   (while (not (emacs-with-nyxt-connected-p))
     (message (format "Starting %s connection..." cl-ide))
-    (ignore-errors (emacs-with-nyxt-connect "localhost" "1984"))
+    (ignore-errors (emacs-with-nyxt-connect "localhost" 1984))
     (sleep-for emacs-with-nyxt-delay))
   (while (not (ignore-errors (string= "NYXT-USER" (upcase (emacs-with-nyxt-current-package)))))
     (progn (message "Setting %s package to NYXT-USER..." cl-ide)
@@ -2825,13 +2864,13 @@ Defaults to Sly because it has better integration with Nyxt."
    `(ql:quickload "cl-qrencode")
    `(define-command-global my/make-current-url-qr-code () ; this is going to be redundant: https://nyxt.atlas.engineer/article/qr-url.org
       "Something else."
-      (when (equal (mode-name (current-buffer)) 'web-buffer))
+      (when (equal (mode-name (current-buffer)) 'web-buffer)) ; TODO
       (progn
         (cl-qrencode:encode-png (quri:render-uri (url (current-buffer))) :fpath "/tmp/qrcode.png")
         (uiop:run-program (list "nyxt" "/tmp/qrcode.png"))))
    '(define-command-global my/open-html-in-emacs ()
       "Open buffer html in Emacs."
-      (when (equal (mode-name (current-buffer)) 'web-buffer))
+      (when (equal (mode-name (current-buffer)) 'web-buffer)) ; TODO
       (with-open-file
        (file "/tmp/temp-nyxt.html" :direction :output
              :if-exists :supersede
@@ -2856,7 +2895,7 @@ Defaults to Sly because it has better integration with Nyxt."
         ;; Message the thing to the message-area down below.
         (echo "~S" (eval (read-from-string expression-string)))))
 
-   `(define-configuration nyxt/web-mode:web-mode
+   `(define-configuration nyxt/hint-mode:hint-mode
       ;; Bind eval-expression to M-:, but only in emacs-mode.
       ((keymap-scheme (let ((scheme %slot-default%))
                         (keymap:define-key (gethash scheme:emacs scheme)
@@ -2914,13 +2953,13 @@ Defaults to Sly because it has better integration with Nyxt."
             (find-file file)
             (org-id-get-create)))
         (echo "Org Roam Note stored!")))
-   `(define-configuration nyxt/web-mode:web-mode
+   `(define-configuration nyxt/hint-mode:hint-mode
       ;; Bind org-capture to C-o-c, but only in emacs-mode.
       ((keymap-scheme (let ((scheme %slot-default%))
                         (keymap:define-key (gethash scheme:emacs scheme)
                                            "C-c o c" 'org-capture)
                         scheme))))
-   `(define-configuration nyxt/web-mode:web-mode
+   `(define-configuration nyxt/hint-mode:hint-mode
       ;; Bind org-roam-capture to C-c n f, but only in emacs-mode.
       ((keymap-scheme (let ((scheme %slot-default%))
                         (keymap:define-key (gethash scheme:emacs scheme)
@@ -2960,10 +2999,10 @@ Defaults to Sly because it has better integration with Nyxt."
   (interactive "sString to search: ")
   (unless (emacs-with-nyxt-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
   (emacs-with-nyxt-send-sexps
-   `(nyxt/web-mode::highlight-selected-hint
+   `(nyxt/hint-mode::highlight-selected-hint
      :link-hint
-     (car (nyxt/web-mode::matches-from-json
-           (nyxt/web-mode::query-buffer :query ,string)))
+     (car (nyxt/hint-mode::matches-from-json  ; TODO
+           (nyxt/hint-mode::query-buffer :query ,string))) ; TODO
      :scroll 't)))
 
 (defun emacs-with-nyxt-make-qr-code-of-current-url ()

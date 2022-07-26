@@ -97,6 +97,7 @@
 (package! helm-proc)
 (package! helm-projectile)
 (package! helm-pydoc)
+(package! helm-sly)
 (package! helm-swoop)
 (package! helm-tramp)
 (package! helm-w3m)
