@@ -2,4 +2,5 @@
  ("doom" . ((user-emacs-directory . "~/doom")))
  ("exwm-setup" . ((user-emacs-directory . "~/exwm-setup/.emacs.d")))
  ("prelude" . ((user-emacs-directory . "~/prelude"))) 
+ ("simple" . ((user-emacs-directory . "~/emacs-simple")))
 )

@@ -57,12 +57,14 @@
 (package! calibredb)
 ;; (package! calibredb
 ;;   :recipe (:local-repo "calibredb"))
+(package! consult-recoll)
+(package! counsel)
 (package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
 (package! dired-narrow)
-(package! dired-ranger)
+;; (package! dired-ranger)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
 ;; (package! eis
@@ -72,6 +74,7 @@
 (package! elfeed)
 (package! elfeed-org)
 (package! embark)
+(package! embark-consult)
 (package! engine-mode)
 (package! epkg)
 (package! exwm)
@@ -88,7 +91,11 @@
 			 :files ("gitignore-mode.el")))
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
+(package! helm)
 (package! helm-bibtex)
+(package! helm-c-yasnippet)
+(package! helm-company)
+(package! helm-descbinds)
 (package! helm-exwm)
 (package! helm-ls-git)
 (package! helm-org-ql)
@@ -119,9 +126,11 @@
 (package! mouse3
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
-(package! org-clock-convenience)
+;; (package! org-clock-convenience)
 (package! org-menu
   :recipe (:host github :repo "sheijk/org-menu"))
+(package! org-protocol-capture-html
+  :recipe (:host github :repo "alphapapa/org-protocol-capture-html"))
 (package! org-ql)
 (package! org-recoll
   :recipe (:host github :repo "alraban/org-recoll"))
@@ -130,9 +139,6 @@
 (package! org-ref-cite-core
   :recipe (:local-repo "org-ref-cite"))
 (unpin! org-roam)
-(package! websocket)
-(package! org-protocol-capture-html
-  :recipe (:host github :repo "alphapapa/org-protocol-capture-html"))
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
@@ -141,6 +147,7 @@
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! session)
+(package! swiper)
 (package! telephone-line)
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
@@ -150,6 +157,7 @@
 (package! visual-regexp)
 (package! visual-regexp-steroids)
 (package! w3m)
+(package! websocket)
 (package! windower)
 (package! xah-math-input
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
