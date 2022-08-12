@@ -11,7 +11,7 @@
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
-;; https://github.com/raxod502/straight.el#the-recipe-format
+;; https://github.com/radian-software/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
 
@@ -34,7 +34,7 @@
 
 ;; Specify a `:branch' to install a package from a particular branch or tag.
 ;; This is required for some packages whose default branch isn't 'master' (which
-;; our package manager can't deal with; see raxod502/straight.el#279)
+;; our package manager can't deal with; see radian-software/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
 ;; Use `:pin' to specify a particular commit to install.
@@ -49,63 +49,37 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! ace-link)
-(package! ag)
 (package! arxiv-mode)
 (package! bibtex-completion)
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
-;; (package! calibredb
-;;   :recipe (:local-repo "calibredb"))
 (package! consult-recoll)
 (package! counsel)
-(package! deadgrep)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
 (package! dired-narrow)
-;; (package! dired-ranger)
-(package! dired+
-  :recipe (:host github :repo "emacsmirror/dired-plus"))
-;; (package! eis
-;;   :recipe (:local-repo "eis"))
-(package! eis
-  :recipe (:host github :repo "bkaestner/eis.el"))
+;; (package! dired+
+;;   :recipe (:host github :repo "emacsmirror/dired-plus"))
 (package! elfeed)
 (package! elfeed-org)
-(package! embark)
-(package! embark-consult)
 (package! engine-mode)
 (package! epkg)
 (package! exwm)
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)
-;; (package! flycheck-hledger)
 (package! fontaine)
-(package! gitconfig-mode
-	  :recipe (:host github :repo "magit/git-modes"
-			 :files ("gitconfig-mode.el")))
-(package! gitignore-mode
-	  :recipe (:host github :repo "magit/git-modes"
-			 :files ("gitignore-mode.el")))
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
-(package! helm)
 (package! helm-bibtex)
-(package! helm-c-yasnippet)
-(package! helm-company)
-(package! helm-descbinds)
 (package! helm-exwm)
 (package! helm-ls-git)
 (package! helm-org-ql)
 (package! helm-org-rifle)
-(package! helm-pages)
-(package! helm-proc)
-(package! helm-projectile)
 (package! helm-pydoc)
 (package! helm-sly)
-(package! helm-swoop)
 (package! helm-tramp)
 (package! helm-w3m)
 (package! hexrgb
@@ -118,15 +92,12 @@
 (package! hungry-delete)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
-(package! imenu-anywhere)
-(package! marginalia)
 (package! mixed-pitch)
 (package! modus-themes
   :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
 (package! mouse3
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
-;; (package! org-clock-convenience)
 (package! org-menu
   :recipe (:host github :repo "sheijk/org-menu"))
 (package! org-protocol-capture-html
@@ -138,7 +109,6 @@
   :recipe (:host github :repo "jkitchin/org-ref-cite"))
 (package! org-ref-cite-core
   :recipe (:local-repo "org-ref-cite"))
-(unpin! org-roam)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
@@ -147,7 +117,6 @@
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! session)
-(package! swiper)
 (package! telephone-line)
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))

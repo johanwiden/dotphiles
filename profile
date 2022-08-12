@@ -9,6 +9,7 @@
 #umask 022
 
 export EDITOR=emacs
+export EMACSDIR=~/.config/emacs
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -25,8 +26,11 @@ fi
 if [ -d "$HOME/rakudo/bin" ] ; then
     PATH="$HOME/rakudo/bin:$PATH"
 fi
-if [ -d "$HOME/doom/bin" ] ; then
-    PATH="$HOME/doom/bin:$PATH"
+# if [ -d "$HOME/doom/bin" ] ; then
+#     PATH="$HOME/doom/bin:$PATH"
+# fi
+if [ -d "$HOME/.config/emacs/bin" ] ; then
+    PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"

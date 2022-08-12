@@ -1,3 +1,6 @@
 [user]
 	name = Johan Widén
 	email = j.e.widen@gmail.com
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

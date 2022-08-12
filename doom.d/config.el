@@ -3,17 +3,6 @@
 (setq user-full-name "Johan Widén"
       user-mail-address "j.e.widen@gmail.com")
 
-(setq search-highlight t
-      search-whitespace-regexp ".*?"
-      isearch-lax-whitespace t
-      isearch-regexp-lax-whitespace nil
-      isearch-lazy-highlight t
-      isearch-lazy-count t
-      lazy-count-prefix-format " (%s/%s) "
-      lazy-count-suffix-format nil
-      isearch-yank-on-move 'shift
-      isearch-allow-scroll 'unlimited)
-
 (setq doom-font (font-spec :family "Ubuntu Mono" :size 18)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 15)
@@ -120,8 +109,6 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
-(server-start)
-
 (setq-default
  help-window-select t             ; Focus new help windows when opened
  ;;debug-on-error t
@@ -133,7 +120,7 @@
  next-error-message-highlight t
  completions-detailed t
  describe-bindings-outline t
- calc-make-windows-dedicated t
+ save-interprogram-paste-before-kill t
  )
 (after! recentf (setq recentf-max-saved-items 1000))
 
@@ -168,193 +155,28 @@
 
 (map! [remap dabbrev-expand] #'hippie-expand)
 
-(require 'projectile)
-(projectile-global-mode)
-(setq projectile-enable-caching t)
-(setq projectile-switch-project-action #'projectile-dired) ; Was +workspaces-set-project-action-fn
-
 (setq org-directory "~/org/")
-(setq org-use-speed-commands t)
 (setq org-attach-id-dir "~/org/attachments/")
 
-(require 'find-lisp)
-
-(setq jethro/org-agenda-directory (file-truename "~/org-files/"))
-(setq org-agenda-files
-      (find-lisp-find-files jethro/org-agenda-directory "\.org$"))
-
-(use-package! org-agenda
-  :init
-  (setq org-agenda-block-separator nil
-        org-agenda-start-with-log-mode t)
-  (defun jethro/switch-to-agenda ()
-    (interactive)
-    (org-agenda nil " "))
-  :bind (:map org-agenda-mode-map
-              ("i" . org-agenda-clock-in)
-              ("r" . jethro/org-process-inbox)
-              ("R" . org-agenda-refile)
-              ("c" . jethro/org-inbox-capture))
-  :config
-  (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
-  (setq org-agenda-custom-commands `((" " "Agenda"
-                                      ((agenda ""
-                                               ((org-agenda-span 'week)
-                                                (org-deadline-warning-days 365)))
-                                       (todo "TODO"
-                                             ((org-agenda-overriding-header "To Refile")
-                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "inbox.org")))))
-                                       (todo "TODO"
-                                             ((org-agenda-overriding-header "Emails")
-                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "emails.org")))))
-                                       (todo "NEXT"
-                                             ((org-agenda-overriding-header "In Progress")
-                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "someday.org")
-                                                                  ,(concat jethro/org-agenda-directory "projects.org")
-                                                                  ,(concat jethro/org-agenda-directory "next.org")))
-                                              ))
-                                       (todo "TODO"
-                                             ((org-agenda-overriding-header "Projects")
-                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "projects.org")))
-                                              ))
-                                       (todo "TODO"
-                                             ((org-agenda-overriding-header "One-off Tasks")
-                                              (org-agenda-files '(,(concat jethro/org-agenda-directory "next.org")))
-                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled)))))))))
-
-(defun jethro/org-archive-done-tasks ()
-  "Archive all done tasks."
-  (interactive)
-  (org-map-entries 'org-archive-subtree "/DONE" 'file))
-
-(after! org (progn
-              (add-to-list
-               'org-capture-templates
-               `("P" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-                 "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?"))
-              (add-to-list
-               'org-capture-templates
-               `("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-                 "* %? [[%:link][%:description]] \nCaptured On: %U"))
-              (add-to-list
-               'org-capture-templates
-               `("l" "Link" entry (file+headline ,(concat org-directory "notes.org") "Links")
-                 "* %a %^g\n %?\n %T\n %i"))
-              (add-to-list
-               'org-capture-templates
-               `("w" "Web site" entry (file "")
-                 "* %a :website:\n\n%U %?\n\n%:initial"))
-              ))
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
-
-(setq org-log-done 'time
-      org-log-into-drawer t
-      org-log-state-notes-insert-after-drawers nil)
-
-(setq org-tag-alist (quote (("@errand" . ?e)
-                            ("@office" . ?o)
-                            ("@home" . ?h)
-                            (:newline)
-                            ("CANCELLED" . ?c))))
-
-(setq org-fast-tag-selection-single-key nil)
-(setq org-refile-use-outline-path 'file
-      org-outline-path-complete-in-steps nil)
-(setq org-refile-allow-creating-parent-nodes 'confirm
-      org-refile-targets '((org-agenda-files . (:level . 1))))
-
-(defvar jethro/org-agenda-bulk-process-key ?f
-  "Default key for bulk processing inbox items.")
-
-(defun jethro/org-process-inbox ()
-  "Called in org-agenda-mode, processes all inbox items."
-  (interactive)
-  (org-agenda-bulk-mark-regexp "inbox:")
-  (jethro/bulk-process-entries))
-
-(defvar jethro/org-current-effort "1:00"
-  "Current effort for agenda items.")
-
-(defun jethro/my-org-agenda-set-effort (effort)
-  "Set the EFFORT property for the current headline."
-  (interactive
-   (list (read-string (format "Effort [%s]: " jethro/org-current-effort) nil nil jethro/org-current-effort)))
-  (setq jethro/org-current-effort effort)
-  (org-agenda-check-no-diary)
-  (let* ((hdmarker (or (org-get-at-bol 'org-hd-marker)
-                       (org-agenda-error)))
-         (buffer (marker-buffer hdmarker))
-         (pos (marker-position hdmarker))
-         (inhibit-read-only t)
-         newhead)
-    (org-with-remote-undo buffer
-      (with-current-buffer buffer
-        (widen)
-        (goto-char pos)
-        (org-show-context 'agenda)
-        (funcall-interactively 'org-set-effort nil jethro/org-current-effort)
-        (end-of-line 1)
-        (setq newhead (org-get-heading)))
-      (org-agenda-change-all-lines newhead hdmarker))))
-
-(defun jethro/org-agenda-process-inbox-item ()
-  "Process a single item in the 'org-agenda'."
-  (org-with-wide-buffer
-   (org-agenda-set-tags)
-   (org-agenda-priority)
-   (call-interactively 'jethro/my-org-agenda-set-effort)
-   (org-agenda-refile nil nil t)))
-
-(defun jethro/bulk-process-entries ()
-  (if (not (null org-agenda-bulk-marked-entries))
-      (let ((entries (reverse org-agenda-bulk-marked-entries))
-            (processed 0)
-            (skipped 0))
-        (dolist (e entries)
-          (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
-            (if (not pos)
-                (progn (message "Skipping removed entry at %s" e)
-                       (cl-incf skipped))
-              (goto-char pos)
-              (let (org-loop-over-headlines-in-active-region) (funcall 'jethro/org-agenda-process-inbox-item))
-              ;; `post-command-hook' is not run yet.  We make sure any
-              ;; pending log note is processed.
-              (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
-                        (memq 'org-add-log-note post-command-hook))
-                (org-add-log-note))
-              (cl-incf processed))))
-        (org-agenda-redo)
-        (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
-        (message "Acted on %d entries%s%s"
-                 processed
-                 (if (= skipped 0)
-                     ""
-                   (format ", skipped %d (disappeared before their turn)"
-                           skipped))
-                 (if (not org-agenda-persistent-marks) "" " (kept marked)")))))
-
-(defun jethro/org-inbox-capture ()
-  "Capture a task in agenda mode."
-  (interactive)
-  (org-capture nil "i"))
-
-;; (setq org-agenda-bulk-custom-functions `((,jethro/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
-
-(defun jethro/set-todo-state-next ()
-  "Visit each parent task and change NEXT states to TODO."
-  (org-todo "NEXT"))
-
-;; (add-hook 'org-clock-in-hook 'jethro/set-todo-state-next 'append)
-
-;; (use-package! org-clock-convenience
-;;   :bind (:map org-agenda-mode-map
-;;               ("<S-up>" . org-clock-convenience-timestamp-up)
-;;               ("<S-down>" . org-clock-convenience-timestamp-down)
-;;               ("o" . org-clock-convenience-fill-gap)
-;;               ("e" . org-clock-convenience-fill-gap-both)))
+(after! org
+  (progn
+    (setq org-use-speed-commands t)
+    (add-to-list
+     'org-capture-templates
+     `("P" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+       "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?"))
+    (add-to-list
+     'org-capture-templates
+     `("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+       "* %? [[%:link][%:description]] \nCaptured On: %U"))
+    (add-to-list
+     'org-capture-templates
+     `("l" "Link" entry (file+headline ,(concat org-directory "notes.org") "Links")
+       "* %a %^g\n %?\n %T\n %i"))
+    (add-to-list
+     'org-capture-templates
+     `("w" "Web site" entry (file "")
+       "* %a :website:\n\n%U %?\n\n%:initial"))))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
@@ -371,30 +193,28 @@
 )
 
 (after! org
-  (require 'ob-emacs-lisp)
-  ;; (require 'ob-ledger)
-  (require 'ob-python)
-  (require 'ob-shell)
-  (require 'ob-core)
-  (require 'ob-tangle)
-  (setq org-babel-load-languages '((emacs-lisp . t)
-                                   (ledger . t)
-                                   (python . t)
-                                   (shell . t)  ; in my case /bin/bash
-)))
-
-(setq org-babel-python-command "python3")
+  (+org--babel-lazy-load 'python)
+  (+org--babel-lazy-load 'shell)
+  ;; (require 'ob-emacs-lisp)
+  ;; ;; (require 'ob-ledger)
+  ;; (require 'ob-python)
+  ;; (require 'ob-shell)
+  ;; (require 'ob-core)
+  ;; (require 'ob-tangle)
+  ;; (setq org-babel-load-languages '((emacs-lisp . t)
+  ;;                                  (ledger . t)
+  ;;                                  (python . t)
+  ;;                                  (shell . t)  ; in my case /bin/bash
+  ;;                                  ))
+  )
 
 (after! org
   (require 'ox-gfm nil t))
 
 (setq org-roam-v2-ack t)
-;; (use-package! org-roam
-;;  :init
-  (setq org-roam-directory (file-truename "~/org/roam/")
-        org-roam-db-location (file-truename "~/org/roam/org-roam.db")
-        org-id-link-to-org-use-id t)
-;;  )
+(setq org-roam-directory (file-truename "~/org/roam/")
+      org-roam-db-location (file-truename "~/org/roam/org-roam.db")
+      org-id-link-to-org-use-id t)
 
 (use-package! websocket
     :after org-roam)
@@ -410,9 +230,6 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
-
-(use-package! org-roam-protocol
-  :after org-protocol)
 
 (use-package! bibtex-completion
   :config
@@ -446,34 +263,27 @@
 
 (setq display-line-numbers-type nil)
 
-(use-package! helm
-  :init
+(after! helm
   (progn
-      (require 'helm-config)
-      (require 'helm-grep)
-      (require 'helm-projectile)
       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
       (define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
 
-      (setq
-       ;; helm-net-prefer-curl t ; test if this works
-       ;; helm-scroll-amount 4 ; scroll 4 lines other window using M-<next>/M-<prior>. Default nil, 1 is suggested
-       helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
-       helm-candidate-number-limit 150
-       ;; you can customize helm-do-grep to execute ack-grep
-       helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
-       helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
-       helm-split-window-inside-p t ; open helm buffer inside current window, not occupy whole other window
-       helm-ff-file-name-history-use-recentf t
-       helm-ff-auto-update-initial-value t
-       helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
-       helm-completion-style 'helm-fuzzy
-       helm-buffers-fuzzy-matching t ; fuzzy matching buffer names when non-nil
-                                     ; useful in helm-mini that lists buffers
-       helm-buffer-skip-remote-checking t
-       helm-locate-fuzzy-match t
-       )
+      (setq helm-candidate-number-limit 150
+            helm-display-header-line t
+            helm-ff-auto-update-initial-value t
+            helm-ff-DEL-up-one-level-maybe t)
+      ;; (unless (featurep! :completion new-helm +helm-popup-layout)
+      ;;   (progn
+      ;;     (setq helm-split-window-inside-p t)
+      ;;     (helm-autoresize-mode t)))
+      (when (featurep! :completion new-helm +childframe)
+        (setq helm-posframe-border-width 16))
+
+      ;; Was bound to the consult variant
+      (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+      ;; Was bound to the vertico variant
+      (global-set-key (kbd "C-x b") 'helm-mini)
 
       ;; use helm to list eshell history
       (add-hook 'eshell-mode-hook
@@ -481,133 +291,107 @@
                     (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
 
       ;; show minibuffer history with Helm
-      (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
-      (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
+      ;; (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
+      ;; (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
+      ))
 
-      (helm-projectile-on)
-      (setq projectile-completion-system 'helm)
-      (setq projectile-indexing-method 'alien)
-    )
-  )
+(after! helm-projectile
+  ;; (setq projectile-switch-project-action 'helm-projectile)
+  (helm-projectile-on))
+(after! (helm consult-recoll)
+  (add-to-list 'helm-completing-read-handlers-alist (cons #'consult-recoll nil))
+)
+;; (after! vertico
+;;   (setq completion-category-overrides nil))
 
 (use-package! helm-bibtex)
 
-(use-package! helm-c-yasnippet)
-
-(use-package! helm-company)
-
-(use-package! helm-descbinds
-  :init
-  (global-set-key (kbd "C-h b b") 'helm-descbinds)
-  )
-
-(global-set-key [remap describe-mode] #'helm-describe-modes)
-
 (use-package! helm-ls-git)
-
-(use-package! helm-pages)
-
-(use-package! helm-proc)
 
 (use-package! helm-pydoc)
 
 (use-package! helm-tramp)
 
-(setq helm-grep-ag-command (concat "rg"
-                                   " --color=never"
-                                   " --smart-case"
-                                   " --no-heading"
-                                   " --line-number %s %s %s")
-      helm-grep-file-path-style 'relative)
-(defun mu-helm-rg (directory &optional with-types)
-  "Search in DIRECTORY with RG.
+(after! helm
+  (progn
+    (setq helm-grep-ag-command (concat "rg"
+                                       " --color=never"
+                                       " --smart-case"
+                                       " --no-heading"
+                                       " --line-number %s %s %s")
+          helm-grep-file-path-style 'relative)
+    (defun mu-helm-rg (directory &optional with-types)
+      "Search in DIRECTORY with RG.
 With WITH-TYPES, ask for file types to search in."
-  (interactive "P")
-  (require 'helm-adaptive)
-  (helm-grep-ag-1 (expand-file-name directory)
-                  (helm-aif (and with-types
-                                 (helm-grep-ag-get-types))
-                      (helm-comp-read
-                       "RG type: " it
-                       :must-match t
-                       :marked-candidates t
-                       :fc-transformer 'helm-adaptive-sort
-                       :buffer "*helm rg types*"))))
-(defun mu--project-root ()
-  "Return the project root directory or `helm-current-directory'."
-  (require 'helm-ls-git)
-  (if-let (dir (helm-ls-git-root-dir))
-      dir
-    (helm-current-directory)))
-(defun mu-helm-project-search (&optional with-types)
-  "Search in current project with RG.
+      (interactive "P")
+      (require 'helm-adaptive)
+      (helm-grep-ag-1 (expand-file-name directory)
+                      (helm-aif (and with-types
+                                     (helm-grep-ag-get-types))
+                          (helm-comp-read
+                           "RG type: " it
+                           :must-match t
+                           :marked-candidates t
+                           :fc-transformer 'helm-adaptive-sort
+                           :buffer "*helm rg types*"))))
+    (defun mu--project-root ()
+      "Return the project root directory or `helm-current-directory'."
+      (require 'helm-ls-git)
+      (if-let (dir (helm-ls-git-root-dir))
+          dir
+        (helm-current-directory)))
+    (defun mu-helm-project-search (&optional with-types)
+      "Search in current project with RG.
 With WITH-TYPES, ask for file types to search in."
-  (interactive "P")
-  (mu-helm-rg (mu--project-root) with-types))
+      (interactive "P")
+      (mu-helm-rg (mu--project-root) with-types))
 
-(defun mu-helm-file-search (&optional with-types)
-  "Search in `default-directory' with RG.
+    (defun mu-helm-file-search (&optional with-types)
+      "Search in `default-directory' with RG.
 With WITH-TYPES, ask for file types to search in."
-  (interactive "P")
-  (mu-helm-rg default-directory with-types))
-
-(use-package! helm-swoop)
-
-(use-package! imenu-anywhere)
-
-(defun my/helm-insert-kill-ring ()
-  "Get an entry from the kill ring and insert."
-  (interactive)
-  (require 'helm-ring)
-  (let* ((helm-kill-ring-actions '(("Get" . identity)))
-         (delete-range (when (region-active-p)
-                         (cons (region-beginning) (region-end))))
-         (result (helm-show-kill-ring)))
-    (when result
-      (deactivate-mark)
-      (when delete-range
-        (goto-char (car delete-range))
-        (delete-char (- (cdr delete-range) (car delete-range))))
-      (insert (substring-no-properties result)))))
+      (interactive "P")
+      (mu-helm-rg default-directory with-types))))
 
 (use-package! org-ql)
 (use-package! helm-org-ql)
 
 (use-package! helm-org-rifle)
 
-(define-prefix-command 'C-z-map)
-(global-set-key (kbd "C-z") 'C-z-map)
-(defkeys global-map
-       "C-z ,"   helm-pages
-       "C-z C-b" helm-buffers-list
-       "C-z a"   mu-helm-project-search
-       "C-z b"   helm-filtered-bookmarks
-       "C-z c"   helm-company
-       "C-z d"   helm-dabbrev
-       "C-z e"   helm-calcul-expression
-       "C-z g"   helm-google-suggest
-       "C-z h"   helm-descbinds
-       "C-z i"   helm-imenu-anywhere
-       "C-z k"   helm-show-kill-ring
-       "C-z f"   helm-find-files
-       "C-z m"   helm-mini
-       "C-z o"   helm-occur
-       "C-z p"   helm-browse-project
-       "C-z q"   helm-apropos
-       "C-z r"   helm-recentf
-       "C-z s"   helm-swoop
-       "C-z C-c" helm-colors
-       "C-z x"   helm-M-x
-       "C-z y"   helm-yas-complete
-       "C-z C-g" helm-ls-git-ls
-       "C-z SPC" helm-all-mark-rings)
+(after! helm
+  (define-prefix-command 'C-z-map)
+  (global-set-key (kbd "C-z") 'C-z-map)
+  (defkeys global-map
+    "C-z C-b" helm-buffers-list
+    "C-z a"   mu-helm-project-search
+    "C-z b"   helm-filtered-bookmarks
+    "C-z c"   helm-company
+    "C-z d"   helm-dabbrev
+    "C-z e"   helm-calcul-expression
+    "C-z g"   helm-google-suggest
+    "C-z h"   helm-descbinds
+    "C-z k"   helm-show-kill-ring
+    "C-z f"   helm-find-files
+    "C-z m"   helm-mini
+    "C-z o"   helm-occur
+    "C-z p"   helm-browse-project
+    "C-z q"   helm-apropos
+    "C-z r"   helm-recentf
+    "C-z s"   swiper-helm
+    "C-z C-c" helm-colors
+    "C-z x"   helm-M-x
+    "C-z y"   helm-yas-complete
+    "C-z C-g" helm-ls-git-ls
+    "C-z SPC" helm-all-mark-rings))
 
-(use-package! citeproc)
+(use-package! citeproc
+  :after org)
 (use-package! oc
   :config
   (require 'oc-csl))
-(use-package! org-ref-cite-core)
+(use-package! org-ref-cite-core
+  :after org)
 (use-package! org-ref-cite
+  :after org
   :config
   ;; I like green links
   (set-face-attribute 'org-cite nil :foreground "DarkSeaGreen4")
@@ -1127,8 +911,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
                   (let ((scroll-preserve-screen-position nil))
                     (scroll-up 1))) )
 
-(setq save-interprogram-paste-before-kill t)
-
 (pcre-mode t)
 
 (use-package! visual-regexp
@@ -1142,294 +924,114 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
   ;; Use Perl-style regular expressions by default.
   (setq vr/engine 'pcre2el))
 
-(use-package! swiper
-  :config
-  (global-set-key (kbd "C-s") 'swiper)
-  )
+;; (after! swiper
+;;   (global-set-key (kbd "C-s") 'swiper))
+(global-set-key (kbd "C-s") 'swiper)
 
-(require 'avy)
-(setq avy-all-windows t)
-(setq avy-single-candidate-jump nil)
-;; Avoid collision with action keys
-(setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?e ?l))
-(global-set-key (kbd "M-j") 'avy-goto-char-timer)
-(defun avy-action-kill-whole-line (pt)
-  (save-excursion
-    (goto-char pt)
-    (kill-whole-line))
-  (select-window
-   (cdr
-    (ring-ref avy-ring 0)))
-  t)
+(after! avy
+  (setq avy-all-windows t)
+  (setq avy-single-candidate-jump nil)
+  ;; Avoid collision with action keys
+  (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?e ?l))
+  (global-set-key (kbd "M-j") 'avy-goto-char-timer)
+  (defun avy-action-kill-whole-line (pt)
+    (save-excursion
+      (goto-char pt)
+      (kill-whole-line))
+    (select-window
+     (cdr
+      (ring-ref avy-ring 0)))
+    t)
 
-(setf (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay
-      (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line)
+  (setf (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay
+        (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line)
 
-(defun avy-action-copy-whole-line (pt)
-  (save-excursion
-    (goto-char pt)
-    (cl-destructuring-bind (start . end)
-        (bounds-of-thing-at-point 'line)
-      (copy-region-as-kill start end)))
-  (select-window
-   (cdr
-    (ring-ref avy-ring 0)))
-  t)
+  (defun avy-action-copy-whole-line (pt)
+    (save-excursion
+      (goto-char pt)
+      (cl-destructuring-bind (start . end)
+          (bounds-of-thing-at-point 'line)
+        (copy-region-as-kill start end)))
+    (select-window
+     (cdr
+      (ring-ref avy-ring 0)))
+    t)
 
-(defun avy-action-yank-whole-line (pt)
-  (avy-action-copy-whole-line pt)
-  (save-excursion (yank))
-  t)
+  (defun avy-action-yank-whole-line (pt)
+    (avy-action-copy-whole-line pt)
+    (save-excursion (yank))
+    t)
 
-(setf (alist-get ?y avy-dispatch-alist) 'avy-action-yank
-      (alist-get ?w avy-dispatch-alist) 'avy-action-copy
-      (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
-      (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line)
+  (setf (alist-get ?y avy-dispatch-alist) 'avy-action-yank
+        (alist-get ?w avy-dispatch-alist) 'avy-action-copy
+        (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
+        (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line)
 
-(defun avy-action-teleport-whole-line (pt)
+  (defun avy-action-teleport-whole-line (pt)
     (avy-action-kill-whole-line pt)
     (save-excursion (yank)) t)
 
-(setf (alist-get ?t avy-dispatch-alist) 'avy-action-teleport
-      (alist-get ?T avy-dispatch-alist) 'avy-action-teleport-whole-line)
+  (setf (alist-get ?t avy-dispatch-alist) 'avy-action-teleport
+        (alist-get ?T avy-dispatch-alist) 'avy-action-teleport-whole-line)
 
-(defun avy-action-mark-to-char (pt)
-  (activate-mark)
-  (goto-char pt))
+  (defun avy-action-mark-to-char (pt)
+    (activate-mark)
+    (goto-char pt))
 
-(setf (alist-get ?  avy-dispatch-alist) 'avy-action-mark-to-char)
+  (setf (alist-get ?  avy-dispatch-alist) 'avy-action-mark-to-char)
 
-(defun avy-action-flyspell (pt)
-  (save-excursion
-    (goto-char pt)
-    (when (require 'flyspell nil t)
-      (flyspell-auto-correct-word)))
-  (select-window
-   (cdr (ring-ref avy-ring 0)))
-  t)
-
-;; Bind to semicolon (flyspell uses C-;)
-(setf (alist-get ?\; avy-dispatch-alist) 'avy-action-flyspell)
-
-(defun avy-action-helpful (pt)
-  (save-excursion
-    (goto-char pt)
-    (helpful-at-point))
-  (select-window
-   (cdr (ring-ref avy-ring 0)))
-  t)
-
-(setf (alist-get ?H avy-dispatch-alist) 'avy-action-helpful)
-
-(defun avy-action-embark (pt)
-  (unwind-protect
-      (save-excursion
-        (goto-char pt)
-        (embark-act))
+  (defun avy-action-flyspell (pt)
+    (save-excursion
+      (goto-char pt)
+      (when (require 'flyspell nil t)
+        (flyspell-auto-correct-word)))
     (select-window
-     (cdr (ring-ref avy-ring 0))))
-  t)
+     (cdr (ring-ref avy-ring 0)))
+    t)
 
-(setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
+  ;; Bind to semicolon (flyspell uses C-;)
+  (setf (alist-get ?\; avy-dispatch-alist) 'avy-action-flyspell)
 
-;; You can combine Hyperbole with Avy by creating an avy-dispatch function to press the Hyperbole action-key at target.
-;; https://lists.gnu.org/archive/html/emacs-orgmode/2022-06/msg00686.html
-(after! hyperbole
-  (add-to-list 'avy-dispatch-alist '(?: . (lambda (pt)
-                                            (goto-char pt)
-                                            (hkey-either)))))
+  (defun avy-action-helpful (pt)
+    (save-excursion
+      (goto-char pt)
+      (helpful-at-point))
+    (select-window
+     (cdr (ring-ref avy-ring 0)))
+    t)
 
-(require 'counsel)
-(defun counsel-recoll-function (str)
-  "Run recoll for STR."
-  (or
-   (ivy-more-chars)
-   (progn
-     (counsel--async-command
-      (format "recollq -t -b %s"
-              (shell-quote-argument str)))
-     nil)))
+  (setf (alist-get ?H avy-dispatch-alist) 'avy-action-helpful)
 
-(use-package! marginalia
-  :bind (("M-A" . marginalia-cycle)
-         :map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  ;; Must be in the :init section of use-package such that the mode gets
-  ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode))
+  (defun avy-action-embark (pt)
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
 
-(use-package! embark
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  (setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
 
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  ;; Currently is which-key-C-h-dispatch
-  ;; (setq prefix-help-command #'embark-prefix-help-command)
+  ;; You can combine Hyperbole with Avy by creating an avy-dispatch function to press the Hyperbole action-key at target.
+  ;; https://lists.gnu.org/archive/html/emacs-orgmode/2022-06/msg00686.html
+  (after! hyperbole
+    (add-to-list 'avy-dispatch-alist '(?: . (lambda (pt)
+                                              (goto-char pt)
+                                              (hkey-either))))))
 
+(use-package! counsel
+  :defer t
   :config
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none))))
-
-  (eval-when-compile
-  (defmacro my/embark-ace-action (fn)
-    `(defun ,(intern (concat "my/embark-ace-" (symbol-name fn))) ()
-       (interactive)
-       (with-demoted-errors "%s"
-         (require 'ace-window)
-         (let ((aw-dispatch-always t))
-           (aw-switch-to-window (aw-select nil))
-           (call-interactively (symbol-function ',fn)))))))
-
-  (define-key embark-file-map     (kbd "o") (my/embark-ace-action find-file))
-  (define-key embark-buffer-map   (kbd "o") (my/embark-ace-action switch-to-buffer))
-  (define-key embark-bookmark-map (kbd "o") (my/embark-ace-action bookmark-jump))
-
-  (eval-when-compile
-  (defmacro my/embark-split-action (fn split-type)
-    `(defun ,(intern (concat "my/embark-"
-                             (symbol-name fn)
-                             "-"
-                             (car (last  (split-string
-                                          (symbol-name split-type) "-"))))) ()
-       (interactive)
-       (funcall #',split-type)
-       (call-interactively #',fn))))
-
-  (define-key embark-file-map     (kbd "2") (my/embark-split-action find-file split-window-below))
-  (define-key embark-buffer-map   (kbd "2") (my/embark-split-action switch-to-buffer split-window-below))
-  (define-key embark-bookmark-map (kbd "2") (my/embark-split-action bookmark-jump split-window-below))
-
-  (define-key embark-file-map     (kbd "3") (my/embark-split-action find-file split-window-right))
-  (define-key embark-buffer-map   (kbd "3") (my/embark-split-action switch-to-buffer split-window-right))
-  (define-key embark-bookmark-map (kbd "3") (my/embark-split-action bookmark-jump split-window-right))
-  )
-
-(use-package! consult
-  ;; Replace bindings. Lazily loaded due by `use-package'.
-  :bind (;; C-c bindings (mode-specific-map)
-         ;; ("C-c h" . consult-history)
-         ;; ("C-c m" . consult-mode-command)
-         ;; ("C-c k" . consult-kmacro)
-         ;; C-x bindings (ctl-x-map)
-         ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-         ;; ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-         ;; ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-         ;; ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-         ;; ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-         ;; ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
-         ;; Custom M-# bindings for fast register access
-         ;; ("M-#" . consult-register-load)
-         ;; ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-         ;; ("C-M-#" . consult-register)
-         ;; Other custom bindings
-         ;; ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-         ;; ("<help> a" . consult-apropos)            ;; orig. apropos-command
-         ;; M-g bindings (goto-map)
-         ;; ("M-g e" . consult-compile-error)
-         ;; ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-         ;; ("M-g g" . consult-goto-line)             ;; orig. goto-line
-         ;; ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-         ;; ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ;; ("M-g m" . consult-mark)
-         ;; ("M-g k" . consult-global-mark)
-         ;; ("M-g i" . consult-imenu)
-         ;; ("M-g I" . consult-imenu-multi)
-         ;; M-s bindings (search-map)
-         ;; ("M-s d" . consult-find)
-         ;; ("M-s D" . consult-locate)
-         ;; ("M-s g" . consult-grep)
-         ;; ("M-s G" . consult-git-grep)
-         ;; ("M-s r" . consult-ripgrep)
-         ;; ("M-s l" . consult-line)
-         ;; ("M-s L" . consult-line-multi)
-         ;; ("M-s m" . consult-multi-occur)
-         ;; ("M-s k" . consult-keep-lines)
-         ;; ("M-s u" . consult-focus-lines)
-         ;; Isearch integration
-         ;; ("M-s e" . consult-isearch-history)
-         ;; :map isearch-mode-map
-         ;; ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
-         ;; ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-         ;; ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-         ;; ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
-         ;; Minibuffer history
-         ;; :map minibuffer-local-map
-         ;; ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-         ;; ("M-r" . consult-history)                ;; orig. previous-matching-history-element
-        )
-
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-
-  ;; The :init configuration is always executed (Not lazy)
-  :init
-
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
-  ;; (setq register-preview-delay 0.5
-  ;;       register-preview-function #'consult-register-format)
-
-  ;; Optionally tweak the register preview window.
-  ;; This adds thin lines, sorting and hides the mode line of the window.
-  ;; (advice-add #'register-preview :override #'consult-register-window)
-
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-
-  ;; Configure other variables and modes in the :config section,
-  ;; after lazily loading the package.
-  :config
-
-  ;; Optionally configure preview. The default value
-  ;; is 'any, such that any key triggers the preview.
-  ;; (setq consult-preview-key 'any)
-  ;; (setq consult-preview-key (kbd "M-."))
-  ;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
-  ;; For some commands and buffer sources it is useful to configure the
-  ;; :preview-key on a per-command basis using the `consult-customize' macro.
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-recent-file
-   consult--source-project-recent-file
-   :preview-key (kbd "M-."))
-
-  ;; Optionally configure the narrowing key.
-  ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<") ;; (kbd "C-+")
-
-  ;; Optionally make narrowing help available in the minibuffer.
-  ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  ;; (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
-
-  ;; By default `consult-project-function' uses `project-root' from project.el.
-  ;; Optionally configure a different project root function.
-  ;; There are multiple reasonable alternatives to chose from.
-  ;;;; 1. project.el (the default)
-  ;; (setq consult-project-function #'consult--default-project--function)
-  ;;;; 2. projectile.el (projectile-project-root)
-  ;; (autoload 'projectile-project-root "projectile")
-  ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
-  ;;;; 3. vc.el (vc-root-dir)
-  ;; (setq consult-project-function (lambda (_) (vc-root-dir)))
-  ;;;; 4. locate-dominating-file
-  ;; (setq consult-project-function (lambda (_) (locate-dominating-file "." ".git")))
-)
-
-(after! (consult embark)
-  (require 'embark-consult))
+  (defun counsel-recoll-function (str)
+    "Run recoll for STR."
+    (or
+     (ivy-more-chars)
+     (progn
+       (counsel--async-command
+        (format "recollq -t -b %s"
+                (shell-quote-argument str)))
+       nil))))
 
 (use-package! consult-recoll)
 
@@ -1509,10 +1111,10 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (ad-activate 'fill-delete-newlines)
 
 (windmove-default-keybindings)
-(global-set-key (kbd "<kp-4>") 'windmove-left)
-(global-set-key (kbd "<kp-6>") 'windmove-right)
-(global-set-key (kbd "<kp-8>") 'windmove-up)
-(global-set-key (kbd "<kp-2>") 'windmove-down)
+;; (global-set-key (kbd "<kp-4>") 'windmove-left)
+;; (global-set-key (kbd "<kp-6>") 'windmove-right)
+;; (global-set-key (kbd "<kp-8>") 'windmove-up)
+;; (global-set-key (kbd "<kp-2>") 'windmove-down)
 
 (setq ibuffer-saved-filter-groups
       '(("home"
@@ -1547,99 +1149,93 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
 
-(setq python-shell-interpreter "python3")
+(use-package! thingatpt+
+  :defer t)
 
-(use-package! thingatpt+)
+(use-package! hide-comnt
+  :defer t)
 
-(use-package! hide-comnt)
+(use-package! thing-cmds
+:defer t)
 
-(use-package! thing-cmds)
+(use-package! hexrgb
+  :defer t)
 
-(use-package! hexrgb)
+(use-package! palette
+:defer t)
 
-(use-package! palette)
+(use-package! facemenu+
+:defer t)
 
-(use-package! facemenu+)
-
-(use-package! highlight)
+(use-package! highlight
+:defer t)
 
 (global-set-key (kbd "S-<down-mouse-1>") #'mouse-set-mark)
 ;; was: mouse-appearance-menu
 (use-package! mouse3)
 
-(setq dired-clean-up-buffers-too nil) ; Avoid pesky questions about deleting orphan buffers
-(defconst my-dired-media-files-extensions
- '("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg" "wmv" "mkv" "mov" "wma")
-  "Media file extensions that should launch in VLC.
+(after! dired
+  (progn
+    (setq dired-clean-up-buffers-too nil) ; Avoid pesky questions about deleting orphan buffers
+    (defconst my-dired-media-files-extensions
+      '("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg" "wmv" "mkv" "mov" "wma")
+      "Media file extensions that should launch in VLC.
 Also used for highlighting.")
+    ))
 
-(bind-keys :map dired-mode-map
-           ("ö" . dired-filter-map)
-           ("ä" . dired-filter-mark-map))
 (use-package! dired-filter
+  :after dired
   :config
   (setq dired-filter-group-saved-groups
-     (make-list 1 '("default"
-                    ("Epub"
-                     (extension . "epub"))
-                    ("PDF"
-                     (extension . "pdf"))
-                    ("LaTeX"
-                     (extension "tex" "bib"))
-                    ("Org"
-                     (extension . "org"))
-                    ("Archives"
-                     (extension "zip" "rar" "gz" "bz2" "tar")))))
-)
+        (make-list 1 '("default"
+                       ("Epub"
+                        (extension . "epub"))
+                       ("PDF"
+                        (extension . "pdf"))
+                       ("LaTeX"
+                        (extension "tex" "bib"))
+                       ("Org"
+                        (extension . "org"))
+                       ("Archives"
+                        (extension "zip" "rar" "gz" "bz2" "tar")))))
+  (bind-keys :map dired-mode-map
+             ("ö" . dired-filter-map)
+             ("ä" . dired-filter-mark-map)))
 
 (use-package! dired-narrow
+  :after dired
   :commands dired-narrow
-  :init
+  :config
   (map! :map dired-mode-map
         :desc "Live filtering" "å" #'dired-narrow))
 
-(use-package! dired-launch)
-(dired-launch-enable)
-
-(use-package! dired-ranger
-    :config
-    (setq dired-ranger-bookmark-LRU ?l)
-    ;; (bind-keys :map dired-mode-map
-    ;;            :prefix "c"
-    ;;            :prefix-map dired-ranger-map
-    ;;            :prefix-docstring "Map for ranger operations."
-    ;;   ("c" . dired-ranger-copy)
-    ;;   ("p" . dired-ranger-paste)
-    ;;   ("m" . dired-ranger-move))
-    :bind (:map dired-mode-map
-                ("W" . dired-ranger-copy)
-                ("X" . dired-ranger-move)
-                ("Y" . dired-ranger-paste)
-                ("'" . dired-ranger-bookmark)
-                ("l" . dired-ranger-bookmark-visit))
-  )
-(ranger-override-dired-mode -1)
-
-(defun my-dired-init ()
-  "Bunch of stuff to run for dired, either immediately or when it's loaded."
-  (bind-keys :map dired-mode-map
-    ("<delete>" . dired-unmark-backward)
-    ("<backspace>" . dired-up-directory))
-
-  (dired-filter-mode t)
-  (dired-filter-group-mode t)
-  ;; (dired-collapse-mode 1)
-  (visual-line-mode -1)
-  (toggle-truncate-lines 1))
-(add-hook 'dired-mode-hook 'my-dired-init)
-
-(use-package! dired+
+(use-package! dired-launch
+  :after dired
   :config
-  (setq diredp-image-preview-in-tooltip 300))
+  (dired-launch-enable))
 
-(use-package! bookmark+)
+(after! dired
+  (progn
+    (defun my-dired-init ()
+      "Bunch of stuff to run for dired, either immediately or when it's loaded."
+      (bind-keys :map dired-mode-map
+                 ("<delete>" . dired-unmark-backward)
+                 ("<backspace>" . dired-up-directory))
+
+      (dired-filter-mode t)
+      (dired-filter-group-mode t)
+      ;; (dired-collapse-mode 1)
+      (visual-line-mode -1)
+      (toggle-truncate-lines 1))
+    (add-hook 'dired-mode-hook 'my-dired-init)))
+
+(use-package! bookmark+
+  :after dired
+  ;;:defer t
+  )
 
 (use-package! w3m
+  :defer t
   :config
   (setq w3m-key-binding 'info)
    (define-key w3m-mode-map [up] 'previous-line)
@@ -1710,11 +1306,10 @@ Also used for highlighting.")
     (add-to-list 'w3m-search-engine-alist
                  '("reddit"
                    "http://www.reddit.com/search?q=%s"
-                   nil))
-   )
-)
+                   nil))))
 
 (use-package! ace-link
+  :defer t
   :config
   (ace-link-setup-default))
 
@@ -1724,7 +1319,8 @@ Also used for highlighting.")
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 (autoload 'browse-url-interactive-arg "browse-url")
 
-(use-package! helm-w3m)
+(use-package! helm-w3m
+  :after w3m)
 
 (defun xah-html-decode-percent-encoded-url ()
   "Decode percent encoded URL of current line or selection.
@@ -1790,38 +1386,42 @@ Version 2018-10-26"
 (after! org
   (add-hook 'org-capture-prepare-finalize-hook 'jw/hook-clean-org-protocol-l-result))
 
-(use-package! org-protocol-capture-html)
-;; (require 'org-protocol-capture-html)
+(use-package! org-protocol-capture-html
+  :after org)
 
-(define-prefix-command 'launcher-map)
-(define-key launcher-map "c" #'link-hint-copy-link)
-(define-key launcher-map "C" #'org-capture)
-(define-key launcher-map "d" #'helpful-at-point)
-(define-key launcher-map "e" #'er/expand-region)
-(define-key launcher-map "E" #'er/contract-region)
-(define-key launcher-map "f" #'find-dired)
-(define-key launcher-map "g" #'w3m-search)
-(define-key launcher-map "j" #'org-journal-new-entry)
-(define-key launcher-map "l" #'browse-url-at-point)
-(define-key launcher-map "o" #'link-hint-open-link)
-(define-key launcher-map "t" #'proced) ; top
-;;(define-key launcher-map "u" #'my/copy-id-to-clipboard)
-(define-key launcher-map "w" #'w3m-goto-url)
-(global-set-key (kbd "H-l") 'launcher-map)
+(after! (w3m org-journal)
+  (progn
+    (define-prefix-command 'launcher-map)
+    (define-key launcher-map "c" #'link-hint-copy-link)
+    (define-key launcher-map "C" #'org-capture)
+    (define-key launcher-map "d" #'helpful-at-point)
+    (define-key launcher-map "e" #'er/expand-region)
+    (define-key launcher-map "E" #'er/contract-region)
+    (define-key launcher-map "f" #'find-dired)
+    (define-key launcher-map "g" #'w3m-search)
+    (define-key launcher-map "j" #'org-journal-new-entry)
+    (define-key launcher-map "l" #'browse-url-at-point)
+    (define-key launcher-map "o" #'link-hint-open-link)
+    ;;(define-key launcher-map "u" #'my/copy-id-to-clipboard)
+    (define-key launcher-map "w" #'w3m-goto-url)
+    (global-set-key (kbd "H-l") 'launcher-map)))
 
 ;;shortcut functions
 (defun bjm/elfeed-show-all ()
   (interactive)
   (bookmark-maybe-load-default-file)
   (bookmark-jump "elfeed-all"))
+
 (defun bjm/elfeed-show-emacs ()
   (interactive)
   (bookmark-maybe-load-default-file)
   (bookmark-jump "elfeed-emacs"))
+
 (defun bjm/elfeed-show-daily ()
   (interactive)
   (bookmark-maybe-load-default-file)
   (bookmark-jump "elfeed-daily"))
+
 ;;functions to support syncing .elfeed between machines
 ;;makes sure elfeed reads index from disk before launching
 (defun bjm/elfeed-load-db-and-open ()
@@ -1837,98 +1437,104 @@ Version 2018-10-26"
   (interactive)
   (elfeed-db-save)
   (quit-window))
+
 (defun mz/elfeed-browse-url (&optional use-generic-p)
-    "Visit the current entry in your browser using `browse-url'.
-  If there is a prefix argument, visit the current entry in the
-  browser defined by `browse-url-generic-program'."
-    (interactive "P")
-    (let ((entries (elfeed-search-selected)))
-      (cl-loop for entry in entries
-               do (if use-generic-p
-                      (browse-url-chrome (elfeed-entry-link entry))
-                    (browse-url (elfeed-entry-link entry))))
-      (mapc #'elfeed-search-update-entry entries)
-      (unless (or elfeed-search-remain-on-entry (use-region-p))
-      ;;(forward-line)
-)))
+  "Visit the current entry in your browser using `browse-url'.
+If there is a prefix argument, visit the current entry in the
+browser defined by `browse-url-generic-program'."
+  (interactive "P")
+  (let ((entries (elfeed-search-selected)))
+    (cl-loop for entry in entries
+             do (if use-generic-p
+                    (browse-url-chrome (elfeed-entry-link entry))
+                  (browse-url (elfeed-entry-link entry))))
+    (mapc #'elfeed-search-update-entry entries)
+    (unless (or elfeed-search-remain-on-entry (use-region-p)))))
+
 (defun elfeed-mark-all-as-read ()
   (interactive)
   (mark-whole-buffer)
   (elfeed-search-untag-all-unread))
+
 (use-package! elfeed
+  :defer t
   :bind (:map elfeed-search-mode-map
-             ("A" . bjm/elfeed-show-all)
-             ("E" . bjm/elfeed-show-emacs)
-             ("D" . bjm/elfeed-show-daily)
-             ("b" . mz/elfeed-browse-url)
-             ("B" . elfeed-search-browse-url)
-             ("j" . mz/make-and-run-elfeed-hydra)
-             ("m" . elfeed-toggle-star)
-             ("q" . bjm/elfeed-save-db-and-bury))
+         ("A" . bjm/elfeed-show-all)
+         ("E" . bjm/elfeed-show-emacs)
+         ("D" . bjm/elfeed-show-daily)
+         ("b" . mz/elfeed-browse-url)
+         ("B" . elfeed-search-browse-url)
+         ("j" . mz/make-and-run-elfeed-hydra)
+         ("m" . elfeed-toggle-star)
+         ("q" . bjm/elfeed-save-db-and-bury))
   :config
   (defalias 'elfeed-toggle-star
-     (elfeed-expose #'elfeed-search-toggle-all 'star))
-)
+    (elfeed-expose #'elfeed-search-toggle-all 'star)))
 
-;; Load elfeed-org
 (use-package! elfeed-org
+  :after elfeed
   :init
   (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
   :config
+
+  (defun z/hasCap (s) ""
+         (let ((case-fold-search nil))
+           (string-match-p "[[:upper:]]" s)))
+
+  (defun z/get-hydra-option-key (s)
+    "returns single upper case letter (converted to lower) or first"
+    (interactive)
+    (let ( (loc (z/hasCap s)))
+      (if loc
+          (downcase (substring s loc (+ loc 1)))
+        (substring s 0 1))))
+
+  (defun mz/make-elfeed-cats (tags)
+    "Returns a list of lists. Each one is line for the hydra configuration in the form (c function hint)"
+    (interactive)
+    (mapcar (lambda (tag)
+              (let* (
+                     (tagstring (symbol-name tag))
+                     (c (z/get-hydra-option-key tagstring)))
+                (list c (append '(elfeed-search-set-filter) (list (format "@6-months-ago +%s" tagstring) ))tagstring  )))
+            tags))
+
+  (defmacro mz/make-elfeed-hydra ()
+    `(defhydra mz/hydra-elfeed ()
+       "filter"
+       ,@(mz/make-elfeed-cats (elfeed-db-get-all-tags))
+       ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
+       ("M" elfeed-toggle-star "Mark")
+       ("A" (elfeed-search-set-filter "@6-months-ago") "All")
+       ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
+       ("Q" bjm/elfeed-save-db-and-bury "Quit Elfeed" :color blue)
+       ("q" nil "quit" :color blue)))
+
+  (defun mz/make-and-run-elfeed-hydra ()
+    ""
+    (interactive)
+    (mz/make-elfeed-hydra)
+    (mz/hydra-elfeed/body))
+
+  (defun my-elfeed-tag-sort (a b)
+    (let* ((a-tags (format "%s" (elfeed-entry-tags a)))
+           (b-tags (format "%s" (elfeed-entry-tags b))))
+      (if (string= a-tags b-tags)
+          (< (elfeed-entry-date b) (elfeed-entry-date a)))
+      (string< a-tags b-tags)))
+
+  (setf elfeed-search-sort-function #'my-elfeed-tag-sort)
+
   (elfeed-org))
-(defun z/hasCap (s) ""
-  (let ((case-fold-search nil))
-  (string-match-p "[[:upper:]]" s)))
-(defun z/get-hydra-option-key (s)
-  "returns single upper case letter (converted to lower) or first"
-  (interactive)
-  (let ( (loc (z/hasCap s)))
-  (if loc
-    (downcase (substring s loc (+ loc 1)))
-    (substring s 0 1)
-)))
-(defun mz/make-elfeed-cats (tags)
-  "Returns a list of lists. Each one is line for the hydra configuratio in the form
-  (c function hint)"
-  (interactive)
-  (mapcar (lambda (tag)
-    (let* (
-           (tagstring (symbol-name tag))
-           (c (z/get-hydra-option-key tagstring)))
-      (list c (append '(elfeed-search-set-filter) (list (format "@6-months-ago +%s" tagstring) ))tagstring  )))
-    tags))
-(defmacro mz/make-elfeed-hydra ()
-  `(defhydra mz/hydra-elfeed ()
-    "filter"
-    ,@(mz/make-elfeed-cats (elfeed-db-get-all-tags))
-    ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
-    ("M" elfeed-toggle-star "Mark")
-    ("A" (elfeed-search-set-filter "@6-months-ago") "All")
-    ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
-    ("Q" bjm/elfeed-save-db-and-bury "Quit Elfeed" :color blue)
-    ("q" nil "quit" :color blue)
-))
-(defun mz/make-and-run-elfeed-hydra ()
-  ""
-  (interactive)
-  (mz/make-elfeed-hydra)
-  (mz/hydra-elfeed/body))
-(defun my-elfeed-tag-sort (a b)
-  (let* ((a-tags (format "%s" (elfeed-entry-tags a)))
-         (b-tags (format "%s" (elfeed-entry-tags b))))
-    (if (string= a-tags b-tags)
-        (< (elfeed-entry-date b) (elfeed-entry-date a)))
-    (string< a-tags b-tags)))
-(setf elfeed-search-sort-function #'my-elfeed-tag-sort)
 
 (use-package! nov
+  :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
   :bind
   (:map nov-mode-map
         ("<home>" . move-beginning-of-line)
-        ("<end>" . move-end-of-line)
-        ))
+        ("<end>" . move-end-of-line)))
 
 ;; (defun my-window-displaying-calibredb-entry-p (window)
 ;;   (equal (with-current-buffer (window-buffer window) major-mode)
@@ -1941,6 +1547,7 @@ Version 2018-10-26"
 ;;       agenda-window)))
 
 (use-package! calibredb
+  :defer t
   :config
   (setq sql-sqlite-program "/usr/bin/sqlite3")
   (setq calibredb-program "/usr/bin/calibredb")
@@ -1968,9 +1575,8 @@ Version 2018-10-26"
 
 (use-package! mixed-pitch)
 
-(use-package! smartparens)
-
 (use-package! hyperbole
+  :defer t
   :config
   ;; (require 'hyperbole)
   ;; (hyperbole-mode 1)
@@ -2001,64 +1607,68 @@ Version 2018-10-26"
   ;; (global-set-key (kbd "s-o") 'hkey-operate)
   )
 
-(defhydra hydra-helm (:hint nil :color pink)
+(after! helm
+  (progn
+    (defhydra hydra-helm (:hint nil :color pink)
+      "
+                                                                        ╭──────┐
+ Navigation   Other  Sources     Mark             Do             Help   │ Helm │
+╭───────────────────────────────────────────────────────────────────────┴──────╯
+      ^_k_^         _K_       _p_   [_m_] mark         [_v_] view         [_H_] helm help
+      ^^↑^^         ^↑^       ^↑^   [_t_] toggle all   [_d_] delete       [_s_] source help
+  _h_ ←   → _l_     _c_       ^ ^   [_u_] unmark all   [_f_] follow: %(helm-attr 'follow)
+      ^^↓^^         ^↓^       ^↓^    ^ ^               [_y_] yank selection
+      ^_j_^         _J_       _n_    ^ ^               [_w_] toggle windows
+--------------------------------------------------------------------------------
         "
-                                                                          ╭──────┐
-   Navigation   Other  Sources     Mark             Do             Help   │ Helm │
-  ╭───────────────────────────────────────────────────────────────────────┴──────╯
-        ^_k_^         _K_       _p_   [_m_] mark         [_v_] view         [_H_] helm help
-        ^^↑^^         ^↑^       ^↑^   [_t_] toggle all   [_d_] delete       [_s_] source help
-    _h_ ←   → _l_     _c_       ^ ^   [_u_] unmark all   [_f_] follow: %(helm-attr 'follow)
-        ^^↓^^         ^↓^       ^↓^    ^ ^               [_y_] yank selection
-        ^_j_^         _J_       _n_    ^ ^               [_w_] toggle windows
-  --------------------------------------------------------------------------------
-        "
-        ("<tab>" helm-keyboard-quit "back" :exit t)
-        ("<escape>" nil "quit")
-        ("\\" (insert "\\") "\\" :color blue)
-        ("h" helm-beginning-of-buffer)
-        ("j" helm-next-line)
-        ("k" helm-previous-line)
-        ("l" helm-end-of-buffer)
-        ("g" helm-beginning-of-buffer)
-        ("G" helm-end-of-buffer)
-        ("n" helm-next-source)
-        ("p" helm-previous-source)
-        ("K" helm-scroll-other-window-down)
-        ("J" helm-scroll-other-window)
-        ("c" helm-recenter-top-bottom-other-window)
-        ("m" helm-toggle-visible-mark)
-        ("t" helm-toggle-all-marks)
-        ("u" helm-unmark-all)
-        ("H" helm-help)
-        ("s" helm-buffer-help)
-        ("v" helm-execute-persistent-action)
-        ("d" helm-persistent-delete-marked)
-        ("y" helm-yank-selection)
-        ("w" helm-toggle-resplit-and-swap-windows)
-        ("f" helm-follow-mode))
+      ("<tab>" helm-keyboard-quit "back" :exit t)
+      ("<escape>" nil "quit")
+      ("\\" (insert "\\") "\\" :color blue)
+      ("h" helm-beginning-of-buffer)
+      ("j" helm-next-line)
+      ("k" helm-previous-line)
+      ("l" helm-end-of-buffer)
+      ("g" helm-beginning-of-buffer)
+      ("G" helm-end-of-buffer)
+      ("n" helm-next-source)
+      ("p" helm-previous-source)
+      ("K" helm-scroll-other-window-down)
+      ("J" helm-scroll-other-window)
+      ("c" helm-recenter-top-bottom-other-window)
+      ("m" helm-toggle-visible-mark)
+      ("t" helm-toggle-all-marks)
+      ("u" helm-unmark-all)
+      ("H" helm-help)
+      ("s" helm-buffer-help)
+      ("v" helm-execute-persistent-action)
+      ("d" helm-persistent-delete-marked)
+      ("y" helm-yank-selection)
+      ("w" helm-toggle-resplit-and-swap-windows)
+      ("f" helm-follow-mode))
 
-(define-key helm-map (kbd "H-o") 'hydra-helm/body)
+    (define-key helm-map (kbd "H-o") 'hydra-helm/body)))
 
-(defhydra hydra-projectile-other-window (:color teal)
-  "projectile-other-window"
-  ("f"  projectile-find-file-other-window        "file")
-  ("g"  projectile-find-file-dwim-other-window   "file dwim")
-  ("d"  projectile-find-dir-other-window         "dir")
-  ("b"  projectile-switch-to-buffer-other-window "buffer")
-  ("q"  nil                                      "cancel" :color blue))
+(after! helm-projectile
+  (progn
+    (defhydra hydra-projectile-other-window (:color teal)
+      "projectile-other-window"
+      ("f"  projectile-find-file-other-window        "file")
+      ("g"  projectile-find-file-dwim-other-window   "file dwim")
+      ("d"  projectile-find-dir-other-window         "dir")
+      ("b"  projectile-switch-to-buffer-other-window "buffer")
+      ("q"  nil                                      "cancel" :color blue))
 
-;; (use-package! ggtags
-;;   :config
-;;   (add-hook 'c-mode-common-hook
-;;             (lambda ()
-;;               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-;;                 (ggtags-mode 1))))
-;;   )
+    ;; (use-package! ggtags
+    ;;   :config
+    ;;   (add-hook 'c-mode-common-hook
+    ;;             (lambda ()
+    ;;               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+    ;;                 (ggtags-mode 1))))
+    ;;   )
 
-(defhydra hydra-projectile (:color teal
-                            :hint nil)
-  "
+    (defhydra hydra-projectile (:color teal
+                                :hint nil)
+      "
      PROJECTILE: %(projectile-project-root)
 
      Find File            Search/Tags          Buffers                Cache
@@ -2070,29 +1680,29 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   _d_: dir
 
 "
-  ("a"   projectile-ag)
-  ("b"   projectile-switch-to-buffer)
-  ("c"   projectile-invalidate-cache)
-  ("d"   projectile-find-dir)
-  ("s-f" projectile-find-file)
-  ("ff"  projectile-find-file-dwim)
-  ("fd"  projectile-find-file-in-directory)
-  ("g"   ggtags-update-tags)
-  ("s-g" ggtags-update-tags)
-  ("i"   projectile-ibuffer)
-  ("K"   projectile-kill-buffers)
-  ("s-k" projectile-kill-buffers)
-  ("m"   projectile-multi-occur)
-  ("o"   projectile-multi-occur)
-  ("s-p" projectile-switch-project "switch project")
-  ("p"   projectile-switch-project)
-  ("s"   projectile-switch-project)
-  ("r"   projectile-recentf)
-  ("x"   projectile-remove-known-project)
-  ("X"   projectile-cleanup-known-projects)
-  ("z"   projectile-cache-current-file)
-  ("`"   hydra-projectile-other-window/body "other window")
-  ("q"   nil "cancel" :color blue))
+      ("a"   projectile-ag)
+      ("b"   projectile-switch-to-buffer)
+      ("c"   projectile-invalidate-cache)
+      ("d"   projectile-find-dir)
+      ("s-f" projectile-find-file)
+      ("ff"  projectile-find-file-dwim)
+      ("fd"  projectile-find-file-in-directory)
+      ("g"   ggtags-update-tags)
+      ("s-g" ggtags-update-tags)
+      ("i"   projectile-ibuffer)
+      ("K"   projectile-kill-buffers)
+      ("s-k" projectile-kill-buffers)
+      ("m"   projectile-multi-occur)
+      ("o"   projectile-multi-occur)
+      ("s-p" projectile-switch-project "switch project")
+      ("p"   projectile-switch-project)
+      ("s"   projectile-switch-project)
+      ("r"   projectile-recentf)
+      ("x"   projectile-remove-known-project)
+      ("X"   projectile-cleanup-known-projects)
+      ("z"   projectile-cache-current-file)
+      ("`"   hydra-projectile-other-window/body "other window")
+      ("q"   nil "cancel" :color blue))))
 
 ;; Change "Jane Joplin & John B Doe_" -> "Jane Joplin_ & Doe, John B"
 (fset 'jw/swap_author
@@ -2108,30 +1718,33 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 ;; session will be save if a buffer is save to a file.
 (add-hook 'after-save-hook #'session-save-session)
 (add-to-list 'session-globals-exclude 'consult--buffer-history)
+(add-to-list 'session-globals-exclude 'vertico-repeat-history)
 
-(use-package! zoxide)
+(use-package! zoxide
+  :defer t)
 
 (use-package! hledger-mode
-  :config
+  :defer t
+  :init
   ;; To open files with .journal extension in hledger-mode
   (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
+  :config
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
   (setq hledger-jfile "/home/jw/Dokument/hledger/test/test1.journal")
-  )
+  (load "~/.config/doomemacs.d/ob-hledger")
+  (require 'ob-hledger))
 
 ;; Out of sync with hledger
 ;; (use-package! flycheck-hledger
 ;;   :after (flycheck hledger-mode)
 ;;   :demand t)
 
-(load "~/.doom.d/ob-hledger")
-(require 'ob-hledger)
-
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 
-(require 'engine-mode)
-(engine-mode t)
+(use-package engine-mode
+  :config
+  (engine-mode t))
 
 (setq common-lisp-hyperspec-root
 ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
@@ -2155,12 +1768,13 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 
   (define-key sly-mrepl-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
   (add-hook 'lisp-mode-hook #'company-mode)
-  (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
-  )
+  (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company))
 
-(use-package! arxiv-mode)
+(use-package! arxiv-mode
+  :defer t)
 
 (use-package! pdftotext
+  :defer t
   ;; For prettyness
   ;; (add-hook 'pdftotext-mode-hook #'spell-fu-mode-disable)
   ;; (add-hook 'pdftotext-mode-hook (lambda () (page-break-lines-mode 1)))
@@ -2168,446 +1782,24 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ;; (map! :map pdftotext-mode-map
   ;;       "<mouse-4>" (cmd! (scroll-down mouse-wheel-scroll-amount-horizontal))
   ;;       "<mouse-5>" (cmd! (scroll-up mouse-wheel-scroll-amount-horizontal)))
-  )
+  :config
+  (defun pdftotext-enable ()
+    "Enable pdftotext-mode."
+    (interactive)
+    (after! pdf-tools (pdftotext-install)))
 
-(defun pdftotext-enable ()
-  "Enable pdftotext-mode."
-  (interactive)
-  (after! pdf-tools (pdftotext-install))
-  )
-
-(defun pdftotext-disable ()
-  "Disable pdftotext-mode."
-  (interactive)
-  (after! pdf-tools (progn
-                      (pdftotext-uninstall)
-                      (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
-                      (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)
-                      )
-    )
-  )
+  (defun pdftotext-disable ()
+    "Disable pdftotext-mode."
+    (interactive)
+    (after! pdf-tools (progn
+                        (pdftotext-uninstall)
+                        (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
+                        (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)))))
 
 (use-package! xah-math-input
+  :defer t
   :config
-(xah-math-input--add-to-hash
- '(
-   ["zws" "​"]
-   ))
-  )
-
-;; (require 'org)
-(require 's)
-(require 'sly)
-
-(defcustom cl-ide 'sly
-  "What IDE to use to evaluate Common Lisp.
-Defaults to Sly because it has better integration with Nyxt."
-  :options (list 'sly 'slime))
-
-(defvar emacs-with-nyxt-delay
-  0.1
-  "Delay to wait for `cl-ide' commands to reach Nyxt.")
-
-(setq slime-protocol-version 'ignore)
-
-(defun emacs-with-nyxt-connected-p ()
-  "Is `cl-ide' connected to nyxt."
-  (cond
-   ((eq cl-ide 'slime) (slime-connected-p))
-   ((eq cl-ide 'sly) (sly-connected-p)))) ;; TODO this should check it
-                                          ;; is connected to Nyxt and
-                                          ;; not just to cl-ide
-                                          ;; session
-
-(defun emacs-with-nyxt--connect (host port)
-  "Connect `cl-ide' to HOST and PORT."
-  (cond
-   ((eq cl-ide 'slime) (slime-connect host port))
-   ((eq cl-ide 'sly) (sly-connect host port))))
-
-(defun emacs-with-nyxt-connect (host port)
-  "Connect `cl-ide' to HOST and PORT ignoring version mismatches."
-  (emacs-with-nyxt--connect host port)
-  (while (not (emacs-with-nyxt-connected-p))
-    (message "Starting %s connection..." cl-ide)
-    (sleep-for emacs-with-nyxt-delay)))
-
-(defun emacs-with-nyxt-eval (string)
-  "Send STRING to `cl-ide'."
-  (cond
-   ((eq cl-ide 'slime) (slime-repl-eval-string string))
-   ((eq cl-ide 'sly) (sly-eval `(slynk:interactive-eval-region ,string)))))
-
-(defun emacs-with-nyxt-send-sexps (&rest s-exps)
-  "Evaluate S-EXPS with Nyxt `cl-ide' session."
-  (let ((s-exps-string (s-join "" (--map (prin1-to-string it) s-exps))))
-    (defun true (&rest args) 't)
-    (if (emacs-with-nyxt-connected-p)
-        (emacs-with-nyxt-eval s-exps-string)
-      (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide)))))
-
-(after! org
-  (add-to-list
-   'org-capture-templates
-   `("N" "Web link" entry (file+headline ,(car org-agenda-files) "Links to read later")
-     "* TODO %?%a :readings: \nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"Fri\"))\n"
-     :immediate-finish t :empty-lines 2)))
-
-(defun on/slug-string (title)  (let ((slug-trim-chars '(;; Combining Diacritical Marks https://www.unicode.org/charts/PDF/U0300.pdf
-                                                        768 ; U+0300 COMBINING GRAVE ACCENT
-                                                        769 ; U+0301 COMBINING ACUTE ACCENT
-                                                        770 ; U+0302 COMBINING CIRCUMFLEX ACCENT
-                                                        771 ; U+0303 COMBINING TILDE
-                                                        772 ; U+0304 COMBINING MACRON
-                                                        774 ; U+0306 COMBINING BREVE
-                                                        775 ; U+0307 COMBINING DOT ABOVE
-                                                        776 ; U+0308 COMBINING DIAERESIS
-                                                        777 ; U+0309 COMBINING HOOK ABOVE
-                                                        778 ; U+030A COMBINING RING ABOVE
-                                                        780 ; U+030C COMBINING CARON
-                                                        795 ; U+031B COMBINING HORN
-                                                        803 ; U+0323 COMBINING DOT BELOW
-                                                        804 ; U+0324 COMBINING DIAERESIS BELOW
-                                                        805 ; U+0325 COMBINING RING BELOW
-                                                        807 ; U+0327 COMBINING CEDILLA
-                                                        813 ; U+032D COMBINING CIRCUMFLEX ACCENT BELOW
-                                                        814 ; U+032E COMBINING BREVE BELOW
-                                                        816 ; U+0330 COMBINING TILDE BELOW
-                                                        817 ; U+0331 COMBINING MACRON BELOW
-                                                        )))
-                                 (cl-flet* ((nonspacing-mark-p (char)
-                                                               (memq char slug-trim-chars))
-                                            (strip-nonspacing-marks (s)
-                                                                    (ucs-normalize-NFC-string
-                                                                     (apply #'string (seq-remove #'nonspacing-mark-p
-                                                                                                 (ucs-normalize-NFD-string s)))))
-                                            (cl-replace (title pair)
-                                                        (replace-regexp-in-string (car pair) (cdr pair) title)))
-                                   (let* ((pairs `(("[^[:alnum:][:digit:]]" . "_") ;; convert anything not alphanumeric
-                                                   ("__*" . "_") ;; remove sequential underscores
-                                                   ("^_" . "") ;; remove starting underscore
-                                                   ("_$" . ""))) ;; remove ending underscore
-                                          (slug (-reduce-from #'cl-replace (strip-nonspacing-marks title) pairs)))
-                                     (downcase slug)))))
-
-(defun on/make-filepath (title now &optional zone)
-  "Make filename from note TITLE and NOW time (assumed in the current time ZONE)."
-  (concat
-   org-roam-directory
-   (format-time-string "%Y%m%d%H%M%S_" now (or zone (current-time-zone)))
-   (s-truncate 70 (on/slug-string title) "")
-   ".org"))
-
-(defun on/insert-org-roam-file (file-path title &optional links sources text quote)
-  "Insert org roam file in FILE-PATH with TITLE, LINKS, SOURCES, TEXT, QUOTE."
-  (with-temp-file file-path
-    (insert
-     "* " title "\n"
-     "\n"
-     "- tags :: " (--reduce (concat acc ", " it) links) "\n"
-     (if sources (concat "- source :: " (--reduce (concat acc ", " it) sources) "\n") "")
-     "\n"
-     (if text text "")
-     "\n"
-     "\n"
-     (if quote
-         (concat "#+begin_src text \n"
-                 quote "\n"
-                 "#+end_src")
-       "")))
-  (with-file file-path
-             (org-id-get-create)
-             (save-buffer)))
-
-(defun emacs-with-nyxt-current-package ()
-  "Return current package set for `cl-ide'."
-  (cond
-   ((eq cl-ide 'slime) (slime-current-package))
-   ((eq cl-ide 'sly) (with-current-buffer (sly-mrepl--find-buffer) (sly-current-package)))))
-
-(defun emacs-with-nyxt-start-and-connect-to-nyxt (&optional no-maximize)
-  "Start Nyxt with swank capabilities. Optionally skip window maximization with NO-MAXIMIZE."
-  (interactive)
-  ;; (async-shell-command (format "/home/jw/.local/bin/nyxt" ;; "nyxt -e \"(nyxt-user::start-swank)\""
-  ;;                              ))
-  (while (not (emacs-with-nyxt-connected-p))
-    (message (format "Starting %s connection..." cl-ide))
-    (ignore-errors (emacs-with-nyxt-connect "localhost" 1984))
-    (sleep-for emacs-with-nyxt-delay))
-  (while (not (ignore-errors (string= "NYXT-USER" (upcase (emacs-with-nyxt-current-package)))))
-    (progn (message "Setting %s package to NYXT-USER..." cl-ide)
-           (sleep-for emacs-with-nyxt-delay)))
-  (emacs-with-nyxt-send-sexps
-   `(load "~/quicklisp/setup.lisp")
-   `(defun replace-all (string part replacement &key (test #'char=))
-      "Return a new string in which all the occurences of the part is replaced with replacement."
-      (with-output-to-string (out)
-                             (loop with part-length = (length part)
-                                   for old-pos = 0 then (+ pos part-length)
-                                   for pos = (search part string
-                                                     :start2 old-pos
-                                                     :test test)
-                                   do (write-string string out
-                                                    :start old-pos
-                                                    :end (or pos (length string)))
-                                   when pos do (write-string replacement out)
-                                   while pos)))
-
-   `(defun eval-in-emacs (&rest s-exps)
-      "Evaluate S-EXPS with emacsclient."
-      (let ((s-exps-string (replace-all
-                            (write-to-string
-                             `(progn ,@s-exps) :case :downcase)
-                            ;; Discard the package prefix.
-                            "nyxt::" "")))
-        (format *error-output* "Sending to Emacs:~%~a~%" s-exps-string)
-        (uiop:run-program
-         (list "emacsclient" "--eval" s-exps-string))))
-   `(ql:quickload "cl-qrencode")
-   `(define-command-global my/make-current-url-qr-code () ; this is going to be redundant: https://nyxt.atlas.engineer/article/qr-url.org
-      "Something else."
-      (when (equal (mode-name (current-buffer)) 'web-buffer)) ; TODO
-      (progn
-        (cl-qrencode:encode-png (quri:render-uri (url (current-buffer))) :fpath "/tmp/qrcode.png")
-        (uiop:run-program (list "nyxt" "/tmp/qrcode.png"))))
-   '(define-command-global my/open-html-in-emacs ()
-      "Open buffer html in Emacs."
-      (when (equal (mode-name (current-buffer)) 'web-buffer)) ; TODO
-      (with-open-file
-       (file "/tmp/temp-nyxt.html" :direction :output
-             :if-exists :supersede
-             :if-does-not-exist :create)
-       (write-string (ffi-buffer-get-document (current-buffer)) file))
-      (eval-in-emacs
-       `(progn (switch-to-buffer
-                (get-buffer-create ,(render-url (url (current-buffer)))))
-               (erase-buffer)
-               (insert-file-contents-literally "/tmp/temp-nyxt.html")
-               (html-mode)
-               (indent-region (point-min) (point-max))))
-      (delete-file "/tmp/temp-nyxt.html"))
-
-   ;; from @aartaka https://www.reddit.com/r/Nyxt/comments/ock3tu/is_there_something_like_mx_or_esc_in_nyxt/h3wkipl?utm_source=share&utm_medium=web2x&context=3
-   `(define-command-global eval-expression ()
-      "Prompt for the expression and evaluate it, echoing result to the `message-area'."
-      (let ((expression-string
-             ;; Read an arbitrary expression. No error checking, though.
-             (first (prompt :prompt "Expression to evaluate"
-                            :sources (list (make-instance 'prompter:raw-source))))))
-        ;; Message the thing to the message-area down below.
-        (echo "~S" (eval (read-from-string expression-string)))))
-
-   `(define-configuration nyxt/hint-mode:hint-mode
-      ;; Bind eval-expression to M-:, but only in emacs-mode.
-      ((keymap-scheme (let ((scheme %slot-default%))
-                        (keymap:define-key (gethash scheme:emacs scheme)
-                                           "M-:" 'eval-expression)
-                        scheme))))
-   `(defun emacs-with-nyxt-capture-link ()
-      (let ((url (quri:render-uri (url (current-buffer)))))
-        (if (str:containsp "youtu" url)
-            (str:concat
-             url
-             "&t="
-             (write-to-string
-              (floor
-               (ffi-buffer-evaluate-javascript (current-buffer)
-                                               (ps:ps
-                                                (ps:chain document
-                                                          (get-element-by-id "movie_player")
-                                                          (get-current-time))))))
-             "s")
-          url)))
-   `(define-command-global org-capture ()
-      "Org-capture current page."
-      (eval-in-emacs
-       `(let ((org-link-parameters
-               (list (list "nyxt"
-                           :store
-                           (lambda ()
-                             (org-store-link-props
-                              :type "nyxt"
-                              :link ,(emacs-with-nyxt-capture-link)
-                              :description ,(title (current-buffer))))))))
-          (org-capture nil "wN"))
-       (echo "Note stored!")))
-   `(define-command-global org-roam-capture ()
-      "Org-capture current page."
-      (let ((quote (%copy))
-            (link (emacs-with-nyxt-capture-link))
-            (title (prompt
-                    :input (title (current-buffer))
-                    :prompt "Title of note:"
-                    :sources (list (make-instance 'prompter:raw-source))))
-            (text (prompt
-                   :input ""
-                   :prompt "Note to take:"
-                   :sources (list (make-instance 'prompter:raw-source)))))
-        (eval-in-emacs
-         `(let ((file (on/make-filepath ,(car title) (current-time))))
-            (on/insert-org-roam-file
-             file
-             ,(car title)
-             nil
-             (list ,link)
-             ,(car text)
-             ,quote)
-            (find-file file)
-            (org-id-get-create)))
-        (echo "Org Roam Note stored!")))
-   `(define-configuration nyxt/hint-mode:hint-mode
-      ;; Bind org-capture to C-o-c, but only in emacs-mode.
-      ((keymap-scheme (let ((scheme %slot-default%))
-                        (keymap:define-key (gethash scheme:emacs scheme)
-                                           "C-c o c" 'org-capture)
-                        scheme))))
-   `(define-configuration nyxt/hint-mode:hint-mode
-      ;; Bind org-roam-capture to C-c n f, but only in emacs-mode.
-      ((keymap-scheme (let ((scheme %slot-default%))
-                        (keymap:define-key (gethash scheme:emacs scheme)
-                                           "C-c n f" 'org-roam-capture)
-                        scheme))))
-   )
-  ;; (unless no-maximize
-  ;;   (emacs-with-nyxt-send-sexps
-  ;;    '(toggle-fullscreen)))
-  )
-
-(defun emacs-with-nyxt-browse-url-nyxt (url &optional buffer-title)
-  "Open URL with Nyxt and optionally define BUFFER-TITLE."
-  (interactive "sURL: ")
-  (emacs-with-nyxt-send-sexps
-   (append
-    (list
-     'buffer-load
-     url)
-    (if buffer-title
-        `(:buffer (make-buffer :title ,buffer-title))
-      nil))))
-
-(defun emacs-with-nyxt-close-nyxt-connection ()
-  "Close Nyxt connection."
-  (interactive)
-  (emacs-with-nyxt-send-sexps '(quit)))
-
-(defun browse-url-nyxt (url &optional new-window)
-  "Browse URL with Nyxt. NEW-WINDOW is ignored."
-  (interactive "sURL: ")
-  (unless (emacs-with-nyxt-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
-  (emacs-with-nyxt-browse-url-nyxt url url))
-
-(defun emacs-with-nyxt-search-first-in-nyxt-current-buffer (string)
-  "Search current Nyxt buffer for STRING."
-  (interactive "sString to search: ")
-  (unless (emacs-with-nyxt-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
-  (emacs-with-nyxt-send-sexps
-   `(nyxt/hint-mode::highlight-selected-hint
-     :link-hint
-     (car (nyxt/hint-mode::matches-from-json  ; TODO
-           (nyxt/hint-mode::query-buffer :query ,string))) ; TODO
-     :scroll 't)))
-
-(defun emacs-with-nyxt-make-qr-code-of-current-url ()
-  "Open QR code of current url."
-  (interactive)
-  (if (file-exists-p "~/quicklisp/setup.lisp")
-      (progn
-        (unless (emacs-with-nyxt-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
-        (emacs-with-nyxt-send-sexps
-         '(ql:quickload "cl-qrencode")
-         '(cl-qrencode:encode-png (quri:render-uri (url (current-buffer))) :fpath "/tmp/qrcode.png"))
-        (find-file "/tmp/qrcode.png")
-        (auto-revert-mode))
-    (error "You cannot use this until you have Quicklisp installed! Check how to do that at: https://www.quicklisp.org/beta/#installation")))
-
-(defun emacs-with-nyxt-get-nyxt-buffers ()
-  "Return nyxt buffers."
-  (when (emacs-with-nyxt-connected-p)
-    (read
-     (emacs-with-nyxt-send-sexps
-      '(map 'list (lambda (el) (slot-value el 'title)) (buffer-list))))))
-
-(defun emacs-with-nyxt-nyxt-switch-buffer (&optional title)
-  "Interactively switch nyxt buffers.  If argument is provided switch to buffer with TITLE."
-  (interactive)
-  (if (emacs-with-nyxt-connected-p)
-      (let ((title (or title (completing-read "Title: " (emacs-with-nyxt-get-nyxt-buffers)))))
-        (emacs-with-nyxt-send-sexps
-         `(switch-buffer :id (slot-value (find-if #'(lambda (el) (equal (slot-value el 'title) ,title)) (buffer-list)) 'id))))
-    (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide))))
-
-(defun emacs-with-nyxt-get-nyxt-commands ()
-  "Return nyxt commands."
-  (when (emacs-with-nyxt-connected-p)
-    (read
-     (emacs-with-nyxt-send-sexps
-      `(let ((commands (make-instance 'command-source)))
-         (map 'list (lambda (el) (slot-value el 'name)) (funcall (slot-value commands 'prompter:CONSTRUCTOR) commands)))))))
-
-(defun emacs-with-nyxt-nyxt-run-command (&optional command)
-  "Interactively run nyxt COMMAND."
-  (interactive)
-  (if (emacs-with-nyxt-connected-p)
-      (let ((command (or command (completing-read "Execute command: " (emacs-with-nyxt-get-nyxt-commands)))))
-        (emacs-with-nyxt-send-sexps `(nyxt::run-async ',(read command))))
-    (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide))))
-
-(defun emacs-with-nyxt-nyxt-take-over-prompt ()
-  "Take over the nyxt prompt and let Emacs handle completions."
-  (interactive)
-  (emacs-with-nyxt-send-sexps
-   `(progn
-      (defun flatten (structure)
-        (cond ((null structure) nil)
-              ((atom structure) (list structure))
-              (t (mapcan #'flatten structure))))
-
-      (defun prompt (&REST args)
-        (flet ((ensure-sources (specifiers)
-                               (mapcar (lambda (source-specifier)
-                                         (cond
-                                          ((and (symbolp source-specifier)
-                                                (c2cl:subclassp source-specifier 'source))
-                                           (make-instance source-specifier))
-                                          (t source-specifier)))
-                                       (uiop:ensure-list specifiers))))
-              (sleep 0.1)
-              (let* ((promptstring (list (getf args :prompt)))
-                     (sources (ensure-sources (getf args :sources)))
-                     (names (mapcar (lambda (ol) (slot-value ol 'prompter:attributes)) (flatten (mapcar (lambda (el) (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS)) sources))))
-                     (testing (progn
-                                (setq my-names names)
-                                (setq my-prompt promptstring)))
-                     (completed (read-from-string (eval-in-emacs `(emacs-with-nyxt-nyxt-complete ',promptstring ',names))))
-                     (suggestion
-                      (find-if (lambda (el) (equal completed (slot-value el 'PROMPTER::ATTRIBUTES))) (flatten (mapcar (lambda (el) (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS)) sources))))
-                     (selected-class (find-if (lambda (el) (find suggestion (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS))) sources)))
-                (if selected-class
-                    (funcall (car (slot-value selected-class 'PROMPTER::ACTIONS)) (list (slot-value suggestion 'PROMPTER:VALUE)))
-                  (funcall (car (slot-value (car sources) 'PROMPTER::ACTIONS)) (list completed)))))))))
-
-(defun emacs-with-nyxt-nyxt-complete (prompt names)
-  "Completion function for nyxt completion."
-  (let* ((completions (--map (s-join "\t" (--map (s-join ": " it) it)) names))
-         (completed-string (completing-read (s-append ": " (car prompt)) completions))
-         (completed-index (-elem-index  completed-string completions)))
-    (if (numberp completed-index)
-        (nth completed-index names)
-      completed-string)))
-
-(defun emacs-with-nyxt-decode-command (encoded)
-  "Decode an ENCODED link containing some Elisp. This is for the `.ag91' links."
-  (--> encoded
-       (s-split "/" it t)
-       reverse
-       car
-       (s-split "\\." it t)
-       car
-       base64-decode-string
-       read
-       eval))
-
-(defengine duckduckgo
-  "https://duckduckgo.com/?q=%s"
-  :keybinding "n"
-  :browser 'browse-url-nyxt)
+  (xah-math-input--add-to-hash
+   '(
+     ["zws" "​"]
+     )))

@@ -23,6 +23,14 @@
        :completion
        ;;company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
+       (new-helm           ; restructured helm module (more flags...)
+        +ack-grep
+        ;;+childframe
+        +fuzzy
+        ;;+helm-popup-layout
+        +helm-mode
+        +icons
+        +remap-commands)
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
        vertico           ; the search engine of the future
@@ -67,7 +75,8 @@
        word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +ranger)   ; making dired pretty [functional]
+       ;;(dired +ranger)   ; making dired pretty [functional]
+       dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ibuffer         ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes

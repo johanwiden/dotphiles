@@ -94,6 +94,9 @@ bindsym $mod+space exec rofi -show drun
 bindsym $mod+Shift+space exec rofi -show run
 bindsym $mod+Ctrl+space exec rofi -show window
 
+# Disable focus wrapping
+focus_wrapping no
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
