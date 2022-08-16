@@ -60,8 +60,8 @@
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
 (package! dired-narrow)
-;; (package! dired+
-;;   :recipe (:host github :repo "emacsmirror/dired-plus"))
+(package! dired+
+  :recipe (:host github :repo "emacsmirror/dired-plus"))
 (package! elfeed)
 (package! elfeed-org)
 (package! engine-mode)
@@ -82,6 +82,7 @@
 (package! helm-sly)
 (package! helm-tramp)
 (package! helm-w3m)
+(package! helm-wikipedia)
 (package! hexrgb
   :recipe (:host github :repo "emacsmirror/hexrgb"))
 (package! hide-comnt

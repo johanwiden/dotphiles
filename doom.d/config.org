@@ -432,10 +432,6 @@ numbers are disabled. For relative line numbers, set this to `relative'.
             helm-display-header-line t
             helm-ff-auto-update-initial-value t
             helm-ff-DEL-up-one-level-maybe t)
-      ;; (unless (featurep! :completion new-helm +helm-popup-layout)
-      ;;   (progn
-      ;;     (setq helm-split-window-inside-p t)
-      ;;     (helm-autoresize-mode t)))
       (when (featurep! :completion new-helm +childframe)
         (setq helm-posframe-border-width 16))
 
@@ -466,22 +462,26 @@ numbers are disabled. For relative line numbers, set this to `relative'.
 
 ** helm-bibtex
 #+BEGIN_SRC emacs-lisp
-(use-package! helm-bibtex)
+(use-package! helm-bibtex
+  :after helm)
 #+END_SRC
 
 ** helm-ls-git
 #+BEGIN_SRC emacs-lisp
-  (use-package! helm-ls-git)
+  (use-package! helm-ls-git
+    :after helm)
 #+END_SRC
 
 ** helm-pydoc
 #+BEGIN_SRC emacs-lisp
-  (use-package! helm-pydoc)
+  (use-package! helm-pydoc
+    :after helm)
 #+END_SRC
 
 ** helm-tramp
 #+BEGIN_SRC emacs-lisp
-  (use-package! helm-tramp)
+  (use-package! helm-tramp
+    :after helm)
 #+END_SRC
 
 ** mu-helm-rg
@@ -531,13 +531,22 @@ With WITH-TYPES, ask for file types to search in."
 
 ** org-ql
 #+BEGIN_SRC emacs-lisp
-(use-package! org-ql)
-(use-package! helm-org-ql)
+(use-package! org-ql
+  :after helm)
+(use-package! helm-org-ql
+  :after helm)
 #+END_SRC
 
 ** helm-org-rifle
 #+BEGIN_SRC emacs-lisp
-(use-package! helm-org-rifle)
+(use-package! helm-org-rifle
+  :after helm)
+#+END_SRC
+
+** helm-wikipedia
+#+BEGIN_SRC emacs-lisp
+(use-package! helm-wikipedia
+  :after helm)
 #+END_SRC
 
 ** helm key bindings in C-z map
@@ -1503,7 +1512,7 @@ Also used for highlighting.")
   (bind-keys :map dired-mode-map
              ("ö" . dired-filter-map)
              ("ä" . dired-filter-mark-map)))
-  #+END_SRC
+#+END_SRC
 
 ** Narrow
 Narrow dired to match filter
@@ -1546,13 +1555,18 @@ Launch application associated with file
 * Dired plus
 220812 Had to turn it off. Otherwise helm rename file does not work.
 Probably same problem cause in ranger.
-+BEGIN_SRC emacs-lisp
-  (use-package! dired+
-    :after dired
-    :config
-    ;; (setq diredp-image-preview-in-tooltip 300)
-    )
-+END_SRC
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package! dired+
+  ;;   :after dired
+  ;;   :config
+  ;;   ;; diredp requires dired-actual-switches to be a string, not nil, but
+  ;;   ;; this variable is only non nil in dired buffers
+  ;;   (setq dired-actual-switches "-al")
+  ;;   ;; (setq diredp-image-preview-in-tooltip 300)
+  ;;   )
+(after! dired
+  (load "/home/jw/Downloads/dired+.el"))
+#+END_SRC
 
 * Bookmarks
 #+BEGIN_SRC emacs-lisp

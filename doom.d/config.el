@@ -273,10 +273,6 @@
             helm-display-header-line t
             helm-ff-auto-update-initial-value t
             helm-ff-DEL-up-one-level-maybe t)
-      ;; (unless (featurep! :completion new-helm +helm-popup-layout)
-      ;;   (progn
-      ;;     (setq helm-split-window-inside-p t)
-      ;;     (helm-autoresize-mode t)))
       (when (featurep! :completion new-helm +childframe)
         (setq helm-posframe-border-width 16))
 
@@ -304,13 +300,17 @@
 ;; (after! vertico
 ;;   (setq completion-category-overrides nil))
 
-(use-package! helm-bibtex)
+(use-package! helm-bibtex
+  :after helm)
 
-(use-package! helm-ls-git)
+(use-package! helm-ls-git
+  :after helm)
 
-(use-package! helm-pydoc)
+(use-package! helm-pydoc
+  :after helm)
 
-(use-package! helm-tramp)
+(use-package! helm-tramp
+  :after helm)
 
 (after! helm
   (progn
@@ -352,10 +352,16 @@ With WITH-TYPES, ask for file types to search in."
       (interactive "P")
       (mu-helm-rg default-directory with-types))))
 
-(use-package! org-ql)
-(use-package! helm-org-ql)
+(use-package! org-ql
+  :after helm)
+(use-package! helm-org-ql
+  :after helm)
 
-(use-package! helm-org-rifle)
+(use-package! helm-org-rifle
+  :after helm)
+
+(use-package! helm-wikipedia
+  :after helm)
 
 (after! helm
   (define-prefix-command 'C-z-map)
@@ -1228,6 +1234,17 @@ Also used for highlighting.")
       (visual-line-mode -1)
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
+
+;; (use-package! dired+
+  ;;   :after dired
+  ;;   :config
+  ;;   ;; diredp requires dired-actual-switches to be a string, not nil, but
+  ;;   ;; this variable is only non nil in dired buffers
+  ;;   (setq dired-actual-switches "-al")
+  ;;   ;; (setq diredp-image-preview-in-tooltip 300)
+  ;;   )
+(after! dired
+  (load "/home/jw/Downloads/dired+.el"))
 
 (use-package! bookmark+
   :after dired

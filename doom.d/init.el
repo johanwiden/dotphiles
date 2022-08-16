@@ -25,6 +25,7 @@
        ;;helm              ; the *other* search engine for love and life
        (new-helm           ; restructured helm module (more flags...)
         +ack-grep
+        ;;+autoresize
         ;;+childframe
         +fuzzy
         ;;+helm-popup-layout

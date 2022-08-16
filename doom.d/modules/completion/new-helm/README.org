@@ -31,7 +31,6 @@
   - [[#helm-posframe][helm-posframe]]
   - [[#helm-projectile][helm-projectile]]
 - [[#troubleshooting][Troubleshooting]]
-  - [[#known-problems][Known problems]]
 
 * Description
 This module provides Helm integration for a variety of Emacs commands, as well as
@@ -46,6 +45,7 @@ For more info on Helm, see:
 
 ** Module Flags
 + =+ack-grep= Configure ~helm-ff-do-grep~ to use =ack= instead of =grep= for searching.
++ =+autoresize= The helm session window will be created within the current window. The session window height will be dynamically adjusted when few completion candidates remain.
 + =+childframe= Causes Helm to display in a floating child frame, above Emacs.
 + =+disable-helm-ff-lynx-style= Disable special action for <left>, <right> in ~find-file~.
 + =+fuzzy= Enables fuzzy completion for Helm searches. Recommended. One then gets both fuzzy matching and regular helm matching. For example, try something similar to https://tuhdo.github.io/helm-intro.html#orgheadline2 where tuhdo searches for the file i5100_edac.c. You should find that this works also when fuzzy matching is enabled.
@@ -284,17 +284,3 @@ You may also want to change variable ~projectile-switch-project-action~, as sugg
 The helm module also defines workspace/project related commands such as ~+helm/workspace-mini~.
 
 * Troubleshooting
-
-** Known problems
-~helm-help~, does not work. This function is called when you do =C-h m= in a helm session.
-It is supposed to show buffer "*Helm Help*", but that buffer becomes obscured by the buffer where the helm session started.
-The error happens when ~org-string-width~ is called from ~org-table-align~.
-This problem is also in the old doom helm module.
-
-This functionality works in both emacs =prelude=, and =spacemacs=.
-
-However it is not a total loss: The help text is available in buffer "*Helm Help*" so just
-switch to that buffer, perhaps after leaving the Helm session that generated it.
-
-To see the general helm documentation do:
-  M-x helm-documentation
