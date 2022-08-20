@@ -46,6 +46,9 @@ export HTM_VIZ="/home/jw/projects/htm-community/htm-school-viz"
 
 export NODE_PATH=${NODE_PATH}:$(npm root -g)
 
+# Common lisp
+export SBCL_HOME=/usr/lib/sbcl/
+
 # if [[ -x /usr/bin/google-drive-ocamlfuse ]]; then
 #     mount | grep -q google_drive
 #     if [[ $? -ne 0 ]]; then
