@@ -107,7 +107,7 @@ SOURCE='/'
 
 # Time frame for old backups to keep, Used for the "purge" command.  
 # see duplicity man page, chapter TIME_FORMATS)
-MAX_AGE=6M
+MAX_AGE=9M
 
 # Number of full backups to keep. Used for the "purgeFull" command. 
 # See duplicity man page, action "remove-all-but-n-full".
@@ -122,7 +122,7 @@ MAX_FULLS_WITH_INCRS=1
 # forces a full backup if last full backup reaches a specified age, for the 
 # format of MAX_FULLBKP_AGE see duplicity man page, chapter TIME_FORMATS
 # Uncomment the following two lines to enable this setting.
-MAX_FULLBKP_AGE=2M
+MAX_FULLBKP_AGE=4M
 DUPL_PARAMS="$DUPL_PARAMS --full-if-older-than $MAX_FULLBKP_AGE " 
 
 # sets duplicity --volsize option (available since v0.4.3.RC7)

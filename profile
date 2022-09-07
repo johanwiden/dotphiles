@@ -10,6 +10,7 @@
 
 export EDITOR=emacs
 export EMACSDIR=~/.config/emacs
+export BROWSER=google-chrome
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -26,6 +27,10 @@ fi
 if [ -d "$HOME/rakudo/bin" ] ; then
     PATH="$HOME/rakudo/bin:$PATH"
 fi
+# rbenv, to install and support several ruby versions
+if [ -d "$HOME/.rbenv/bin" ] ; then
+    PATH="$HOME/.rbenv/bin:$PATH"
+fi
 # if [ -d "$HOME/doom/bin" ] ; then
 #     PATH="$HOME/doom/bin:$PATH"
 # fi
@@ -40,14 +45,23 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # Numenta visualizations
-export HTM_SERVER="/home/jw/projects/htm-community/nupic-history-server"
-export CELL_VIZ="/home/jw/projects/numenta/cell-viz"
-export HTM_VIZ="/home/jw/projects/htm-community/htm-school-viz"
+# export HTM_SERVER="$HOME/projects/htm-community/nupic-history-server"
+# export CELL_VIZ="$HOME/projects/numenta/cell-viz"
+# export HTM_VIZ="$HOME/projects/htm-community/htm-school-viz"
 
 export NODE_PATH=${NODE_PATH}:$(npm root -g)
 
 # Common lisp
-export SBCL_HOME=/usr/lib/sbcl/
+sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.7"
+export SBCL_HOME="${sbcl_install_dir}/lib/sbcl"
+sbcl_bin="${sbcl_install_dir}/bin"
+if [ -d "${sbcl_bin}" ] ; then
+    PATH="${sbcl_bin}:$PATH"
+fi
+roswell_bin="$HOME/.roswell/bin"
+if [ -d "${roswell_bin}" ] ; then
+    PATH="${roswell_bin}:$PATH"
+fi
 
 # if [[ -x /usr/bin/google-drive-ocamlfuse ]]; then
 #     mount | grep -q google_drive
@@ -61,11 +75,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # perl5
-PATH="/home/jw/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/jw/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/jw/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/jw/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/jw/perl5"; export PERL_MM_OPT;
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # gpg has to be started here (or in .xinitrc.exwm), if we want to have encryption in exwm

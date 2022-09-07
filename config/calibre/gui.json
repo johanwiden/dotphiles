@@ -1,7 +1,7 @@
 {
   "Plugin Updater plugin:plugin updater dialog": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAoQAAAAFQAADmUAAAXqAAAKEAAAABUAAA5lAAAF6gAAAAAAAAAADwAAAAoQAAAAFQAADmUAAAXq"
+    "__value__": "AdnQywADAAAAAAoRAAAAFgAADoYAAAXrAAAKEQAAABYAAA6GAAAF6wAAAAAAAAAADwAAAAoRAAAAFgAADoYAAAXr"
   },
   "action-layout-toolbar": [
     "Add Books",
@@ -199,7 +199,7 @@
   },
   "edit-open-with-programs-geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAZRAAAB9QAACMgAAAOEAAAGUQAAAfUAAAjIAAADhAAAAAAAAAAADwAAAAZRAAAB9QAACMgAAAOE"
+    "__value__": "AdnQywADAAAAAAZRAAAB9QAACNAAAAOIAAAGVQAAAfUAAAjMAAADhAAAAAAAAAAADwAAAAZVAAAB9QAACMwAAAOE"
   },
   "grid view visible": false,
   "jobs view column layout3": {
@@ -211,7 +211,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 404
+    "/home/jw/calibre_library": 416
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -223,7 +223,7 @@
   },
   "preferences dialog geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAEc/////QAABvkAAAYSAAABHP////0AAAb5AAAGEgAAAAAAAAAADwAAAAEc/////QAABvkAAAYS"
+    "__value__": "AdnQywADAAAAAACv/////AAABtQAAAYVAAAAs/////wAAAbQAAAGEQAAAAAAAAAADwAAAACz/////AAABtAAAAYR"
   },
   "previous_sort_order_BooksView": {
     "authors": true,

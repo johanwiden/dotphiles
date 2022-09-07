@@ -74,7 +74,7 @@
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAn7AAAAAAAADe4AAALjAAAJ+wAAAAAAAA73AAAGEQAAAAAAAAAADwAAAAn7AAAAAAAADvcAAAYR"
+    "__value__": "AdnQywADAAAAAAoAAAAAAAAADfMAAALjAAAKAAAAAAAAAA7/AAAGFQAAAAAAAAAADwAAAAoAAAAAAAAADv8AAAYV"
   },
   "match_tags_type": "any",
   "new_version_notification": true,
@@ -106,6 +106,10 @@
     "juno",
     "project"
   ],
-  "viewer_toc_search_history": [],
+  "viewer_toc_search_history": [
+    "clos",
+    "section on Arrays and ve",
+    "Arrays and ve"
+  ],
   "worker_limit": 6
 }

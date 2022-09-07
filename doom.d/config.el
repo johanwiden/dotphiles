@@ -3,6 +3,24 @@
 (setq user-full-name "Johan Widén"
       user-mail-address "j.e.widen@gmail.com")
 
+(defvar my/is-termux
+  (string-suffix-p
+   "Android" (string-trim (shell-command-to-string "uname -a")))
+  "Truthy value indicating if Emacs is currently running in termux.")
+(defvar my/is-terminal
+  (not window-system)
+  "Truthy value indicating if Emacs is currently running in a terminal.")
+
+(defun my/shell-command-on-file (command)
+  "Execute COMMAND asynchronously on the current file."
+  (interactive (list (read-shell-command
+                      (concat "Async shell command on " (buffer-name) ": "))))
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (async-shell-command (concat command " " filename))))
+(bind-key (kbd "C-M-&") #'my/shell-command-on-file)
+
 (setq doom-font (font-spec :family "Ubuntu Mono" :size 18)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 15)
@@ -1125,29 +1143,33 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (setq ibuffer-saved-filter-groups
       '(("home"
          ("dired" (mode . dired-mode))
-         ("org" (name .  ".*org$"))
-         ("helm" (predicate string-match "Hmm" mode-name))
-         ("web" (or (mode .  web-mode) (mode .  js2-mode)))
-         ("shell" (or (mode . eshell-mode) (mode .  shell-mode)))
-         ("programming" (or (mode . python-mode) (mode . c++-mode)))
+         ;; ("helm" (predicate string-match "Hmm" mode-name))
+         ("helm" (mode . helm-major-mode))
+         ("journal" (name . "private-"))
+         ("programming" (or (mode . python-mode)
+                            (mode . c++-mode)))
+         ("shell" (or (mode . eshell-mode)
+                      (mode .  shell-mode)))
+         ("sly" (name . "sly"))
+         ("web" (or (mode .  web-mode)
+                    (mode .  js2-mode)))
          ("emacs" (or (name . "^\\*scratch\\*$")
                       (name . "^\\*Bookmark List\\*$")
                       (name . "^\\*Compile-Log\\*$")
                       (name . "^\\*Messages\\*$")))
          ("emacs-config" (or (filename . ".emacs.d")
-                             (filename . "emacs-config")))
-         ("martinowen.net" (filename . "martinowen.net"))
-         ("Org" (or (mode . org-mode)
-                    (filename . "OrgMode")))
-         ("code" (filename . "code"))
-         ("Web Dev" (or (mode . html-mode)
-                        (mode . css-mode)))
-         ("Subversion" (name . "\*svn"))
-         ("Magit" (name . "\*magit"))
-         ("ERC" (mode . erc-mode))
+                             (filename . "emacs-config")
+                             (filename . "config.org")
+                             (filename . "config.el")))
          ("Help" (or (name . "\*Help\*")
                      (name . "\*Apropos\*")
-                     (name . "\*info\*"))))))
+                     (name . "\*info\*")))
+         ("Magit" (name . "\*magit"))
+         ("Org" (or (mode . org-mode)
+                    (filename . "OrgMode")))
+         ("Web Dev" (or (mode . html-mode)
+                        (mode . css-mode)))
+         ("Windows" (mode . exwm-mode)))))
 (add-hook 'ibuffer-mode-hook
           #'(lambda ()
               (ibuffer-auto-mode 1)
@@ -1763,17 +1785,31 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   :config
   (engine-mode t))
 
+;; Note: This uses Company completion, so <F1> will display the candidates documentation.
+
 (setq common-lisp-hyperspec-root
-;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
-"file:///home/jw/lisp/HyperSpec/")
+      ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
+      "file:///home/jw/lisp/HyperSpec/")
 ;; (setq browse-url-browser-function ‘eww-browse-url)
 (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
+;; (setq inferior-lisp-program "sbcl")
+(setq sly-default-lisp 'roswell)
+(setq ros-config "/home/jw/.roswell/ros-conf.lisp")
+(setq sly-lisp-implementations
+      `((sbcl ("sbcl") :coding-system utf-8-unix)
+        (roswell ("ros" "-Q" "-l" ,ros-config "run"))
+        (qlot ("qlot" "exec" "ros" "-l" ,ros-config "run" "-S" ".")
+              :coding-system utf-8-unix)))
+
+
 (use-package! helm-sly
   :after sly-mrepl
   :config
   (add-hook 'sly-mrepl-hook #'company-mode)
+  ;; Probably part of disabling TAB completion when indent is intended
+  (add-hook 'sly-mrepl-hook #'helm-sly-disable-internal-completion)
   (require 'helm-company)
 
   (defun ambrevar/indent-and-helm-company (arg)
@@ -1782,6 +1818,14 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
     (interactive "P")
     (indent-for-tab-command arg)
     (helm-company))
+
+  (defun qlot-sly ()
+    "Start a sly repl using qlot at the projects root"
+    (interactive)
+    (let ((dir (cdr (project-current))))
+      (if (cd dir)
+          (sly 'qlot)
+        (error (format "Failed to cd to %s" dir)))))
 
   (defun sly-critique-defun ()
     "Lint this function with lisp-critic"
@@ -1805,9 +1849,21 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
                                  "stumpish start-slynk")
     (sly-connect "localhost" "4047"))
 
+  ;; Use sly-flex-completions to get completion also on package names.
+  (customize-set-variable 'sly-complete-symbol-function 'sly-flex-completions)
+  ;; Probably part of disabling TAB completion when indent is intended
+  (setq helm-company-initialize-pattern-with-prefix t)
   (define-key sly-mrepl-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
+  (define-key sly-mrepl-mode-map (kbd "M-p") 'helm-comint-input-ring)
+  (define-key sly-mrepl-mode-map (kbd "M-s f") 'helm-comint-prompts-all)
+  (define-key sly-mrepl-mode-map (kbd "C-c C-x c") 'helm-sly-list-connections)
   (add-hook 'lisp-mode-hook #'company-mode)
   (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company))
+
+;; Roswell
+;; (load (expand-file-name "~/.roswell/helper.el"))
+;; (setq inferior-lisp-program "ros -Q run")
+;; (setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 
 (use-package! arxiv-mode
   :defer t)

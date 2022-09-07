@@ -1,9 +1,42 @@
 {
   "choose-open-with-program-dialog-geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAUbAAABsQAACB8AAAOkAAAFGwAAAbEAAAgfAAADpAAAAAAAAAAADwAAAAUbAAABsQAACB8AAAOk"
+    "__value__": "AdnQywADAAAAAAUbAAABsQAACCcAAAOoAAAFHwAAAbEAAAgjAAADpAAAAAAAAAAADwAAAAUfAAABsQAACCMAAAOk"
   },
   "entries": {
+    "epub": [
+      {
+        "Categories": "Office;",
+        "Comment": "A cross-platform ebook reader",
+        "Exec": [
+          "/opt/Koodo Reader/koodo-reader",
+          "%U"
+        ],
+        "Icon": "/usr/share/icons/hicolor/256x256/apps/koodo-reader.png",
+        "MimeType": [
+          "",
+          "image/vnd.djvu",
+          "application/vnd.amazon.ebook",
+          "application/x-cbz",
+          "application/epub+zip",
+          "application/x-mobipocket-ebook",
+          "application/x-cbt",
+          "application/x-fictionbook+xml",
+          "application/x-cbr",
+          "application/pdf"
+        ],
+        "Name": "Koodo Reader",
+        "StartupWMClass": "Koodo Reader",
+        "Terminal": "false",
+        "Type": "Application",
+        "desktop_file_path": "/usr/share/applications/koodo-reader.desktop",
+        "icon_data": {
+          "__class__": "bytearray",
+          "__value__": "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"
+        },
+        "uuid": "71891793-a42e-4308-8737-b04c90f84b2a"
+      }
+    ],
     "pdf": [
       {
         "Exec": [

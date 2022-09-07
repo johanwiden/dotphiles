@@ -149,6 +149,9 @@ eval "$(fasd --init auto)"
 
 source /home/jw/.config/broot/launcher/bash/br
 
+# rbenv
+eval "$(~/.rbenv/bin/rbenv init - bash)"
+
 vterm_printf(){
     if [ -n "$TMUX" ]; then
         # Tell tmux to pass the escape sequences through

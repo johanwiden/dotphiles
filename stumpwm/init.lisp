@@ -1,5 +1,7 @@
 ;;; -*-  mode: lisp; -*-
 
+(redirect-all-output (data-dir-file "debug-output" "txt"))
+
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
 				       (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
