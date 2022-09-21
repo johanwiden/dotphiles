@@ -211,7 +211,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 416
+    "/home/jw/calibre_library": 420
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
@@ -223,7 +223,7 @@
   },
   "preferences dialog geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAACv/////AAABtQAAAYVAAAAs/////wAAAbQAAAGEQAAAAAAAAAADwAAAACz/////AAABtAAAAYR"
+    "__value__": "AdnQywADAAD///9x////+QAABa4AAAYG////cf////kAAAWuAAAGBgAAAAAAAAAADwD///9x////+QAABa4AAAYG"
   },
   "previous_sort_order_BooksView": {
     "authors": true,

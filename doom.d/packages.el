@@ -113,6 +113,7 @@
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
+(package! org-transclusion)
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
 (package! pdftotext

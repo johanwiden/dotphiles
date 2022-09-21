@@ -95,9 +95,9 @@
   ;;       modus-themes-bold-constructs nil
   ;;       modus-themes-region '(bg-only no-extend))
 
+  :config
   ;; Load the theme files before enabling a theme
   (modus-themes-load-themes)
-  :config
   ;; Load the theme of your choice:
   (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
   (setq doom-theme 'modus-vivendi)
@@ -198,17 +198,17 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
-(use-package! org-journal
-;;   :defer t
-  :after org
-  :config
-  (setq org-journal-date-prefix "#+TITLE: "
-        org-journal-file-format "private-%Y-%m-%d.org"
-        org-journal-dir "~/org/roam/"
-        org-journal-carryover-items nil
-        org-journal-date-format "%Y-%m-%d")
-  (add-to-list 'org-agenda-files org-journal-dir)
-)
+(after! org-journal
+  (progn
+    ;; With re-search-forward: Do not attempt to search for the empty string. Use instead something like
+    ;; "^\*\* ", to search for all org-journal top entries.
+    (customize-set-variable 'org-journal-search-forward-fn 're-search-forward)
+    (setq org-journal-date-prefix "#+TITLE: "
+          org-journal-file-format "private-%Y-%m-%d.org"
+          org-journal-dir "~/org/roam/"
+          org-journal-carryover-items nil
+          org-journal-date-format "%Y-%m-%d")
+    (add-to-list 'org-agenda-files org-journal-dir)))
 
 (after! org
   (+org--babel-lazy-load 'python)
@@ -279,6 +279,15 @@
   (setq org-similarity-directory org-roam-directory)
   )
 
+(use-package! org-transclusion
+  :after org
+  :init
+  (map!
+   :map global-map "<f12>" #'org-transclusion-add
+   :leader
+   :prefix "n"
+   :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
+
 (setq display-line-numbers-type nil)
 
 (after! helm
@@ -291,7 +300,7 @@
             helm-display-header-line t
             helm-ff-auto-update-initial-value t
             helm-ff-DEL-up-one-level-maybe t)
-      (when (featurep! :completion new-helm +childframe)
+      (when (modulep! :completion new-helm +childframe)
         (setq helm-posframe-border-width 16))
 
       ;; Was bound to the consult variant
@@ -837,80 +846,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (defun ambrevar/exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
 
 (my-exwm-config-setup) ;; Does not start X11 or EXWM. Start should be done from commandline.
-
-(use-package! telephone-line)
-(defun ambrevar/bottom-right-window-p ()
-  "Determines whether the last (i.e. bottom-right) window of the
-  active frame is showing the buffer in which this function is
-  executed."
-  (let* ((frame (selected-frame))
-         (right-windows (window-at-side-list frame 'right))
-         (bottom-windows (window-at-side-list frame 'bottom))
-         (last-window (car (seq-intersection right-windows bottom-windows))))
-    (eq (current-buffer) (window-buffer last-window))))
-
-(defun jw/telephone-misc-if-exwm-or-last-window ()
-  "Renders the mode-line-misc-info string for display in the
-  mode-line if the currently active window is the last one in the
-  frame, or an exwm window.
-
-  The idea is to not display information like the current time,
-  load, battery levels on all buffers.
-  And to display input mode only in exwm windows."
-
-  (when (or (ambrevar/bottom-right-window-p)
-            exwm-window-type)
-    (telephone-line-raw mode-line-misc-info t)))
-
-(defun jw/input-mode-str ()
-  "Return string representing input mode, if window is of type EXWM"
-  (if exwm-window-type
-      (if (eq exwm--input-mode 'line-mode)
-        (format "l")
-        (format "c"))
-    (format "")))
-
-(defun jw/workspace-index ()
-  "Return string representing current EXWM workspace index"
-  (if (ambrevar/bottom-right-window-p)
-    (format "[%s]" (exwm-workspace--position (selected-frame)))
-    (format "")))
-
-(defun jw/format-workspace-index-and-input-mode ()
-  "Return string [workspace_index]input-mode depending on exwm-window or bottom-right window"
-  (format "%s%s" (jw/workspace-index) (jw/input-mode-str)))
-
-(defun ambrevar/telephone-line-setup ()
-  (telephone-line-defsegment telephone-line-last-window-segment ()
-    (jw/telephone-misc-if-exwm-or-last-window))
-
-  ;; Display the current EXWM workspace index in the mode-line
-  (telephone-line-defsegment telephone-line-exwm-workspace-index ()
-    (jw/format-workspace-index-and-input-mode))
-
-  ;; Define a highlight font for ~ important ~ information in the last
-  ;; window.
-  (defface special-highlight '((t (:foreground "white" :background "#5f627f"))) "")
-  (add-to-list 'telephone-line-faces
-               '(highlight . (special-highlight . special-highlight)))
-
-  (setq telephone-line-lhs
-        '((nil . (telephone-line-position-segment))
-          (accent . (telephone-line-buffer-segment))))
-
-  (setq telephone-line-rhs
-        '((accent . (telephone-line-major-mode-segment))
-          (nil . (telephone-line-last-window-segment
-                  telephone-line-exwm-workspace-index))))
-
-  (setq telephone-line-primary-left-separator 'telephone-line-tan-left
-        telephone-line-primary-right-separator 'telephone-line-tan-right
-        telephone-line-secondary-left-separator 'telephone-line-tan-hollow-left
-        telephone-line-secondary-right-separator 'telephone-line-tan-hollow-right)
-
-  (telephone-line-mode 1))
-
-(ambrevar/telephone-line-setup)
 
 (use-package! helm-exwm
   :config

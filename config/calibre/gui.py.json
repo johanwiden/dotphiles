@@ -46,6 +46,7 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "the roots of lisp",
     "krakauer",
     "stru",
     "monday",
@@ -69,12 +70,11 @@
     "costa",
     "bastos",
     "lillicrap",
-    "hopfield",
-    "hinton"
+    "hopfield"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAoAAAAAAAAADfMAAALjAAAKAAAAAAAAAA7/AAAGFQAAAAAAAAAADwAAAAoAAAAAAAAADv8AAAYV"
+    "__value__": "AdnQywADAAAAAAUAAAAAAAAACPMAAALjAAAFAAAAAAAAAAn9AAAGBAAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYE"
   },
   "match_tags_type": "any",
   "new_version_notification": true,
