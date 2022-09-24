@@ -296,7 +296,7 @@
       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
       (define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
 
-      (setq helm-candidate-number-limit 150
+      (setq helm-candidate-number-limit 1000
             helm-display-header-line t
             helm-ff-auto-update-initial-value t
             helm-ff-DEL-up-one-level-maybe t)
@@ -735,6 +735,14 @@ See also `process-lines'."
             (,(kbd "s-<f2>") . (lambda ()
                                  (interactive)
                                  (start-process "" nil "/usr/bin/slock")))
+            ;; Bind "s-<f11>" to setkbmap setxkbmap -layout se
+            (,(kbd "s-<f11>") . (lambda ()
+                                 (interactive)
+                                 (start-process "" nil "/usr/bin/setxkbmap" "-layout" "se")))
+            ;; Bind "s-<f12>" to setkbmap setxkbmap -layout se -variant rus
+            (,(kbd "s-<f12>") . (lambda ()
+                                 (interactive)
+                                 (start-process "" nil "/usr/bin/setxkbmap" "-layout" "se" "-variant" "rus")))
             (,(kbd "s-h") . windmove-left)  ;; Move to window to the left of current one. Uses universal arg
             (,(kbd "s-j") . windmove-down)  ;; Move to window below current one. Uses universal arg
             (,(kbd "s-k") . windmove-up)    ;; Move to window above current one. Uses universal arg
@@ -1678,6 +1686,87 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
       ("`"   hydra-projectile-other-window/body "other window")
       ("q"   nil "cancel" :color blue))))
 
+(after! helm
+  (progn
+    (defhydra help/hydra/left/describe (:color blue
+                                        :hint nil)
+  "
+Describe Something: (q to quit)
+_a_ all help for everything screen
+_A_ autodefs
+_b_ bindings
+_B_ personal bindings
+_c_ char
+_C_ coding system
+_d_ Doom module
+_D_ Doom help
+_f_ function
+_F_ flycheck checker
+_h_ doom search headings
+_H_ package homepage
+_i_ input method
+_k_ key briefly
+_K_ key
+_l_ language environment
+_L_ mode lineage
+_m_ major mode
+_M_ minor mode
+_n_ current coding system briefly
+_N_ current coding system full
+_o_ lighter indicator
+_O_ lighter symbol
+_p_ package
+_P_ text properties
+_s_ symbol
+_t_ theme
+_v_ variable
+_V_ custom variable
+_w_ where is something defined
+"
+  ("A" doom/help-autodefs)
+  ("b" describe-bindings)
+  ("B" describe-personal-keybindings)
+  ("C" describe-categories)
+  ("c" describe-char)
+  ("C" describe-coding-system)
+  ("d" doom/help-modules)
+  ("D" doom/help)
+  ("f" describe-function)
+  ("F" flycheck-describe-checker)
+  ("h" doom/help-search-headings)
+  ("H" doom/help-package-homepage)
+  ("i" describe-input-method)
+  ("K" describe-key)
+  ("k" describe-key-briefly)
+  ("l" describe-language-environment)
+  ("L" help/parent-mode-display)
+  ("M" describe-minor-mode)
+  ("m" describe-mode)
+  ("N" describe-current-coding-system)
+  ("n" describe-current-coding-system-briefly)
+  ("o" describe-minor-mode-from-indicator)
+  ("O" describe-minor-mode-from-symbol)
+  ;; ("p" describe-package)
+  ("p" doom/help-packages)
+  ("P" describe-text-properties)
+  ("q" nil)
+  ("a" help)
+  ("s" describe-symbol)
+  ("t" describe-theme)
+  ("v" describe-variable)
+  ("V" doom/help-custom-variable)
+  ("w" where-is))
+    (global-set-key (kbd "M-i") nil)
+    (global-set-key (kbd "M-i") #'help/hydra/left/describe/body)
+
+(after! parent-mode
+  (defun help/parent-mode-display ()
+    "Display this buffer's mode hierarchy."
+    (interactive)
+    (let ((ls (parent-mode-list major-mode)))
+      (princ ls))))
+    ))
+
 ;; Change "Jane Joplin & John B Doe_" -> "Jane Joplin_ & Doe, John B"
 (fset 'jw/swap_author
       (kmacro-lambda-form [?\M-b left ?\M-d ?\M-x ?s ?e ?a ?r ?c ?h ?- ?b ?a ?c ?k ?w ?a ?r ?d ?s backspace return ?& return ?\C-f ?\C-y ?, ?\M-b ?\M-b ?\M-f] 0 "%d"))
@@ -1834,164 +1923,60 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
      ["zws" "​"]
      )))
 
-(defun emacs-with-nyxt-sly-connect (host port)
-  "Connect Sly to HOST and PORT ignoring version mismatches."
-  (sly-connect host port)
-  (sleep-for 1))
+(after! helm
+  (progn
+    (load "/home/jw/projects/emacs/lexic/lexic.el")
+    (define-key lexic-mode-map "E" (lambda () (interactive)
+                                     (lexic-return-from-lexic) ; expand
+                                     (switch-to-buffer (lexic-get-buffer))))
+    (define-key lexic-mode-map "M" (lambda () (interactive)
+                                     (lexic-return-from-lexic) ; minimise
+                                     (lexic-goto-lexic)))
+    (define-key lexic-mode-map "/" (lambda () (interactive)
+                                     (lexic-search)))
 
-(defvar emacs-with-nyxt-sly-nyxt-delay 0.3)
-(defun emacs-with-nyxt-start-and-connect-to-nyxt (&optional no-maximize)
-  "Start Nyxt with swank capabilities. Optionally skip window maximization with NO-MAXIMIZE."
-  (interactive)
-  (async-shell-command (format "nyxt -e \"(nyxt-user::start-slynk)\""))
-  (while (not (ignore-errors (not (emacs-with-nyxt-sly-connect "localhost" "4006"))))
-    (message "Starting Swank connection...")
-    (sleep-for emacs-with-nyxt-sly-nyxt-delay))
-  (sleep-for 5)
-  (emacs-with-nyxt-sly-repl-send-sexps
-   `(load "~/quicklisp/setup.lisp"))
-  (emacs-with-nyxt-sly-repl-send-sexps
-   `(defun replace-all (string part replacement &key (test #'char=))
-      "Return a new string in which all the occurences of the part is replaced with replacement."
-      (with-output-to-string (out)
-			     (loop with part-length = (length part)
-				   for old-pos = 0 then (+ pos part-length)
-				   for pos = (search part string
-						     :start2 old-pos
-						     :test test)
-				   do (write-string string out
-						    :start old-pos
-						    :end (or pos (length string)))
-				   when pos do (write-string replacement out)
-				   while pos))))
+  (defadvice! +lookup/dictionary-definition-lexic (identifier &optional arg)
+    "Look up the definition of the word at point (or selection) using `lexic-search'."
+    :override #'+lookup/dictionary-definition
+    (interactive
+     (list (or (doom-thing-at-point-or-region 'word)
+               (read-string "Look up in dictionary: "))
+           current-prefix-arg))
+    (lexic-search identifier nil nil t))))
+;; (use-package! lexic
+;;   :defer t
+;;   :commands lexic-search lexic-list-dictionary
+;;   :config
+;;   (map! :map lexic-mode-map
+;;         :n "q" #'lexic-return-from-lexic
+;;         :nv "RET" #'lexic-search-word-at-point
+;;         :n "a" #'outline-show-all
+;;         :n "h" (cmd! (outline-hide-sublevels 3))
+;;         :n "o" #'lexic-toggle-entry
+;;         :n "n" #'lexic-next-entry
+;;         :n "N" (cmd! (lexic-next-entry t))
+;;         :n "p" #'lexic-previous-entry
+;;         :n "P" (cmd! (lexic-previous-entry t))
+;;         :n "E" (cmd! (lexic-return-from-lexic) ; expand
+;;                      (switch-to-buffer (lexic-get-buffer)))
+;;         :n "M" (cmd! (lexic-return-from-lexic) ; minimise
+;;                      (lexic-goto-lexic))
+;;         :n "C-p" #'lexic-search-history-backwards
+;;         :n "C-n" #'lexic-search-history-forwards
+;;         :n "/" (cmd! (call-interactively #'lexic-search)))
+;;   )
 
-  (emacs-with-nyxt-sly-repl-send-sexps
-   `(defun eval-in-emacs (&rest s-exps)
-      "Evaluate S-EXPS with emacsclient."
-      (let ((s-exps-string (replace-all
-			    (write-to-string
-			     `(progn ,@s-exps) :case :downcase)
-			    ;; Discard the package prefix.
-			    "nyxt::" "")))
-	(format *error-output* "Sending to Emacs:~%~a~%" s-exps-string)
-	(uiop:run-program
-	 (list "emacsclient" "--eval" s-exps-string) :output :string)))))
+  ;; (defadvice! +lookup/dictionary-definition-lexic (identifier &optional arg)
+  ;; "Look up the definition of the word at point (or selection) using `lexic-search'."
+  ;; :override #'+lookup/dictionary-definition
+  ;; (interactive
+  ;;  (list (or (doom-thing-at-point-or-region 'word)
+  ;;            (read-string "Look up in dictionary: "))
+  ;;        current-prefix-arg))
+  ;; (lexic-search identifier nil nil t))
 
-(defun browse-url-nyxt (url &optional new-window)
-  "Browse URL with Nyxt. NEW-WINDOW is ignored."
-  (interactive "sURL: ")
-  (unless (sly-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
-  (emacs-with-nyxt-browse-url-nyxt url url))
+(use-package! git-link
+  :defer t)
 
-(defun emacs-with-nyxt-browse-url-nyxt (url &optional buffer-title)
-  "Open URL with Nyxt and optionally define BUFFER-TITLE."
-  (interactive "sURL: ")
-  (emacs-with-nyxt-sly-repl-send-sexps
-   (cl-concatenate
-    'list
-    (list
-     'buffer-load
-     url)
-    (if buffer-title
-	(progn
-	  `(:buffer (make-buffer :title ,buffer-title))
-	  nil))))
-  (unless buffer-title
-    (midraal/nyxt-switch-buffer buffer-title)))
-
-(defun emacs-with-nyxt-search-first-in-nyxt-current-buffer (string)
-  "Search current Nyxt buffer for STRING."
-  (interactive "sString to search: ")
-  (unless (sly-connected-p) (emacs-with-nyxt-start-and-connect-to-nyxt))
-  (emacs-with-nyxt-sly-repl-send-sexps
-   `(nyxt/web-mode::highlight-selected-hint
-     :link-hint
-     (car (nyxt/web-mode::matches-from-json
-	   (nyxt/web-mode::query-buffer :query ,string)))
-     :scroll 't)))
-
-(defun emacs-with-nyxt-sly-repl-send-sexps (&rest s-exps)
-  "Evaluate S-EXPS with Nyxt Sly session."
-  (let ((s-exps-string (s-join "" (--map (prin1-to-string it) s-exps))))
-    (if (sly-connected-p)
-	(cdr (sly-eval `(slynk:eval-and-grab-output ,s-exps-string)))
-      (error "Sly is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first"))))
-
-(defun midraal/get-nyxt-buffers ()
-  (when (sly-connected-p)
-    (read
-     (emacs-with-nyxt-sly-repl-send-sexps
-      '(map 'list (lambda (el) (slot-value el 'title)) (buffer-list))))))
-
-(defun midraal/nyxt-switch-buffer (&optional title)
-  (interactive)
-  (if (sly-connected-p)
-      (let ((title (or title (completing-read "Title: " (midraal/get-nyxt-buffers)))))
-	(emacs-with-nyxt-sly-repl-send-sexps
-	 `(switch-buffer :id (slot-value (find-if #'(lambda (el) (equal (slot-value el 'title) ,title)) (buffer-list)) 'id))))
-    (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide))))
-
-(defun midraal/get-nyxt-commands ()
-  (when (sly-connected-p)
-    (read
-     (emacs-with-nyxt-sly-repl-send-sexps
-      `(let ((commands (make-instance 'command-source)))
-	 (map 'list (lambda (el) (slot-value el 'name)) (funcall (slot-value commands 'prompter:CONSTRUCTOR) commands)))))))
-
-(defun midraal/nyxt-run-command (&optional command)
-  (interactive)
-  (if (sly-connected-p)
-      (let ((command (or command (completing-read "Execute command: " (midraal/get-nyxt-commands)))))
-	(emacs-with-nyxt-sly-repl-send-sexps `(nyxt::run-async ',(read command))))
-    (error (format "%s is not connected to Nyxt. Run `emacs-with-nyxt-start-and-connect-to-nyxt' first" cl-ide))))
-
-(defun midraal/nyxt-take-over-prompt ()
-  (interactive)
-  (emacs-with-nyxt-sly-repl-send-sexps
-   `(progn
-      (defun flatten (structure)
-        (cond ((null structure) nil)
-              ((atom structure) (list structure))
-              (t (mapcan #'flatten structure))))
-      (defun prompt (&REST args)
-        (flet ((ensure-sources (specifiers)
-                               (mapcar (lambda (source-specifier)
-                                         (cond
-                                          ((and (symbolp source-specifier)
-                                                (c2cl:subclassp source-specifier 'source))
-                                           (make-instance source-specifier))
-                                          (t source-specifier)))
-                                       (uiop:ensure-list specifiers))))
-              (sleep 0.1)
-              (let* ((promptstring (list (getf args :prompt)))
-                     (sources (ensure-sources (getf args :sources)))
-                     (names (mapcar (lambda (ol) (slot-value ol 'prompter:attributes)) (flatten (mapcar (lambda (el) (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS)) sources))))
-                     (completed (read-from-string (eval-in-emacs `(midraal/nyxt-complete ',promptstring ',names))))
-                     (suggestion
-                      (find-if (lambda (el) (equal completed (slot-value el 'PROMPTER::ATTRIBUTES))) (flatten (mapcar (lambda (el) (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS)) sources))))
-                     (selected-class (find-if (lambda (el) (find suggestion (slot-value el 'PROMPTER::INITIAL-SUGGESTIONS))) sources)))
-                (if selected-class
-                    (funcall (car (slot-value selected-class 'PROMPTER::ACTIONS)) (list (slot-value suggestion 'PROMPTER:VALUE)))
-                  (funcall (car (slot-value (car sources) 'PROMPTER::ACTIONS)) (list completed)))))))))
-
-(defun midraal/nyxt-complete (prompt names)
-  (let* ((completions (--map (s-join "\t" (--map (s-join ": " it) it)) names))
-         (completed-string (completing-read (s-append ": " (car prompt)) completions))
-         (completed-index (-elem-index  completed-string completions)))
-    (if (numberp completed-index)
-        (nth completed-index names)
-      completed-string)))
-
-
-(with-eval-after-load 'consult
-  (consult--define-state nyxt)
-  (defvar nyxt-buffer-source
-    `(:name "Nyxt"
-	    :hidden t
-	    :narrow ?n
-	    :category browser
-	    :items ,#'midraal/get-nyxt-buffers
-	    :action ,#'midraal/nyxt-switch-buffer))
-  (add-to-list 'consult-buffer-sources 'nyxt-buffer-source 'append))
-
-(setq browse-url-browser-function 'browse-url-nyxt)
+(defun load-emacs-with-nyxt ()
+  (load "/home/jw/.config/doom/emacs-with-nyxt.el"))

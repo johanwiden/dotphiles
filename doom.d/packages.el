@@ -71,6 +71,7 @@
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)
 (package! fontaine)
+(package! git-link)
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
 (package! helm-bibtex)
@@ -93,6 +94,10 @@
 (package! hungry-delete)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
+(package! lexic)
+;; (package! lexic :recipe (:local-repo "lexic"))
+;; (package! lexic
+;;   :recipe (:host github :repo "tecosaur/lexic"))
 (package! mixed-pitch)
 (package! modus-themes
   :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
