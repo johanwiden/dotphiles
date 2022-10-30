@@ -97,9 +97,9 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 export ALTERNATE_EDITOR=""
-#export EDITOR="emacsclient-snapshot -t"                 # $EDITOR opens in terminal
-export EDITOR="emacsclient-snapshot -c"                  # $EDITOR opens in GUI
-export VISUAL="emacsclient-snapshot -c"         # $VISUAL opens in GUI mode
+#export EDITOR="emacsclient -t"        # $EDITOR opens in terminal
+export EDITOR="emacsclient -c"         # $EDITOR opens in GUI
+export VISUAL="emacsclient -c"         # $VISUAL opens in GUI mode
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

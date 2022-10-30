@@ -4,6 +4,8 @@
 <dict>
 	<key>lineedit_history_viewer-search-panel-expression</key>
 	<array>
+		<string>\"nil\"</string>
+		<string>"nil"</string>
 		<string>page will help</string>
 		<string>databases section</string>
 		<string>regexp</string>

@@ -8,9 +8,13 @@ $endif
 $if Fish
   set colored-stats On
 $endif
+set colored-stats on
+set colored-completion-prefix on
 set completion-ignore-case On
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
 set show-all-if-ambiguous On
 set show-all-if-unmodified On
 set visible-stats On
+"\C-xP": print-last-kbd-macro
+"\C-xF": "\C-e | ezf)\C-a(\C-a$\C-b\C-a"

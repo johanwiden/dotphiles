@@ -46,6 +46,12 @@ Some functionality uses this to identify you, e.g. GPG configuration, email clie
   "Truthy value indicating if Emacs is currently running in a terminal.")
 #+END_SRC
 
+* Key bindings
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "§") (lookup-key global-map (kbd "C-x")))
+(global-set-key (kbd "<insert>") (lookup-key global-map (kbd "C-x")))
+#+END_SRC
+
 * shell-command-on-file
 #+BEGIN_SRC emacs-lisp
 (defun my/shell-command-on-file (command)
@@ -482,6 +488,7 @@ numbers are disabled. For relative line numbers, set this to `relative'.
                 #'(lambda ()
                     (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
 
+      (helm-adaptive-mode 1)
       ;; show minibuffer history with Helm
       ;; (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
       ;; (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
@@ -584,6 +591,12 @@ With WITH-TYPES, ask for file types to search in."
 #+BEGIN_SRC emacs-lisp
 (use-package! helm-wikipedia
   :after helm)
+#+END_SRC
+
+** ezf
+#+BEGIN_SRC emacs-lisp
+(after! helm
+  (load "/home/jw/projects/emacs/ezf/ezf.el"))
 #+END_SRC
 
 ** helm key bindings in C-z map
@@ -2387,6 +2400,11 @@ Enabled in init.el: common-lisp
 ;; (setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 #+END_SRC
 
+* geiser, guile
+#+BEGIN_SRC emacs-lisp
+(setq geiser-guile-load-init-file-p t)
+#+END_SRC
+
 * arxiv-mode
 #+BEGIN_SRC emacs-lisp
 (use-package! arxiv-mode
@@ -2495,5 +2513,6 @@ Enabled in init.el: common-lisp
 Note: Redefines browse-url-browser-function
 #+BEGIN_SRC emacs-lisp
 (defun load-emacs-with-nyxt ()
+  (interactive)
   (load "/home/jw/.config/doom/emacs-with-nyxt.el"))
 #+END_SRC

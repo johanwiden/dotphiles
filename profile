@@ -8,7 +8,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export EDITOR=emacs
+export EDITOR="emacsclient -c"
 export EMACSDIR=~/.config/emacs
 export BROWSER=google-chrome
 

@@ -1,15 +1,19 @@
 {
   "main_window_geometry": {
     "__class__": "bytearray",
-    "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYVAAAFAAAAAAAAAAn9AAAGFQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYV"
+    "__value__": "AdnQywADAAAAAAAAAAAAAAAABP0AAAYEAAAAAAAAAAAAAAT9AAAGBAAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYE"
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGFvwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYWAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAE/gAABhYAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAE/gAABgUAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
     " page.": {
+      "case_sensitive": false,
+      "mode": "normal"
+    },
+    "\"nil\"": {
       "case_sensitive": false,
       "mode": "normal"
     },
@@ -22,6 +26,10 @@
       "mode": "normal"
     },
     "Interfa": {
+      "case_sensitive": false,
+      "mode": "normal"
+    },
+    "\\\"nil\\\"": {
       "case_sensitive": false,
       "mode": "normal"
     },
@@ -97,6 +105,15 @@
     "standalone_recently_opened": [
       {
         "authors": [
+          "Edmund Weitz"
+        ],
+        "key": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
+        "pathtoebook": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
+        "timestamp": "2022-10-15T07:02:31.794Z",
+        "title": "Common Lisp Recipes"
+      },
+      {
+        "authors": [
           "The Common Lisp Cookbook contributors"
         ],
         "key": "/home/jw/projects/cl/cl-cookbook/common-lisp-cookbook.epub",
@@ -112,15 +129,6 @@
         "pathtoebook": "/home/jw/calibre_library/The Common Lisp Cookbook contributors/The Common Lisp Cookbook_ Diving into the programmable programming language (1303)/The Common Lisp Cookbook_ Diving into the - The Common Lisp Cookbook contributors.epub",
         "timestamp": "2022-09-05T11:59:46.823Z",
         "title": "The Common Lisp Cookbook: Diving into the programmable programming language"
-      },
-      {
-        "authors": [
-          "Edmund Weitz"
-        ],
-        "key": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-        "pathtoebook": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-        "timestamp": "2022-08-31T22:44:34.495Z",
-        "title": "Common Lisp Recipes"
       },
       {
         "key": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",

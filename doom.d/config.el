@@ -11,6 +11,9 @@
   (not window-system)
   "Truthy value indicating if Emacs is currently running in a terminal.")
 
+(global-set-key (kbd "§") (lookup-key global-map (kbd "C-x")))
+(global-set-key (kbd "<insert>") (lookup-key global-map (kbd "C-x")))
+
 (defun my/shell-command-on-file (command)
   "Execute COMMAND asynchronously on the current file."
   (interactive (list (read-shell-command
@@ -313,6 +316,7 @@
                 #'(lambda ()
                     (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
 
+      (helm-adaptive-mode 1)
       ;; show minibuffer history with Helm
       ;; (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
       ;; (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
@@ -389,6 +393,9 @@ With WITH-TYPES, ask for file types to search in."
 
 (use-package! helm-wikipedia
   :after helm)
+
+(after! helm
+  (load "/home/jw/projects/emacs/ezf/ezf.el"))
 
 (after! helm
   (define-prefix-command 'C-z-map)
@@ -1889,6 +1896,8 @@ _w_ where is something defined
 ;; (setq inferior-lisp-program "ros -Q run")
 ;; (setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 
+(setq geiser-guile-load-init-file-p t)
+
 (use-package! arxiv-mode
   :defer t)
 
@@ -1979,4 +1988,5 @@ _w_ where is something defined
   :defer t)
 
 (defun load-emacs-with-nyxt ()
+  (interactive)
   (load "/home/jw/.config/doom/emacs-with-nyxt.el"))
