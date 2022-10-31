@@ -31,9 +31,6 @@ fi
 if [ -d "$HOME/.rbenv/bin" ] ; then
     PATH="$HOME/.rbenv/bin:$PATH"
 fi
-# if [ -d "$HOME/doom/bin" ] ; then
-#     PATH="$HOME/doom/bin:$PATH"
-# fi
 if [ -d "$HOME/.config/emacs/bin" ] ; then
     PATH="$HOME/.config/emacs/bin:$PATH"
 fi
@@ -52,7 +49,11 @@ fi
 export NODE_PATH=${NODE_PATH}:$(npm root -g)
 
 # Common lisp
-sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.7"
+if [[ "$(hostname)" = "asus-pn52" ]]; then
+    sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.9"
+else
+    sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.7"
+fi
 export SBCL_HOME="${sbcl_install_dir}/lib/sbcl"
 sbcl_bin="${sbcl_install_dir}/bin"
 if [ -d "${sbcl_bin}" ] ; then
@@ -70,17 +71,22 @@ fi
 #     fi
 # fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
+if [ -d "$HOME/.poetry/bin" ] ; then
+    PATH="$HOME/.poetry/bin:$PATH"
+fi
 
-# perl5
-PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+if [ -d "$HOME/perl5/bin" ] ; then
+    PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
+    PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+    PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+    PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+    PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+fi
 
 # gpg has to be started here (or in .xinitrc.exwm), if we want to have encryption in exwm
 gpg-connect-agent /bye

@@ -146,10 +146,8 @@ eval "$(pyenv virtualenv-init -)"
 # This will setup a command hook that executes on every command and advanced tab completion for zsh and bash.
 eval "$(fasd --init auto)"
 
-source /home/jw/.config/broot/launcher/bash/br
-
 # rbenv
-eval "$(~/.rbenv/bin/rbenv init - bash)"
+# eval "$(~/.rbenv/bin/rbenv init - bash)"
 
 vterm_printf(){
     if [ -n "$TMUX" ]; then
