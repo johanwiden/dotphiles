@@ -423,33 +423,6 @@ With WITH-TYPES, ask for file types to search in."
     "C-z C-g" helm-ls-git-ls
     "C-z SPC" helm-all-mark-rings))
 
-(use-package! citeproc
-  :after org)
-(use-package! oc
-  :config
-  (require 'oc-csl))
-(use-package! org-ref-cite-core
-  :after org)
-(use-package! org-ref-cite
-  :after org
-  :config
-  ;; I like green links
-  (set-face-attribute 'org-cite nil :foreground "DarkSeaGreen4")
-  (set-face-attribute 'org-cite-key nil :foreground "forest green")
-  (setq
-   org-cite-global-bibliography bibtex-completion-bibliography
-   ;; https://github.com/citation-style-language/styles
-   ;; or https://www.zotero.org/styles
-   org-cite-csl-styles-dir "/home/jw/Zotero/styles"
-   org-cite-insert-processor 'org-ref-cite
-   org-cite-follow-processor 'org-ref-cite
-   org-cite-activate-processor 'org-ref-cite
-   org-cite-export-processors '((html csl "elsevier-with-titles.csl")
-			        (latex org-ref-cite)
-			        (t basic)))
-
-  (define-key org-mode-map (kbd "C-c \\") 'org-cite-insert))
-
 (use-package! exwm)
 (require 'exwm-randr)
 (defun jw/env-list (env-string)

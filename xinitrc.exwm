@@ -38,6 +38,8 @@ xsetroot -cursor_name left_ptr
 # /usr/bin/recollindex -m &
 /usr/share/recoll/examples/rclmon.sh start &
 
+dropbox start &
+
 # Enable "Num Lock" mode, on keyboard keypad
 /usr/bin/numlockx on &
 # circumflex should not be a dead key. For some reason, putting this in .Xmodmap.exwm has no effect
