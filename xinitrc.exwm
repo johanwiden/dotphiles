@@ -40,6 +40,8 @@ xsetroot -cursor_name left_ptr
 
 dropbox start &
 
+xss-lock -- slock &
+
 # Enable "Num Lock" mode, on keyboard keypad
 /usr/bin/numlockx on &
 # circumflex should not be a dead key. For some reason, putting this in .Xmodmap.exwm has no effect
@@ -68,6 +70,7 @@ export GDK_CORE_DEVICE_EVENTS=1
 #/usr/local/bin/emacs --daemon -f exwm-enable
 #exec dbus-launch --exit-with-session /usr/local/bin/emacsclient -c
 if [[ "$(hostname)" = "asus-pn52" ]]; then
+    # exec dbus-launch --exit-with-session /usr/local/bin/emacs -f exwm-enable
     /usr/local/bin/emacs -f exwm-enable
     # /usr/local/bin/emacs --daemon --eval "(require 'exwm)" -f exwm-enable
     # exec /usr/local/bin/emacsclient -c

@@ -662,7 +662,7 @@ See also `process-lines'."
   "My modified configuration for EXWM. Based on exwm-config.el"
   ;; Setting exwm-manage-force-tiling t has the unfortunate side effect that new floating windows
   ;; are unresponsive for a considerable time (30 seconds or so)
-  ;; (setq exwm-manage-force-tiling t)
+  (setq exwm-manage-force-tiling t)
   ;; Set the initial workspace number.
   (unless (get 'exwm-workspace-number 'saved-value)
     (setq exwm-workspace-number 4))
@@ -1180,16 +1180,16 @@ Also used for highlighting.")
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
 
-;; (use-package! dired+
-  ;;   :after dired
-  ;;   :config
-  ;;   ;; diredp requires dired-actual-switches to be a string, not nil, but
-  ;;   ;; this variable is only non nil in dired buffers
-  ;;   (setq dired-actual-switches "-al")
-  ;;   ;; (setq diredp-image-preview-in-tooltip 300)
-  ;;   )
-(after! dired
-  (load "/home/jw/Downloads/dired+.el"))
+(use-package! dired+
+    :after dired
+    :config
+    ;; diredp requires dired-actual-switches to be a string, not nil, but
+    ;; this variable is only non nil in dired buffers
+    (setq dired-actual-switches "-al")
+    ;; (setq diredp-image-preview-in-tooltip 300)
+    )
+;; (after! dired
+;;   (load "/home/jw/Downloads/dired+.el"))
 
 (use-package! bookmark+
   :after dired
@@ -1436,7 +1436,7 @@ browser defined by `browse-url-generic-program'."
 (use-package! elfeed-org
   :after elfeed
   :init
-  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
+  (setq rmh-elfeed-org-files (list "~/.config/doom/elfeed.org"))
   :config
 
   (defun z/hasCap (s) ""
@@ -1791,11 +1791,13 @@ _w_ where is something defined
 
 ;; Note: This uses Company completion, so <F1> will display the candidates documentation.
 
-(setq common-lisp-hyperspec-root
-      ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
-      "file:///home/jw/lisp/HyperSpec/")
+(load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
+(load "/home/jw/.roswell/helper.el")
+;; (setq common-lisp-hyperspec-root
+;;       ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
+;;       "file:///home/jw/lisp/HyperSpec/")
 ;; (setq browse-url-browser-function ‘eww-browse-url)
-(setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
+;; (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
 ;; (setq inferior-lisp-program "sbcl")
@@ -1863,11 +1865,6 @@ _w_ where is something defined
   (define-key sly-mrepl-mode-map (kbd "C-c C-x c") 'helm-sly-list-connections)
   (add-hook 'lisp-mode-hook #'company-mode)
   (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company))
-
-;; Roswell
-;; (load (expand-file-name "~/.roswell/helper.el"))
-;; (setq inferior-lisp-program "ros -Q run")
-;; (setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 
 (setq geiser-guile-load-init-file-p t)
 
@@ -1958,6 +1955,9 @@ _w_ where is something defined
   ;; (lexic-search identifier nil nil t))
 
 (use-package! git-link
+  :defer t)
+
+(use-package! dwim-shell-command
   :defer t)
 
 (defun load-emacs-with-nyxt ()

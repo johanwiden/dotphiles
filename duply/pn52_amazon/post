@@ -1,0 +1,10 @@
+#!/bin/bash
+profile_name=$(basename $CONFDIR)
+
+time=$(date +%s)
+backup_file="$HOME/.duply/duply-$profile_name-"$time".tar.gz"
+
+# Archive the profile in the ~/.duply directory.
+tar -zcvf $backup_file -C $HOME/.duply $profile_name
+chmod 600 $backup_file
+

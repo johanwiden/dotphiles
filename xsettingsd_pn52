@@ -20,7 +20,6 @@ Gtk/KeyThemeName "Default"
 Gtk/KeynavUseCaret 0
 Gtk/MenuBarAccel "F10"
 Gtk/MenuImages 0
-Gtk/Modules "canberra-gtk-module"
 Gtk/OverlayScrolling 1
 Gtk/RecentFilesEnabled 1
 Gtk/RecentFilesMaxAge -1

@@ -62,11 +62,16 @@
 (package! dired-narrow)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
+(package! dwim-shell-command)
 (package! elfeed)
 (package! elfeed-org)
 (package! engine-mode)
 (package! epkg)
-(package! exwm)
+;; (package! exwm)
+(package! exwm
+  :recipe (:host github :repo "ch11ng/exwm"))
+(package! xelb
+  :recipe (:host github :repo "ch11ng/xelb"))
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! fish-completion)

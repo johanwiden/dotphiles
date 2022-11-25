@@ -883,7 +883,7 @@ From https://github.com/amno1/.emacs.d/blob/main/init.org
     "My modified configuration for EXWM. Based on exwm-config.el"
     ;; Setting exwm-manage-force-tiling t has the unfortunate side effect that new floating windows
     ;; are unresponsive for a considerable time (30 seconds or so)
-    ;; (setq exwm-manage-force-tiling t)
+    (setq exwm-manage-force-tiling t)
     ;; Set the initial workspace number.
     (unless (get 'exwm-workspace-number 'saved-value)
       (setq exwm-workspace-number 4))
@@ -1594,19 +1594,17 @@ Launch application associated with file
 #+END_SRC
 
 * Dired plus
-220812 Had to turn it off. Otherwise helm rename file does not work.
-Probably same problem cause in ranger.
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package! dired+
-  ;;   :after dired
-  ;;   :config
-  ;;   ;; diredp requires dired-actual-switches to be a string, not nil, but
-  ;;   ;; this variable is only non nil in dired buffers
-  ;;   (setq dired-actual-switches "-al")
-  ;;   ;; (setq diredp-image-preview-in-tooltip 300)
-  ;;   )
-(after! dired
-  (load "/home/jw/Downloads/dired+.el"))
+  (use-package! dired+
+    :after dired
+    :config
+    ;; diredp requires dired-actual-switches to be a string, not nil, but
+    ;; this variable is only non nil in dired buffers
+    (setq dired-actual-switches "-al")
+    ;; (setq diredp-image-preview-in-tooltip 300)
+    )
+;; (after! dired
+;;   (load "/home/jw/Downloads/dired+.el"))
 #+END_SRC
 
 * Bookmarks
@@ -1819,6 +1817,7 @@ Version 2018-10-26"
 #+END_SRC
 
 * elfeed
+
 ** elfeed proper
 #+BEGIN_SRC emacs-lisp
 ;;shortcut functions
@@ -1892,7 +1891,7 @@ browser defined by `browse-url-generic-program'."
 (use-package! elfeed-org
   :after elfeed
   :init
-  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
+  (setq rmh-elfeed-org-files (list "~/.config/doom/elfeed.org"))
   :config
 
   (defun z/hasCap (s) ""
@@ -2300,11 +2299,13 @@ Enabled in init.el: common-lisp
 #+BEGIN_SRC emacs-lisp
 ;; Note: This uses Company completion, so <F1> will display the candidates documentation.
 
-(setq common-lisp-hyperspec-root
-      ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
-      "file:///home/jw/lisp/HyperSpec/")
+(load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
+(load "/home/jw/.roswell/helper.el")
+;; (setq common-lisp-hyperspec-root
+;;       ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
+;;       "file:///home/jw/lisp/HyperSpec/")
 ;; (setq browse-url-browser-function ‘eww-browse-url)
-(setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
+;; (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
 ;; block images in EWW browser
 ;; (setq-default shr-inhibit-images t)
 ;; (setq inferior-lisp-program "sbcl")
@@ -2372,11 +2373,6 @@ Enabled in init.el: common-lisp
   (define-key sly-mrepl-mode-map (kbd "C-c C-x c") 'helm-sly-list-connections)
   (add-hook 'lisp-mode-hook #'company-mode)
   (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company))
-
-;; Roswell
-;; (load (expand-file-name "~/.roswell/helper.el"))
-;; (setq inferior-lisp-program "ros -Q run")
-;; (setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 #+END_SRC
 
 * geiser, guile
@@ -2485,6 +2481,12 @@ Enabled in init.el: common-lisp
 * git-link
 #+BEGIN_SRC emacs-lisp
 (use-package! git-link
+  :defer t)
+#+END_SRC
+
+* dwim-shell-command
+#+BEGIN_SRC emacs-lisp
+(use-package! dwim-shell-command
   :defer t)
 #+END_SRC
 

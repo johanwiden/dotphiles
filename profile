@@ -10,15 +10,16 @@
 
 export EDITOR="emacsclient -c"
 export EMACSDIR=~/.config/emacs
-export BROWSER=google-chrome
+#export BROWSER=google-chrome
+export BROWSER=vivaldi
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
+# if [ -n "$BASH_VERSION" ]; then
+#     # include .bashrc if it exists
+#     if [ -f "$HOME/.bashrc" ]; then
+# 	. "$HOME/.bashrc"
+#     fi
+# fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/rakudo/share/perl6/site/bin" ] ; then
@@ -34,8 +35,9 @@ fi
 if [ -d "$HOME/.config/emacs/bin" ] ; then
     PATH="$HOME/.config/emacs/bin:$PATH"
 fi
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+dot_local_bin="$HOME/.local/bin"
+if [ -d "${dot_local_bin}" ] ; then
+    PATH="${dot_local_bin}:$PATH"
 fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"

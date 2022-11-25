@@ -1,11 +1,62 @@
 {
+  "geometry-of-main_window_geometry": {
+    "frame_geometry": {
+      "height": 1546,
+      "width": 1278,
+      "x": 1280,
+      "y": 0
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 1546,
+      "width": 1278,
+      "x": 1280,
+      "y": 0
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 1546,
+      "width": 1278,
+      "x": 1280,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYJAAAFAAAAAAAAAAn9AAAGCQAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYJ"
+    },
+    "screen": {
+      "depth": 24,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 1600,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "Dell Inc.",
+      "model": "DELL U3818DW-",
+      "name": "HDMI-A-0",
+      "serial": "5KC0384P04NL-",
+      "size_in_logical_pixels": {
+        "height": 1600,
+        "width": 3840
+      },
+      "virtual_geometry": {
+        "height": 1600,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
   "main_window_geometry": {
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAAAAAAAAAAAABP0AAAYEAAAAAAAAAAAAAAT9AAAGBAAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYE"
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAE/gAABgUAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAE/gAABgoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -109,8 +160,14 @@
         ],
         "key": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
         "pathtoebook": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-        "timestamp": "2022-10-15T07:02:31.794Z",
+        "timestamp": "2022-11-16T21:55:53.011Z",
         "title": "Common Lisp Recipes"
+      },
+      {
+        "key": "/home/jw/calibre_library/Unknown/SV-NRGDM-IM-EU0381 tcm507-45188 (1312)/SV-NRGDM-IM-EU0381 tcm507-45188 - Unknown.pdf",
+        "pathtoebook": "/home/jw/calibre_library/Unknown/SV-NRGDM-IM-EU0381 tcm507-45188 (1312)/SV-NRGDM-IM-EU0381 tcm507-45188 - Unknown.pdf",
+        "timestamp": "2022-11-11T08:55:42.842Z",
+        "title": "SV-NRGDM-IM-EU0381 tcm507-45188"
       },
       {
         "authors": [
@@ -255,12 +312,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_notering.md",
         "timestamp": "2022-02-01T10:14:32.561Z",
         "title": "Hans Stuart notering"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_stämning.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Stuart_stämning.md",
-        "timestamp": "2022-02-01T10:14:14.104Z",
-        "title": "Hans Stuart stämning"
       }
     ],
     "user_color_schemes": {
