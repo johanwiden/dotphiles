@@ -149,6 +149,36 @@ eval "$(fasd --init auto)"
 # rbenv
 # eval "$(~/.rbenv/bin/rbenv init - bash)"
 
+# if [[ -x /usr/local/bin/mcfly ]]; then
+#    export MCFLY_LIGHT=TRUE
+#    export MCFLY_FUZZY=2
+#    eval "$(mcfly init bash)"
+# fi
+
+if [[ -r /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    export FZF_DEFAULT_OPTS="-m --height 50% --layout=reverse --border --inline-info --preview-window=:hidden --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200' --bind '?:toggle-preview'"
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+
+    # search all files including hidden and ignore files
+    # rg . --files --hidden --unrestricted | fzf --print0
+
+    # grep --line-buffered --color=never -r "" * | fzf
+    # rg . | fzf --print0 -e # remove -e for fuzzy match
+
+    # using ripgrep combined with preview
+    # find-in-file - usage: fif <searchTerm>
+    fif() {
+     if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+      rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+    }
+
+    zfzf() {
+      local dir
+      dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+    }
+fi
+
 vterm_printf(){
     if [ -n "$TMUX" ]; then
         # Tell tmux to pass the escape sequences through

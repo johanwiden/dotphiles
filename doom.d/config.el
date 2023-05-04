@@ -24,24 +24,32 @@
     (async-shell-command (concat command " " filename))))
 (bind-key (kbd "C-M-&") #'my/shell-command-on-file)
 
-(setq doom-font (font-spec :family "Ubuntu Mono" :size 18)
+(setq doom-modeline-height 20)
+;; mono 18, var 15
+(setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 13)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
-      doom-variable-pitch-font (font-spec :family "Overpass" :size 15)
+      ;; doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 13)
+      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 13)
+      ;;doom-variable-pitch-font (font-spec :family "Overpass" :size 12)
       ;;doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
       ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
       ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
       )
-(set-face-attribute 'default nil :font "Ubuntu Mono-18")
+(set-face-attribute 'default nil :font "Iosevka Comfy Fixed-13")
 ;;(set-face-attribute 'default nil :font "Iosevka-16")
-(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
-;;(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 1.0)
-(set-face-attribute 'variable-pitch nil :family "Overpass" :height 1.0)
+;;(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Fixed" :height 1.0)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Comfy Duo" :height 1.0)
 ;;(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
 ;;(set-face-attribute 'variable-pitch nil :family "Libre Baskerville" :height 1.0)
 (custom-set-faces!
   '(aw-leading-char-face
     :foreground "white" :background "red"
     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+;; doom modeline
+(custom-set-faces!
+  '(mode-line :height 0.9)
+  '(mode-line-inactive :height 0.9))
 
 ;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
@@ -93,16 +101,23 @@
         (quote ((matches . (extrabold background intense))
                 (selection . (semibold accented intense))
                 (popup . (accented)))))
-  (setq modus-themes-mixed-fonts t)
-  ;; (setq modus-themes-italic-constructs t
-  ;;       modus-themes-bold-constructs nil
-  ;;       modus-themes-region '(bg-only no-extend))
-
+  ;; 1.5 1.3 1.8
+  (setq modus-themes-mixed-fonts t
+        modus-themes-bold-constructs t
+        modus-themes-variable-pitch-ui t
+        modus-themes-prompts '(bold)
+        modus-themes-org-blocks 'tinted-background
+        modus-themes-headings '((1 . (light variable-pitch 1.0))
+                                (agenda-date . (1.0))
+                                (agenda-structure . (variable-pitch light 1.0))
+				(t . (medium))))
   :config
-  ;; Load the theme files before enabling a theme
-  (modus-themes-load-themes)
-  ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+  (setq custom-safe-themes t)
+  ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-intense)
+  ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-faint)
+  ;; (load-theme 'modus-vivendi-tinted)
+  ;; (setq doom-theme 'modus-vivendi-tinted)
+  (load-theme 'modus-vivendi)
   (setq doom-theme 'modus-vivendi)
   ;; :bind ("<f5>" . modus-themes-toggle)
   )
@@ -142,6 +157,8 @@
  completions-detailed t
  describe-bindings-outline t
  save-interprogram-paste-before-kill t
+ ;; Change this from 10MB to 100MB
+ large-file-warning-threshold 100000000
  )
 (after! recentf (setq recentf-max-saved-items 1000))
 
@@ -423,6 +440,9 @@ With WITH-TYPES, ask for file types to search in."
     "C-z C-g" helm-ls-git-ls
     "C-z SPC" helm-all-mark-rings))
 
+(use-package! helm-browser
+  :after helm)
+
 (use-package! exwm)
 (require 'exwm-randr)
 (defun jw/env-list (env-string)
@@ -646,9 +666,26 @@ See also `process-lines'."
 
 (defun jw/xmodmap ()
   "Execute xmodmap"
+  (interactive)
   (progn
     ;; (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
-    (ambrevar/call-process-to-string "/home/jw/bin/set_xmodmap.sh")))
+    (ambrevar/call-process-to-string "/home/jw/bin/set_xmodmap.sh")
+    ;; (require 'exwm-xim)
+    ;; (push ?\C-\\ exwm-input-prefix-keys)   ;; use Ctrl + \ to switch input method
+    ;; (exwm-xim-enable)
+    ))
+
+(defun jw/setxkbmap-se ()
+  "Execute setxkbmap se"
+  (interactive)
+  (progn
+    (ambrevar/call-process-to-string "/usr/bin/setxkbmap" "se")))
+
+(defun jw/setxkbmap-us ()
+  "Execute setxkbmap us"
+  (interactive)
+  (progn
+    (ambrevar/call-process-to-string "/usr/bin/setxkbmap" "us")))
 
 (setq browse-url-generic-program
       (or
@@ -826,6 +863,11 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (defun my-exwm-config-misc ()
   "Other configurations."
   ;; Make more room
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+  ;; (require 'exwm-xim)
+  ;; (push ?\C-\\ exwm-input-prefix-keys)   ;; use Ctrl + \ to switch input method
+  ;; (exwm-xim-enable)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
@@ -859,17 +901,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
                     (scroll-up 1))) )
 
 (pcre-mode t)
-
-(use-package! visual-regexp
-  :bind (;; Replace the regular query replace with the regexp query
-         ;; replace provided by this package.
-         ("M-%" . vr/query-replace)))
-
-(use-package! visual-regexp-steroids
-  :after visual-regexp
-  :config
-  ;; Use Perl-style regular expressions by default.
-  (setq vr/engine 'pcre2el))
 
 ;; (after! swiper
 ;;   (global-set-key (kbd "C-s") 'swiper))
@@ -1755,6 +1786,16 @@ _w_ where is something defined
 (fset 'jw/comma_to_ampersand
       (kmacro-lambda-form [?\M-x ?r ?e ?p ?l ?a ?c ?e ?- ?s ?t ?r ?i ?n ?g return ?, return ?  ?& return] 0 "%d"))
 
+(defun jw/skatt (utbetalt)
+  "Given utbetalt calculate skatt, assuming 30% tax"
+  (interactive)
+  (/ utbetalt (- (/ 1.0 0.3) 1)))
+
+(defun jw/skatt2 (fore)
+  "Given before tax calculate payment and tax, assuming 30% tax"
+  (interactive)
+  (list fore (* fore 0.7) (* fore 0.3)))
+
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
 ;; (setq session-use-package t nil (session))
@@ -1775,7 +1816,7 @@ _w_ where is something defined
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
   (setq hledger-jfile "/home/jw/Dokument/hledger/test/test1.journal")
-  (load "~/.config/doomemacs.d/ob-hledger")
+  (load "~/.config/doom/ob-hledger")
   (require 'ob-hledger))
 
 ;; Out of sync with hledger
@@ -1902,6 +1943,9 @@ _w_ where is something defined
      ["zws" "​"]
      )))
 
+(use-package! xah-wolfram-mode
+  :defer t)
+
 (after! helm
   (progn
     (load "/home/jw/projects/emacs/lexic/lexic.el")
@@ -1959,6 +2003,8 @@ _w_ where is something defined
 
 (use-package! dwim-shell-command
   :defer t)
+
+(use-package! persid)
 
 (defun load-emacs-with-nyxt ()
   (interactive)

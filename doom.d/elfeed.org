@@ -12,15 +12,18 @@
 **** https://www.reddit.com/r/qutebrowser/.rss
 **** http://pragmaticemacs.com/feed/
 **** [[https://sachachua.com/blog/category/emacs-news/feed/index.xml][Emacs news (Sacha Chua)]]
+**** [[https://www.chainsawriot.com/feed.xml][chainsawriot]]
 **** [[https://irreal.org/blog/?feed=rss2][Irreal]]
 **** [[https://irreal.org/blog/?feed=comments-rss2][Comments for Irreal]]
 **** [[https://jherrlin.github.io/index.xml][jherrlin]]
-**** [[https://ambrevar.xyz/atom.xml][ambrevar]]
 **** [[https://karthinks.com/index.xml][karthinks]]
+**** [[https://blog.tecosaur.com/tmio/rss.xml][This month in Org]]
 **** [[https://gh-issues-to-rss.herokuapp.com/melpa/melpa?m=pc][melpa]]
 
 ** browser
 *** [[https://nyxt.atlas.engineer/feed][nyxt.atlas.engineer]]
+*** [[https://vivaldi.com/feed][Vivaldi]]
+
 
 ** cpp                                                         :cpp:
 *** [[https://feeds.feedburner.com/abseilio][Abseil]]
@@ -39,26 +42,43 @@
 *** [[https://botondballo.wordpress.com/feed/][There's Waldo!]]
 *** [[https://botondballo.wordpress.com/comments/feed/][Comments for There's Waldo!]]
 *** [[https://vector-of-bool.github.io/feed.xml][vector&lt;bool&gt;{ true, true, false };]]
+
+** linux
+*** [[https://fullcirclemagazine.org/index.xml][Fullcircle magazine]]
+
+** lisp
+*** [[https://planet.lisp.org/rss20.xml][Planet lisp]]
+
 ** Math
-*** [[https://www.allendowney.com/blog/feed/][Allen Downey]]
+*** [[https://www.allendowney.com/blog/feed][Allen Downey]]
+
 ** Neural networks
 *** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
 *** [[https://deepmind.com/blog/feed/basic/][deepmind]]
 *** [[https://googleaiblog.blogspot.com][Google AI blog]]
-*** [[https://lilianweng.github.io/lil-log/feed.xml][Lilian Weng]]
+*** [[https://lilianweng.github.io/index.xml][Lilian Weng]]
 *** [[https://yoshuabengio.org/feed/][Yoshua Bengio]]
+
 ** AI
 *** [[http://bach.ai/feed.xml][Joscha Bach]]
+
+** research
+*** [[https://blog.liyiwei.org/?feed=rss2][liyiwei]]
+
 ** daily                                                       :daily:
 *** http://telescoper.wordpress.com/feed/
-*** [[https://news.cision.com/se/c-a-g-group-ab/ListItems?format=rss][CAG]]
+*** [[https://www.cag.se/feed/][CAG]]
 *** [[https://technologyreview.com/feed/][MIT technology review]]
 *** [[https://rodneybrooks.com/feed/][Rodney Brooks]]
 *** [[https://dilbert.com/feed.rss][Dilbert Daily Strip]]
 *** http://xkcd.com/rss.xml
+*** [[https://martin.leyrer.priv.at/index.completerss20][Martin Leyrer]]
+*** [[https://pluralistic.net/feed][Pluralistic: Daily links from Cory Doctorow]]
 *** https://timharford.com/feed/
 *** http://understandinguncertainty.org/rss.xml
-*** https://swedroid.se/feed/
+*** [[https://swedroid.se/feed/][Swedroid]]
+*** [[https://simonwillison.net/atom/everything/][Simon Willison]]
+*** [[https://wired.com/feed][Wired]]
 *** [[https://medium.com/feed/@steve.yegge][Steve Yegge]]
 *** [[https://writings.stephenwolfram.com/feed/][Stephen Wolfram]]
 *** [[http://occasionallycogent.com/feed.xml][James Cash]]

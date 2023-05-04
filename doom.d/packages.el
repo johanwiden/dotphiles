@@ -48,6 +48,7 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+(unpin! straight)
 (package! ace-link)
 (package! arxiv-mode)
 (package! bibtex-completion)
@@ -80,6 +81,7 @@
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
 (package! helm-bibtex)
+(package! helm-browser :recipe (:local-repo "/home/jw/projects/emacs/burnthekernel/helm-browser"))
 (package! helm-exwm)
 (package! helm-ls-git)
 (package! helm-org-ql)
@@ -124,18 +126,24 @@
   :recipe (:host github :repo "emacsmirror/palette"))
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
+(package! persid
+  :recipe (:host github :repo "rougier/persid"))
 (package! session)
+;; Announcement on doom discord 221125 by gagbo, for upgrade problems
+;; (package! straight :pin "3eca39d")
 (package! telephone-line)
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
 (package! unfill)
-(package! visual-regexp)
-(package! visual-regexp-steroids)
+;; (package! visual-regexp)
+;; (package! visual-regexp-steroids)
 (package! w3m)
 (package! websocket)
 (package! windower)
 (package! xah-math-input
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
+(package! xah-wolfram-mode
+  :recipe (:host github :repo "xahlee/xah-wolfram-mode"))
 (package! zoxide)

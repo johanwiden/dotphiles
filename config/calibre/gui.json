@@ -210,21 +210,21 @@
     },
     "full_screened": false,
     "geometry": {
-      "height": 1546,
+      "height": 1549,
       "width": 1280,
       "x": 2560,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1546,
+      "height": 1549,
       "width": 1280,
       "x": 2560,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAoAAAAAAAAADfMAAALjAAAKAAAAAAAAAA7/AAAGCQAAAAAAAAAADwAAAAoAAAAAAAAADv8AAAYJ"
+      "__value__": "AdnQywADAAAAAAoAAAAAAAAADfMAAALjAAAKAAAAAAAAAA7/AAAGDAAAAAAAAAAADwAAAAoAAAAAAAAADv8AAAYM"
     },
     "screen": {
       "depth": 24,
@@ -313,7 +313,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 428
+    "/home/jw/calibre_library": 464
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",
