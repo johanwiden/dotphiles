@@ -17,6 +17,7 @@
 **** [[https://irreal.org/blog/?feed=comments-rss2][Comments for Irreal]]
 **** [[https://jherrlin.github.io/index.xml][jherrlin]]
 **** [[https://karthinks.com/index.xml][karthinks]]
+**** [[https://systemcrafters.net/rss/news.xml][System Crafters]]
 **** [[https://blog.tecosaur.com/tmio/rss.xml][This month in Org]]
 **** [[https://gh-issues-to-rss.herokuapp.com/melpa/melpa?m=pc][melpa]]
 
@@ -52,14 +53,14 @@
 ** Math
 *** [[https://www.allendowney.com/blog/feed][Allen Downey]]
 
-** Neural networks
+** AI
 *** [[http://karpathy.github.io/feed.xml][Andrej Karpathy]]
 *** [[https://deepmind.com/blog/feed/basic/][deepmind]]
 *** [[https://googleaiblog.blogspot.com][Google AI blog]]
+*** [[https://huggingface.co/blog/feed.xml][Hugging Face]]
 *** [[https://lilianweng.github.io/index.xml][Lilian Weng]]
+*** [[https://openai.com/blog/rss][OpenAI]]
 *** [[https://yoshuabengio.org/feed/][Yoshua Bengio]]
-
-** AI
 *** [[http://bach.ai/feed.xml][Joscha Bach]]
 
 ** research

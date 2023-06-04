@@ -31,6 +31,8 @@
         ;;+helm-popup-layout
         +helm-mode
         +icons
+        ;;+nerd-icons
+        ;;+treemacs-icons
         +remap-commands)
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
@@ -188,7 +190,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +tree-sitter)    ; the tubes
-       yaml              ; JSON, but readable
+       (yaml +tree-sitter)              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email

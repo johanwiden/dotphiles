@@ -60,6 +60,7 @@ For more info on Helm, see:
   keybindings, to change the layout: C-t, C-c -, C-c %
   This is independent of whether '+helm-popup-layout' is enabled or not.
 + =+icons= Enables icons (supports both =all-the-icons= and =treemacs= icons)
++ =+nerd-icons= When +icons enabled, use =nerd-icons= icon pack.
 + =+remap-commands= Remap some emacs commands to helm commands. Recommended.
 + =+remap-swiper= Remap ~swiper~ to ~swiper-helm~.
 + =+treemacs-icons= When +icons enabled, use =treemacs= icon pack.

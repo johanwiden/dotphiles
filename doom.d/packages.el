@@ -55,6 +55,8 @@
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
+(package! combobulate
+  :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-recoll)
 (package! counsel)
 (package! dired-filter)

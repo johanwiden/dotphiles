@@ -209,10 +209,12 @@
   :after helm
   :when (modulep! +icons)
   :init
-  (if (modulep! +treemacs-icons)
-      (setq helm-icons-provider 'treemacs)
-    (progn
-      (customize-set-value 'helm-icons-mode->icon nil) ; Fix for all-the-icons
-      (setq helm-icons-provider 'all-the-icons)))
+  (cond ((modulep! +treemacs-icons)
+         (setq helm-icons-provider 'treemacs))
+        ((modulep! +nerd-icons)
+         (setq helm-icons-provider 'nerd-icons))
+        (t (progn
+             (customize-set-value 'helm-icons-mode->icon nil) ; Fix for all-the-icons
+             (setq helm-icons-provider 'all-the-icons))))
   :config
   (helm-icons-enable))

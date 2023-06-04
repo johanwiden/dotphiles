@@ -77,6 +77,10 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "$HOME/gpt4all/bin" ] ; then
+    PATH="$HOME/gpt4all/bin:$PATH"
+fi
+
 if [ -d "$HOME/.poetry/bin" ] ; then
     PATH="$HOME/.poetry/bin:$PATH"
 fi
