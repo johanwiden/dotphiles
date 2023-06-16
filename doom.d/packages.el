@@ -103,6 +103,8 @@
 (package! hungry-delete)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
+(package! i3-integration
+  :recipe (:host github :repo "vava/i3-emacs"))
 (package! lexic)
 ;; (package! lexic :recipe (:local-repo "lexic"))
 ;; (package! lexic

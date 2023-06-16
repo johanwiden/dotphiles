@@ -24,18 +24,18 @@
     (async-shell-command (concat command " " filename))))
 (bind-key (kbd "C-M-&") #'my/shell-command-on-file)
 
-(setq doom-modeline-height 20)
+;; (setq doom-modeline-height 20)
 ;; mono 18, var 15
-(setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 13)
+(setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
       ;; doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 13)
-      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 13)
+      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 15)
       ;;doom-variable-pitch-font (font-spec :family "Overpass" :size 12)
       ;;doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
       ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
       ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
       )
-(set-face-attribute 'default nil :font "Iosevka Comfy Fixed-13")
+(set-face-attribute 'default nil :font "Iosevka Comfy Fixed-15")
 ;;(set-face-attribute 'default nil :font "Iosevka-16")
 ;;(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Fixed" :height 1.0)
@@ -47,9 +47,9 @@
     :foreground "white" :background "red"
     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
 ;; doom modeline
-(custom-set-faces!
-  '(mode-line :height 0.9)
-  '(mode-line-inactive :height 0.9))
+;; (custom-set-faces!
+;;   '(mode-line :height 0.9)
+;;   '(mode-line-inactive :height 0.9))
 
 ;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
@@ -190,7 +190,12 @@
  ;; Change this from 10MB to 100MB
  large-file-warning-threshold 100000000
  )
-(after! recentf (setq recentf-max-saved-items 1000))
+(after! recentf
+  (progn(setq recentf-max-saved-items 1000)
+        (run-at-time nil (* 5 60)
+             (lambda ()
+               (let ((save-silently t))
+                 (recentf-save-list))))))
 
 (global-auto-revert-mode t)
 
