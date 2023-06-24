@@ -240,8 +240,11 @@ bindsym $mod+Shift+a focus child
 # This is already handled by "rofi -show window"
 # bindsym $mod+b exec ~/bin/quickswitch-select
 
-# %%hotkey: move i3 window to current workspace %%
-bindsym $mod+Shift+w exec ~/bin/quickswitch-move
+# %%hotkey: get wm window names, select one, display at current desktop window %%
+bindsym $mod+w exec ~/.local/bin/wm_window_switch swap
+
+# %%hotkey: get wm window names, select one, display next to current desktop window %%
+bindsym $mod+Shift+w exec ~/.local/bin/wm_window_switch add
 
 # %%hotkey: get web browser tab titles and URLs, select one, display at current desktop window %%
 bindsym $mod+u exec ~/.local/bin/browser_tab swap
@@ -394,7 +397,8 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command i3blocks -c ~/.config/i3blocks/config
+    status_command /home/jw/.cargo/bin/i3status-rs /home/jw/.config/i3status-rust/config.toml
+    #status_command i3blocks  2>/tmp/i3blocks.err -vvv | tee /tmp/i3blocks.out
     #status_command while date +'%Y-%m-%d %I:%M %p'; do sleep 20; done
     font pango:DejaVu Sans Mono 8
 
@@ -414,6 +418,9 @@ bar {
     #     inactive_workspace #32323200 #32323200 #5c5c5c
     # }
 }
+
+# %%hotkey: bar toggle, hide or show %%
+bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -455,6 +462,9 @@ exec --no-startup-id /usr/bin/unclutter -b
 
 # Dynamically update recoll full text search database
 exec --no-startup-id /usr/share/recoll/examples/rclmon.sh start
+
+# https://sr.ht/~tsdh/swayr
+exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 
 # Draw the desktop background.  Randomly select from a series of photos starting with ESP_
 # exec_always --no-startup-id feh --bg-scale --randomize /usr/share/backgrounds/*

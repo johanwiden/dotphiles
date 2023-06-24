@@ -181,8 +181,11 @@ bindsym $mod+Shift+a focus child
 # This is already handled by "rofi -show window"
 # bindsym $mod+b exec ~/bin/quickswitch-select
 
-# %%hotkey: move i3 window to current workspace %%
-bindsym $mod+Shift+w exec ~/bin/quickswitch-move
+# %%hotkey: get wm window names, select one, display at current desktop window %%
+bindsym $mod+w exec ~/.local/bin/wm_window_switch swap
+
+# %%hotkey: get wm window names, select one, display next to current desktop window %%
+bindsym $mod+Shift+w exec ~/.local/bin/wm_window_switch add
 
 # %%hotkey: get web browser tab titles and URLs, select one, display at current desktop window %%
 bindsym $mod+u exec ~/.local/bin/browser_tab swap

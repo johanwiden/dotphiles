@@ -98,6 +98,11 @@ fi
 gpg-connect-agent /bye
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
+
+if [ -z "$DISPLAY" -a "$(tty)" = '/dev/tty4' ]; then
+    exec /usr/bin/sway >/tmp/startsway.log 2>&1
+fi
+
 if [ -z "$DISPLAY" -a "$(tty)" = '/dev/tty5' ]; then
     exec /usr/bin/startx ~/.xinitrc.exwm >/tmp/startx.log 2>&1
 fi
