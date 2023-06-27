@@ -115,10 +115,10 @@ loads."
          (webkit:webkit-settings-enable-media-stream settings) t
          ;; Use Cantarell-18 as the default font.
          (webkit:webkit-settings-default-font-family settings) "Iosevka Comfy Duo"
-         (webkit:webkit-settings-default-font-size settings) 18
+         (webkit:webkit-settings-default-font-size settings) 16
          ;; Use Hack-17 as the monospace font.
          (webkit:webkit-settings-monospace-font-family settings) "Iosevka Comfy Fixed"
-         (webkit:webkit-settings-default-monospace-font-size settings) 17
+         (webkit:webkit-settings-default-monospace-font-size settings) 16
          ;; Use Unifont for pictograms.
          (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
   ;; Set the view background to black.

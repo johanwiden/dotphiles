@@ -50,6 +50,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+# Notification daemon: apt mako-notifier
+exec --no-startup-id mako
+
 ### Idle configuration
 #
 # Example configuration:
@@ -112,7 +115,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Try to control screen blanking
 # exec --no-startup-id xset s off dpms 1200 1400 1600
@@ -272,7 +275,7 @@ bindsym $mod+minus scratchpad show
 # If there are multiple scratchpad windows, this command cycles through them.
 
 # %%hotkey: show i3 keybindings %%
-bindsym $mod+Shift+question exec ~/bin/hotkeys-i3
+bindsym $mod+question exec ~/bin/hotkeys-sway
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

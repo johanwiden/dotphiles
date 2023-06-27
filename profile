@@ -14,7 +14,7 @@ export EMACSDIR=~/.config/emacs
 export BROWSER=vivaldi
 
 # if running bash
-# if [ -n "$BASH_VERSION" ]; then
+# if [[ "$(SHELL)" = "/bin/bash"  ]]; then
 #     # include .bashrc if it exists
 #     if [ -f "$HOME/.bashrc" ]; then
 # 	. "$HOME/.bashrc"
