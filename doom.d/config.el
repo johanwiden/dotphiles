@@ -169,6 +169,9 @@
    (css-mode . css-ts-mode)
    (python-mode . python-ts-mode)))
 
+;; Following has to be run when doom emacs is reinstalled.
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+
 (defvar jw/paradox-github-token nil)
 
 (let ((secret.el (expand-file-name ".secret.el" "~")))

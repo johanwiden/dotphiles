@@ -245,6 +245,9 @@ For users of counsel, the second one is already implemented, as counsel-load-the
    (json-mode . json-ts-mode)
    (css-mode . css-ts-mode)
    (python-mode . python-ts-mode)))
+
+;; Following has to be run when doom emacs is reinstalled.
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 #+END_SRC
 
 * Load =.secret.el=

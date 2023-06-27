@@ -51,7 +51,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # Notification daemon: apt mako-notifier
-exec --no-startup-id mako
+exec --no-startup-id dunst
 
 ### Idle configuration
 #
@@ -83,7 +83,7 @@ input "type:keyboard" {
     xkb_model pc104
     xkb_layout us,se,ru
     xkb_variant ,,phonetic
-    xkb_options grp:rctrl_toggle
+    xkb_options "grp:rctrl_toggle,ctrl:nocaps"
 }
 
 #exec xrdb -override ~/dawesome.xres
@@ -477,5 +477,3 @@ exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 # exec --no-startup-id /usr/bin/xeventbind resolution /usr/bin/wallpaper-refresh.sh
 
 include /etc/sway/config.d/*
-
-exec --no-startup-id ~/autostart.sh
