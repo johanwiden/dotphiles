@@ -77,7 +77,17 @@ loads."
 ;;; Set new buffer URL (a.k.a. start page, new tab page).
 ;;; It does not change the first buffer opened if you're on 2.*.
 (define-configuration browser
-  ((default-new-buffer-url (quri:uri "https://lispcookbook.github.io/cl-cookbook/"))))
+  ((remote-execution-p t)
+   (default-new-buffer-url (quri:uri "https://lispcookbook.github.io/cl-cookbook/"))
+   (external-editor-program
+    (list "emacsclient" "-cn" "-a" ""))))
+;; (define-configuration browser
+;;   (
+;;    ;; Whether code sent to the socket gets executed.  You must understand the
+;;    ;; risks before enabling this: a privileged user with access to your system
+;;    ;; can then take control of the browser and execute arbitrary code under your
+;;    ;; user profile.
+;;    (remote-execution-p t)))
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer

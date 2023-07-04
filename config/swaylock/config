@@ -1,0 +1,15 @@
+daemonize
+ignore-empty-password
+font=monospace term
+font-size=50
+indicator-radius=192
+indicator-thickness=75
+inside-color=ffffff00
+key-hl-color=3daee9
+ring-color=1d99f388
+line-uses-ring
+separator-color=1d99f322
+text-color=ffffff
+text-clear-color=ffffff
+text-caps-lock-color=ffffff
+color=000000

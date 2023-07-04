@@ -1,61 +1,46 @@
 (in-package #:nyxt-user)
 
-;;; Add basic keybindings.
+(define-configuration :document-mode
+  "Add basic keybindings."
+  ((keyscheme-map
+    (keymaps:define-keyscheme-map
+     "custom" (list :import %slot-value%)
+     ;; If you want to have VI bindings overriden, just use
+     ;; `scheme:vi-normal' or `scheme:vi-insert' instead of
+     ;; `scheme:emacs'.
+     nyxt/keyscheme:vi-normal
+     (list "g n" 'go-next
+           "g p" 'go-previous)))))
 
-(defmacro construct-command (name (&rest args) &body body)
-  `(#+nyxt-2 make-command
-    #+nyxt-3 lambda-command
-    ,name
-    (,@args) ,@body))
-
-(defmacro alter-keyscheme (keyscheme scheme-name &body bindings)
-  #+nyxt-2
-  `(let ((scheme ,keyscheme))
-     (keymap:define-key (gethash ,scheme-name scheme)
-       ,@bindings)
-     scheme)
-  #+nyxt-3
-  `(keymaps:define-keyscheme-map "custom" (list :import ,keyscheme)
-     ,scheme-name
-     (list ,@bindings)))
-
-;; nyxt/web-mode: is the package prefix. Usually is just nyxt/ and mode name.
-;; Think of it as Emacs' package prefixes e.g. `org-' in `org-agenda' etc.
-;; (define-configuration
-;;     (#+nyxt-2 nyxt/web-mode:web-mode
-;;      #+nyxt-3 nyxt/document-mode:document-mode)
-;;   ((#+nyxt-2 keymap-scheme
-;;     #+nyxt-3 keyscheme-map
-;;     (alter-keyscheme
-;;         %slot-default%
-;;         ;; If you want to have VI bindings overriden, just use
-;;         ;; `scheme:vi-normal' or `scheme:vi-insert' instead of
-;;         ;; `scheme:emacs'.
-;;         ;;
-;;         ;; For 3.*, use `nyxt/scheme:' prefix instead.
-;;         #+nyxt-2 scheme:emacs
-;;       #+nyxt-3 nyxt/keyscheme:emacs
-;;       "C-c p" 'copy-password
-;;       "C-c y" 'autofill
-;;       "C-f"
-;;       #+nyxt-2 'nyxt/web-mode:history-forwards-maybe-query
-;;       #+nyxt-3 'nyxt/history-mode:history-forwards-maybe-query
-;;       "C-i" 'nyxt/input-edit-mode:input-edit-mode
-;;       "M-:" 'eval-expression
-;;       "C-s"
-;;       #+nyxt-2 'nyxt/web-mode:search-buffer
-;;       #+nyxt-3 'nyxt/search-buffer-mode:search-buffer
-;;       "C-x 3" 'hsplit
-;;       "C-x 1" 'close-all-panels
-;;       "C-'"  (construct-command insert-left-angle-quote ()
-;;                #+nyxt-3 (ffi-buffer-paste (current-buffer) "«"))
-;;       "C-M-'" (construct-command insert-left-angle-quote ()
-;;                 #+nyxt-3 (ffi-buffer-paste (current-buffer) "»"))
-;;       "C-M-hyphen" (construct-command insert-left-angle-quote ()
-;;                      #+nyxt-3 (ffi-buffer-paste (current-buffer) "—"))
-;;       "C-M-_" (construct-command insert-left-angle-quote ()
-;;                 #+nyxt-3 (ffi-buffer-paste (current-buffer) "–"))
-;;       "C-E" (construct-command small-e-with-acute ()
-;;               #+nyxt-3 (ffi-buffer-paste (current-buffer) "é"))
-;;       "C-A" (construct-command small-a-with-acute ()
-;;               #+nyxt-3 (ffi-buffer-paste (current-buffer) "á"))))))
+;; (define-configuration :document-mode
+;;   "Add basic keybindings."
+;;   ((keyscheme-map
+;;     (keymaps:define-keyscheme-map
+;;      "custom" (list :import %slot-value%)
+;;      ;; If you want to have VI bindings overriden, just use
+;;      ;; `scheme:vi-normal' or `scheme:vi-insert' instead of
+;;      ;; `scheme:emacs'.
+;;      nyxt/keyscheme:vi-normal
+;;      (list "C-c p" 'copy-password
+;;            "C-c y" 'autofill
+;;            "C-f" :history-forwards-maybe-query
+;;            "C-i" :input-edit-mode
+;;            "M-:" 'eval-expression
+;;            "C-s" :search-buffer
+;;            "C-x 3" 'hsplit
+;;            "C-x 1" 'close-all-panels
+;;            "C-'"  (lambda-command insert-left-angle-quote ()
+;;                     (ffi-buffer-paste (current-buffer) "«"))
+;;            "C-M-'" (lambda-command insert-left-angle-quote ()
+;;                      (ffi-buffer-paste (current-buffer) "»"))
+;;            "C-M-hyphen" (lambda-command insert-left-angle-quote ()
+;;                           (ffi-buffer-paste (current-buffer) "—"))
+;;            "C-M-_" (lambda-command insert-left-angle-quote ()
+;;                      (ffi-buffer-paste (current-buffer) "–"))
+;;            "C-E" (lambda-command small-e-with-acute ()
+;;                    (ffi-buffer-paste (current-buffer) "é"))
+;;            "C-A" (lambda-command small-a-with-acute ()
+;;                    (ffi-buffer-paste (current-buffer) "á"))
+;;            "C-I" (lambda-command small-i-diaeresis ()
+;;                    (ffi-buffer-paste (current-buffer) "ï"))
+;;            "C-h hyphen" 'clcs-lookup)))))

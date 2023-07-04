@@ -13,6 +13,13 @@ export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
 export BROWSER=vivaldi
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTSIZE=5000
+export HISTFILESIZE=50000
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
 # if running bash
 # if [[ "$(SHELL)" = "/bin/bash"  ]]; then
 #     # include .bashrc if it exists

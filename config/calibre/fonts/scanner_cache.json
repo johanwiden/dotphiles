@@ -216,7 +216,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-bold.ttf||5217952:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-bold.ttf||5453228:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -252,7 +252,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-bolditalic.ttf||5691752:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-bolditalic.ttf||5916544:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -288,7 +288,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-extrabold.ttf||5178624:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-extrabold.ttf||5450172:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Extrabold",
       "font-family": "Iosevka Comfy Duo Extrabold",
       "font-stretch": "normal",
@@ -324,7 +324,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-extrabolditalic.ttf||5687824:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-extrabolditalic.ttf||5917588:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Extrabold",
       "font-family": "Iosevka Comfy Duo Extrabold",
       "font-stretch": "normal",
@@ -360,7 +360,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-italic.ttf||5694432:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-italic.ttf||5917612:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -396,7 +396,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-light.ttf||5184148:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-light.ttf||5449460:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Light",
       "font-family": "Iosevka Comfy Duo Light",
       "font-stretch": "normal",
@@ -432,7 +432,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-lightitalic.ttf||5732536:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-lightitalic.ttf||5953408:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Light",
       "font-family": "Iosevka Comfy Duo Light",
       "font-stretch": "normal",
@@ -468,7 +468,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-regular.ttf||5212016:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-regular.ttf||5449148:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -504,14 +504,14 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilight.ttf||5214304:1682581641.0": {
-      "family_name": "Iosevka Comfy Duo W350",
-      "font-family": "Iosevka Comfy Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilight.ttf||5448908:1684519885.0": {
+      "family_name": "Iosevka Comfy Duo SemiLight",
+      "font-family": "Iosevka Comfy Duo SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Duo W350",
+      "full_name": "Iosevka Comfy Duo SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -533,21 +533,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Duo",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Duo",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilightitalic.ttf||5714908:1682581641.0": {
-      "family_name": "Iosevka Comfy Duo W350",
-      "font-family": "Iosevka Comfy Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilightitalic.ttf||5921240:1684519885.0": {
+      "family_name": "Iosevka Comfy Duo SemiLight",
+      "font-family": "Iosevka Comfy Duo SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Duo W350 Italic",
+      "full_name": "Iosevka Comfy Duo SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -569,14 +569,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-duo/ttf-unhinted/iosevka-comfy-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Duo",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Duo",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-bold.ttf||8219816:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-bold.ttf||8433396:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -612,7 +612,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-bolditalic.ttf||8830348:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-bolditalic.ttf||9040840:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -648,7 +648,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-extrabold.ttf||8377480:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-extrabold.ttf||8613308:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Extrabold",
       "font-family": "Iosevka Comfy Duo Extrabold",
       "font-stretch": "normal",
@@ -684,7 +684,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-extrabolditalic.ttf||9006720:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-extrabolditalic.ttf||9192472:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Extrabold",
       "font-family": "Iosevka Comfy Duo Extrabold",
       "font-stretch": "normal",
@@ -720,7 +720,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-italic.ttf||8659640:1682581641.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-italic.ttf||8866876:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -756,7 +756,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-light.ttf||8067392:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-light.ttf||8295104:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Light",
       "font-family": "Iosevka Comfy Duo Light",
       "font-stretch": "normal",
@@ -792,7 +792,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-lightitalic.ttf||8825944:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-lightitalic.ttf||9016796:1684519885.0": {
       "family_name": "Iosevka Comfy Duo Light",
       "font-family": "Iosevka Comfy Duo Light",
       "font-stretch": "normal",
@@ -828,7 +828,7 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-regular.ttf||8065160:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-regular.ttf||8280656:1684519885.0": {
       "family_name": "Iosevka Comfy Duo",
       "font-family": "Iosevka Comfy Duo",
       "font-stretch": "normal",
@@ -864,14 +864,14 @@
       "wws_family_name": "Iosevka Comfy Duo",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilight.ttf||8127020:1682581642.0": {
-      "family_name": "Iosevka Comfy Duo W350",
-      "font-family": "Iosevka Comfy Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilight.ttf||8342764:1684519885.0": {
+      "family_name": "Iosevka Comfy Duo SemiLight",
+      "font-family": "Iosevka Comfy Duo SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Duo W350",
+      "full_name": "Iosevka Comfy Duo SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -893,21 +893,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Duo",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Duo",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilightitalic.ttf||8764184:1682581642.0": {
-      "family_name": "Iosevka Comfy Duo W350",
-      "font-family": "Iosevka Comfy Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilightitalic.ttf||8958592:1684519885.0": {
+      "family_name": "Iosevka Comfy Duo SemiLight",
+      "font-family": "Iosevka Comfy Duo SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Duo W350 Italic",
+      "full_name": "Iosevka Comfy Duo SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -929,14 +929,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-duo/ttf/iosevka-comfy-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Duo",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Duo",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-bold.ttf||3044900:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-bold.ttf||3213356:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -972,7 +972,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-bolditalic.ttf||3206784:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-bolditalic.ttf||3377540:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1008,7 +1008,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-extrabold.ttf||3041748:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-extrabold.ttf||3220264:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Extrabold",
       "font-family": "Iosevka Comfy Fixed Extrabold",
       "font-stretch": "normal",
@@ -1044,7 +1044,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-extrabolditalic.ttf||3209940:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-extrabolditalic.ttf||3385012:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Extrabold",
       "font-family": "Iosevka Comfy Fixed Extrabold",
       "font-stretch": "normal",
@@ -1080,7 +1080,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-italic.ttf||3217428:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-italic.ttf||3390716:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1116,7 +1116,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-light.ttf||3071008:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-light.ttf||3253312:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Light",
       "font-family": "Iosevka Comfy Fixed Light",
       "font-stretch": "normal",
@@ -1152,7 +1152,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-lightitalic.ttf||3229940:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-lightitalic.ttf||3405124:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Light",
       "font-family": "Iosevka Comfy Fixed Light",
       "font-stretch": "normal",
@@ -1188,7 +1188,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-regular.ttf||3058140:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-regular.ttf||3226312:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1224,14 +1224,14 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilight.ttf||3060412:1682581642.0": {
-      "family_name": "Iosevka Comfy Fixed W350",
-      "font-family": "Iosevka Comfy Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilight.ttf||3237452:1684519886.0": {
+      "family_name": "Iosevka Comfy Fixed SemiLight",
+      "font-family": "Iosevka Comfy Fixed SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Fixed W350",
+      "full_name": "Iosevka Comfy Fixed SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -1253,21 +1253,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Fixed",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Fixed",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilightitalic.ttf||3224836:1682581642.0": {
-      "family_name": "Iosevka Comfy Fixed W350",
-      "font-family": "Iosevka Comfy Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilightitalic.ttf||3397620:1684519886.0": {
+      "family_name": "Iosevka Comfy Fixed SemiLight",
+      "font-family": "Iosevka Comfy Fixed SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Fixed W350 Italic",
+      "full_name": "Iosevka Comfy Fixed SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -1289,14 +1289,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-fixed/ttf-unhinted/iosevka-comfy-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Fixed",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Fixed",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-bold.ttf||4577180:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-bold.ttf||4687228:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1332,7 +1332,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-bolditalic.ttf||4759844:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-bolditalic.ttf||4881956:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1368,7 +1368,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-extrabold.ttf||4604536:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-extrabold.ttf||4707652:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Extrabold",
       "font-family": "Iosevka Comfy Fixed Extrabold",
       "font-stretch": "normal",
@@ -1404,7 +1404,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-extrabolditalic.ttf||4803708:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-extrabolditalic.ttf||4899972:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Extrabold",
       "font-family": "Iosevka Comfy Fixed Extrabold",
       "font-stretch": "normal",
@@ -1440,7 +1440,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-italic.ttf||4782160:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-italic.ttf||4903564:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1476,7 +1476,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-light.ttf||4620972:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-light.ttf||4731060:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Light",
       "font-family": "Iosevka Comfy Fixed Light",
       "font-stretch": "normal",
@@ -1512,7 +1512,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-lightitalic.ttf||4814644:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-lightitalic.ttf||4924652:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed Light",
       "font-family": "Iosevka Comfy Fixed Light",
       "font-stretch": "normal",
@@ -1548,7 +1548,7 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-regular.ttf||4611904:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-regular.ttf||4722844:1684519886.0": {
       "family_name": "Iosevka Comfy Fixed",
       "font-family": "Iosevka Comfy Fixed",
       "font-stretch": "normal",
@@ -1584,14 +1584,14 @@
       "wws_family_name": "Iosevka Comfy Fixed",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilight.ttf||4585340:1682581642.0": {
-      "family_name": "Iosevka Comfy Fixed W350",
-      "font-family": "Iosevka Comfy Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilight.ttf||4704944:1684519886.0": {
+      "family_name": "Iosevka Comfy Fixed SemiLight",
+      "font-family": "Iosevka Comfy Fixed SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Fixed W350",
+      "full_name": "Iosevka Comfy Fixed SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -1613,21 +1613,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Fixed",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Fixed",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilightitalic.ttf||4783896:1682581642.0": {
-      "family_name": "Iosevka Comfy Fixed W350",
-      "font-family": "Iosevka Comfy Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilightitalic.ttf||4905860:1684519886.0": {
+      "family_name": "Iosevka Comfy Fixed SemiLight",
+      "font-family": "Iosevka Comfy Fixed SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Fixed W350 Italic",
+      "full_name": "Iosevka Comfy Fixed SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -1649,14 +1649,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-fixed/ttf/iosevka-comfy-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Fixed",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Fixed",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-bold.ttf||5278932:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-bold.ttf||5522136:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -1692,7 +1692,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-bolditalic.ttf||5710004:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-bolditalic.ttf||5953260:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -1728,7 +1728,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-extrabold.ttf||5260792:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-extrabold.ttf||5523136:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo XBd",
       "font-family": "Iosevka Comfy Motion Duo XBd",
       "font-stretch": "normal",
@@ -1764,7 +1764,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-extrabolditalic.ttf||5717744:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-extrabolditalic.ttf||5970544:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo XBd",
       "font-family": "Iosevka Comfy Motion Duo XBd",
       "font-stretch": "normal",
@@ -1800,7 +1800,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-italic.ttf||5684700:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-italic.ttf||5956184:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -1836,7 +1836,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-light.ttf||5233672:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-light.ttf||5484040:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo Light",
       "font-family": "Iosevka Comfy Motion Duo Light",
       "font-stretch": "normal",
@@ -1872,7 +1872,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-lightitalic.ttf||5721768:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-lightitalic.ttf||5976780:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo Light",
       "font-family": "Iosevka Comfy Motion Duo Light",
       "font-stretch": "normal",
@@ -1908,7 +1908,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-regular.ttf||5267956:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-regular.ttf||5503892:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -1944,14 +1944,14 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilight.ttf||5266756:1682581642.0": {
-      "family_name": "Iosevka Comfy Motion Duo W350",
-      "font-family": "Iosevka Comfy Motion Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilight.ttf||5498896:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Duo SmLt",
+      "font-family": "Iosevka Comfy Motion Duo SmLt",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Duo W350",
+      "full_name": "Iosevka Comfy Motion Duo SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -1973,21 +1973,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Duo",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Duo",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilightitalic.ttf||5702700:1682581642.0": {
-      "family_name": "Iosevka Comfy Motion Duo W350",
-      "font-family": "Iosevka Comfy Motion Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilightitalic.ttf||5949904:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Duo SmLt",
+      "font-family": "Iosevka Comfy Motion Duo SmLt",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Duo W350 Italic",
+      "full_name": "Iosevka Comfy Motion Duo SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -2009,14 +2009,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf-unhinted/iosevka-comfy-motion-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Duo",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Duo",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-bold.ttf||8379588:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-bold.ttf||8605512:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -2052,7 +2052,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-bolditalic.ttf||8929428:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-bolditalic.ttf||9168368:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -2088,7 +2088,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-extrabold.ttf||8518208:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-extrabold.ttf||8740348:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo XBd",
       "font-family": "Iosevka Comfy Motion Duo XBd",
       "font-stretch": "normal",
@@ -2124,7 +2124,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-extrabolditalic.ttf||9109920:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-extrabolditalic.ttf||9329452:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo XBd",
       "font-family": "Iosevka Comfy Motion Duo XBd",
       "font-stretch": "normal",
@@ -2160,7 +2160,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-italic.ttf||8712948:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-italic.ttf||8977944:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -2196,7 +2196,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-light.ttf||8285096:1682581642.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-light.ttf||8505588:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo Light",
       "font-family": "Iosevka Comfy Motion Duo Light",
       "font-stretch": "normal",
@@ -2232,7 +2232,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-lightitalic.ttf||8926448:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-lightitalic.ttf||9162580:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo Light",
       "font-family": "Iosevka Comfy Motion Duo Light",
       "font-stretch": "normal",
@@ -2268,7 +2268,7 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-regular.ttf||8216160:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-regular.ttf||8434428:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Duo",
       "font-family": "Iosevka Comfy Motion Duo",
       "font-stretch": "normal",
@@ -2304,14 +2304,14 @@
       "wws_family_name": "Iosevka Comfy Motion Duo",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilight.ttf||8261252:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Duo W350",
-      "font-family": "Iosevka Comfy Motion Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilight.ttf||8476880:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Duo SmLt",
+      "font-family": "Iosevka Comfy Motion Duo SmLt",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Duo W350",
+      "full_name": "Iosevka Comfy Motion Duo SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -2333,21 +2333,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Duo",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Duo",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilightitalic.ttf||8814836:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Duo W350",
-      "font-family": "Iosevka Comfy Motion Duo W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilightitalic.ttf||9055116:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Duo SmLt",
+      "font-family": "Iosevka Comfy Motion Duo SmLt",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Duo W350 Italic",
+      "full_name": "Iosevka Comfy Motion Duo SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -2369,14 +2369,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-duo/ttf/iosevka-comfy-motion-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Duo",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Duo",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-bold.ttf||3078044:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-bold.ttf||3252796:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2412,7 +2412,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-bolditalic.ttf||3219700:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-bolditalic.ttf||3396436:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2448,7 +2448,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-extrabold.ttf||3068932:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-extrabold.ttf||3246908:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed XBd",
       "font-family": "Iosevka Comfy Motion Fixed XBd",
       "font-stretch": "normal",
@@ -2484,7 +2484,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-extrabolditalic.ttf||3216808:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-extrabolditalic.ttf||3389488:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed XBd",
       "font-family": "Iosevka Comfy Motion Fixed XBd",
       "font-stretch": "normal",
@@ -2520,7 +2520,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-italic.ttf||3235048:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-italic.ttf||3411248:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2556,7 +2556,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-light.ttf||3089204:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-light.ttf||3263852:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed Lt",
       "font-family": "Iosevka Comfy Motion Fixed Lt",
       "font-stretch": "normal",
@@ -2592,7 +2592,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-lightitalic.ttf||3235444:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-lightitalic.ttf||3405276:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed Lt",
       "font-family": "Iosevka Comfy Motion Fixed Lt",
       "font-stretch": "normal",
@@ -2628,7 +2628,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-regular.ttf||3083296:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-regular.ttf||3259224:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2664,14 +2664,14 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilight.ttf||3088884:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Fixed W350",
-      "font-family": "Iosevka Comfy Motion Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilight.ttf||3263580:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Fixed SmLt",
+      "font-family": "Iosevka Comfy Motion Fixed SmLt",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Fixed W350",
+      "full_name": "Iosevka Comfy Motion Fixed SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -2693,21 +2693,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Fixed",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Fixed",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilightitalic.ttf||3237220:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Fixed W350",
-      "font-family": "Iosevka Comfy Motion Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilightitalic.ttf||3412928:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Fixed SmLt",
+      "font-family": "Iosevka Comfy Motion Fixed SmLt",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Fixed W350 Italic",
+      "full_name": "Iosevka Comfy Motion Fixed SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -2729,14 +2729,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf-unhinted/iosevka-comfy-motion-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Fixed",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Fixed",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-bold.ttf||4663492:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-bold.ttf||4781040:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2772,7 +2772,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-bolditalic.ttf||4806124:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-bolditalic.ttf||4939764:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2808,7 +2808,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-extrabold.ttf||4687980:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-extrabold.ttf||4787432:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed XBd",
       "font-family": "Iosevka Comfy Motion Fixed XBd",
       "font-stretch": "normal",
@@ -2844,7 +2844,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-extrabolditalic.ttf||4839536:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-extrabolditalic.ttf||4945472:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed XBd",
       "font-family": "Iosevka Comfy Motion Fixed XBd",
       "font-stretch": "normal",
@@ -2880,7 +2880,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-italic.ttf||4807820:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-italic.ttf||4942932:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -2916,7 +2916,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-light.ttf||4763340:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-light.ttf||4873916:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed Lt",
       "font-family": "Iosevka Comfy Motion Fixed Lt",
       "font-stretch": "normal",
@@ -2952,7 +2952,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-lightitalic.ttf||4888948:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-lightitalic.ttf||5002596:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed Lt",
       "font-family": "Iosevka Comfy Motion Fixed Lt",
       "font-stretch": "normal",
@@ -2988,7 +2988,7 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-regular.ttf||4663948:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-regular.ttf||4786272:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Fixed",
       "font-family": "Iosevka Comfy Motion Fixed",
       "font-stretch": "normal",
@@ -3024,14 +3024,14 @@
       "wws_family_name": "Iosevka Comfy Motion Fixed",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilight.ttf||4687020:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Fixed W350",
-      "font-family": "Iosevka Comfy Motion Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilight.ttf||4809028:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Fixed SmLt",
+      "font-family": "Iosevka Comfy Motion Fixed SmLt",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Fixed W350",
+      "full_name": "Iosevka Comfy Motion Fixed SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -3053,21 +3053,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Fixed",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Fixed",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilightitalic.ttf||4827064:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion Fixed W350",
-      "font-family": "Iosevka Comfy Motion Fixed W350",
+    "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilightitalic.ttf||4961300:1684519886.0": {
+      "family_name": "Iosevka Comfy Motion Fixed SmLt",
+      "font-family": "Iosevka Comfy Motion Fixed SmLt",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion Fixed W350 Italic",
+      "full_name": "Iosevka Comfy Motion Fixed SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -3089,14 +3089,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion-fixed/ttf/iosevka-comfy-motion-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion Fixed",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion Fixed",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-bold.ttf||3833448:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-bold.ttf||4032128:1684519886.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3132,7 +3132,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-bolditalic.ttf||4025264:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-bolditalic.ttf||4226048:1684519886.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3168,7 +3168,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-extrabold.ttf||3822396:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-extrabold.ttf||4024448:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Extrabold",
       "font-family": "Iosevka Comfy Motion Extrabold",
       "font-stretch": "normal",
@@ -3204,7 +3204,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-extrabolditalic.ttf||4025908:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-extrabolditalic.ttf||4228820:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Extrabold",
       "font-family": "Iosevka Comfy Motion Extrabold",
       "font-stretch": "normal",
@@ -3240,7 +3240,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-italic.ttf||4040556:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-italic.ttf||4241104:1684519886.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3276,7 +3276,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-light.ttf||3837940:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-light.ttf||4036812:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Light",
       "font-family": "Iosevka Comfy Motion Light",
       "font-stretch": "normal",
@@ -3312,7 +3312,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-lightitalic.ttf||4041412:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-lightitalic.ttf||4242968:1684519886.0": {
       "family_name": "Iosevka Comfy Motion Light",
       "font-family": "Iosevka Comfy Motion Light",
       "font-stretch": "normal",
@@ -3348,7 +3348,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-regular.ttf||3834064:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-regular.ttf||4033896:1684519886.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3384,14 +3384,14 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilight.ttf||3840520:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion W350",
-      "font-family": "Iosevka Comfy Motion W350",
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilight.ttf||4038748:1684519887.0": {
+      "family_name": "Iosevka Comfy Motion SemiLight",
+      "font-family": "Iosevka Comfy Motion SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion W350",
+      "full_name": "Iosevka Comfy Motion SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -3413,21 +3413,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilightitalic.ttf||4042220:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion W350",
-      "font-family": "Iosevka Comfy Motion W350",
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilightitalic.ttf||4242852:1684519887.0": {
+      "family_name": "Iosevka Comfy Motion SemiLight",
+      "font-family": "Iosevka Comfy Motion SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion W350 Italic",
+      "full_name": "Iosevka Comfy Motion SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -3449,14 +3449,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion/ttf-unhinted/iosevka-comfy-motion-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-bold.ttf||5913604:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-bold.ttf||6057684:1684519887.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3492,7 +3492,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-bolditalic.ttf||6098316:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-bolditalic.ttf||6258820:1684519887.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3528,7 +3528,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-extrabold.ttf||5940376:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-extrabold.ttf||6067224:1684519887.0": {
       "family_name": "Iosevka Comfy Motion Extrabold",
       "font-family": "Iosevka Comfy Motion Extrabold",
       "font-stretch": "normal",
@@ -3564,7 +3564,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-extrabolditalic.ttf||6137044:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-extrabolditalic.ttf||6275428:1684519887.0": {
       "family_name": "Iosevka Comfy Motion Extrabold",
       "font-family": "Iosevka Comfy Motion Extrabold",
       "font-stretch": "normal",
@@ -3600,7 +3600,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-italic.ttf||6058752:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-italic.ttf||6220572:1684519887.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3636,7 +3636,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-light.ttf||5962612:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-light.ttf||6099060:1684519887.0": {
       "family_name": "Iosevka Comfy Motion Light",
       "font-family": "Iosevka Comfy Motion Light",
       "font-stretch": "normal",
@@ -3672,7 +3672,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-lightitalic.ttf||6099308:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-lightitalic.ttf||6245992:1684519887.0": {
       "family_name": "Iosevka Comfy Motion Light",
       "font-family": "Iosevka Comfy Motion Light",
       "font-stretch": "normal",
@@ -3708,7 +3708,7 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-regular.ttf||5866616:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-regular.ttf||6014928:1684519887.0": {
       "family_name": "Iosevka Comfy Motion",
       "font-family": "Iosevka Comfy Motion",
       "font-stretch": "normal",
@@ -3744,14 +3744,14 @@
       "wws_family_name": "Iosevka Comfy Motion",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilight.ttf||5883180:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion W350",
-      "font-family": "Iosevka Comfy Motion W350",
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilight.ttf||6030316:1684519887.0": {
+      "family_name": "Iosevka Comfy Motion SemiLight",
+      "font-family": "Iosevka Comfy Motion SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion W350",
+      "full_name": "Iosevka Comfy Motion SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -3773,21 +3773,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Motion",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilightitalic.ttf||6072192:1682581643.0": {
-      "family_name": "Iosevka Comfy Motion W350",
-      "font-family": "Iosevka Comfy Motion W350",
+    "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilightitalic.ttf||6232608:1684519887.0": {
+      "family_name": "Iosevka Comfy Motion SemiLight",
+      "font-family": "Iosevka Comfy Motion SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Motion W350 Italic",
+      "full_name": "Iosevka Comfy Motion SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -3809,14 +3809,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-motion/ttf/iosevka-comfy-motion-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Motion",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy Motion",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-bold.ttf||5272908:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-bold.ttf||5536732:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -3852,7 +3852,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-bolditalic.ttf||5716028:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-bolditalic.ttf||5947848:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -3888,7 +3888,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-extrabold.ttf||5286004:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-extrabold.ttf||5561084:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Duo XBd Ex",
       "font-stretch": "expanded",
@@ -3924,7 +3924,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-extrabolditalic.ttf||5713640:1682581643.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-extrabolditalic.ttf||5939368:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Duo XBd Ex",
       "font-stretch": "expanded",
@@ -3960,7 +3960,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-italic.ttf||5741364:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-italic.ttf||5962120:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -3996,7 +3996,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-light.ttf||5242988:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-light.ttf||5507132:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Duo Lt Ex",
       "font-stretch": "expanded",
@@ -4032,7 +4032,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-lightitalic.ttf||5722636:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-lightitalic.ttf||5952252:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Duo Lt Ex",
       "font-stretch": "expanded",
@@ -4068,7 +4068,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-regular.ttf||5290660:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-regular.ttf||5552484:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -4104,14 +4104,14 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilight.ttf||5278940:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilight.ttf||5544116:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Duo W350 Extended",
+      "full_name": "Iosevka Comfy Wide Duo SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -4133,21 +4133,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Duo",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Duo",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilightitalic.ttf||5740080:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilightitalic.ttf||5962692:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Duo W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Duo SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -4169,14 +4169,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf-unhinted/iosevka-comfy-wide-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Duo",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Duo",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-bold.ttf||8291180:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-bold.ttf||8513920:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -4212,7 +4212,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-bolditalic.ttf||8812376:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-bolditalic.ttf||9007428:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -4248,7 +4248,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-extrabold.ttf||8451748:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-extrabold.ttf||8697528:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Duo XBd Ex",
       "font-stretch": "expanded",
@@ -4284,7 +4284,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-extrabolditalic.ttf||9007476:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-extrabolditalic.ttf||9187708:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Duo XBd Ex",
       "font-stretch": "expanded",
@@ -4320,7 +4320,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-italic.ttf||8619312:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-italic.ttf||8824968:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -4356,7 +4356,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-light.ttf||8113720:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-light.ttf||8351796:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Duo Lt Ex",
       "font-stretch": "expanded",
@@ -4392,7 +4392,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-lightitalic.ttf||8719820:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-lightitalic.ttf||8939636:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Duo Lt Ex",
       "font-stretch": "expanded",
@@ -4428,7 +4428,7 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-regular.ttf||8085192:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-regular.ttf||8327476:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Duo Ex",
       "font-family": "Iosevka Comfy Wide Duo Ex",
       "font-stretch": "expanded",
@@ -4464,14 +4464,14 @@
       "wws_family_name": "Iosevka Comfy Wide Duo",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilight.ttf||8185452:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilight.ttf||8428636:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Duo W350 Extended",
+      "full_name": "Iosevka Comfy Wide Duo SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -4493,21 +4493,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Duo",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Duo",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilightitalic.ttf||8825872:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilightitalic.ttf||9037960:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Duo W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Duo SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -4529,14 +4529,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-duo/ttf/iosevka-comfy-wide-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Duo",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Duo",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-bold.ttf||3052468:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-bold.ttf||3230280:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4572,7 +4572,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-bolditalic.ttf||3208764:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-bolditalic.ttf||3379816:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4608,7 +4608,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-extrabold.ttf||3044096:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-extrabold.ttf||3215880:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -4644,7 +4644,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-extrabolditalic.ttf||3200064:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-extrabolditalic.ttf||3372680:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -4680,7 +4680,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-italic.ttf||3227164:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-italic.ttf||3399644:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4716,7 +4716,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-light.ttf||3079668:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-light.ttf||3258804:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -4752,7 +4752,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-lightitalic.ttf||3230968:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-lightitalic.ttf||3404456:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -4788,7 +4788,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-regular.ttf||3068620:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-regular.ttf||3247088:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4824,14 +4824,14 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilight.ttf||3070228:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilight.ttf||3247848:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Fixed W350 Extended",
+      "full_name": "Iosevka Comfy Wide Fixed SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -4853,21 +4853,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Fixed",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Fixed",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilightitalic.ttf||3226580:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilightitalic.ttf||3400800:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Fixed W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Fixed SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -4889,14 +4889,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf-unhinted/iosevka-comfy-wide-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Fixed",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Fixed",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-bold.ttf||4523716:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-bold.ttf||4620688:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4932,7 +4932,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-bolditalic.ttf||4707420:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-bolditalic.ttf||4806224:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -4968,7 +4968,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-extrabold.ttf||4515664:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-extrabold.ttf||4611896:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -5004,7 +5004,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-extrabolditalic.ttf||4727192:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-extrabolditalic.ttf||4814752:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -5040,7 +5040,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-italic.ttf||4701692:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-italic.ttf||4817772:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -5076,7 +5076,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-light.ttf||4566772:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-light.ttf||4685232:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -5112,7 +5112,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-lightitalic.ttf||4719948:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-lightitalic.ttf||4844196:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -5148,7 +5148,7 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-regular.ttf||4521896:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-regular.ttf||4639268:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Fixed Ex",
       "font-family": "Iosevka Comfy Wide Fixed Ex",
       "font-stretch": "expanded",
@@ -5184,14 +5184,14 @@
       "wws_family_name": "Iosevka Comfy Wide Fixed",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilight.ttf||4523280:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilight.ttf||4639420:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Fixed W350 Extended",
+      "full_name": "Iosevka Comfy Wide Fixed SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -5213,21 +5213,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Fixed",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Fixed",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilightitalic.ttf||4778144:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilightitalic.ttf||4900548:1684519887.0": {
+      "family_name": "Iosevka Comfy Wide Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Fixed W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Fixed SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -5249,14 +5249,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-fixed/ttf/iosevka-comfy-wide-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Fixed",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Fixed",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-bold.ttf||5280628:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-bold.ttf||5600040:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5292,7 +5292,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-bolditalic.ttf||5685060:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-bolditalic.ttf||5979220:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5328,7 +5328,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-extrabold.ttf||5293852:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-extrabold.ttf||5600052:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-stretch": "expanded",
@@ -5364,7 +5364,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-extrabolditalic.ttf||5684820:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-extrabolditalic.ttf||5979140:1684519887.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-stretch": "expanded",
@@ -5400,7 +5400,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-italic.ttf||5705952:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-italic.ttf||6002512:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5436,7 +5436,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-light.ttf||5249276:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-light.ttf||5513856:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-stretch": "expanded",
@@ -5472,7 +5472,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-lightitalic.ttf||5690800:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-lightitalic.ttf||5994128:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-stretch": "expanded",
@@ -5508,7 +5508,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-regular.ttf||5298052:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-regular.ttf||5549092:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5544,14 +5544,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilight.ttf||5286280:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilight.ttf||5520328:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Duo W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion Duo SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -5573,21 +5573,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Duo",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilightitalic.ttf||5706440:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilightitalic.ttf||6007880:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Duo W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion Duo SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -5609,14 +5609,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf-unhinted/iosevka-comfy-wide-motion-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Duo",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-bold.ttf||8318404:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-bold.ttf||8688280:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5652,7 +5652,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-bolditalic.ttf||8797360:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-bolditalic.ttf||9108872:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5688,7 +5688,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-extrabold.ttf||8479148:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-extrabold.ttf||8805704:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-stretch": "expanded",
@@ -5724,7 +5724,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-extrabolditalic.ttf||8995912:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-extrabolditalic.ttf||9308936:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo XBd Ex",
       "font-stretch": "expanded",
@@ -5760,7 +5760,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-italic.ttf||8599472:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-italic.ttf||8952880:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5796,7 +5796,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-light.ttf||8136464:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-light.ttf||8401200:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-stretch": "expanded",
@@ -5832,7 +5832,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-lightitalic.ttf||8705588:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-lightitalic.ttf||9052808:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Lt Ex",
       "font-stretch": "expanded",
@@ -5868,7 +5868,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-regular.ttf||8110108:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-regular.ttf||8382316:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Duo Ex",
       "font-family": "Iosevka Comfy Wide Motion Duo Ex",
       "font-stretch": "expanded",
@@ -5904,14 +5904,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilight.ttf||8211068:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilight.ttf||8403832:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Duo W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion Duo SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -5933,21 +5933,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Duo",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilightitalic.ttf||8809192:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Duo W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Duo W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilightitalic.ttf||9039564:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Duo SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Duo SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Duo W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion Duo SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -5969,14 +5969,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-duo/ttf/iosevka-comfy-wide-motion-duo-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Duo",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Duo",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-bold.ttf||3073204:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-bold.ttf||3249784:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6012,7 +6012,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-bolditalic.ttf||3213840:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-bolditalic.ttf||3383392:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6048,7 +6048,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-extrabold.ttf||3063792:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-extrabold.ttf||3241732:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -6084,7 +6084,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-extrabolditalic.ttf||3210080:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-extrabolditalic.ttf||3380076:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -6120,7 +6120,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-italic.ttf||3240252:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-italic.ttf||3418800:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6156,7 +6156,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-light.ttf||3111240:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-light.ttf||3287160:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -6192,7 +6192,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-lightitalic.ttf||3240376:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-lightitalic.ttf||3410580:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -6228,7 +6228,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-regular.ttf||3090160:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-regular.ttf||3267468:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6264,14 +6264,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilight.ttf||3094356:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilight.ttf||3271476:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Fixed W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion Fixed SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -6293,21 +6293,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf||3237336:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf||3405788:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Fixed W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion Fixed SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -6329,14 +6329,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf-unhinted/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-bold.ttf||4617576:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-bold.ttf||4715472:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6372,7 +6372,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-bolditalic.ttf||4739568:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-bolditalic.ttf||4847016:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6408,7 +6408,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-extrabold.ttf||4620244:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-extrabold.ttf||4727824:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -6444,7 +6444,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-extrabolditalic.ttf||4778528:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-extrabolditalic.ttf||4871624:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed XBd Ex",
       "font-stretch": "expanded",
@@ -6480,7 +6480,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-italic.ttf||4754900:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-italic.ttf||4884312:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6516,7 +6516,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-light.ttf||4628968:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-light.ttf||4749728:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -6552,7 +6552,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-lightitalic.ttf||4764340:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-lightitalic.ttf||4883104:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Lt Ex",
       "font-stretch": "expanded",
@@ -6588,7 +6588,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-regular.ttf||4570844:1682581644.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-regular.ttf||4688712:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-family": "Iosevka Comfy Wide Motion Fixed Ex",
       "font-stretch": "expanded",
@@ -6624,14 +6624,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilight.ttf||4647336:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilight.ttf||4762356:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Fixed W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion Fixed SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -6653,21 +6653,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf||4751420:1682581644.0": {
-      "family_name": "Iosevka Comfy Wide Motion Fixed W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion Fixed W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf||4878260:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion Fixed SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion Fixed W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion Fixed SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -6689,14 +6689,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion-fixed/ttf/iosevka-comfy-wide-motion-fixed-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion Fixed",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-bold.ttf||3868656:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-bold.ttf||4069972:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -6732,7 +6732,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-bolditalic.ttf||4040072:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-bolditalic.ttf||4241440:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -6768,7 +6768,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-extrabold.ttf||3855992:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-extrabold.ttf||4058196:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion XBd Ex",
       "font-stretch": "expanded",
@@ -6804,7 +6804,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-extrabolditalic.ttf||4037044:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-extrabolditalic.ttf||4238640:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion XBd Ex",
       "font-stretch": "expanded",
@@ -6840,7 +6840,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-italic.ttf||4053488:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-italic.ttf||4255596:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -6876,7 +6876,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-light.ttf||3884580:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-light.ttf||4084432:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Lt Ex",
       "font-stretch": "expanded",
@@ -6912,7 +6912,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-lightitalic.ttf||4053340:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-lightitalic.ttf||4253668:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Lt Ex",
       "font-stretch": "expanded",
@@ -6948,7 +6948,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-regular.ttf||3861388:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-regular.ttf||4064064:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -6984,14 +6984,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilight.ttf||3867772:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide Motion W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilight.ttf||4068924:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -7013,21 +7013,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilightitalic.ttf||4048944:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide Motion W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilightitalic.ttf||4247532:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -7049,14 +7049,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf-unhinted/iosevka-comfy-wide-motion-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-bold.ttf||5875864:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-bold.ttf||6002080:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -7092,7 +7092,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-bolditalic.ttf||6017444:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-bolditalic.ttf||6161404:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -7128,7 +7128,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-extrabold.ttf||5917508:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-extrabold.ttf||6052576:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion XBd Ex",
       "font-stretch": "expanded",
@@ -7164,7 +7164,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-extrabolditalic.ttf||6097612:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-extrabolditalic.ttf||6225608:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion XBd Ex",
       "font-family": "Iosevka Comfy Wide Motion XBd Ex",
       "font-stretch": "expanded",
@@ -7200,7 +7200,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-italic.ttf||5968848:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-italic.ttf||6123920:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -7236,7 +7236,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-light.ttf||5808440:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-light.ttf||5955288:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Lt Ex",
       "font-stretch": "expanded",
@@ -7272,7 +7272,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-lightitalic.ttf||5976080:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-lightitalic.ttf||6127196:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Lt Ex",
       "font-family": "Iosevka Comfy Wide Motion Lt Ex",
       "font-stretch": "expanded",
@@ -7308,7 +7308,7 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-regular.ttf||5750012:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-regular.ttf||5895136:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Motion Ex",
       "font-family": "Iosevka Comfy Wide Motion Ex",
       "font-stretch": "expanded",
@@ -7344,14 +7344,14 @@
       "wws_family_name": "Iosevka Comfy Wide Motion",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilight.ttf||5828124:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide Motion W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilight.ttf||5969240:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion W350 Extended",
+      "full_name": "Iosevka Comfy Wide Motion SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -7373,21 +7373,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilightitalic.ttf||5965644:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide Motion W350 Ex",
-      "font-family": "Iosevka Comfy Wide Motion W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilightitalic.ttf||6123340:1684519888.0": {
+      "family_name": "Iosevka Comfy Wide Motion SmLt Ex",
+      "font-family": "Iosevka Comfy Wide Motion SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide Motion W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide Motion SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -7409,14 +7409,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide-motion/ttf/iosevka-comfy-wide-motion-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide Motion",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide Motion",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-bold.ttf||3842948:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-bold.ttf||4045068:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7452,7 +7452,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-bolditalic.ttf||4037052:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-bolditalic.ttf||4233776:1684519888.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7488,7 +7488,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-extrabold.ttf||3833164:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-extrabold.ttf||4029768:1684519888.0": {
       "family_name": "Iosevka Comfy Wide XBd Ex",
       "font-family": "Iosevka Comfy Wide XBd Ex",
       "font-stretch": "expanded",
@@ -7524,7 +7524,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-extrabolditalic.ttf||4027352:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-extrabolditalic.ttf||4224548:1684519889.0": {
       "family_name": "Iosevka Comfy Wide XBd Ex",
       "font-family": "Iosevka Comfy Wide XBd Ex",
       "font-stretch": "expanded",
@@ -7560,7 +7560,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-italic.ttf||4054508:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-italic.ttf||4251556:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7596,7 +7596,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-light.ttf||3853272:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-light.ttf||4057272:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Lt Ex",
       "font-family": "Iosevka Comfy Wide Lt Ex",
       "font-stretch": "expanded",
@@ -7632,7 +7632,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-lightitalic.ttf||4056604:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-lightitalic.ttf||4254704:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Lt Ex",
       "font-family": "Iosevka Comfy Wide Lt Ex",
       "font-stretch": "expanded",
@@ -7668,7 +7668,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-regular.ttf||3844224:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-regular.ttf||4046764:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7704,14 +7704,14 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilight.ttf||3844564:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide W350 Ex",
-      "font-family": "Iosevka Comfy Wide W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilight.ttf||4046904:1684519889.0": {
+      "family_name": "Iosevka Comfy Wide SmLt Ex",
+      "font-family": "Iosevka Comfy Wide SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide W350 Extended",
+      "full_name": "Iosevka Comfy Wide SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -7733,21 +7733,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilightitalic.ttf||4053024:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide W350 Ex",
-      "font-family": "Iosevka Comfy Wide W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilightitalic.ttf||4251864:1684519889.0": {
+      "family_name": "Iosevka Comfy Wide SmLt Ex",
+      "font-family": "Iosevka Comfy Wide SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -7769,14 +7769,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide/ttf-unhinted/iosevka-comfy-wide-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-bold.ttf||5805400:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-bold.ttf||5929884:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7812,7 +7812,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Bold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-bolditalic.ttf||6016728:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-bolditalic.ttf||6144632:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7848,7 +7848,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Bold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-extrabold.ttf||5793668:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-extrabold.ttf||5918128:1684519889.0": {
       "family_name": "Iosevka Comfy Wide XBd Ex",
       "font-family": "Iosevka Comfy Wide XBd Ex",
       "font-stretch": "expanded",
@@ -7884,7 +7884,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extrabold Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-extrabolditalic.ttf||6034504:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-extrabolditalic.ttf||6150016:1684519889.0": {
       "family_name": "Iosevka Comfy Wide XBd Ex",
       "font-family": "Iosevka Comfy Wide XBd Ex",
       "font-stretch": "expanded",
@@ -7920,7 +7920,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extrabold Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-italic.ttf||5925084:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-italic.ttf||6068256:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -7956,7 +7956,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-light.ttf||5741284:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-light.ttf||5886788:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Lt Ex",
       "font-family": "Iosevka Comfy Wide Lt Ex",
       "font-stretch": "expanded",
@@ -7992,7 +7992,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Light Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-lightitalic.ttf||5948892:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-lightitalic.ttf||6100036:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Lt Ex",
       "font-family": "Iosevka Comfy Wide Lt Ex",
       "font-stretch": "expanded",
@@ -8028,7 +8028,7 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Light Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-regular.ttf||5694924:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-regular.ttf||5838940:1684519889.0": {
       "family_name": "Iosevka Comfy Wide Extended",
       "font-family": "Iosevka Comfy Wide Extended",
       "font-stretch": "expanded",
@@ -8064,14 +8064,14 @@
       "wws_family_name": "Iosevka Comfy Wide",
       "wws_subfamily_name": "Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilight.ttf||5701496:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide W350 Ex",
-      "font-family": "Iosevka Comfy Wide W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilight.ttf||5844612:1684519889.0": {
+      "family_name": "Iosevka Comfy Wide SmLt Ex",
+      "font-family": "Iosevka Comfy Wide SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide W350 Extended",
+      "full_name": "Iosevka Comfy Wide SemiLight Extended",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -8093,21 +8093,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy Wide",
-      "preferred_subfamily_name": "W350 Extended",
+      "preferred_subfamily_name": "SemiLight Extended",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide",
-      "wws_subfamily_name": "W350 Extended"
+      "wws_subfamily_name": "SemiLight Extended"
     },
-    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilightitalic.ttf||6006256:1682581645.0": {
-      "family_name": "Iosevka Comfy Wide W350 Ex",
-      "font-family": "Iosevka Comfy Wide W350 Ex",
+    "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilightitalic.ttf||6155320:1684519889.0": {
+      "family_name": "Iosevka Comfy Wide SmLt Ex",
+      "font-family": "Iosevka Comfy Wide SmLt Ex",
       "font-stretch": "expanded",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy Wide W350 Extended Italic",
+      "full_name": "Iosevka Comfy Wide SemiLight Extended Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -8129,14 +8129,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy-wide/ttf/iosevka-comfy-wide-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy Wide",
-      "preferred_subfamily_name": "W350 Extended Italic",
+      "preferred_subfamily_name": "SemiLight Extended Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 7,
       "wws_family_name": "Iosevka Comfy Wide",
-      "wws_subfamily_name": "W350 Extended Italic"
+      "wws_subfamily_name": "SemiLight Extended Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-bold.ttf||3798108:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-bold.ttf||3999740:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8172,7 +8172,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-bolditalic.ttf||4013260:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-bolditalic.ttf||4207396:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8208,7 +8208,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-extrabold.ttf||3792768:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-extrabold.ttf||3995872:1684519889.0": {
       "family_name": "Iosevka Comfy Extrabold",
       "font-family": "Iosevka Comfy Extrabold",
       "font-stretch": "normal",
@@ -8244,7 +8244,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-extrabolditalic.ttf||4017208:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-extrabolditalic.ttf||4217844:1684519889.0": {
       "family_name": "Iosevka Comfy Extrabold",
       "font-family": "Iosevka Comfy Extrabold",
       "font-stretch": "normal",
@@ -8280,7 +8280,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-italic.ttf||4021860:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-italic.ttf||4219640:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8316,7 +8316,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-light.ttf||3819960:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-light.ttf||4026576:1684519889.0": {
       "family_name": "Iosevka Comfy Light",
       "font-family": "Iosevka Comfy Light",
       "font-stretch": "normal",
@@ -8352,7 +8352,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-lightitalic.ttf||4032784:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-lightitalic.ttf||4239820:1684519889.0": {
       "family_name": "Iosevka Comfy Light",
       "font-family": "Iosevka Comfy Light",
       "font-stretch": "normal",
@@ -8388,7 +8388,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-regular.ttf||3807520:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-regular.ttf||4008992:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8424,14 +8424,14 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilight.ttf||3807168:1682581645.0": {
-      "family_name": "Iosevka Comfy W350",
-      "font-family": "Iosevka Comfy W350",
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilight.ttf||4008540:1684519889.0": {
+      "family_name": "Iosevka Comfy SemiLight",
+      "font-family": "Iosevka Comfy SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy W350",
+      "full_name": "Iosevka Comfy SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -8453,21 +8453,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilightitalic.ttf||4026624:1682581645.0": {
-      "family_name": "Iosevka Comfy W350",
-      "font-family": "Iosevka Comfy W350",
+    "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilightitalic.ttf||4223872:1684519889.0": {
+      "family_name": "Iosevka Comfy SemiLight",
+      "font-family": "Iosevka Comfy SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy W350 Italic",
+      "full_name": "Iosevka Comfy SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -8489,14 +8489,14 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy/ttf-unhinted/iosevka-comfy-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-bold.ttf||5815288:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-bold.ttf||5960768:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8532,7 +8532,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Bold"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-bolditalic.ttf||6046724:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-bolditalic.ttf||6193924:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8568,7 +8568,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Bold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-extrabold.ttf||5842800:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-extrabold.ttf||5972876:1684519889.0": {
       "family_name": "Iosevka Comfy Extrabold",
       "font-family": "Iosevka Comfy Extrabold",
       "font-stretch": "normal",
@@ -8604,7 +8604,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Extrabold"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-extrabolditalic.ttf||6095012:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-extrabolditalic.ttf||6218316:1684519889.0": {
       "family_name": "Iosevka Comfy Extrabold",
       "font-family": "Iosevka Comfy Extrabold",
       "font-stretch": "normal",
@@ -8640,7 +8640,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Extrabold Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-italic.ttf||6020264:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-italic.ttf||6168576:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8676,7 +8676,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-light.ttf||5810364:1682581645.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-light.ttf||5947080:1684519889.0": {
       "family_name": "Iosevka Comfy Light",
       "font-family": "Iosevka Comfy Light",
       "font-stretch": "normal",
@@ -8712,7 +8712,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Light"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-lightitalic.ttf||6055164:1682581646.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-lightitalic.ttf||6198852:1684519889.0": {
       "family_name": "Iosevka Comfy Light",
       "font-family": "Iosevka Comfy Light",
       "font-stretch": "normal",
@@ -8748,7 +8748,7 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Light Italic"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-regular.ttf||5840256:1682581646.0": {
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-regular.ttf||5986736:1684519889.0": {
       "family_name": "Iosevka Comfy",
       "font-family": "Iosevka Comfy",
       "font-stretch": "normal",
@@ -8784,14 +8784,14 @@
       "wws_family_name": "Iosevka Comfy",
       "wws_subfamily_name": "Regular"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilight.ttf||5773076:1682581646.0": {
-      "family_name": "Iosevka Comfy W350",
-      "font-family": "Iosevka Comfy W350",
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilight.ttf||5919312:1684519889.0": {
+      "family_name": "Iosevka Comfy SemiLight",
+      "font-family": "Iosevka Comfy SemiLight",
       "font-stretch": "normal",
       "font-style": "normal",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy W350",
+      "full_name": "Iosevka Comfy SemiLight",
       "is_bold": false,
       "is_italic": false,
       "is_oblique": false,
@@ -8813,21 +8813,21 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilight.ttf",
       "preferred_family_name": "Iosevka Comfy",
-      "preferred_subfamily_name": "W350",
+      "preferred_subfamily_name": "SemiLight",
       "subfamily_name": "Regular",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy",
-      "wws_subfamily_name": "W350"
+      "wws_subfamily_name": "SemiLight"
     },
-    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilightitalic.ttf||6020348:1682581646.0": {
-      "family_name": "Iosevka Comfy W350",
-      "font-family": "Iosevka Comfy W350",
+    "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilightitalic.ttf||6169028:1684519889.0": {
+      "family_name": "Iosevka Comfy SemiLight",
+      "font-family": "Iosevka Comfy SemiLight",
       "font-stretch": "normal",
       "font-style": "italic",
       "font-weight": "350",
       "fs_type": 0,
-      "full_name": "Iosevka Comfy W350 Italic",
+      "full_name": "Iosevka Comfy SemiLight Italic",
       "is_bold": false,
       "is_italic": true,
       "is_oblique": false,
@@ -8849,12 +8849,12 @@
       ],
       "path": "/home/jw/.fonts/iosevka-comfy/ttf/iosevka-comfy-semilightitalic.ttf",
       "preferred_family_name": "Iosevka Comfy",
-      "preferred_subfamily_name": "W350 Italic",
+      "preferred_subfamily_name": "SemiLight Italic",
       "subfamily_name": "Italic",
       "weight": 350,
       "width": 5,
       "wws_family_name": "Iosevka Comfy",
-      "wws_subfamily_name": "W350 Italic"
+      "wws_subfamily_name": "SemiLight Italic"
     },
     "/home/jw/.fonts/static/Overpass-Black.ttf||168932:1480633200.0": {
       "family_name": "Overpass Black",
@@ -10188,7 +10188,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/all-the-icons.ttf||44732:1681199192.1486325": {
+    "/home/jw/.local/share/fonts/all-the-icons.ttf||44732:1687691108.9522233": {
       "family_name": "all-the-icons",
       "font-family": "all-the-icons",
       "font-stretch": "normal",
@@ -10224,7 +10224,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/file-icons.ttf||489672:1681199191.9566355": {
+    "/home/jw/.local/share/fonts/file-icons.ttf||489672:1687691108.7842243": {
       "family_name": "file-icons",
       "font-family": "file-icons",
       "font-stretch": "normal",
@@ -10260,7 +10260,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/fontawesome.ttf||152796:1681199191.6206408": {
+    "/home/jw/.local/share/fonts/fontawesome.ttf||152796:1687691108.432227": {
       "family_name": "FontAwesome",
       "font-family": "FontAwesome",
       "font-stretch": "normal",
@@ -10296,7 +10296,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/material-design-icons.ttf||128180:1681199191.0006504": {
+    "/home/jw/.local/share/fonts/material-design-icons.ttf||128180:1687691107.6322324": {
       "family_name": "Material Icons",
       "font-family": "Material Icons",
       "font-stretch": "normal",
@@ -10332,7 +10332,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/octicons.ttf||52544:1681199191.400644": {
+    "/home/jw/.local/share/fonts/octicons.ttf||52544:1687691108.1842287": {
       "family_name": "github-octicons",
       "font-family": "github-octicons",
       "font-stretch": "normal",
@@ -10368,7 +10368,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/home/jw/.local/share/fonts/weathericons.ttf||99564:1681199191.200647": {
+    "/home/jw/.local/share/fonts/weathericons.ttf||99564:1687691107.832231": {
       "family_name": "Weather Icons",
       "font-family": "Weather Icons",
       "font-stretch": "normal",
@@ -14652,6 +14652,42 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
+    "/usr/share/fonts/truetype/glyphicons/glyphicons-halflings-regular.ttf||45404:1550073338.0": {
+      "family_name": "GLYPHICONS Halflings",
+      "font-family": "GLYPHICONS Halflings",
+      "font-stretch": "normal",
+      "font-style": "normal",
+      "font-weight": "normal",
+      "fs_type": 4,
+      "full_name": "GLYPHICONS Halflings Regular",
+      "is_bold": false,
+      "is_italic": false,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": true,
+      "is_wws": false,
+      "os2_version": 3,
+      "panose": [
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "path": "/usr/share/fonts/truetype/glyphicons/glyphicons-halflings-regular.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Regular",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
     "/usr/share/fonts/truetype/kacst-one/KacstOne-Bold.ttf||52084:1569150365.0": {
       "family_name": "KacstOne",
       "font-family": "KacstOne",
@@ -16956,7 +16992,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||208872:1680269117.0": {
+    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||208872:1686132721.0": {
       "family_name": "OpenSymbol",
       "font-family": "OpenSymbol",
       "font-stretch": "normal",
