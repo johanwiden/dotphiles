@@ -16,6 +16,7 @@ export BROWSER=vivaldi
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=5000
 export HISTFILESIZE=50000
+PROMPT_COMMAND="history -a"
 
 # append to the history file, don't overwrite it
 shopt -s histappend

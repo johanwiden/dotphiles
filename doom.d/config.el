@@ -179,6 +179,7 @@
     (load secret.el)))
 
 (setq-default
+ bookmark-save-flag 1 ; Save bookmark list immediately when it has been updated.
  help-window-select t             ; Focus new help windows when opened
  ;;debug-on-error t
  ;;jit-lock-defer-time 0

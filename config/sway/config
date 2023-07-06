@@ -402,6 +402,8 @@ bar {
     #status_command i3blocks  2>/tmp/i3blocks.err -vvv | tee /tmp/i3blocks.out
     #status_command while date +'%Y-%m-%d %I:%M %p'; do sleep 20; done
     font pango:DejaVu Sans Mono 8
+    # Do not show hidden bar when modifier key is pressed
+    modifier none
 
     Colors {
         background $base03
@@ -413,19 +415,16 @@ bar {
         inactive_workspace $base03  $base03  $base01
         urgent_workspace   $red     $red     $base3
     }
-    # colors {
-    #     statusline #ffffff
-    #     background #323232
-    #     inactive_workspace #32323200 #32323200 #5c5c5c
-    # }
 }
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+# set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id swayexit lock, mode "default"
     bindsym e exec --no-startup-id swayexit logout, mode "default"
     bindsym s exec --no-startup-id swayexit suspend, mode "default"
-    bindsym h exec --no-startup-id swayexit hibernate, mode "default"
+    # Hibernate does not work with Secure boot
+    # bindsym h exec --no-startup-id swayexit hibernate, mode "default"
     bindsym r exec --no-startup-id swayexit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id swayexit shutdown, mode "default"
 
@@ -433,7 +432,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-# %%hotkey: System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown %%
+# %%hotkey: System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown %%
 bindsym $mod+Pause mode "$mode_system"
 
 # %%hotkey: bar toggle, hide or show %%
