@@ -13,21 +13,13 @@ export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
 export BROWSER=vivaldi
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=5000
-export HISTFILESIZE=50000
-PROMPT_COMMAND="history -a"
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # if running bash
-# if [[ "$(SHELL)" = "/bin/bash"  ]]; then
-#     # include .bashrc if it exists
-#     if [ -f "$HOME/.bashrc" ]; then
-# 	. "$HOME/.bashrc"
-#     fi
-# fi
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	  source "$HOME/.bashrc"
+    fi
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/rakudo/share/perl6/site/bin" ] ; then
