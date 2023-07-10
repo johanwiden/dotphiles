@@ -142,6 +142,15 @@ export PATH="/home/jw/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# python pdm: Enable python support for PEP582 (packages the project depends on are stored in a project subdirectory)
+if command -v pdm &> /dev/null ; then
+    if [ -n "$PYTHONPATH" ]; then
+        export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582':$PYTHONPATH
+    else
+        export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582'
+    fi
+fi
+
 # Fasd offers quick access to files and directories for POSIX shells.
 # This will setup a command hook that executes on every command and advanced tab completion for zsh and bash.
 eval "$(fasd --init auto)"
