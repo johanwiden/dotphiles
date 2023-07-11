@@ -393,28 +393,33 @@ bindsym $mod+Shift+i mark --add "swapee"; mode "swap"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+# bar {
+#     position top
+
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command /home/jw/.cargo/bin/i3status-rs /home/jw/.config/i3status-rust/config.toml
+#     #status_command i3blocks  2>/tmp/i3blocks.err -vvv | tee /tmp/i3blocks.out
+#     #status_command while date +'%Y-%m-%d %I:%M %p'; do sleep 20; done
+#     font pango:DejaVu Sans Mono 8
+#     # Do not show hidden bar when modifier key is pressed
+#     modifier none
+
+#     Colors {
+#         background $base03
+#         statusline $base1
+#         separator  $blue
+# #                          BORDER  BACKGROUND TEXT
+#         focused_workspace  $base02  $base02  $base2
+#         active_workspace   $base02  $base02  $base01
+#         inactive_workspace $base03  $base03  $base01
+#         urgent_workspace   $red     $red     $base3
+#     }
+# }
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command /home/jw/.cargo/bin/i3status-rs /home/jw/.config/i3status-rust/config.toml
-    #status_command i3blocks  2>/tmp/i3blocks.err -vvv | tee /tmp/i3blocks.out
-    #status_command while date +'%Y-%m-%d %I:%M %p'; do sleep 20; done
-    font pango:DejaVu Sans Mono 8
-    # Do not show hidden bar when modifier key is pressed
-    modifier none
-
-    Colors {
-        background $base03
-        statusline $base1
-        separator  $blue
-#                          BORDER  BACKGROUND TEXT
-        focused_workspace  $base02  $base02  $base2
-        active_workspace   $base02  $base02  $base01
-        inactive_workspace $base03  $base03  $base01
-        urgent_workspace   $red     $red     $base3
-    }
+  swaybar_command waybar
+  workspace_buttons yes
+  modifier none
 }
 
 # set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
