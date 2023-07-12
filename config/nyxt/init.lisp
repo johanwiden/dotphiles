@@ -30,7 +30,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;; (define-nyxt-user-system-and-load nyxt-user/basic-config
 ;;   :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf"))
 (define-nyxt-user-system-and-load nyxt-user/basic-config
-  :components ("keybinds" "commands" "hsplit" "style" "unpdf"))
+  :components ("keybinds" "passwd" "commands" "hsplit" "style" "unpdf"))
 
 ;;; Loading extensions and third-party-dependent configs. See the
 ;;; matching files for where to find those extensions.

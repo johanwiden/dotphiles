@@ -10,7 +10,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     "modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
-    "modules-right": ["network", "bluetooth", "cpu", "memory", "disk", "temperature", "sway/language", "clock", "tray"],
+    "modules-right": ["cpu", "network", "bluetooth", "memory", "disk", "temperature", "sway/language", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -85,9 +85,8 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
     },
     "bluetooth": {
 	    // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
@@ -98,12 +97,8 @@
 	    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
 	    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
     },
-    // "cpu": {
-    //     "format": "{usage}% ",
-    //     "tooltip": false
-    // },
     "cpu": {
-        "format": "{load:<4} {icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7}",
+        "format": "{load:<4} {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     "memory": {
