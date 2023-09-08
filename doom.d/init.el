@@ -21,22 +21,23 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       ;;company           ; the ultimate code completion backend
+       company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
-       (new-helm           ; restructured helm module (more flags...)
-        +ack-grep
-        ;;+autoresize
-        ;;+childframe
-        +fuzzy
-        ;;+helm-popup-layout
-        +helm-mode
-        +icons
-        ;;+nerd-icons
-        ;;+treemacs-icons
-        +remap-commands)
+       ;; (new-helm           ; restructured helm module (more flags...)
+       ;;  +ack-grep
+       ;;  ;;+autoresize
+       ;;  ;;+childframe
+       ;;  +fuzzy
+       ;;  ;;+helm-popup-layout
+       ;;  +helm-mode
+       ;;  +icons
+       ;;  ;;+nerd-icons
+       ;;  ;;+treemacs-icons
+       ;;  +remap-commands)
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-       vertico           ; the search engine of the future
+       (vertico +icons)  ; the search engine of the future
+       ;; (vertico +childframe +icons)  ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -53,18 +54,18 @@
        nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       ;;(popup +defaults)   ; tame sudden yet inevitable temporary windows
+       ;; (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+       (window-select +numbers)     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
        :editor
-       ;;(evil +everywhere); come to the dark side, we have cookies
+       (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
@@ -98,6 +99,7 @@
        :tools
        ;;ansible
        biblio            ; Writes a PhD for you (citation needed)
+       ;;collab            ; buffers with friends
        debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        ;;docker
@@ -181,9 +183,9 @@
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +lsp +tree-sitter)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (scheme +guile)   ; a fully conniving family of lisps
+       ;; (scheme +guile)   ; a fully conniving family of lisps
        (sh +fish +tree-sitter)  ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
@@ -194,7 +196,7 @@
        ;;zig               ; C, but simpler
 
        :email
-       ;;(mu4e +org +gmail)
+       (mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 

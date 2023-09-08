@@ -12,8 +12,8 @@
     (load quicklisp-init)))
 
 (defvar *web-buffer-modes*
-  '(;; :emacs-mode
-    :vi-normal-mode
+  '(:emacs-mode
+    ;; :vi-normal-mode
     ;; :blocker-mode
     :force-https-mode
     ;; :reduce-tracking-mode

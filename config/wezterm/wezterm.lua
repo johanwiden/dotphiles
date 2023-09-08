@@ -15,5 +15,7 @@ end
 -- For example, changing the color scheme:
 config.color_scheme = 'AdventureTime'
 
+config.scrollback_lines = 30000
+
 -- and finally, return the configuration to wezterm
 return config

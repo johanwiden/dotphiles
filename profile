@@ -21,6 +21,32 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+if [ -d "$HOME/Android/Sdk/tools" ] ; then
+    PATH="$HOME/Android/Sdk/tools:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/tools/bin" ] ; then
+    PATH="$HOME/Android/Sdk/tools/bin:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/platform-tools" ] ; then
+    PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/build-tools/33.0.1" ] ; then
+    PATH="$HOME/Android/Sdk/build-tools/33.0.1:$PATH"
+fi
+
+if [ -d "/usr/lib/android-ndk" ] ; then
+    PATH="/usr/lib/android-ndk:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/emulator" ] ; then
+    PATH="$HOME/Android/Sdk/emulator:$PATH"
+fi
+
+export ANDROID_HOME=$HOME/Android/Sdk
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/rakudo/share/perl6/site/bin" ] ; then
     PATH="$HOME/rakudo/share/perl6/site/bin:$PATH"
@@ -99,10 +125,10 @@ gpg-connect-agent /bye
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
 
-if [ -z "$DISPLAY" -a "$(tty)" = '/dev/tty4' ]; then
+if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty4' ]; then
     exec /usr/bin/sway >/tmp/startsway.log 2>&1
 fi
 
-if [ -z "$DISPLAY" -a "$(tty)" = '/dev/tty5' ]; then
+if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty5' ]; then
     exec /usr/bin/startx ~/.xinitrc.exwm >/tmp/startx.log 2>&1
 fi

@@ -50,6 +50,79 @@
 ;; (custom-set-faces!
 ;;   '(mode-line :height 0.9)
 ;;   '(mode-line-inactive :height 0.9))
+(require 'doom-modeline)
+
+;;
+;; evil-state
+;;
+
+(doom-modeline-def-segment evil-state
+  "The current evil state.  Requires `evil-mode' to be enabled."
+  (when (bound-and-true-p evil-local-mode)
+    (s-trim-right (evil-state-property evil-state :tag t))))
+
+(doom-modeline-def-modeline 'main
+  '(bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs checker time))
+
+(doom-modeline-def-modeline 'minimal
+  '(bar evil-state matches buffer-info-simple)
+  '(media-info major-mode time))
+
+(doom-modeline-def-modeline 'special
+  '(bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info battery irc-buffers debug minor-modes input-method indent-info buffer-encoding major-mode process time))
+
+(doom-modeline-def-modeline 'project
+  '(bar window-number evil-state modals buffer-default-directory remote-host buffer-position)
+  '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
+
+(doom-modeline-def-modeline 'dashboard
+  '(bar window-number evil-state buffer-default-directory-simple remote-host)
+  '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
+
+(doom-modeline-def-modeline 'vcs
+  '(bar window-number evil-state modals matches buffer-info remote-host buffer-position parrot selection-info)
+  '(compilation misc-info battery irc mu4e gnus github debug minor-modes buffer-encoding major-mode process time))
+
+(doom-modeline-def-modeline 'package
+  '(bar window-number evil-state package)
+  '(compilation misc-info major-mode process time))
+
+(doom-modeline-def-modeline 'info
+  '(bar window-number evil-state buffer-info info-nodes buffer-position parrot selection-info)
+  '(compilation misc-info buffer-encoding major-mode time))
+
+(doom-modeline-def-modeline 'media
+  '(bar window-number evil-state buffer-size buffer-info)
+  '(compilation misc-info media-info major-mode process vcs time))
+
+(doom-modeline-def-modeline 'message
+  '(bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info battery debug minor-modes input-method indent-info buffer-encoding major-mode time))
+
+(doom-modeline-def-modeline 'pdf
+  '(bar window-number evil-state matches buffer-info pdf-pages)
+  '(compilation  misc-info major-mode process vcs time))
+
+(doom-modeline-def-modeline 'org-src
+  '(bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process checker time))
+
+(doom-modeline-def-modeline 'timemachine
+  '(bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
+  '(misc-info minor-modes indent-info buffer-encoding major-mode time))
+
+(doom-modeline-def-modeline 'calculator
+  '(window-number evil-state modals matches calc buffer-position)
+  '(misc-info minor-modes major-mode process))
+
+(setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "dark green" :foreground "black")))
+      evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "goldenrod" :foreground "black")))
+      evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
+      evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
+      evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+      evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
 ;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
@@ -115,10 +188,10 @@
   (setq custom-safe-themes t)
   ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-intense)
   ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-faint)
-  ;; (load-theme 'modus-vivendi-tinted)
-  ;; (setq doom-theme 'modus-vivendi-tinted)
-  (load-theme 'modus-vivendi)
-  (setq doom-theme 'modus-vivendi)
+  (load-theme 'modus-vivendi-tinted)
+  (setq doom-theme 'modus-vivendi-tinted)
+  ;; (load-theme 'modus-vivendi)
+  ;; (setq doom-theme 'modus-vivendi)
   ;; :bind ("<f5>" . modus-themes-toggle)
   )
 
@@ -158,19 +231,40 @@
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
-(setq major-mode-remap-alist
- '((yaml-mode . yaml-ts-mode)
-   (bash-mode . bash-ts-mode)
-   (c-mode . c-ts-mode)
-   (c++-mode . c++-ts-mode)
-   (js2-mode . js-ts-mode)
-   (typescript-mode . typescript-ts-mode)
-   (json-mode . json-ts-mode)
-   (css-mode . css-ts-mode)
-   (python-mode . python-ts-mode)))
+;; Optional, but recommended. Tree-sitter enabled major modes are
+;; distinct from their ordinary counterparts.
+;;
+;; You can remap major modes with `major-mode-remap-alist'. Note
+;; that this does *not* extend to hooks! Make sure you migrate them
+;; also
+(dolist (mapping '((python-mode . python-ts-mode)
+                   (sh-mode . bash-ts-mode)
+                   (css-mode . css-ts-mode)
+                   (c-mode . c-ts-mode)
+                   (c++-mode . c++-ts-mode)
+                   ;; (typescript-mode . tsx-ts-mode)
+                   (js-mode . js-ts-mode)
+                   (json-mode . json-ts-mode)
+                   (css-mode . css-ts-mode)
+                   (yaml-mode . yaml-ts-mode)))
+  (add-to-list 'major-mode-remap-alist mapping))
 
 ;; Following has to be run when doom emacs is reinstalled.
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+
+;; Use the full theming potential of treesit
+(setq treesit-font-lock-level 4)
+
+;; tweak the new funcall face
+(custom-theme-set-faces
+ ;; for current theme
+ (or (car custom-enabled-themes) 'user)
+
+ ;; funcall face
+ `(font-lock-function-call-face
+   ((t :inherit font-lock-function-name-face
+       :foreground "hot pink"
+       :background "black"))))
 
 (defvar jw/paradox-github-token nil)
 
@@ -192,10 +286,13 @@
  describe-bindings-outline t
  save-interprogram-paste-before-kill t
  ;; Change this from 10MB to 100MB
- large-file-warning-threshold 100000000
+ large-file-warning-threshold 500000000
+ show-paren-context-when-offscreen 'overlay
+ treemacs-no-load-time-warnings t
  )
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
-  (progn(setq recentf-max-saved-items 1000)
+  (progn(setq recentf-max-saved-items 10000)
         (run-at-time nil (* 5 60)
              (lambda ()
                (let ((save-silently t))
@@ -308,23 +405,6 @@
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
-(use-package! bibtex-completion
-  :config
-  (setq bibtex-completion-bibliography '("/home/jw/org/roam/biblio/references.bib")
-        bibtex-completion-library-path "/home/jw/org/roam/pdfs"
-        bibtex-completion-notes-path "/home/jw/org/roam/biblio/helm-bibtex-notes"
-        bibtex-completion-notes-template-multiple-files "#+TITLE: Notes on: ${author-or-editor} (${year}): ${title}\n\nSee [cite/t:@${=key=}]\n"
-        bibtex-completion-additional-search-fields '(keywords)
-        bibtex-completion-display-formats
-	    '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-	      (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-	      (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	      (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	      (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-        bibtex-completion-pdf-field "file"
-        bibtex-completion-pdf-open-function 'org-open-file
-))
-
 (use-package! org-menu
  :after org
  :config
@@ -349,583 +429,6 @@
 
 (setq display-line-numbers-type nil)
 
-(after! helm
-  (progn
-      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
-      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-      (define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
-
-      (setq helm-candidate-number-limit 1000
-            helm-display-header-line t
-            helm-ff-auto-update-initial-value t
-            helm-ff-DEL-up-one-level-maybe t)
-      (when (modulep! :completion new-helm +childframe)
-        (setq helm-posframe-border-width 16))
-
-      ;; Was bound to the consult variant
-      (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-      ;; Was bound to the vertico variant
-      (global-set-key (kbd "C-x b") 'helm-mini)
-
-      ;; use helm to list eshell history
-      (add-hook 'eshell-mode-hook
-                #'(lambda ()
-                    (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
-
-      (helm-adaptive-mode 1)
-      ;; show minibuffer history with Helm
-      ;; (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
-      ;; (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
-      ))
-
-(after! helm-projectile
-  ;; (setq projectile-switch-project-action 'helm-projectile)
-  (helm-projectile-on))
-(after! (helm consult-recoll)
-  (add-to-list 'helm-completing-read-handlers-alist (cons #'consult-recoll nil))
-)
-;; (after! vertico
-;;   (setq completion-category-overrides nil))
-
-(use-package! helm-bibtex
-  :after helm)
-
-(use-package! helm-ls-git
-  :after helm)
-
-(use-package! helm-pydoc
-  :after helm)
-
-(use-package! helm-tramp
-  :after helm)
-
-(after! helm
-  (progn
-    (setq helm-grep-ag-command (concat "rg"
-                                       " --color=never"
-                                       " --smart-case"
-                                       " --no-heading"
-                                       " --line-number %s %s %s")
-          helm-grep-file-path-style 'relative)
-    (defun mu-helm-rg (directory &optional with-types)
-      "Search in DIRECTORY with RG.
-With WITH-TYPES, ask for file types to search in."
-      (interactive "P")
-      (require 'helm-adaptive)
-      (helm-grep-ag-1 (expand-file-name directory)
-                      (helm-aif (and with-types
-                                     (helm-grep-ag-get-types))
-                          (helm-comp-read
-                           "RG type: " it
-                           :must-match t
-                           :marked-candidates t
-                           :fc-transformer 'helm-adaptive-sort
-                           :buffer "*helm rg types*"))))
-    (defun mu--project-root ()
-      "Return the project root directory or `helm-current-directory'."
-      (require 'helm-ls-git)
-      (if-let (dir (helm-ls-git-root-dir))
-          dir
-        (helm-current-directory)))
-    (defun mu-helm-project-search (&optional with-types)
-      "Search in current project with RG.
-With WITH-TYPES, ask for file types to search in."
-      (interactive "P")
-      (mu-helm-rg (mu--project-root) with-types))
-
-    (defun mu-helm-file-search (&optional with-types)
-      "Search in `default-directory' with RG.
-With WITH-TYPES, ask for file types to search in."
-      (interactive "P")
-      (mu-helm-rg default-directory with-types))))
-
-(use-package! org-ql
-  :after helm)
-(use-package! helm-org-ql
-  :after helm)
-
-(use-package! helm-org-rifle
-  :after helm)
-
-(use-package! helm-wikipedia
-  :after helm)
-
-(after! helm
-  (load "/home/jw/projects/emacs/ezf/ezf.el"))
-
-(after! helm
-  (define-prefix-command 'C-z-map)
-  (global-set-key (kbd "C-z") 'C-z-map)
-  (defkeys global-map
-    "C-z C-b" helm-buffers-list
-    "C-z a"   mu-helm-project-search
-    "C-z b"   helm-filtered-bookmarks
-    "C-z c"   helm-company
-    "C-z d"   helm-dabbrev
-    "C-z e"   helm-calcul-expression
-    "C-z g"   helm-google-suggest
-    "C-z h"   helm-descbinds
-    "C-z k"   helm-show-kill-ring
-    "C-z f"   helm-find-files
-    "C-z m"   helm-mini
-    "C-z o"   helm-occur
-    "C-z p"   helm-browse-project
-    "C-z q"   helm-apropos
-    "C-z r"   helm-recentf
-    "C-z s"   swiper-helm
-    "C-z C-c" helm-colors
-    "C-z x"   helm-M-x
-    "C-z y"   helm-yas-complete
-    "C-z C-g" helm-ls-git-ls
-    "C-z SPC" helm-all-mark-rings))
-
-(use-package! helm-browser
-  :after helm)
-
-(use-package! exwm)
-(require 'exwm-randr)
-(defun jw/env-list (env-string)
-    "Return list of strings in environment variable env-string.
-nil if empty or undefined."
-    (let ((env-var (getenv env-string)))
-      (if env-var
-          (split-string env-var)
-        nil)))
-(defun jw/env-str (env-string)
-    "Return string in environment variable env-string.
-nil if empty or undefined."
-    (let ((env-var (getenv env-string)))
-      (if (> (length env-var) 0)
-          env-var
-        nil)))
-
-  (defun jw/build-workspace-monitor-plist (list)
-    (let (transformed-list first second (rev-list (reverse list)))
-      (while rev-list
-        (setq second (car rev-list))
-        (setq first (string-to-number (car (cdr rev-list))))
-        (setq transformed-list (cons first (cons second transformed-list)))
-        (setq rev-list (cdr (cdr rev-list)))
-        )
-      transformed-list))
-
-  (defun jw/xrandr-output-list ()
-    "Return list of connected X11 screens, according to xrandr."
-    (interactive)
-    (let* ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
-           (find-outputs
-            (lambda ()
-              (let (output-list)
-                (call-process "/usr/bin/xrandr" nil t nil)
-                (goto-char (point-min))
-                (while (re-search-forward xrandr-output-regexp nil 'noerror)
-                  (setq output-list (cons (match-string 1) output-list))
-                  (forward-line))
-                (reverse output-list))))
-           (output-list (with-temp-buffer
-                          (funcall find-outputs))))
-       output-list))
-
-  (setq jw/x11-screen-list (jw/env-list "X11_SCREEN_LIST"))
-  (setq jw/x11-screen-order-list (jw/env-list "X11_SCREEN_ORDER_LIST"))
-  (setq jw/x11-screen-mode-list (jw/env-list "X11_SCREEN_MODE_LIST"))
-  (setq jw/x11-screen-rate-list (jw/env-list "X11_SCREEN_RATE_LIST"))
-  (setq jw/x11-screen-disabled-list (jw/env-list "X11_SCREEN_DISABLED_LIST"))
-  (setq jw/exwm-workspace-list (jw/env-list "EXWM_WORKSPACE_LIST"))
-  (setq jw/x11-screen-preferred (jw/env-str "X11_SCREEN_PREFERRED"))
-  (setq jw/x11-display-dpi (jw/env-str "X11_DISPLAY_DPI"))
-  (let ((env-var (getenv "X11_SCREEN_USE_ALL_AVAILABLE")))
-    (setq jw/x11-screen-use-all-available
-          (if (and (> (length env-var) 0) (string= "yes" env-var))
-              t
-            nil)))
-
-  (setq exwm-randr-workspace-monitor-plist (jw/build-workspace-monitor-plist jw/exwm-workspace-list))
-
-  (defun jw/exwm-change-screen-hook ()
-    "Execute xrandr to select and position available screens according to X11_SCREEN_* environment variables."
-    (let* ((output-list (jw/xrandr-output-list))
-           (available-screens (seq-intersection jw/x11-screen-list output-list))
-           (available-order-screens (seq-intersection jw/x11-screen-order-list output-list))
-           ;; See "--auto" in xrandr(1) and https://github.com/ch11ng/exwm/issues/529.
-           (unavailable-screens (seq-difference jw/x11-screen-list output-list))
-           (available-disabled-screens (seq-intersection jw/x11-screen-disabled-list output-list))
-           (available-screen-modes
-            (let (mode-list
-                  mode screen
-                  (x-screen-list jw/x11-screen-list)
-                  (x-mode-list jw/x11-screen-mode-list))
-              (while x-screen-list
-                (setq screen (car x-screen-list))
-                (setq x-screen-list (cdr x-screen-list))
-                (setq mode (car x-mode-list))
-                (setq x-mode-list (cdr x-mode-list))
-                (if (seq-contains available-screens screen)
-                    (setq mode-list (cons mode mode-list))))
-              (reverse mode-list)))
-           (available-screen-rates
-            (let (rate-list
-                  rate screen
-                  (x-screen-list jw/x11-screen-list)
-                  (x-rate-list jw/x11-screen-rate-list))
-              (while x-screen-list
-                (setq screen (car x-screen-list))
-                (setq x-screen-list (cdr x-screen-list))
-                (setq rate (car x-rate-list))
-                (setq x-rate-list (cdr x-rate-list))
-                (if (seq-contains available-screens screen)
-                    (setq rate-list (cons rate rate-list))))
-              (reverse rate-list))))
-      (if available-screens
-          ;; Start building xrandr command line
-          (let* ((x-primary-screen
-                  (if (and jw/x11-screen-preferred (seq-contains available-screens jw/x11-screen-preferred))
-                      jw/x11-screen-preferred
-                    (car available-screens)))
-                 (screen-pos (seq-position available-screens x-primary-screen))
-                 (x-primary-mode (elt available-screen-modes screen-pos))
-                 (x-primary-rate (elt available-screen-rates screen-pos))
-                 (xrandr-dpi-args
-                  (if jw/x11-display-dpi
-                      (list jw/x11-display-dpi "--dpi")))
-                 (xrandr-primary-args (list x-primary-rate "--rate" x-primary-mode "--mode" "--primary" x-primary-screen "--output"))
-                 screen
-                 disabled-list
-                 (xrandr-disabled-args
-                  (progn
-                    (while available-disabled-screens
-                      (setq screen (car available-disabled-screens))
-                      (setq available-disabled-screens (cdr available-disabled-screens))
-                      (setq disabled-list (cons "--output" disabled-list))
-                      (setq disabled-list (cons screen disabled-list))
-                      (setq disabled-list (cons "--off" disabled-list)))
-                    disabled-list))
-                 (unavailable-screen-list unavailable-screens)
-                 u-s-list
-                 (xrandr-unavailable-screen-args
-                  (progn
-                    (while unavailable-screen-list
-                      (setq screen (car unavailable-screen-list))
-                      (setq unavailable-screen-list (cdr unavailable-screen-list))
-                      (setq u-s-list (cons "--output" u-s-list))
-                      (setq u-s-list (cons screen u-s-list))
-                      ;; (setq u-s-list (cons "--auto" u-s-list))
-                      (setq u-s-list (cons "--off" u-s-list)))
-                    u-s-list))
-                 (screen-list available-screens)
-                 rest-list
-                 (xrandr-rest-available-screen-args
-                  (if jw/x11-screen-use-all-available
-                       ;; Add remaining available screens, except the primary screen
-                       (progn
-                          (while screen-list
-                             (setq screen (car screen-list))
-                             (setq screen-list (cdr screen-list))
-                             (if (not (string= screen x-primary-screen))
-                                 (progn
-                                   (setq rest-list (cons "--output" rest-list))
-                                   (setq rest-list (cons screen rest-list))
-                                   (setq rest-list (cons "--mode" rest-list))
-                                   (setq rest-list (cons (elt available-screen-modes (seq-position available-screens screen)) rest-list))
-                                   (setq rest-list (cons "--rate" rest-list))
-                                   (setq rest-list (cons (elt available-screen-rates (seq-position available-screens screen)) rest-list)))))
-                          rest-list)
-                       ;; Disable remaining available screens, except the primary screen
-                       (progn
-                          (while screen-list
-                             (setq screen (car screen-list))
-                             (setq screen-list (cdr screen-list))
-                             (if (not (string= screen x-primary-screen))
-                                 (progn
-                                   (setq rest-list (cons "--output" rest-list))
-                                   (setq rest-list (cons screen rest-list))
-                                   (setq rest-list (cons "--off" rest-list)))))
-                          rest-list)))
-                 (screen-order-list available-order-screens)
-                 order-list
-                 left-screen
-                 (xrandr-screen-order-args
-                  (if (and jw/x11-screen-use-all-available
-                           (> (length screen-order-list) 1))
-                      (progn
-                         (setq left-screen (car screen-order-list))
-                         (setq screen-order-list (cdr screen-order-list))
-                         (while screen-order-list
-                            (setq screen (car screen-order-list))
-                            (setq screen-order-list (cdr screen-order-list))
-                            (setq order-list (cons "--output" order-list))
-                            (setq order-list (cons screen order-list))
-                            (setq order-list (cons "--right-of" order-list))
-                            (setq order-list (cons left-screen order-list))
-                            (setq left-screen screen))
-                         (reverse order-list))))
-                 (xrandr-args (reverse (append xrandr-rest-available-screen-args xrandr-unavailable-screen-args
-                                               xrandr-disabled-args xrandr-primary-args xrandr-dpi-args))))
-             (progn
-               (setq jw/debug-output-list output-list)
-               (setq jw/debug-xrandr-args xrandr-args)
-               (setq jw/debug-xrandr-order-args xrandr-screen-order-args)
-               (apply #'call-process
-                      "/usr/bin/xrandr" nil nil nil
-                      xrandr-args)
-               (if xrandr-screen-order-args
-                   (apply #'call-process
-                          "/usr/bin/xrandr" nil nil nil
-                          xrandr-screen-order-args)))
-          )
-        )
-      )
-    )
-
-  (add-hook 'exwm-randr-screen-change-hook 'jw/exwm-change-screen-hook)
-  (exwm-randr-enable)
-
-(require 'ido)
-(use-package! windower)
-(require 'browse-url)
-(require 'exwm-manage)
-
-(defun ambrevar/call-process-to-string (program &rest args)
-  "Call PROGRAM with ARGS and return output.
-See also `process-lines'."
-  ;; Or equivalently:
-  ;; (with-temp-buffer
-  ;;   (apply 'process-file program nil t nil args)
-  ;;   (buffer-string))
-  (with-output-to-string
-    (with-current-buffer standard-output
-      (apply 'process-file program nil t nil args))))
-
-;; (defun jw/xmodmap ()
-;;   "Execute xmodmap"
-;;   (progn
-;;     (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
-;;     (ambrevar/call-process-to-string "/usr/bin/touch" "/tmp/jw_xmodmap")
-;;     (ambrevar/call-process-to-string "/usr/bin/xmodmap" "/home/jw/.Xmodmap.exwm")))
-
-(defun jw/xmodmap ()
-  "Execute xmodmap"
-  (interactive)
-  (progn
-    ;; (remove-hook 'exwm-manage-finish-hook 'jw/xmodmap)
-    (ambrevar/call-process-to-string "/home/jw/bin/set_xmodmap.sh")
-    ;; (require 'exwm-xim)
-    ;; (push ?\C-\\ exwm-input-prefix-keys)   ;; use Ctrl + \ to switch input method
-    ;; (exwm-xim-enable)
-    ))
-
-(defun jw/setxkbmap-se ()
-  "Execute setxkbmap se"
-  (interactive)
-  (progn
-    (ambrevar/call-process-to-string "/usr/bin/setxkbmap" "se")))
-
-(defun jw/setxkbmap-us ()
-  "Execute setxkbmap us"
-  (interactive)
-  (progn
-    (ambrevar/call-process-to-string "/usr/bin/setxkbmap" "us")))
-
-(setq browse-url-generic-program
-      (or
-       (executable-find (or (getenv "BROWSER") ""))
-       (when (executable-find "xdg-mime")
-         (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
-           (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
-       (executable-find browse-url-chrome-program)))
-
-(defun my-exwm-config-setup ()
-  "My modified configuration for EXWM. Based on exwm-config.el"
-  ;; Setting exwm-manage-force-tiling t has the unfortunate side effect that new floating windows
-  ;; are unresponsive for a considerable time (30 seconds or so)
-  (setq exwm-manage-force-tiling t)
-  ;; Set the initial workspace number.
-  (unless (get 'exwm-workspace-number 'saved-value)
-    (setq exwm-workspace-number 4))
-  ;; Make class name the buffer name
-  (add-hook 'exwm-update-class-hook
-            (lambda ()
-              (exwm-workspace-rename-buffer exwm-class-name)))
-  ;; Global keybindings. 0-9 bcDfFgGhHijJkKlLmoOQrRwWå !"#¤%&/()= tab f2 backspace
-  (unless (get 'exwm-input-global-keys 'saved-value)
-    (setq exwm-input-global-keys
-          `(
-            ;; (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
-            (,(kbd "s-b") . helm-mini) ;; list and select buffers
-            (,(kbd "s-c") . helm-resume) ;; Continue in latest helm selection buffer
-            (,(kbd "s-G") . helm-locate) ;; locate file, based in Linux locate command
-            (,(kbd "s-g") . mu-helm-file-search) ;; Grep search in files
-            (,(kbd "s-r") . helm-run-external-command) ;; Start an application, such as google-chrome
-            (,(kbd "s-W") . helm-exwm-switch-browser) ;; Switch to some browser windows
-            (,(kbd "s-m") . (lambda () ;; Toggle display of mode-line and minibuffer, in an EXWM window
-                              (interactive)
-                              (exwm-layout-toggle-mode-line)
-                              (exwm-workspace-toggle-minibuffer)))
-            (,(kbd "s-i") . exwm-input-toggle-keyboard) ;; Toggle between "line-mode" and "char-mode" in an EXWM window
-            ;; 's-r': Reset (to line-mode).
-            (,(kbd "s-R") . exwm-reset) ;; Try to reset EXWM to a sane mode. Panic key
-            ;; Interactively select, and switch to, a workspace. Only works in non EXWM windows.
-            (,(kbd "s-w") . exwm-workspace-switch)
-            ;; 's-å': Launch application.
-            ;; (,(kbd "s-å") . (lambda (command)
-            ;;              (interactive (list (read-shell-command "$ ")))
-            ;;              (start-process-shell-command command nil command)))
-            ;; 's-N': Switch to certain a workspace.
-            ,@(mapcar (lambda (i)
-                        `(,(kbd (format "s-%d" i)) .
-                          (lambda ()
-                            (interactive)
-                            (exwm-workspace-switch-create ,i))))
-                      (number-sequence 0 9))
-            ;; 'S-s-N': Move window to, and switch to, a certain workspace.
-            ,@(cl-mapcar (lambda (c n)
-                           `(,(kbd (format "s-%c" c)) .
-                             (lambda ()
-                               (interactive)
-                               (exwm-workspace-move-window ,n)
-                               (exwm-workspace-switch ,n))))
-                         '(?\= ?! ?\" ?# ?¤ ?% ?& ?/ ?\( ?\))
-                         (number-sequence 0 9))
-
-            ;; Bind "s-<f2>" to "slock", a simple X display locker.
-            (,(kbd "s-<f2>") . (lambda ()
-                                 (interactive)
-                                 (start-process "" nil "/usr/bin/slock")))
-            ;; Bind "s-<f11>" to setkbmap setxkbmap -layout se
-            (,(kbd "s-<f11>") . (lambda ()
-                                 (interactive)
-                                 (start-process "" nil "/usr/bin/setxkbmap" "-layout" "se")))
-            ;; Bind "s-<f12>" to setkbmap setxkbmap -layout se -variant rus
-            (,(kbd "s-<f12>") . (lambda ()
-                                 (interactive)
-                                 (start-process "" nil "/usr/bin/setxkbmap" "-layout" "se" "-variant" "rus")))
-            (,(kbd "s-h") . windmove-left)  ;; Move to window to the left of current one. Uses universal arg
-            (,(kbd "s-j") . windmove-down)  ;; Move to window below current one. Uses universal arg
-            (,(kbd "s-k") . windmove-up)    ;; Move to window above current one. Uses universal arg
-            (,(kbd "s-l") . windmove-right) ;; Move to window to the right of current one. Uses universal arg
-            ;; (,(kbd "s-f") . find-file)
-            (,(kbd "s-f") . helm-find-files)
-            (,(kbd "s-<tab>") . windower-switch-to-last-buffer) ;; Switch to last open buffer in current window
-            (,(kbd "s-s") . windower-toggle-single) ;; Toggle between multiple windows, and a single window
-            (,(kbd "s-S") . windower-toggle-split)  ;; Toggle between vertical and horizontal split. Only works with exactly two windows.
-            (,(kbd "s-H") . windower-swap-left)  ;; Swap current window with the window to the left
-            (,(kbd "s-J") . windower-swap-below) ;; Swap current window with the window below
-            (,(kbd "s-K") . windower-swap-above) ;; Swap current window with the window above
-            (,(kbd "s-L") . windower-swap-right) ;; Swap current window with the window to the right
-            (,(kbd "s-F") . exwm-floating-toggle-floating) ;; Toggle the current window between floating and non-floating states
-            (,(kbd "s-Q") . exwm-layout-toggle-fullscreen) ;; Toggle fullscreen mode
-            (,(kbd "s-D") . kill-this-buffer)
-            (,(kbd "s-<backspace>") . kill-this-buffer)
-            )))
-  ;; Line-editing shortcuts: abBcdefFknpqsvwx
-  (unless (get 'exwm-input-simulation-keys 'saved-value)
-    (setq exwm-input-simulation-keys
-          `((,(kbd "H-b") . ,(kbd "<left>"))
-            (,(kbd "H-B") . ,(kbd "C-<left>"))
-            (,(kbd "H-f") . ,(kbd "<right>"))
-            (,(kbd "H-F") . ,(kbd "C-<right>"))
-            (,(kbd "H-p") . ,(kbd "<up>"))
-            (,(kbd "H-n") . ,(kbd "<down>"))
-            (,(kbd "H-a") . ,(kbd "<home>"))
-            (,(kbd "H-e") . ,(kbd "<end>"))
-            ;; q and w are convenient if Caps Lock key is Hyper key
-            (,(kbd "H-q") . ,(kbd "<prior>"))
-            (,(kbd "H-w") . ,(kbd "<next>"))
-            (,(kbd "H-d") . ,(kbd "<delete>"))
-            (,(kbd "H-k") . ,(kbd "S-<end> <delete>"))
-            ;; cut/paste.
-            (,(kbd "H-x") . ,(kbd "C-x"))
-            (,(kbd "H-c") . ,(kbd "C-c"))
-            (,(kbd "H-v") . ,(kbd "C-v"))
-            ;; search
-            (,(kbd "H-s") . ,(kbd "C-f"))
-            )))
-  ;; Default is save-buffers-kill-terminal, but that may kill daemon before its finished
-  (global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
-  (add-hook 'exwm-update-title-hook 'ambrevar/exwm-rename-buffer-to-title)
-  ;; Ensure that EXWM input mode is displayed in mode line
-  (add-hook 'exwm-input--input-mode-change-hook
-            'force-mode-line-update)
-  ;; Called once, to configure X11 keyboard layout
-  (add-hook 'exwm-manage-finish-hook
-            'jw/xmodmap t)
-  ;; Allow resizing of non-floating windows, with mouse.
-  (setq window-divider-default-bottom-width 2
-        window-divider-default-right-width 2)
-  (window-divider-mode)
-  ;; Allow switching to EXWM buffers not belonging to current workspace.
-  ;; This behaviour takes some getting used to, I guess thats why its not default
-  (setq exwm-layout-show-all-buffers t)
-  ;; Configure Ido
-  (my-exwm-config-ido)
-  ;; Other configurations
-  (my-exwm-config-misc))
-
-;; This is copied from exwm-config.el
-(defun my-exwm-config--fix/ido-buffer-window-other-frame ()
-  "Fix `ido-buffer-window-other-frame'."
-  (defalias 'exwm-config-ido-buffer-window-other-frame
-    (symbol-function #'ido-buffer-window-other-frame))
-  (defun ido-buffer-window-other-frame (buffer)
-    "This is a version redefined by EXWM.
-
-You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
-    (with-current-buffer (window-buffer (selected-window))
-      (if (and (derived-mode-p 'exwm-mode)
-               exwm--floating-frame)
-          ;; Switch from a floating frame.
-          (with-current-buffer buffer
-            (if (and (derived-mode-p 'exwm-mode)
-                     exwm--floating-frame
-                     (eq exwm--frame exwm-workspace--current))
-                ;; Switch to another floating frame.
-                (frame-root-window exwm--floating-frame)
-              ;; Do not switch if the buffer is not on the current workspace.
-              (or (get-buffer-window buffer exwm-workspace--current)
-                  (selected-window))))
-        (with-current-buffer buffer
-          (when (derived-mode-p 'exwm-mode)
-            (if (eq exwm--frame exwm-workspace--current)
-                (when exwm--floating-frame
-                  ;; Switch to a floating frame on the current workspace.
-                  (frame-selected-window exwm--floating-frame))
-              ;; Do not switch to exwm-mode buffers on other workspace (which
-              ;; won't work unless `exwm-layout-show-all-buffers' is set)
-              (unless exwm-layout-show-all-buffers
-                (selected-window)))))))))
-
-(defun my-exwm-config-ido ()
-  "Configure Ido to work with EXWM."
-  ;; (ido-mode 1)
-  (add-hook 'exwm-init-hook #'my-exwm-config--fix/ido-buffer-window-other-frame))
-
-(defun my-exwm-config-misc ()
-  "Other configurations."
-  ;; Make more room
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-  ;; (require 'exwm-xim)
-  ;; (push ?\C-\\ exwm-input-prefix-keys)   ;; use Ctrl + \ to switch input method
-  ;; (exwm-xim-enable)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
-
-;; Rename buffer to window title.
-(defun ambrevar/exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
-
-(my-exwm-config-setup) ;; Does not start X11 or EXWM. Start should be done from commandline.
-
-(use-package! helm-exwm
-  :config
-  (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
-  (setq helm-exwm-source (helm-exwm-build-source))
-  (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
-                                    helm-exwm-source
-                                    helm-source-recentf
-                                    helm-source-bookmarks))
-  )
-
 (setq epkg-repository "~/epkgs/")
 
 (global-set-key [(hyper up)]
@@ -940,10 +443,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
                     (scroll-up 1))) )
 
 (pcre-mode t)
-
-;; (after! swiper
-;;   (global-set-key (kbd "C-s") 'swiper))
-(global-set-key (kbd "C-s") 'swiper)
 
 (after! avy
   (setq avy-all-windows t)
@@ -1037,19 +536,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
                                               (goto-char pt)
                                               (hkey-either))))))
 
-(use-package! counsel
-  :defer t
-  :config
-  (defun counsel-recoll-function (str)
-    "Run recoll for STR."
-    (or
-     (ivy-more-chars)
-     (progn
-       (counsel--async-command
-        (format "recollq -t -b %s"
-                (shell-quote-argument str)))
-       nil))))
-
 (use-package! consult-recoll)
 
 (set-cursor-color "firebrick")
@@ -1136,8 +622,6 @@ You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
 (setq ibuffer-saved-filter-groups
       '(("home"
          ("dired" (mode . dired-mode))
-         ;; ("helm" (predicate string-match "Hmm" mode-name))
-         ("helm" (mode . helm-major-mode))
          ("journal" (name . "private-"))
          ("programming" (or (mode . python-mode)
                             (mode . c++-mode)))
@@ -1346,13 +830,10 @@ Also used for highlighting.")
   (ace-link-setup-default))
 
 (setq browse-url-mosaic-program nil)
-(setq browse-url-browser-function 'w3m-browse-url
-      browse-url-new-window-flag t)
+;; (setq browse-url-browser-function 'w3m-browse-url)
+(setq browse-url-new-window-flag t)
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 (autoload 'browse-url-interactive-arg "browse-url")
-
-(use-package! helm-w3m
-  :after w3m)
 
 (defun xah-html-decode-percent-encoded-url ()
   "Decode percent encoded URL of current line or selection.
@@ -1436,7 +917,7 @@ Version 2018-10-26"
     (define-key launcher-map "o" #'link-hint-open-link)
     ;;(define-key launcher-map "u" #'my/copy-id-to-clipboard)
     (define-key launcher-map "w" #'w3m-goto-url)
-    (global-set-key (kbd "H-l") 'launcher-map)))
+    (global-set-key (kbd "C-c l") 'launcher-map)))
 
 ;;shortcut functions
 (defun bjm/elfeed-show-all ()
@@ -1639,48 +1120,7 @@ browser defined by `browse-url-generic-program'."
   ;; (global-set-key (kbd "s-o") 'hkey-operate)
   )
 
-(after! helm
-  (progn
-    (defhydra hydra-helm (:hint nil :color pink)
-      "
-                                                                        ╭──────┐
- Navigation   Other  Sources     Mark             Do             Help   │ Helm │
-╭───────────────────────────────────────────────────────────────────────┴──────╯
-      ^_k_^         _K_       _p_   [_m_] mark         [_v_] view         [_H_] helm help
-      ^^↑^^         ^↑^       ^↑^   [_t_] toggle all   [_d_] delete       [_s_] source help
-  _h_ ←   → _l_     _c_       ^ ^   [_u_] unmark all   [_f_] follow: %(helm-attr 'follow)
-      ^^↓^^         ^↓^       ^↓^    ^ ^               [_y_] yank selection
-      ^_j_^         _J_       _n_    ^ ^               [_w_] toggle windows
---------------------------------------------------------------------------------
-        "
-      ("<tab>" helm-keyboard-quit "back" :exit t)
-      ("<escape>" nil "quit")
-      ("\\" (insert "\\") "\\" :color blue)
-      ("h" helm-beginning-of-buffer)
-      ("j" helm-next-line)
-      ("k" helm-previous-line)
-      ("l" helm-end-of-buffer)
-      ("g" helm-beginning-of-buffer)
-      ("G" helm-end-of-buffer)
-      ("n" helm-next-source)
-      ("p" helm-previous-source)
-      ("K" helm-scroll-other-window-down)
-      ("J" helm-scroll-other-window)
-      ("c" helm-recenter-top-bottom-other-window)
-      ("m" helm-toggle-visible-mark)
-      ("t" helm-toggle-all-marks)
-      ("u" helm-unmark-all)
-      ("H" helm-help)
-      ("s" helm-buffer-help)
-      ("v" helm-execute-persistent-action)
-      ("d" helm-persistent-delete-marked)
-      ("y" helm-yank-selection)
-      ("w" helm-toggle-resplit-and-swap-windows)
-      ("f" helm-follow-mode))
-
-    (define-key helm-map (kbd "H-o") 'hydra-helm/body)))
-
-(after! helm-projectile
+(after! projectile
   (progn
     (defhydra hydra-projectile-other-window (:color teal)
       "projectile-other-window"
@@ -1736,8 +1176,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
       ("`"   hydra-projectile-other-window/body "other window")
       ("q"   nil "cancel" :color blue))))
 
-(after! helm
-  (progn
+(progn
     (defhydra help/hydra/left/describe (:color blue
                                         :hint nil)
   "
@@ -1815,7 +1254,7 @@ _w_ where is something defined
     (interactive)
     (let ((ls (parent-mode-list major-mode)))
       (princ ls))))
-    ))
+    )
 
 ;; Change "Jane Joplin & John B Doe_" -> "Jane Joplin_ & Doe, John B"
 (fset 'jw/swap_author
@@ -1834,17 +1273,6 @@ _w_ where is something defined
   "Given before tax calculate payment and tax, assuming 30% tax"
   (interactive)
   (list fore (* fore 0.7) (* fore 0.3)))
-
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
-;; (setq session-use-package t nil (session))
-;; session will be save if a buffer is save to a file.
-(add-hook 'after-save-hook #'session-save-session)
-(add-to-list 'session-globals-exclude 'consult--buffer-history)
-(add-to-list 'session-globals-exclude 'vertico-repeat-history)
-
-(use-package! zoxide
-  :defer t)
 
 (use-package! hledger-mode
   :defer t
@@ -1889,65 +1317,6 @@ _w_ where is something defined
         (qlot ("qlot" "exec" "ros" "-l" ,ros-config "run" "-S" ".")
               :coding-system utf-8-unix)))
 
-
-(use-package! helm-sly
-  :after sly-mrepl
-  :config
-  (add-hook 'sly-mrepl-hook #'company-mode)
-  ;; Probably part of disabling TAB completion when indent is intended
-  (add-hook 'sly-mrepl-hook #'helm-sly-disable-internal-completion)
-  (require 'helm-company)
-
-  (defun ambrevar/indent-and-helm-company (arg)
-    "Indent then call `helm-company'.
-  Good substitute for `sly-mrepl-indent-and-complete-symbol'."
-    (interactive "P")
-    (indent-for-tab-command arg)
-    (helm-company))
-
-  (defun qlot-sly ()
-    "Start a sly repl using qlot at the projects root"
-    (interactive)
-    (let ((dir (cdr (project-current))))
-      (if (cd dir)
-          (sly 'qlot)
-        (error (format "Failed to cd to %s" dir)))))
-
-  (defun sly-critique-defun ()
-    "Lint this function with lisp-critic"
-    (interactive)
-    ;; (sly-eval-async '(ql:quickload :lisp-critic))
-    (let ((form (apply #'buffer-substring-no-properties
-                       (sly-region-for-defun-at-point))))
-      (sly-eval-async
-          `(cl:format  "~a" (list ,(read form)))
-        nil (sly-current-package))))
-
-  (defun sly-critique-file ()
-    "Lint this file with lisp-critic"
-    (interactive)
-    (sly-eval-async '(ql:quickload :lisp-critic))
-    (sly-eval-async `(lisp-critic:critique ,(buffer-file-name))))
-
-  (defun my/connect-to-stumpwm ()
-    (interactive)
-    (start-process-shell-command "stumpish start-slynk" nil
-                                 "stumpish start-slynk")
-    (sly-connect "localhost" "4047"))
-
-  ;; Use sly-flex-completions to get completion also on package names.
-  (customize-set-variable 'sly-complete-symbol-function 'sly-flex-completions)
-  ;; Probably part of disabling TAB completion when indent is intended
-  (setq helm-company-initialize-pattern-with-prefix t)
-  (define-key sly-mrepl-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company)
-  (define-key sly-mrepl-mode-map (kbd "M-p") 'helm-comint-input-ring)
-  (define-key sly-mrepl-mode-map (kbd "M-s f") 'helm-comint-prompts-all)
-  (define-key sly-mrepl-mode-map (kbd "C-c C-x c") 'helm-sly-list-connections)
-  (add-hook 'lisp-mode-hook #'company-mode)
-  (define-key lisp-mode-map (kbd "<tab>") 'ambrevar/indent-and-helm-company))
-
-(setq geiser-guile-load-init-file-p t)
-
 (use-package! arxiv-mode
   :defer t)
 
@@ -1985,57 +1354,37 @@ _w_ where is something defined
 (use-package! xah-wolfram-mode
   :defer t)
 
-(after! helm
-  (progn
-    (load "/home/jw/projects/emacs/lexic/lexic.el")
-    (define-key lexic-mode-map "E" (lambda () (interactive)
-                                     (lexic-return-from-lexic) ; expand
-                                     (switch-to-buffer (lexic-get-buffer))))
-    (define-key lexic-mode-map "M" (lambda () (interactive)
-                                     (lexic-return-from-lexic) ; minimise
-                                     (lexic-goto-lexic)))
-    (define-key lexic-mode-map "/" (lambda () (interactive)
-                                     (lexic-search)))
+(use-package! lexic
+  :defer t
+  :commands lexic-search lexic-list-dictionary
+  :config
+  (map! :map lexic-mode-map
+        :n "q" #'lexic-return-from-lexic
+        :nv "RET" #'lexic-search-word-at-point
+        :n "a" #'outline-show-all
+        :n "h" (cmd! (outline-hide-sublevels 3))
+        :n "o" #'lexic-toggle-entry
+        :n "n" #'lexic-next-entry
+        :n "N" (cmd! (lexic-next-entry t))
+        :n "p" #'lexic-previous-entry
+        :n "P" (cmd! (lexic-previous-entry t))
+        :n "E" (cmd! (lexic-return-from-lexic) ; expand
+                     (switch-to-buffer (lexic-get-buffer)))
+        :n "M" (cmd! (lexic-return-from-lexic) ; minimise
+                     (lexic-goto-lexic))
+        :n "C-p" #'lexic-search-history-backwards
+        :n "C-n" #'lexic-search-history-forwards
+        :n "/" (cmd! (call-interactively #'lexic-search)))
+  )
 
   (defadvice! +lookup/dictionary-definition-lexic (identifier &optional arg)
-    "Look up the definition of the word at point (or selection) using `lexic-search'."
-    :override #'+lookup/dictionary-definition
-    (interactive
-     (list (or (doom-thing-at-point-or-region 'word)
-               (read-string "Look up in dictionary: "))
-           current-prefix-arg))
-    (lexic-search identifier nil nil t))))
-;; (use-package! lexic
-;;   :defer t
-;;   :commands lexic-search lexic-list-dictionary
-;;   :config
-;;   (map! :map lexic-mode-map
-;;         :n "q" #'lexic-return-from-lexic
-;;         :nv "RET" #'lexic-search-word-at-point
-;;         :n "a" #'outline-show-all
-;;         :n "h" (cmd! (outline-hide-sublevels 3))
-;;         :n "o" #'lexic-toggle-entry
-;;         :n "n" #'lexic-next-entry
-;;         :n "N" (cmd! (lexic-next-entry t))
-;;         :n "p" #'lexic-previous-entry
-;;         :n "P" (cmd! (lexic-previous-entry t))
-;;         :n "E" (cmd! (lexic-return-from-lexic) ; expand
-;;                      (switch-to-buffer (lexic-get-buffer)))
-;;         :n "M" (cmd! (lexic-return-from-lexic) ; minimise
-;;                      (lexic-goto-lexic))
-;;         :n "C-p" #'lexic-search-history-backwards
-;;         :n "C-n" #'lexic-search-history-forwards
-;;         :n "/" (cmd! (call-interactively #'lexic-search)))
-;;   )
-
-  ;; (defadvice! +lookup/dictionary-definition-lexic (identifier &optional arg)
-  ;; "Look up the definition of the word at point (or selection) using `lexic-search'."
-  ;; :override #'+lookup/dictionary-definition
-  ;; (interactive
-  ;;  (list (or (doom-thing-at-point-or-region 'word)
-  ;;            (read-string "Look up in dictionary: "))
-  ;;        current-prefix-arg))
-  ;; (lexic-search identifier nil nil t))
+  "Look up the definition of the word at point (or selection) using `lexic-search'."
+  :override #'+lookup/dictionary-definition
+  (interactive
+   (list (or (doom-thing-at-point-or-region 'word)
+             (read-string "Look up in dictionary: "))
+         current-prefix-arg))
+  (lexic-search identifier nil nil t))
 
 (use-package! git-link
   :defer t)
@@ -2051,8 +1400,211 @@ _w_ where is something defined
 
 (use-package! combobulate
   :hook ((python-ts-mode . combobulate-mode)
-           (js-ts-mode . combobulate-mode)
-           (css-ts-mode . combobulate-mode)
-           (yaml-ts-mode . combobulate-mode)
-           (typescript-ts-mode . combobulate-mode)
-           (tsx-ts-mode . combobulate-mode)))
+         (js-ts-mode . combobulate-mode)
+         (css-ts-mode . combobulate-mode)
+         (yaml-ts-mode . combobulate-mode)
+         ;; (typescript-ts-mode . combobulate-mode)
+         ;; (tsx-ts-mode . combobulate-mode)
+         ))
+
+;; if you built from source
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+  (setq mu4e-compose-signature "Johan Widén, tel: +46705367346\nRisvägen 5 A, 192 73 Sollentuna, SWEDEN")
+  (setq
+    mu4e-sent-folder   "/gmail/[Gmail]/Skickat"       ;; folder for sent messages
+    mu4e-drafts-folder "/gmail/[Gmail]/Utkast"        ;; unfinished messages
+    mu4e-trash-folder  "/gmail/[Gmail]/Papperskorgen" ;; trashed messages
+    mu4e-refile-folder "/gmail/[Gmail]/All e-post")   ;; saved messages
+  (setq mu4e-maildir-shortcuts
+        '((:maildir "/gmail/INBOX"                 :key . ?i)
+          (:maildir "/gmail/[Gmail]/Skickat"       :key . ?s)
+          (:maildir "/gmail/[Gmail]/Papperskorgen" :key . ?t)
+          (:maildir "/gmail/[Gmail]/Utkast"        :key . ?d)
+          (:maildir "/gmail/[Gmail]/All e-post"    :key . ?a)))
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        smtpmail-smtp-server "smtp.google.com"
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
+
+(after! which-key
+  (setq which-key-side-window-location 'right)
+  (setq which-key-side-window-max-height 0.5)
+  (setq which-key-side-window-max-width 0.5)
+  ;; (setq which-key-allow-imprecise-window-fit nil)
+  )
+
+(use-package! vertico-flat
+  ;; :bind (:map vertico-map
+  ;;             ("M-q" . vertico-flat-mode))
+  :after vertico)
+
+(use-package! vertico-unobtrusive
+  :after vertico-flat)
+
+(use-package! vertico-multiform
+  :commands vertico-multiform-mode
+  :after vertico-flat
+  :bind (:map vertico-map
+              ("M-q" . vertico-multiform-flat)
+              ("C-l" . my/vertico-multiform-unobtrusive)
+              ("C-M-l" . embark-export))
+  :init (vertico-multiform-mode 1)
+  :config
+  (setq vertico-multiform-categories
+         '((file my/vertico-grid-mode reverse)
+           (jinx grid (vertico-grid-annotate . 20))
+           (project-file my/vertico-grid-mode reverse)
+           (imenu buffer)
+           (consult-location buffer)
+           (consult-grep buffer)
+           (notmuch-result reverse)
+           (minor-mode reverse)
+           ;; (reftex-label (:not unobtrusive))
+           ;; (citar-reference reverse)
+           (xref-location reverse)
+           (history reverse)
+           (url reverse)
+           (consult-info buffer)
+           (kill-ring reverse)
+           (consult-compile-error reverse)
+           ;; (buffer flat (vertico-cycle . t))
+           (t buffer)))
+  ;;  (setq vertico-multiform-commands
+  ;;        '((jinx-correct reverse)
+  ;;          (tab-bookmark-open reverse)
+  ;;          (dired-goto-file unobtrusive)
+  ;;          (load-theme my/vertico-grid-mode reverse)
+  ;;          (my/toggle-theme my/vertico-grid-mode reverse)
+  ;;          (org-refile reverse)
+  ;;          (org-agenda-refile reverse)
+  ;;          (org-capture-refile reverse)
+  ;;          (affe-find reverse)
+  ;;          (execute-extended-command unobtrusive)
+  ;;          (dired-goto-file buffer)
+  ;;          (consult-project-buffer buffer)
+  ;;          (consult-dir-maybe reverse)
+  ;;          (consult-dir reverse)
+  ;;          (consult-flymake reverse)
+  ;;          (consult-history reverse)
+  ;;          (consult-completion-in-region reverse)
+  ;;          (consult-recoll buffer)
+  ;;          (citar-insert-citation reverse)
+  ;;          (completion-at-point reverse)
+  ;;          (org-roam-node-find reverse)
+  ;;          (embark-completing-read-prompter reverse)
+  ;;          (embark-act-with-completing-read reverse)
+  ;;          (embark-prefix-help-command reverse)
+  ;;          (embark-bindings reverse)
+  ;;          (consult-org-heading reverse)
+  ;;          (consult-dff unobtrusive)
+  ;;          (embark-find-definition reverse)
+  ;;          (xref-find-definitions reverse)
+  ;;          (my/eshell-previous-matching-input reverse)
+  ;;          (tmm-menubar reverse)))
+
+   (defun my/vertico-multiform-unobtrusive ()
+     "Toggle between vertico-unobtrusive and vertico-reverse."
+     (interactive)
+     (vertico-multiform-vertical 'vertico-reverse-mode)))
+
+(use-package! vertico-grid
+  :after vertico
+  ;; :bind (:map vertico-map ("M-q" . vertico-grid-mode))
+  :config
+  (defvar my/vertico-count-orig vertico-count)
+  (define-minor-mode my/vertico-grid-mode
+    "Vertico-grid display with modified row count."
+    :global t :group 'vertico
+    (cond
+     (my/vertico-grid-mode
+      (setq my/vertico-count-orig vertico-count)
+      (setq vertico-count 4)
+      (vertico-grid-mode 1))
+     (t (vertico-grid-mode 0)
+        (setq vertico-count my/vertico-count-orig))))
+  (setq vertico-grid-separator "    ")
+  (setq vertico-grid-lookahead 50))
+
+(use-package! vertico-reverse
+  ;; :disabled
+  :after vertico)
+
+(use-package! vertico-buffer
+  :after vertico
+  ;; :hook (vertico-buffer-mode . vertico-buffer-setup)
+  :config
+  (setq vertico-buffer-display-action 'display-buffer-reuse-window))
+
+(after! embark
+  (global-set-key (kbd "C-:") 'embark-dwim)
+  (global-set-key (kbd "C-*") 'embark-select)
+
+  (define-key minibuffer-local-map (kbd "M-.") #'my-embark-preview)
+  (defun my-embark-preview ()
+    "Previews candidate in vertico buffer, unless it's a consult command"
+    (interactive)
+    (unless (bound-and-true-p consult--preview-function)
+      (save-selected-window
+        (let ((embark-quit-after-action nil))
+          (embark-dwim))))))
+
+(use-package! embark-consult
+  :after (embark consult))
+
+(after! consult
+  ;; Consult has automatic preview for some (light weight) item types,
+  ;; but if we want to preview for example bookmarks
+  ;; we need to invoke this explicitly, using a key binding.
+  ;; Also: Having a preview key binding for a command, turns off automatic preview for that command.
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key "M-.")
+  (global-set-key (kbd "C-s") 'consult-line)
+
+  (defun consult-info-emacs ()
+    "Search through Emacs info pages."
+    (interactive)
+    (consult-info "emacs" "efaq" "elisp" "cl" "compat"))
+
+  (defun consult-info-org ()
+    "Search through the Org info page."
+    (interactive)
+    (consult-info "org"))
+
+  ;; (defun consult-info-completion ()
+  ;;   "Search through completion info pages."
+  ;;   (interactive)
+  ;;   (consult-info "vertico" "consult" "marginalia" "orderless" "embark"
+  ;;                 "corfu" "cape" "tempel"))
+
+  (defun consult-info-completion ()
+    "Search through completion info pages."
+    (interactive)
+    (consult-info "orderless" "embark")))
+
+(use-package! wgrep)
+
+(defun ambrevar/call-process-to-string (program &rest args)
+  "Call PROGRAM with ARGS and return output.
+See also `process-lines'."
+  ;; Or equivalently:
+  ;; (with-temp-buffer
+  ;;   (apply 'process-file program nil t nil args)
+  ;;   (buffer-string))
+  (with-output-to-string
+    (with-current-buffer standard-output
+      (apply 'process-file program nil t nil args))))
+
+(setq browse-url-generic-program
+      (or
+       (executable-find (or (getenv "BROWSER") ""))
+       (when (executable-find "xdg-mime")
+         (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
+           (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
+       (executable-find browse-url-chrome-program)))

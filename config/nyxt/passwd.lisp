@@ -13,9 +13,13 @@
 ;;   "I use KeePassXC, and this simply sets the location of the password files."
 ;;   (setf (password:password-file interface) "/home/jw/Passwords.kdbx"))
 
+;; (define-configuration nyxt/mode/password:password-mode
+;;   ((nyxt/mode/password:password-interface
+;;     (make-instance 'password:password-store-interface))))
+
 (define-configuration nyxt/mode/password:password-mode
   ((nyxt/mode/password:password-interface
-    (make-instance 'password:password-store-interface))))
+    (make-instance 'password:password-secret-service-interface))))
 
 (define-configuration buffer
   ((default-modes
