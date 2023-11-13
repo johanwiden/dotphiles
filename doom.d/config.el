@@ -124,6 +124,11 @@
       evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
       evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
+;; Enable mode-line in vterm
+(after! doom-modeline
+  (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
+  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main)))
+
 ;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
       '((tiny
@@ -297,6 +302,12 @@
              (lambda ()
                (let ((save-silently t))
                  (recentf-save-list))))))
+(after! savehist
+  (setq savehist-autosave-interval 600))
+(setq use-package-verbose t)
+(add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
+(add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
+(add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
 
 (global-auto-revert-mode t)
 
@@ -1044,6 +1055,11 @@ browser defined by `browse-url-generic-program'."
   :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
+  ;; (add-hook 'nov-mode-hook #'shrface-mode)
+  ;; :config
+  ;; (require 'shrface)
+  ;; (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))
+  ;; (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions))
   :bind
   (:map nov-mode-map
         ("<home>" . move-beginning-of-line)
@@ -1276,20 +1292,47 @@ _w_ where is something defined
 
 (use-package! hledger-mode
   :defer t
-  :init
-  ;; To open files with .journal extension in hledger-mode
-  (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
+  :mode ("\\.journal\\'" "\\.hledger\\'")
+  ;; :init
+  ;; ;; To open files with .journal extension in hledger-mode
+  ;; (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
+  :preface
+  (defun hledger/next-entry ()
+    "Move to next entry and pulse."
+    (interactive)
+    (hledger-next-or-new-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  (defface hledger-warning-face
+    '((((background dark))
+       :background "Red" :foreground "White")
+      (((background light))
+       :background "Red" :foreground "White")
+      (t :inverse-video t))
+    "Face for warning"
+    :group 'hledger)
+
+  (defun hledger/prev-entry ()
+    "Move to last entry and pulse."
+    (interactive)
+    (hledger-backward-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  :bind (:map hledger-mode-map
+         ("C-c j" . hledger-run-command)
+         ("C-c e" . hledger-jentry)
+         ("M-p" . hledger/prev-entry)
+         ("M-n" . hledger/next-entry))
   :config
+  (add-hook 'hledger-view-mode-hook #'hl-line-mode)
+  ;; Auto-completion for account names
+  (add-hook 'hledger-mode-hook
+            (lambda ()
+              (make-local-variable 'company-backends)
+              (add-to-list 'company-backends 'hledger-company)))
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
-  (setq hledger-jfile "/home/jw/Dokument/hledger/test/test1.journal")
-  (load "~/.config/doom/ob-hledger")
-  (require 'ob-hledger))
-
-;; Out of sync with hledger
-;; (use-package! flycheck-hledger
-;;   :after (flycheck hledger-mode)
-;;   :demand t)
+  (setq hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
 
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 
@@ -1608,3 +1651,11 @@ See also `process-lines'."
          (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
+
+(use-package! ement)
+
+(use-package! mistty
+  :config
+  (setq explicit-shell-file-name "/usr/bin/fish")
+  ;; (setq explicit-shell-file-name "/usr/bin/bash")
+  )

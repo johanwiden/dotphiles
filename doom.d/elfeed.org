@@ -62,6 +62,8 @@
 *** [[https://openai.com/blog/rss][OpenAI]]
 *** [[https://yoshuabengio.org/feed/][Yoshua Bengio]]
 *** [[http://bach.ai/feed.xml][Joscha Bach]]
+*** [[http://huyenchip.com/feed.xml][Huyen Chip]]
+
 
 ** research
 *** [[https://blog.liyiwei.org/?feed=rss2][liyiwei]]

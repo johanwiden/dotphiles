@@ -1,31 +1,31 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1549,
-      "width": 1278,
-      "x": 1280,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
-      "height": 1549,
-      "width": 1278,
-      "x": 1280,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1549,
-      "width": 1278,
-      "x": 1280,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAUAAAAAAAAACf0AAAYMAAAFAAAAAAAAAAn9AAAGDAAAAAAAAAAADwAAAAUAAAAAAAAACf0AAAYM"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAAB30AAAYSAAAAAAAAAAAAAAd9AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAAB30AAAYS"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -35,9 +35,9 @@
       },
       "index_in_screens_list": 0,
       "manufacturer": "Dell Inc.",
-      "model": "DELL U3818DW-",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL-",
+      "model": "DELL U3818DW",
+      "name": "HDMI-A-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAE/gAABg0AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAHfgAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -155,6 +155,21 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "key": "/home/jw/Downloads/voinaimir00tols_voinaimir00tols.epub",
+        "pathtoebook": "/home/jw/Downloads/voinaimir00tols_voinaimir00tols.epub",
+        "timestamp": "2023-10-27T20:10:40.640Z",
+        "title": "voinaimir00tols voinaimir00tols"
+      },
+      {
+        "authors": [
+          "Various Authors"
+        ],
+        "key": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
+        "pathtoebook": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
+        "timestamp": "2023-09-17T08:48:15.448Z",
+        "title": "Tor.com: Summer 2023 Short Fiction"
+      },
       {
         "authors": [
           "EZCOO"
@@ -310,18 +325,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Frida_Sofia_Sunna.md",
         "timestamp": "2022-02-01T11:08:37.561Z",
         "title": "Frida Sofia Sunna"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart_2.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Hans_Johannes_Stuart_2.md",
-        "timestamp": "2022-02-01T10:50:46.048Z",
-        "title": "Hans Johannes Stuart 2"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Stuart_adel.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Stuart_adel.md",
-        "timestamp": "2022-02-01T10:50:31.746Z",
-        "title": "Stuart adel"
       }
     ],
     "user_color_schemes": {
