@@ -127,7 +127,8 @@
 ;; Enable mode-line in vterm
 (after! doom-modeline
   (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
-  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main)))
+  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main))
+  (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
 
 ;; The concise one which relies on "implicit fallback values"
 (setq fontaine-presets
@@ -427,6 +428,10 @@
 (use-package! org-similarity
   :config
   (setq org-similarity-directory org-roam-directory)
+  )
+
+(use-package! org-tempo
+ :after org
   )
 
 (use-package! org-transclusion
@@ -1659,3 +1664,9 @@ See also `process-lines'."
   (setq explicit-shell-file-name "/usr/bin/fish")
   ;; (setq explicit-shell-file-name "/usr/bin/bash")
   )
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)

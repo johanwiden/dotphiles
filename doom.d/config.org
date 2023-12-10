@@ -188,7 +188,8 @@ font string. You generally only need these two:
 ;; Enable mode-line in vterm
 (after! doom-modeline
   (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
-  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main)))
+  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main))
+  (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
 #+END_SRC
 
 #+RESULTS:
@@ -590,6 +591,13 @@ END_SRC
 (use-package! org-similarity
   :config
   (setq org-similarity-directory org-roam-directory)
+  )
+#+END_SRC
+
+** org-tempo
+#+BEGIN_SRC emacs-lisp
+(use-package! org-tempo
+ :after org
   )
 #+END_SRC
 
@@ -2115,4 +2123,13 @@ Configuration from karthink.
   (setq explicit-shell-file-name "/usr/bin/fish")
   ;; (setq explicit-shell-file-name "/usr/bin/bash")
   )
+#+END_SRC
+
+* eat
+#+BEGIN_SRC emacs-lisp
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 #+END_SRC
