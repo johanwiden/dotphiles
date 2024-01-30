@@ -254,28 +254,28 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1560,
-      "width": 1276,
-      "x": 2560,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
-      "height": 1560,
-      "width": 1276,
-      "x": 2560,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1560,
-      "width": 1276,
-      "x": 2560,
+      "height": 1555,
+      "width": 1918,
+      "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAoAAAAAAAAADvsAAAYXAAAKAAAAAAAAAA77AAAGFwAAAAAAAAAADwAAAAoAAAAAAAAADvsAAAYX"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAAB30AAAYSAAAAAAAAAAAAAAd9AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAAB30AAAYS"
     },
     "screen": {
       "depth": 32,
@@ -466,7 +466,36 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 470
+    "/home/jw/calibre_library": 472
+  },
+  "main_window_central_widget_state": {
+    "layout": "wide",
+    "narrow_desires": {
+      "book_details_height": 0.2308868501529052,
+      "cover_browser_width": 0.3495297805642633,
+      "quick_view_height": 0.2563710499490316,
+      "tag_browser_width": 0.25
+    },
+    "narrow_visibility": {
+      "book_details": true,
+      "book_list": true,
+      "cover_browser": false,
+      "quick_view": false,
+      "tag_browser": true
+    },
+    "wide_desires": {
+      "book_details_width": 0.15673981191222572,
+      "cover_browser_height": 0.16583747927031509,
+      "quick_view_height": 0.27805417357656165,
+      "tag_browser_width": 0.15673981191222572
+    },
+    "wide_visibility": {
+      "book_details": true,
+      "book_list": true,
+      "cover_browser": false,
+      "quick_view": false,
+      "tag_browser": false
+    }
   },
   "metadata_single_gui_geom": {
     "__class__": "bytearray",

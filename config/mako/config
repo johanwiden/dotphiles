@@ -29,3 +29,7 @@ group-by=category
 [app-name=screenlockwarning]
 anchor=center
 font=monospace 16
+default-timeout=30000
+
+[app-name="NetworkManager Applet"]
+default-timeout=5000

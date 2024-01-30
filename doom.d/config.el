@@ -136,10 +136,9 @@
          :default-family "Iosevka Comfy Wide Fixed"
          :default-height 70)
         (small
-         :default-family "Iosevka Comfy Fixed"
+         :default-family "Iosevka Comfy Motion"
          :default-height 90)
-        (regular
-         :default-height 100)
+        (regular)
         (source-code
          :default-family "Source Code Pro"
          :variable-pitch-family "Source Sans Pro"
@@ -147,17 +146,28 @@
          :bold-weight semibold)
         (medium
          :default-weight semilight
-         :default-height 140)
-        (large
-         :default-weight semilight
-         :default-height 180
+         :default-height 140
          :bold-weight extrabold)
+        (large
+         :inherit medium
+         :default-height 180
+         )
         (t ; our shared fallback properties
          :default-family "Iosevka Comfy"
-         :default-weight normal
-         :variable-pitch-family "Iosevka Comfy Duo"
+         :default-weight regular
+         :default-height 100
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-family
+         :fixed-pitch-serif-height 1.0
+         :variable-pitch-family "Iosevka Comfy Motion Duo"
+         :variable-pitch-weight nil
          ;; :variable-pitch-family "FiraGO"
-         :variable-pitch-height 1.05)))
+         :variable-pitch-height 1.0
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)))
 
 (use-package! fontaine
   ;; :config
@@ -172,6 +182,30 @@
   ;; ;; The other side of `fontaine-restore-latest-preset'.
   ;; (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset)
   )
+
+;; (defun my-update-active-mode-line-colors ()
+;;   (set-face-attribute
+;;    'mode-line nil
+;;    :foreground (modus-themes-get-color-value 'fg-mode-line-active)
+;;    :background "goldenrod"
+;;    :box '(:line-width
+;;           1
+;;           :color
+;;           (modus-themes-get-color-value 'border-mode-line-active))))
+;; (defun my-update-active-mode-line-colors ()
+;;   (set-face-attribute
+;;    'mode-line nil
+;;    :background "dark olive green"))
+;; (defun my-update-active-mode-line-colors ()
+;;   (modus-themes-with-colors
+;;     (custom-set-faces
+;;      `(mode-line ((t :background ,bg-yellow-subtle))))))
+
+;; (add-hook 'modus-themes-post-load-hook #'my-update-active-mode-line-colors)
+
+;; Can also be done with
+(setq modus-themes-common-palette-overrides
+      '((bg-mode-line-active bg-yellow-subtle)))
 
 (use-package! modus-themes
   :init
@@ -552,7 +586,77 @@
                                               (goto-char pt)
                                               (hkey-either))))))
 
-(use-package! consult-recoll)
+(require 'transient)
+
+(transient-define-prefix cc/isearch-menu ()
+  "isearch Menu"
+  [["Edit Search String"
+    ("e"
+     "Edit the search string (recursive)"
+     isearch-edit-string
+     :transient nil)
+    ("w"
+     "Pull next word or character word from buffer"
+     isearch-yank-word-or-char
+     :transient nil)
+    ("s"
+     "Pull next symbol or character from buffer"
+     isearch-yank-symbol-or-char
+     :transient nil)
+    ("l"
+     "Pull rest of line from buffer"
+     isearch-yank-line
+     :transient nil)
+    ("y"
+     "Pull string from kill ring"
+     isearch-yank-kill
+     :transient nil)
+    ("t"
+     "Pull thing from buffer"
+     isearch-forward-thing-at-point
+     :transient nil)]
+
+   ["Replace"
+    ("q"
+     "Start ‘query-replace’"
+     isearch-query-replace
+     :if-nil buffer-read-only
+     :transient nil)
+    ("x"
+     "Start ‘query-replace-regexp’"
+     isearch-query-replace-regexp
+     :if-nil buffer-read-only
+     :transient nil)]]
+
+  [["Toggle"
+    ("X"
+     "Toggle regexp searching"
+     isearch-toggle-regexp
+     :transient nil)
+    ("S"
+     "Toggle symbol searching"
+     isearch-toggle-symbol
+     :transient nil)
+    ("W"
+     "Toggle word searching"
+     isearch-toggle-word
+     :transient nil)
+    ("F"
+     "Toggle case fold"
+     isearch-toggle-case-fold
+     :transient nil)
+    ("L"
+     "Toggle lax whitespace"
+     isearch-toggle-lax-whitespace
+     :transient nil)]
+
+   ["Misc"
+    ("o"
+     "occur"
+     isearch-occur
+     :transient nil)]])
+
+(define-key isearch-mode-map (kbd "<f2>") 'cc/isearch-menu)
 
 (set-cursor-color "firebrick")
 (setq hcz-set-cursor-color-color "")
@@ -1103,10 +1207,6 @@ browser defined by `browse-url-generic-program'."
   :config
   (good-scroll-mode 1))
 
-(when (and (executable-find "fish")
-           (require 'fish-completion nil t))
-  (global-fish-completion-mode))
-
 (use-package! mixed-pitch)
 
 (use-package! hyperbole
@@ -1440,7 +1540,9 @@ _w_ where is something defined
 (use-package! dwim-shell-command
   :defer t)
 
-(use-package! persid)
+(use-package! persid
+  :defer t
+  )
 
 (defun load-emacs-with-nyxt ()
   (interactive)
@@ -1508,7 +1610,7 @@ _w_ where is something defined
            (imenu buffer)
            (consult-location buffer)
            (consult-grep buffer)
-           (notmuch-result reverse)
+           ;; (notmuch-result reverse)
            (minor-mode reverse)
            ;; (reftex-label (:not unobtrusive))
            ;; (citar-reference reverse)
@@ -1607,12 +1709,13 @@ _w_ where is something defined
   ;; but if we want to preview for example bookmarks
   ;; we need to invoke this explicitly, using a key binding.
   ;; Also: Having a preview key binding for a command, turns off automatic preview for that command.
-  (consult-customize
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
-   :preview-key "M-.")
+  ;; This is customized in doom config for vertico.
+  ;; (consult-customize
+  ;;  consult-ripgrep consult-git-grep consult-grep
+  ;;  consult-bookmark consult-recent-file consult-xref
+  ;;  consult--source-bookmark consult--source-file-register
+  ;;  consult--source-recent-file consult--source-project-recent-file
+  ;;  :preview-key "M-.")
   (global-set-key (kbd "C-s") 'consult-line)
 
   (defun consult-info-emacs ()
@@ -1634,9 +1737,14 @@ _w_ where is something defined
   (defun consult-info-completion ()
     "Search through completion info pages."
     (interactive)
-    (consult-info "orderless" "embark")))
+    (consult-info "orderless" "embark" "company")))
 
-(use-package! wgrep)
+(use-package! wgrep
+  :defer t
+  )
+
+;; To turn off automatic in buffer completion:
+;; (set (make-local-variable 'company-idle-delay) nil)
 
 (defun ambrevar/call-process-to-string (program &rest args)
   "Call PROGRAM with ARGS and return output.
@@ -1657,9 +1765,12 @@ See also `process-lines'."
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
 
-(use-package! ement)
+(use-package! ement
+  :defer t
+  )
 
 (use-package! mistty
+  :defer t
   :config
   (setq explicit-shell-file-name "/usr/bin/fish")
   ;; (setq explicit-shell-file-name "/usr/bin/bash")
@@ -1670,3 +1781,11 @@ See also `process-lines'."
 
 ;; For `eat-eshell-visual-command-mode'.
 ;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
+(use-package! igist
+  :defer t
+  :config
+  (setq igist-current-user-name "johanwiden")
+  (setq igist-auth-marker 'igist))
+
+(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)

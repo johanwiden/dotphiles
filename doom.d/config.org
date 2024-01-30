@@ -203,10 +203,9 @@ font string. You generally only need these two:
          :default-family "Iosevka Comfy Wide Fixed"
          :default-height 70)
         (small
-         :default-family "Iosevka Comfy Fixed"
+         :default-family "Iosevka Comfy Motion"
          :default-height 90)
-        (regular
-         :default-height 100)
+        (regular)
         (source-code
          :default-family "Source Code Pro"
          :variable-pitch-family "Source Sans Pro"
@@ -214,17 +213,28 @@ font string. You generally only need these two:
          :bold-weight semibold)
         (medium
          :default-weight semilight
-         :default-height 140)
-        (large
-         :default-weight semilight
-         :default-height 180
+         :default-height 140
          :bold-weight extrabold)
+        (large
+         :inherit medium
+         :default-height 180
+         )
         (t ; our shared fallback properties
          :default-family "Iosevka Comfy"
-         :default-weight normal
-         :variable-pitch-family "Iosevka Comfy Duo"
+         :default-weight regular
+         :default-height 100
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-family
+         :fixed-pitch-serif-height 1.0
+         :variable-pitch-family "Iosevka Comfy Motion Duo"
+         :variable-pitch-weight nil
          ;; :variable-pitch-family "FiraGO"
-         :variable-pitch-height 1.05)))
+         :variable-pitch-height 1.0
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+         :italic-family nil
+         :italic-slant italic
+         :line-spacing nil)))
 
 (use-package! fontaine
   ;; :config
@@ -247,6 +257,30 @@ available. You can either set `doom-theme' or manually load a theme with the
 `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 #+BEGIN_SRC emacs-lisp
+;; (defun my-update-active-mode-line-colors ()
+;;   (set-face-attribute
+;;    'mode-line nil
+;;    :foreground (modus-themes-get-color-value 'fg-mode-line-active)
+;;    :background "goldenrod"
+;;    :box '(:line-width
+;;           1
+;;           :color
+;;           (modus-themes-get-color-value 'border-mode-line-active))))
+;; (defun my-update-active-mode-line-colors ()
+;;   (set-face-attribute
+;;    'mode-line nil
+;;    :background "dark olive green"))
+;; (defun my-update-active-mode-line-colors ()
+;;   (modus-themes-with-colors
+;;     (custom-set-faces
+;;      `(mode-line ((t :background ,bg-yellow-subtle))))))
+
+;; (add-hook 'modus-themes-post-load-hook #'my-update-active-mode-line-colors)
+
+;; Can also be done with
+(setq modus-themes-common-palette-overrides
+      '((bg-mode-line-active bg-yellow-subtle)))
+
 (use-package! modus-themes
   :init
   ;; Add all your customizations prior to loading the themes
@@ -767,10 +801,85 @@ https://karthinks.com/software/avy-can-do-anything/
                                               (hkey-either))))))
 #+END_SRC
 
-* consult-recoll
+* isearch transient menu
 #+BEGIN_SRC emacs-lisp
-(use-package! consult-recoll)
+(require 'transient)
+
+(transient-define-prefix cc/isearch-menu ()
+  "isearch Menu"
+  [["Edit Search String"
+    ("e"
+     "Edit the search string (recursive)"
+     isearch-edit-string
+     :transient nil)
+    ("w"
+     "Pull next word or character word from buffer"
+     isearch-yank-word-or-char
+     :transient nil)
+    ("s"
+     "Pull next symbol or character from buffer"
+     isearch-yank-symbol-or-char
+     :transient nil)
+    ("l"
+     "Pull rest of line from buffer"
+     isearch-yank-line
+     :transient nil)
+    ("y"
+     "Pull string from kill ring"
+     isearch-yank-kill
+     :transient nil)
+    ("t"
+     "Pull thing from buffer"
+     isearch-forward-thing-at-point
+     :transient nil)]
+
+   ["Replace"
+    ("q"
+     "Start ‘query-replace’"
+     isearch-query-replace
+     :if-nil buffer-read-only
+     :transient nil)
+    ("x"
+     "Start ‘query-replace-regexp’"
+     isearch-query-replace-regexp
+     :if-nil buffer-read-only
+     :transient nil)]]
+
+  [["Toggle"
+    ("X"
+     "Toggle regexp searching"
+     isearch-toggle-regexp
+     :transient nil)
+    ("S"
+     "Toggle symbol searching"
+     isearch-toggle-symbol
+     :transient nil)
+    ("W"
+     "Toggle word searching"
+     isearch-toggle-word
+     :transient nil)
+    ("F"
+     "Toggle case fold"
+     isearch-toggle-case-fold
+     :transient nil)
+    ("L"
+     "Toggle lax whitespace"
+     isearch-toggle-lax-whitespace
+     :transient nil)]
+
+   ["Misc"
+    ("o"
+     "occur"
+     isearch-occur
+     :transient nil)]])
+
+(define-key isearch-mode-map (kbd "<f2>") 'cc/isearch-menu)
+
 #+END_SRC
+* consult-recoll
++BEGIN_SRC emacs-lisp
+(use-package! consult-recoll)
++END_SRC
 
 * Cursor
 With zenburn the cursor-color will be black for all but the initial frame unless we do some workaround.
@@ -1434,11 +1543,14 @@ browser defined by `browse-url-generic-program'."
 #+END_SRC
 
 * fish-completion
-#+BEGIN_SRC emacs-lisp
+If you enable this, do not enable it globally. e.g. it makes editing org-journal files a real pain.
+If you want to enable this, then uncomment install stanza in packages.el.
++BEGIN_SRC emacs-lisp
 (when (and (executable-find "fish")
            (require 'fish-completion nil t))
-  (global-fish-completion-mode))
-#+END_SRC
+  ;; (global-fish-completion-mode)
+  )
++END_SRC
 
 * mixed-pitch
 #+BEGIN_SRC emacs-lisp
@@ -1836,7 +1948,9 @@ Enabled in init.el: common-lisp
 
 * persid
 #+BEGIN_SRC emacs-lisp
-(use-package! persid)
+(use-package! persid
+  :defer t
+  )
 #+END_SRC
 
 * emacs-with-nyxt
@@ -1931,7 +2045,7 @@ Configuration from karthink.
            (imenu buffer)
            (consult-location buffer)
            (consult-grep buffer)
-           (notmuch-result reverse)
+           ;; (notmuch-result reverse)
            (minor-mode reverse)
            ;; (reftex-label (:not unobtrusive))
            ;; (citar-reference reverse)
@@ -2036,12 +2150,13 @@ Configuration from karthink.
   ;; but if we want to preview for example bookmarks
   ;; we need to invoke this explicitly, using a key binding.
   ;; Also: Having a preview key binding for a command, turns off automatic preview for that command.
-  (consult-customize
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
-   :preview-key "M-.")
+  ;; This is customized in doom config for vertico.
+  ;; (consult-customize
+  ;;  consult-ripgrep consult-git-grep consult-grep
+  ;;  consult-bookmark consult-recent-file consult-xref
+  ;;  consult--source-bookmark consult--source-file-register
+  ;;  consult--source-recent-file consult--source-project-recent-file
+  ;;  :preview-key "M-.")
   (global-set-key (kbd "C-s") 'consult-line)
 
   (defun consult-info-emacs ()
@@ -2063,11 +2178,18 @@ Configuration from karthink.
   (defun consult-info-completion ()
     "Search through completion info pages."
     (interactive)
-    (consult-info "orderless" "embark")))
+    (consult-info "orderless" "embark" "company")))
 
-(use-package! wgrep)
+(use-package! wgrep
+  :defer t
+  )
 #+END_SRC
 
+* company
+#+BEGIN_SRC emacs-lisp
+;; To turn off automatic in buffer completion:
+;; (set (make-local-variable 'company-idle-delay) nil)
+#+END_SRC
 * browser
 #+BEGIN_SRC emacs-lisp
   (defun ambrevar/call-process-to-string (program &rest args)
@@ -2113,12 +2235,15 @@ Configuration from karthink.
 
 * ement matrix client
 #+BEGIN_SRC emacs-lisp
-(use-package! ement)
+(use-package! ement
+  :defer t
+  )
 #+END_SRC
 
 * mistty
 #+BEGIN_SRC emacs-lisp
 (use-package! mistty
+  :defer t
   :config
   (setq explicit-shell-file-name "/usr/bin/fish")
   ;; (setq explicit-shell-file-name "/usr/bin/bash")
@@ -2132,4 +2257,18 @@ Configuration from karthink.
 
 ;; For `eat-eshell-visual-command-mode'.
 ;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+#+END_SRC
+
+* igist
+#+BEGIN_SRC emacs-lisp
+(use-package! igist
+  :defer t
+  :config
+  (setq igist-current-user-name "johanwiden")
+  (setq igist-auth-marker 'igist))
+#+END_SRC
+
+* tab-bar
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 #+END_SRC

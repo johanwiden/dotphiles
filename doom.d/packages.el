@@ -77,8 +77,9 @@
 (package! epkg)
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
-(package! fish-completion)
+;; (package! fish-completion)
 (package! fontaine)
+(package! ghub)
 (package! git-link)
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
@@ -94,6 +95,7 @@
   :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! i3-integration
   :recipe (:host github :repo "vava/i3-emacs"))
+(package! igist)
 (package! lexic)
 ;; (package! load-theme-buffer-local)
 (package! mistty)
