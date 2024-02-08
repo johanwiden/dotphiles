@@ -328,7 +328,6 @@
  ;; Change this from 10MB to 100MB
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
- treemacs-no-load-time-warnings t
  )
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
@@ -1366,8 +1365,8 @@ _w_ where is something defined
   ("v" describe-variable)
   ("V" doom/help-custom-variable)
   ("w" where-is))
-    (global-set-key (kbd "M-i") nil)
-    (global-set-key (kbd "M-i") #'help/hydra/left/describe/body)
+    ;; (global-set-key (kbd "M-i") nil)
+    ;; (global-set-key (kbd "M-i") #'help/hydra/left/describe/body)
 
 (after! parent-mode
   (defun help/parent-mode-display ()
