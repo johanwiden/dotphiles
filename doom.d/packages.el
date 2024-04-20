@@ -53,8 +53,9 @@
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
-(package! combobulate
-  :recipe (:host github :repo "mickeynp/combobulate"))
+(package! casual)
+;; (package! combobulate
+;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-recoll)
 (package! dired-filter)
 (package! dired-launch
@@ -90,11 +91,11 @@
 (package! highlight
   :recipe (:host github :repo "emacsmirror/highlight"))
 (package! hledger-mode)
+;; (package! html-ts-mode
+;;   :recipe (:host github :repo "mickeynp/html-ts-mode"))
 (package! hungry-delete)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
-(package! i3-integration
-  :recipe (:host github :repo "vava/i3-emacs"))
 (package! igist)
 (package! lexic)
 ;; (package! load-theme-buffer-local)
@@ -123,6 +124,8 @@
 (package! persid
   :recipe (:host github :repo "rougier/persid"))
 ;; (package! shrface)
+(package! tab-bookmark
+  :recipe (:host github :repo "minad/tab-bookmark"))
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds

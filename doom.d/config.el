@@ -13,6 +13,8 @@
 
 (global-set-key (kbd "§") (lookup-key global-map (kbd "C-x")))
 (global-set-key (kbd "<insert>") (lookup-key global-map (kbd "C-x")))
+(global-set-key (kbd "C-å") 'evil-force-normal-state)
+(global-set-key (kbd "C-ш") 'evil-force-normal-state)
 
 (defun my/shell-command-on-file (command)
   "Execute COMMAND asynchronously on the current file."
@@ -62,15 +64,15 @@
     (s-trim-right (evil-state-property evil-state :tag t))))
 
 (doom-modeline-def-modeline 'main
-  '(bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs checker time))
+  '(eldoc bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check time))
 
 (doom-modeline-def-modeline 'minimal
-  '(bar evil-state matches buffer-info-simple)
+  '(bar window-number evil-state modals matches buffer-info-simple)
   '(media-info major-mode time))
 
 (doom-modeline-def-modeline 'special
-  '(bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
+  '(eldoc bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
   '(compilation objed-state misc-info battery irc-buffers debug minor-modes input-method indent-info buffer-encoding major-mode process time))
 
 (doom-modeline-def-modeline 'project
@@ -78,7 +80,7 @@
   '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
 
 (doom-modeline-def-modeline 'dashboard
-  '(bar window-number evil-state buffer-default-directory-simple remote-host)
+  '(bar window-number evil-state modals buffer-default-directory-simple remote-host)
   '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
 
 (doom-modeline-def-modeline 'vcs
@@ -86,31 +88,35 @@
   '(compilation misc-info battery irc mu4e gnus github debug minor-modes buffer-encoding major-mode process time))
 
 (doom-modeline-def-modeline 'package
-  '(bar window-number evil-state package)
+  '(bar window-number evil-state modals package)
   '(compilation misc-info major-mode process time))
 
 (doom-modeline-def-modeline 'info
-  '(bar window-number evil-state buffer-info info-nodes buffer-position parrot selection-info)
+  '(bar window-number evil-state modals buffer-info info-nodes buffer-position parrot selection-info)
   '(compilation misc-info buffer-encoding major-mode time))
 
 (doom-modeline-def-modeline 'media
-  '(bar window-number evil-state buffer-size buffer-info)
+  '(bar window-number evil-state modals buffer-size buffer-info)
   '(compilation misc-info media-info major-mode process vcs time))
 
 (doom-modeline-def-modeline 'message
-  '(bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
+  '(eldoc bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
   '(compilation objed-state misc-info battery debug minor-modes input-method indent-info buffer-encoding major-mode time))
 
 (doom-modeline-def-modeline 'pdf
-  '(bar window-number evil-state matches buffer-info pdf-pages)
-  '(compilation  misc-info major-mode process vcs time))
+  '(bar window-number evil-state modals matches buffer-info pdf-pages)
+  '(compilation misc-info major-mode process vcs time))
 
 (doom-modeline-def-modeline 'org-src
-  '(bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process checker time))
+  '(eldoc bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
+  '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process check time))
+
+(doom-modeline-def-modeline 'helm
+  '(bar evil-state helm-buffer-id helm-number helm-follow helm-prefix-argument)
+  '(helm-help time))
 
 (doom-modeline-def-modeline 'timemachine
-  '(bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
+  '(eldoc bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
   '(misc-info minor-modes indent-info buffer-encoding major-mode time))
 
 (doom-modeline-def-modeline 'calculator
@@ -131,46 +137,46 @@
   (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
 
 ;; The concise one which relies on "implicit fallback values"
-(setq fontaine-presets
-      '((tiny
-         :default-family "Iosevka Comfy Wide Fixed"
-         :default-height 70)
-        (small
-         :default-family "Iosevka Comfy Motion"
-         :default-height 90)
-        (regular)
-        (source-code
-         :default-family "Source Code Pro"
-         :variable-pitch-family "Source Sans Pro"
-         :default-height 110
-         :bold-weight semibold)
-        (medium
-         :default-weight semilight
-         :default-height 140
-         :bold-weight extrabold)
-        (large
-         :inherit medium
-         :default-height 180
-         )
-        (t ; our shared fallback properties
-         :default-family "Iosevka Comfy"
-         :default-weight regular
-         :default-height 100
-         :fixed-pitch-family nil ; falls back to :default-family
-         :fixed-pitch-weight nil ; falls back to :default-family
-         :fixed-pitch-serif-height 1.0
-         :variable-pitch-family "Iosevka Comfy Motion Duo"
-         :variable-pitch-weight nil
-         ;; :variable-pitch-family "FiraGO"
-         :variable-pitch-height 1.0
-         :bold-family nil ; use whatever the underlying face has
-         :bold-weight bold
-         :italic-family nil
-         :italic-slant italic
-         :line-spacing nil)))
+;; (setq fontaine-presets
+;;       '((tiny
+;;          :default-family "Iosevka Comfy Wide Fixed"
+;;          :default-height 70)
+;;         (small
+;;          :default-family "Iosevka Comfy Motion"
+;;          :default-height 90)
+;;         (regular)
+;;         (source-code
+;;          :default-family "Source Code Pro"
+;;          :variable-pitch-family "Source Sans Pro"
+;;          :default-height 110
+;;          :bold-weight semibold)
+;;         (medium
+;;          :default-weight semilight
+;;          :default-height 140
+;;          :bold-weight extrabold)
+;;         (large
+;;          :inherit medium
+;;          :default-height 180
+;;          )
+;;         (t ; our shared fallback properties
+;;          :default-family "Iosevka Comfy"
+;;          :default-weight regular
+;;          :default-height 100
+;;          :fixed-pitch-family nil ; falls back to :default-family
+;;          :fixed-pitch-weight nil ; falls back to :default-family
+;;          :fixed-pitch-serif-height 1.0
+;;          :variable-pitch-family "Iosevka Comfy Motion Duo"
+;;          :variable-pitch-weight nil
+;;          ;; :variable-pitch-family "FiraGO"
+;;          :variable-pitch-height 1.0
+;;          :bold-family nil ; use whatever the underlying face has
+;;          :bold-weight bold
+;;          :italic-family nil
+;;          :italic-slant italic
+;;          :line-spacing nil)))
 
 (use-package! fontaine
-  ;; :config
+  :config
   ;; (fontaine-restore-latest-preset)
 
   ;; ;; Set `fontaine-recovered-preset' or fall back to desired style from
@@ -181,7 +187,96 @@
 
   ;; ;; The other side of `fontaine-restore-latest-preset'.
   ;; (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset)
-  )
+
+  ;; Iosevka Comfy is my highly customised build of Iosevka with
+  ;; monospaced and duospaced (quasi-proportional) variants as well as
+  ;; support or no support for ligatures:
+  ;; <https://github.com/protesilaos/iosevka-comfy>.
+  (setq fontaine-presets
+      '((small
+         :default-family "Iosevka Comfy Motion"
+         :default-height 100
+         :variable-pitch-family "Iosevka Comfy Duo")
+        (regular) ; like this it uses all the fallback values and is named `regular'
+        (medium
+         :default-weight semilight
+         :default-height 130
+         :bold-weight extrabold)
+        (large
+         :inherit medium
+         :default-height 160)
+        (presentation
+         :default-height 180)
+        (t
+         ;; I keep all properties for didactic purposes, but most can be
+         ;; omitted.  See the fontaine manual for the technicalities:
+         ;; <https://protesilaos.com/emacs/fontaine>.
+         :default-family "Iosevka Comfy"
+         :default-weight regular
+         :default-height 115
+
+         :fixed-pitch-family nil ; falls back to :default-family
+         :fixed-pitch-weight nil ; falls back to :default-weight
+         :fixed-pitch-height 1.0
+
+         :fixed-pitch-serif-family nil ; falls back to :default-family
+         :fixed-pitch-serif-weight nil ; falls back to :default-weight
+         :fixed-pitch-serif-height 1.0
+
+         :variable-pitch-family "Iosevka Comfy Motion Duo"
+         :variable-pitch-weight nil
+         :variable-pitch-height 1.0
+
+         :mode-line-active-family nil ; falls back to :default-family
+         :mode-line-active-weight nil ; falls back to :default-weight
+         :mode-line-active-height 0.9
+
+         :mode-line-inactive-family nil ; falls back to :default-family
+         :mode-line-inactive-weight nil ; falls back to :default-weight
+         :mode-line-inactive-height 0.9
+
+         :header-line-family nil ; falls back to :default-family
+         :header-line-weight nil ; falls back to :default-weight
+         :header-line-height 0.9
+
+         :line-number-family nil ; falls back to :default-family
+         :line-number-weight nil ; falls back to :default-weight
+         :line-number-height 0.9
+
+         :tab-bar-family nil ; falls back to :default-family
+         :tab-bar-weight nil ; falls back to :default-weight
+         :tab-bar-height 1.0
+
+         :tab-line-family nil ; falls back to :default-family
+         :tab-line-weight nil ; falls back to :default-weight
+         :tab-line-height 1.0
+
+         :bold-family nil ; use whatever the underlying face has
+         :bold-weight bold
+
+         :italic-family nil
+         :italic-slant italic
+
+         :line-spacing nil)))
+
+  (setq fontaine-latest-state-file
+      (locate-user-emacs-file "fontaine-latest-state.eld"))
+
+  ;; Set the last preset or fall back to desired style from `fontaine-presets'
+  ;; (the `regular' in this case).
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
+
+  ;; Persist the latest font preset when closing/starting Emacs and
+  ;; while switching between themes.
+  (fontaine-mode 1)
+
+  ;; fontaine does not define any key bindings.  This is just a sample that
+  ;; respects the key binding conventions.  Evaluate:
+  ;;
+  ;;     (info "(elisp) Key Binding Conventions")
+  (define-key global-map (kbd "C-c f") #'fontaine-set-preset)
+
+  (add-hook 'enable-theme-functions #'fontaine-apply-current-preset))
 
 ;; (defun my-update-active-mode-line-colors ()
 ;;   (set-face-attribute
@@ -252,60 +347,6 @@
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme 'no-confirm))
 
-(setq treesit-language-source-alist
-   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-     (cmake "https://github.com/uyha/tree-sitter-cmake")
-     (c "https://github.com/tree-sitter/tree-sitter-c")
-     (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-     (css "https://github.com/tree-sitter/tree-sitter-css")
-     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-     (go "https://github.com/tree-sitter/tree-sitter-go")
-     (html "https://github.com/tree-sitter/tree-sitter-html")
-     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-     (json "https://github.com/tree-sitter/tree-sitter-json")
-     (make "https://github.com/alemuller/tree-sitter-make")
-     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-     (python "https://github.com/tree-sitter/tree-sitter-python")
-     (toml "https://github.com/tree-sitter/tree-sitter-toml")
-     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
-
-;; Optional, but recommended. Tree-sitter enabled major modes are
-;; distinct from their ordinary counterparts.
-;;
-;; You can remap major modes with `major-mode-remap-alist'. Note
-;; that this does *not* extend to hooks! Make sure you migrate them
-;; also
-(dolist (mapping '((python-mode . python-ts-mode)
-                   (sh-mode . bash-ts-mode)
-                   (css-mode . css-ts-mode)
-                   (c-mode . c-ts-mode)
-                   (c++-mode . c++-ts-mode)
-                   ;; (typescript-mode . tsx-ts-mode)
-                   (js-mode . js-ts-mode)
-                   (json-mode . json-ts-mode)
-                   (css-mode . css-ts-mode)
-                   (yaml-mode . yaml-ts-mode)))
-  (add-to-list 'major-mode-remap-alist mapping))
-
-;; Following has to be run when doom emacs is reinstalled.
-;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
-
-;; Use the full theming potential of treesit
-(setq treesit-font-lock-level 4)
-
-;; tweak the new funcall face
-(custom-theme-set-faces
- ;; for current theme
- (or (car custom-enabled-themes) 'user)
-
- ;; funcall face
- `(font-lock-function-call-face
-   ((t :inherit font-lock-function-name-face
-       :foreground "hot pink"
-       :background "black"))))
-
 (defvar jw/paradox-github-token nil)
 
 (let ((secret.el (expand-file-name ".secret.el" "~")))
@@ -330,12 +371,14 @@
  show-paren-context-when-offscreen 'overlay
  )
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+;; (after! recentf
+;;   (progn(setq recentf-max-saved-items 10000)
+;;         (run-at-time nil (* 5 60)
+;;              (lambda ()
+;;                (let ((save-silently t))
+;;                  (recentf-save-list))))))
 (after! recentf
-  (progn(setq recentf-max-saved-items 10000)
-        (run-at-time nil (* 5 60)
-             (lambda ()
-               (let ((save-silently t))
-                 (recentf-save-list))))))
+  (progn(setq recentf-max-saved-items 10000)))
 (after! savehist
   (setq savehist-autosave-interval 600))
 (setq use-package-verbose t)
@@ -1430,10 +1473,10 @@ _w_ where is something defined
   :config
   (add-hook 'hledger-view-mode-hook #'hl-line-mode)
   ;; Auto-completion for account names
-  (add-hook 'hledger-mode-hook
-            (lambda ()
-              (make-local-variable 'company-backends)
-              (add-to-list 'company-backends 'hledger-company)))
+  ;; (add-hook 'hledger-mode-hook
+  ;;           (lambda ()
+  ;;             (make-local-variable 'company-backends)
+  ;;             (add-to-list 'company-backends 'hledger-company)))
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
   (setq hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
@@ -1546,15 +1589,6 @@ _w_ where is something defined
 (defun load-emacs-with-nyxt ()
   (interactive)
   (load "/home/jw/.config/doom/emacs-with-nyxt.el"))
-
-(use-package! combobulate
-  :hook ((python-ts-mode . combobulate-mode)
-         (js-ts-mode . combobulate-mode)
-         (css-ts-mode . combobulate-mode)
-         (yaml-ts-mode . combobulate-mode)
-         ;; (typescript-ts-mode . combobulate-mode)
-         ;; (tsx-ts-mode . combobulate-mode)
-         ))
 
 ;; if you built from source
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
@@ -1788,3 +1822,9 @@ See also `process-lines'."
   (setq igist-auth-marker 'igist))
 
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
+
+(use-package! tab-bookmark
+  :defer t)
+
+;; (use-package! casual
+;;   :defer t)

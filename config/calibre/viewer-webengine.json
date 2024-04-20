@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAHfgAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIoA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACEAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANIA////AAAHfgAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -140,7 +140,12 @@
   "session_data": {
     "base_font_size": 17,
     "book_scrollbar": false,
+    "columns_per_screen": {
+      "landscape": 2,
+      "portrait": 2
+    },
     "controls_help_shown_count": 2,
+    "controls_help_shown_count_rtl_page_progression": 2,
     "current_color_scheme": "sepia-light",
     "keyboard_shortcuts": {},
     "override_book_colors": "never",
@@ -155,6 +160,25 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "Classical electrodynamics-Wiley (1999)-compressed"
+        ],
+        "key": "/home/jw/Downloads/John David Jackson - Classical electrodynamics-Wiley (1999)-compressed.epub",
+        "pathtoebook": "/home/jw/Downloads/John David Jackson - Classical electrodynamics-Wiley (1999)-compressed.epub",
+        "timestamp": "2024-03-20T09:28:27.500Z",
+        "title": "John David Jackson"
+      },
+      {
+        "authors": [
+          "Tadashi Agi",
+          "Shu Okimoto"
+        ],
+        "key": "/home/jw/Downloads/y1/drops-of-god/drops-of-god_21.epub",
+        "pathtoebook": "/home/jw/Downloads/y1/drops-of-god/drops-of-god_21.epub",
+        "timestamp": "2024-02-11T20:27:14.656Z",
+        "title": "The Drops of God 21"
+      },
       {
         "key": "/home/jw/Downloads/voinaimir00tols_voinaimir00tols.epub",
         "pathtoebook": "/home/jw/Downloads/voinaimir00tols_voinaimir00tols.epub",
@@ -313,18 +337,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_2.md",
         "timestamp": "2022-02-01T11:39:08.558Z",
         "title": "Laurentius Lars Svenonius Bure 2"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_1.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_1.md",
-        "timestamp": "2022-02-01T11:38:54.870Z",
-        "title": "Laurentius Lars Svenonius Bure 1"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Frida_Sofia_Sunna.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Frida_Sofia_Sunna.md",
-        "timestamp": "2022-02-01T11:08:37.561Z",
-        "title": "Frida Sofia Sunna"
       }
     ],
     "user_color_schemes": {
