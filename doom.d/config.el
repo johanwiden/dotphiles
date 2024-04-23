@@ -378,13 +378,16 @@
 ;;                (let ((save-silently t))
 ;;                  (recentf-save-list))))))
 (after! recentf
-  (progn(setq recentf-max-saved-items 10000)))
+  (progn
+    (setq recentf-max-saved-items 10000)
+    (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
   (setq savehist-autosave-interval 600))
 (setq use-package-verbose t)
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
+(save-place-mode 1)
 
 (global-auto-revert-mode t)
 
@@ -1828,3 +1831,235 @@ See also `process-lines'."
 
 ;; (use-package! casual
 ;;   :defer t)
+
+(use-package! consult-gh
+  :after consult
+  ;; :defer t
+  :custom
+  (consult-gh-preview-buffer-mode 'org-mode)
+  (consult-gh-show-preview t)
+  (consult-gh-preview-key "M-o")
+  (consult-gh-default-clone-directory "~/projects/consult-gh")
+  (consult-gh-repo-action #'consult-gh--repo-browse-files-action)
+  (consult-gh-issue-action #'consult-gh--issue-view-action)
+  (consult-gh-pr-action #'consult-gh--pr-view-action)
+  (consult-gh-code-action #'consult-gh--code-view-action)
+  (consult-gh-file-action #'consult-gh--files-view-action)
+  (consult-gh-large-file-warning-threshold 2500000)
+  (consult-gh-prioritize-local-folder 'suggest)
+  :config
+  ;;add your main GitHub account (replace "armindarvish" with your user or org)
+  (add-to-list 'consult-gh-default-orgs-list "johanwiden")
+  (setq consult-gh-default-orgs-list (append consult-gh-default-orgs-list '("alphapapa" "systemcrafters")))
+  (require 'consult-gh-embark)
+  (require 'consult-gh-transient))
+
+(use-package! consult-web
+  :after consult
+  ;; :defer t
+  :custom
+  (consult-web-default-browse-function 'browse-url)
+  (consult-web-alternate-browse-function 'eww-browse-url)
+  (consult-web-default-preview-function #'browse-url)
+  ;; (consult-web-default-preview-function #'xwidget-webkit-browse-url)
+  (consult-web-show-preview t)
+  (consult-web-preview-key "M-O")
+  (consult-web-highlight-matches t) ;;; highlight matches in minibuffer
+  (consult-web-default-count 5) ;;; set default count
+  (consult-web-default-page 0) ;;; set the default page (default is 0 for the first page)
+
+  ;;; optionally change the consult-web debounce, throttle and delay.
+  ;;; Adjust these (e.g. increase to avoid hiting a source (e.g. an API) too frequently)
+  (consult-web-dynamic-input-debounce 0.8)
+  (consult-web-dynamic-input-throttle 1.6)
+  (consult-web-dynamic-refresh-delay 0.8)
+
+  :config
+  ;; Add sources and configure them
+  ;;; load the example sources provided by default
+  ;; (require 'consult-web-bing)
+  ;; (require 'consult-web-brave)
+  ;; (require 'consult-web-brave-autosuggest)
+  ;; (require 'consult-web-doi)
+  ;; (require 'consult-web-wikipedia)
+  ;; (require 'consult-web-stackoverflow)
+  ;; (require 'consult-web-chatgpt)
+  ;; (require 'consult-web-gptel)
+  ;; (require 'consult-web-buffer)
+  ;; (require 'consult-web-line-multi)
+  ;; (require 'consult-web-notes)
+  ;; (setq consult-web-sources-modules-to-load '(consult-web-brave
+  ;;                                             consult-web-brave-autosuggest
+  ;;                                             consult-web-doi
+  ;;                                             consult-web-stackoverflow
+  ;;                                             consult-web-chatgpt
+  ;;                                             consult-web-gptel
+  ;;                                             consult-web-buffer
+  ;;                                             consult-web-line-multi
+  ;;                                             consult-web-notes
+  ;;                                             consult-web-wikipedia))
+  (require 'consult-web-sources)
+  (require 'consult-web-embark)
+
+  ;;; set multiple sources for consult-web-multi command. Change these lists as needed for different interactive commands. Keep in mind that each source has to be a key in `consult-web-sources-alist'.
+  ;; (setq consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
+  (setq consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
+  ;; (setq consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" )) ;; consult-web-dynamic
+  (setq consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" "Wikipedia")) ;; consult-web-dynamic
+  ;; (setq consult-web-scholar-sources (list "PubMed")) ;; consult-web-scholar
+  ;; (setq consult-web-omni-sources (list "elfeed" "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  ;; (setq consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  (setq consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  ;; (setq consult-web-dynamic-omni-sources (list "Known Project" "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "elfeed" "Brave" "Wikipedia" "gptel" "Youtube")) ;;consult-web-dynamic-omni
+  ;; (setq consult-web-dynamic-omni-sources (list "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Brave" "Wikipedia" "gptel")) ;;consult-web-dynamic-omni
+  (setq consult-web-dynamic-omni-sources (list "File" "Bookmark" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "Brave" "Wikipedia" "gptel" "YouTube")) ;;consult-web-dynamic-omni
+
+  ;; Per source customization
+  ;;; Pick you favorite autosuggest command.
+  (setq consult-web-default-autosuggest-command #'consult-web-dynamic-brave-autosuggest)
+
+  ;;; Set API KEYs. It is recommended to use a function that returns the string for better security.
+  (setq consult-web-bing-api-key (secrets-get-secret "Login" "Password for 'BING_SEARCH_V7_SUBSCRIPTION_KEY' on 'apikey'"))
+  ;; (add-to-list 'consult-web-dynamic-sources "Bing")
+  (setq consult-web-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
+  ;; (add-to-list 'consult-web-dynamic-sources "Brave")
+  (setq consult-web-brave-autosuggest-api-key
+        (secrets-get-secret "Login" "Password for 'BRAVE_AUTOSUGGEST_API_KEY' on 'apikey'"))
+  ;; (add-to-list 'consult-web-dynamic-sources "Wikipedia")
+  (setq consult-web-stackexchange-api-key
+        (secrets-get-secret "Login" "Password for 'STACKEXCHANGE_API_KEY' on 'apikey'"))
+  ;; (add-to-list 'consult-web-dynamic-sources "StackOverflow")
+  (setq consult-web-openai-api-key
+        (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
+  (setq consult-web-google-customsearch-key
+        (secrets-get-secret "Login" "Password for 'YOUTUBE_V3_API_KEY' on 'apikey'"))
+  ;; (add-to-list 'consult-web-dynamic-sources "chatGPT")
+  ;; (add-to-list consult-web-dynamic-sources "gptel")
+  ;; (add-to-list 'consult-web-dynamic-omni "Buffer")
+  ;; (add-to-list 'consult-web-dynamic-omni "Line Multi")
+  )
+
+(use-package! gptel
+  :defer t
+  :config
+  (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
+
+(use-package! consult-notes
+  :defer t
+  :commands (consult-notes
+             consult-notes-search-in-all-notes
+             ;; if using org-roam
+             consult-notes-org-roam-find-node
+             consult-notes-org-roam-find-node-relation)
+  :config
+  (setq consult-notes-file-dir-sources '(("Org"  ?o  "~/org/roam"))) ;; Set notes dir(s), see below
+  ;; Set org-roam integration, denote integration, or org-heading integration e.g.:
+  ;; (setq consult-notes-org-headings-files '("~/path/to/file1.org"
+  ;;                                          "~/path/to/file2.org"))
+  (consult-notes-org-roam-mode)
+  ;; (when (locate-library "denote")
+  ;;   (consult-notes-denote-mode))
+  ;; ;; search only for text files in denote dir
+  ;; (setq consult-notes-denote-files-function (function denote-directory-text-only-files))
+  )
+
+(use-package! denote
+  :defer t
+  :config
+  ;; Remember to check the doc strings of those variables.
+  (setq denote-directory (expand-file-name "~/Dokument/notes/"))
+  (setq denote-save-buffer-after-creation nil)
+  (setq denote-known-keywords '("emacs" "philosophy" "physics" "politics" "economics"))
+  (setq denote-infer-keywords t)
+  (setq denote-sort-keywords t)
+  (setq denote-file-type nil) ; Org is the default, set others here
+  (setq denote-prompts '(title keywords))
+  (setq denote-excluded-directories-regexp nil)
+  (setq denote-excluded-keywords-regexp nil)
+  (setq denote-rename-no-confirm nil) ; Set to t if you are familiar with `denote-rename-file'
+
+  ;; Pick dates, where relevant, with Org's advanced interface:
+  (setq denote-date-prompt-use-org-read-date t)
+
+  ;; Read this manual for how to specify `denote-templates'.  We do not
+  ;; include an example here to avoid potential confusion.
+
+  (setq denote-date-format nil) ; read doc string
+
+  ;; By default, we do not show the context of links.  We just display
+  ;; file names.  This provides a more informative view.
+  (setq denote-backlinks-show-context t)
+
+  ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
+  ;; advanced.
+
+  ;; If you use Markdown or plain text files (Org renders links as buttons
+  ;; right away)
+  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
+
+  ;; We use different ways to specify a path for demo purposes.
+  (setq denote-dired-directories
+        (list denote-directory
+              (thread-last denote-directory (expand-file-name "attachments"))
+              (expand-file-name "~/Documents/books")))
+
+  ;; Generic (great if you rename files Denote-style in lots of places):
+  ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
+  ;;
+  ;; OR if only want it in `denote-dired-directories':
+  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
+
+
+  ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
+  (denote-rename-buffer-mode 1)
+
+  ;; Denote DOES NOT define any key bindings.  This is for the user to
+  ;; decide.  For example:
+  (let ((map global-map))
+    (define-key map (kbd "C-c n n") #'denote)
+    (define-key map (kbd "C-c n c") #'denote-region) ; "contents" mnemonic
+    (define-key map (kbd "C-c n N") #'denote-type)
+    (define-key map (kbd "C-c n d") #'denote-date)
+    (define-key map (kbd "C-c n z") #'denote-signature) ; "zettelkasten" mnemonic
+    (define-key map (kbd "C-c n s") #'denote-subdirectory)
+    (define-key map (kbd "C-c n t") #'denote-template)
+    ;; If you intend to use Denote with a variety of file types, it is
+    ;; easier to bind the link-related commands to the `global-map', as
+    ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
+    ;; `markdown-mode-map', and/or `text-mode-map'.
+    (define-key map (kbd "C-c n i") #'denote-link) ; "insert" mnemonic
+    (define-key map (kbd "C-c n I") #'denote-add-links)
+    (define-key map (kbd "C-c n b") #'denote-backlinks)
+    (define-key map (kbd "C-c n f f") #'denote-find-link)
+    (define-key map (kbd "C-c n f b") #'denote-find-backlink)
+    ;; Note that `denote-rename-file' can work from any context, not just
+    ;; Dired bufffers.  That is why we bind it here to the `global-map'.
+    (define-key map (kbd "C-c n r") #'denote-rename-file)
+    (define-key map (kbd "C-c n R") #'denote-rename-file-using-front-matter))
+
+  ;; Key bindings specifically for Dired.
+  (let ((map dired-mode-map))
+    (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
+    (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
+    (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
+    (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
+
+  (with-eval-after-load 'org-capture
+    (setq denote-org-capture-specifiers "%l\n%i\n%?")
+    (add-to-list 'org-capture-templates
+                 '("n" "New note (with denote.el)" plain
+                   (file denote-last-path)
+                   #'denote-org-capture
+                   :no-save t
+                   :immediate-finish nil
+                   :kill-buffer t
+                   :jump-to-captured t)))
+
+  ;; Also check the commands `denote-link-after-creating',
+  ;; `denote-link-or-create'.  You may want to bind them to keys as well.
+
+
+  ;; If you want to have Denote commands available via a right click
+  ;; context menu, use the following and then enable
+  ;; `context-menu-mode'.
+  (add-hook 'context-menu-functions #'denote-context-menu))

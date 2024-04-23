@@ -6,6 +6,7 @@
  '(bmkp-last-as-first-bookmark-file "~/.config/emacs/.local/etc/bookmarks")
  '(custom-safe-themes t)
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
+ '(package-selected-packages '(consult org-roam))
  '(safe-local-variable-values
    '((eval ispell-change-dictionary "en_US")
      (eval org-expiry-deinsinuate)

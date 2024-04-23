@@ -56,7 +56,13 @@
 (package! casual)
 ;; (package! combobulate
 ;;   :recipe (:host github :repo "mickeynp/combobulate"))
+(package! consult-gh
+  :recipe (:host github :repo "armindarvish/consult-gh"))
+(package! consult-notes)
+(package! consult-web
+  :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
 (package! consult-recoll)
+(package! denote)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
@@ -84,6 +90,7 @@
 (package! git-link)
 (package! good-scroll
   :recipe (:host github :repo "io12/good-scroll.el"))
+(package! gptel)
 (package! hexrgb
   :recipe (:host github :repo "emacsmirror/hexrgb"))
 (package! hide-comnt
