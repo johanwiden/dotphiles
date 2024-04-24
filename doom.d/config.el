@@ -371,23 +371,18 @@
  show-paren-context-when-offscreen 'overlay
  )
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-;; (after! recentf
-;;   (progn(setq recentf-max-saved-items 10000)
-;;         (run-at-time nil (* 5 60)
-;;              (lambda ()
-;;                (let ((save-silently t))
-;;                  (recentf-save-list))))))
 (after! recentf
   (progn
     (setq recentf-max-saved-items 10000)
     (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
   (setq savehist-autosave-interval 600))
+(require 'saveplace-pdf-view)
+(save-place-mode 1)
 (setq use-package-verbose t)
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
-(save-place-mode 1)
 
 (global-auto-revert-mode t)
 
@@ -1776,65 +1771,151 @@ _w_ where is something defined
     (consult-info "orderless" "embark" "company")))
 
 (use-package! wgrep
-  :defer t
-  )
-
-;; To turn off automatic in buffer completion:
-;; (set (make-local-variable 'company-idle-delay) nil)
-
-(defun ambrevar/call-process-to-string (program &rest args)
-  "Call PROGRAM with ARGS and return output.
-See also `process-lines'."
-  ;; Or equivalently:
-  ;; (with-temp-buffer
-  ;;   (apply 'process-file program nil t nil args)
-  ;;   (buffer-string))
-  (with-output-to-string
-    (with-current-buffer standard-output
-      (apply 'process-file program nil t nil args))))
-
-(setq browse-url-generic-program
-      (or
-       (executable-find (or (getenv "BROWSER") ""))
-       (when (executable-find "xdg-mime")
-         (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
-           (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
-       (executable-find browse-url-chrome-program)))
-
-(use-package! ement
-  :defer t
-  )
-
-(use-package! mistty
-  :defer t
-  :config
-  (setq explicit-shell-file-name "/usr/bin/fish")
-  ;; (setq explicit-shell-file-name "/usr/bin/bash")
-  )
-
-;; For `eat-eshell-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-
-;; For `eat-eshell-visual-command-mode'.
-;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-
-(use-package! igist
-  :defer t
-  :config
-  (setq igist-current-user-name "johanwiden")
-  (setq igist-auth-marker 'igist))
-
-(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
-
-(use-package! tab-bookmark
   :defer t)
 
-;; (use-package! casual
-;;   :defer t)
+(use-package! denote
+  :requires consult
+  :defer t
+  :config
+  ;; Remember to check the doc strings of those variables.
+  (setq denote-directory (expand-file-name "~/org/roam/notes/"))
+  (setq denote-save-buffer-after-creation nil)
+  (setq denote-known-keywords '("emacs" "gravity" "inertia" "llm" "philosophy" "physics" "politics" "economics"))
+  (setq denote-infer-keywords t)
+  (setq denote-sort-keywords t)
+  (setq denote-file-type nil) ; Org is the default, set others here
+  (setq denote-prompts '(title keywords))
+  (setq denote-excluded-directories-regexp nil)
+  (setq denote-excluded-keywords-regexp nil)
+  (setq denote-rename-no-confirm nil) ; Set to t if you are familiar with `denote-rename-file'
+
+  ;; Pick dates, where relevant, with Org's advanced interface:
+  (setq denote-date-prompt-use-org-read-date t)
+
+  ;; Read this manual for how to specify `denote-templates'.  We do not
+  ;; include an example here to avoid potential confusion.
+
+  (setq denote-date-format nil) ; read doc string
+
+  ;; By default, we do not show the context of links.  We just display
+  ;; file names.  This provides a more informative view.
+  (setq denote-backlinks-show-context t)
+
+  ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
+  ;; advanced.
+
+  ;; If you use Markdown or plain text files (Org renders links as buttons
+  ;; right away)
+  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
+
+  ;; We use different ways to specify a path for demo purposes.
+  (setq denote-dired-directories
+        (list denote-directory
+              (thread-last denote-directory (expand-file-name "attachments"))
+              (expand-file-name "~/Documents/books")))
+
+  ;; Generic (great if you rename files Denote-style in lots of places):
+  ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
+  ;;
+  ;; OR if only want it in `denote-dired-directories':
+  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
+
+  ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
+  (denote-rename-buffer-mode 1)
+
+  ;; Denote DOES NOT define any key bindings.  This is for the user to
+  ;; decide.  For example:
+  (let ((map global-map))
+    (define-key map (kbd "C-c n n") #'denote)
+    (define-key map (kbd "C-c n c") #'denote-region) ; "contents" mnemonic
+    (define-key map (kbd "C-c n N") #'denote-type)
+    (define-key map (kbd "C-c n d") #'denote-date)
+    (define-key map (kbd "C-c n z") #'denote-signature) ; "zettelkasten" mnemonic
+    (define-key map (kbd "C-c n s") #'denote-subdirectory)
+    (define-key map (kbd "C-c n t") #'denote-template)
+    ;; If you intend to use Denote with a variety of file types, it is
+    ;; easier to bind the link-related commands to the `global-map', as
+    ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
+    ;; `markdown-mode-map', and/or `text-mode-map'.
+    (define-key map (kbd "C-c n i") #'denote-link) ; "insert" mnemonic
+    (define-key map (kbd "C-c n I") #'denote-add-links)
+    (define-key map (kbd "C-c n b") #'denote-backlinks)
+    (define-key map (kbd "C-c n f f") #'denote-find-link)
+    (define-key map (kbd "C-c n f b") #'denote-find-backlink)
+    ;; Note that `denote-rename-file' can work from any context, not just
+    ;; Dired bufffers.  That is why we bind it here to the `global-map'.
+    (define-key map (kbd "C-c n r") #'denote-rename-file)
+    (define-key map (kbd "C-c n R") #'denote-rename-file-using-front-matter))
+
+  ;; Key bindings specifically for Dired.
+  (let ((map dired-mode-map))
+    (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
+    (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
+    (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
+    (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
+
+  (with-eval-after-load 'org-capture
+    (setq denote-org-capture-specifiers "%l\n%i\n%?")
+    (add-to-list 'org-capture-templates
+                 '("n" "New note (with denote.el)" plain
+                   (file denote-last-path)
+                   #'denote-org-capture
+                   :no-save t
+                   :immediate-finish nil
+                   :kill-buffer t
+                   :jump-to-captured t)))
+
+  ;; Also check the commands `denote-link-after-creating',
+  ;; `denote-link-or-create'.  You may want to bind them to keys as well.
+
+
+  ;; If you want to have Denote commands available via a right click
+  ;; context menu, use the following and then enable
+  ;; `context-menu-mode'.
+  (add-hook 'context-menu-functions #'denote-context-menu))
+
+(use-package! consult-notes
+  :requires (consult denote)
+  :defer t
+  :commands (consult-notes
+             consult-notes-search-in-all-notes
+             ;; if using org-roam
+             consult-notes-org-roam-find-node
+             consult-notes-org-roam-find-node-relation)
+  :config
+  (setq consult-notes-file-dir-sources `(("Denote"  ?d  ,(denote-directory))
+                                         ("Org"     ?o  "~/org/roam"))) ;; Set notes dir(s), see below
+  ;; Set org-roam integration, denote integration, or org-heading integration e.g.:
+  ;; (setq consult-notes-org-headings-files '("~/path/to/file1.org"
+  ;;                                          "~/path/to/file2.org"))
+  ;; (consult-notes-org-roam-mode)
+  (when (locate-library "denote")
+    (consult-notes-denote-mode))
+  ;; ;; search only for text files in denote dir
+  ;; (setq consult-notes-denote-files-function (function denote-directory-text-only-files))
+  )
+
+(use-package! denote-menu
+  :requires denote
+  :defer t
+  :commands (list-denotes
+             denote-menu-clear-filters
+             denote-menu-filter
+             denote-menu-filter-by-keyword
+             denote-menu-filter-out-keyword
+             denote-menu-export-to-dired)
+  :config
+  (global-set-key (kbd "C-c z") #'list-denotes)
+
+  (define-key denote-menu-mode-map (kbd "c")   #'denote-menu-clear-filters)
+  (define-key denote-menu-mode-map (kbd "/ r") #'denote-menu-filter)
+  (define-key denote-menu-mode-map (kbd "/ k") #'denote-menu-filter-by-keyword)
+  (define-key denote-menu-mode-map (kbd "/ o") #'denote-menu-filter-out-keyword)
+  (define-key denote-menu-mode-map (kbd "e")   #'denote-menu-export-to-dired))
 
 (use-package! consult-gh
-  :after consult
-  ;; :defer t
+  :requires consult
+  :defer t
   :custom
   (consult-gh-preview-buffer-mode 'org-mode)
   (consult-gh-show-preview t)
@@ -1854,9 +1935,25 @@ See also `process-lines'."
   (require 'consult-gh-embark)
   (require 'consult-gh-transient))
 
-(use-package! consult-web
-  :after consult
+(use-package! consult-mu
+  :after (consult mu4e)
   ;; :defer t
+  :custom
+  ;; minimal config
+  ;;maximum number of results shown in minibuffer
+  (consult-mu-maxnum 200)
+  ;;show preview when pressing any keys
+  (consult-mu-preview-key 'any)
+  ;;do not mark email as read when previewed
+  (consult-mu-mark-previewed-as-read nil)
+  ;;do not amrk email as read when selected. This is a good starting point to ensure you would not miss important emails marked as read by mistake especially when trying this package out. Later you can change this to t.
+  (consult-mu-mark-viewed-as-read nil)
+  ;; open the message in mu4e-view-buffer when selected.
+  (consult-mu-action #'consult-mu--view-action))
+
+(use-package! consult-web
+  :requires (consult consult-notes)
+  :defer t
   :custom
   (consult-web-default-browse-function 'browse-url)
   (consult-web-alternate-browse-function 'eww-browse-url)
@@ -1939,127 +2036,57 @@ See also `process-lines'."
   ;; (add-to-list 'consult-web-dynamic-omni "Line Multi")
   )
 
+(defun ambrevar/call-process-to-string (program &rest args)
+  "Call PROGRAM with ARGS and return output.
+See also `process-lines'."
+  ;; Or equivalently:
+  ;; (with-temp-buffer
+  ;;   (apply 'process-file program nil t nil args)
+  ;;   (buffer-string))
+  (with-output-to-string
+    (with-current-buffer standard-output
+      (apply 'process-file program nil t nil args))))
+
+(setq browse-url-generic-program
+      (or
+       (executable-find (or (getenv "BROWSER") ""))
+       (when (executable-find "xdg-mime")
+         (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
+           (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
+       (executable-find browse-url-chrome-program)))
+
+(use-package! ement
+  :defer t
+  )
+
+(use-package! mistty
+  :defer t
+  :config
+  (setq explicit-shell-file-name "/usr/bin/fish")
+  ;; (setq explicit-shell-file-name "/usr/bin/bash")
+  )
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
+(use-package! igist
+  :defer t
+  :config
+  (setq igist-current-user-name "johanwiden")
+  (setq igist-auth-marker 'igist))
+
+(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
+
+(use-package! tab-bookmark
+  :defer t)
+
+;; (use-package! casual
+;;   :defer t)
+
 (use-package! gptel
   :defer t
   :config
   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
-
-(use-package! consult-notes
-  :defer t
-  :commands (consult-notes
-             consult-notes-search-in-all-notes
-             ;; if using org-roam
-             consult-notes-org-roam-find-node
-             consult-notes-org-roam-find-node-relation)
-  :config
-  (setq consult-notes-file-dir-sources '(("Org"  ?o  "~/org/roam"))) ;; Set notes dir(s), see below
-  ;; Set org-roam integration, denote integration, or org-heading integration e.g.:
-  ;; (setq consult-notes-org-headings-files '("~/path/to/file1.org"
-  ;;                                          "~/path/to/file2.org"))
-  (consult-notes-org-roam-mode)
-  ;; (when (locate-library "denote")
-  ;;   (consult-notes-denote-mode))
-  ;; ;; search only for text files in denote dir
-  ;; (setq consult-notes-denote-files-function (function denote-directory-text-only-files))
-  )
-
-(use-package! denote
-  :defer t
-  :config
-  ;; Remember to check the doc strings of those variables.
-  (setq denote-directory (expand-file-name "~/Dokument/notes/"))
-  (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("emacs" "philosophy" "physics" "politics" "economics"))
-  (setq denote-infer-keywords t)
-  (setq denote-sort-keywords t)
-  (setq denote-file-type nil) ; Org is the default, set others here
-  (setq denote-prompts '(title keywords))
-  (setq denote-excluded-directories-regexp nil)
-  (setq denote-excluded-keywords-regexp nil)
-  (setq denote-rename-no-confirm nil) ; Set to t if you are familiar with `denote-rename-file'
-
-  ;; Pick dates, where relevant, with Org's advanced interface:
-  (setq denote-date-prompt-use-org-read-date t)
-
-  ;; Read this manual for how to specify `denote-templates'.  We do not
-  ;; include an example here to avoid potential confusion.
-
-  (setq denote-date-format nil) ; read doc string
-
-  ;; By default, we do not show the context of links.  We just display
-  ;; file names.  This provides a more informative view.
-  (setq denote-backlinks-show-context t)
-
-  ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
-  ;; advanced.
-
-  ;; If you use Markdown or plain text files (Org renders links as buttons
-  ;; right away)
-  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
-
-  ;; We use different ways to specify a path for demo purposes.
-  (setq denote-dired-directories
-        (list denote-directory
-              (thread-last denote-directory (expand-file-name "attachments"))
-              (expand-file-name "~/Documents/books")))
-
-  ;; Generic (great if you rename files Denote-style in lots of places):
-  ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
-  ;;
-  ;; OR if only want it in `denote-dired-directories':
-  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
-
-
-  ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
-  (denote-rename-buffer-mode 1)
-
-  ;; Denote DOES NOT define any key bindings.  This is for the user to
-  ;; decide.  For example:
-  (let ((map global-map))
-    (define-key map (kbd "C-c n n") #'denote)
-    (define-key map (kbd "C-c n c") #'denote-region) ; "contents" mnemonic
-    (define-key map (kbd "C-c n N") #'denote-type)
-    (define-key map (kbd "C-c n d") #'denote-date)
-    (define-key map (kbd "C-c n z") #'denote-signature) ; "zettelkasten" mnemonic
-    (define-key map (kbd "C-c n s") #'denote-subdirectory)
-    (define-key map (kbd "C-c n t") #'denote-template)
-    ;; If you intend to use Denote with a variety of file types, it is
-    ;; easier to bind the link-related commands to the `global-map', as
-    ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
-    ;; `markdown-mode-map', and/or `text-mode-map'.
-    (define-key map (kbd "C-c n i") #'denote-link) ; "insert" mnemonic
-    (define-key map (kbd "C-c n I") #'denote-add-links)
-    (define-key map (kbd "C-c n b") #'denote-backlinks)
-    (define-key map (kbd "C-c n f f") #'denote-find-link)
-    (define-key map (kbd "C-c n f b") #'denote-find-backlink)
-    ;; Note that `denote-rename-file' can work from any context, not just
-    ;; Dired bufffers.  That is why we bind it here to the `global-map'.
-    (define-key map (kbd "C-c n r") #'denote-rename-file)
-    (define-key map (kbd "C-c n R") #'denote-rename-file-using-front-matter))
-
-  ;; Key bindings specifically for Dired.
-  (let ((map dired-mode-map))
-    (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
-    (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
-    (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
-    (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
-
-  (with-eval-after-load 'org-capture
-    (setq denote-org-capture-specifiers "%l\n%i\n%?")
-    (add-to-list 'org-capture-templates
-                 '("n" "New note (with denote.el)" plain
-                   (file denote-last-path)
-                   #'denote-org-capture
-                   :no-save t
-                   :immediate-finish nil
-                   :kill-buffer t
-                   :jump-to-captured t)))
-
-  ;; Also check the commands `denote-link-after-creating',
-  ;; `denote-link-or-create'.  You may want to bind them to keys as well.
-
-
-  ;; If you want to have Denote commands available via a right click
-  ;; context menu, use the following and then enable
-  ;; `context-menu-mode'.
-  (add-hook 'context-menu-functions #'denote-context-menu))

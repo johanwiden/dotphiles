@@ -58,11 +58,14 @@
 ;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-gh
   :recipe (:host github :repo "armindarvish/consult-gh"))
+(package! consult-mu
+  :recipe (:host github :repo "armindarvish/consult-mu" :files (:defaults "extrass/*.el")))
 (package! consult-notes)
 (package! consult-web
   :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
 (package! consult-recoll)
 (package! denote)
+(package! denote-menu)
 (package! dired-filter)
 (package! dired-launch
   :recipe (:host github :repo "thomp/dired-launch"))
