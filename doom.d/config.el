@@ -1774,13 +1774,13 @@ _w_ where is something defined
   :defer t)
 
 (use-package! denote
-  :requires consult
-  :defer t
+  :after consult
+  ;; :defer t
   :config
   ;; Remember to check the doc strings of those variables.
   (setq denote-directory (expand-file-name "~/org/roam/notes/"))
   (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("emacs" "gravity" "inertia" "llm" "philosophy" "physics" "politics" "economics"))
+  (setq denote-known-keywords '("async" "emacs" "consult" "gravity" "inertia" "llm" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
@@ -1875,8 +1875,8 @@ _w_ where is something defined
   (add-hook 'context-menu-functions #'denote-context-menu))
 
 (use-package! consult-notes
-  :requires (consult denote)
-  :defer t
+  :after denote
+  ;; :defer t
   :commands (consult-notes
              consult-notes-search-in-all-notes
              ;; if using org-roam
@@ -1896,8 +1896,8 @@ _w_ where is something defined
   )
 
 (use-package! denote-menu
-  :requires denote
-  :defer t
+  :after denote
+  ;; :defer t
   :commands (list-denotes
              denote-menu-clear-filters
              denote-menu-filter
@@ -1914,8 +1914,8 @@ _w_ where is something defined
   (define-key denote-menu-mode-map (kbd "e")   #'denote-menu-export-to-dired))
 
 (use-package! consult-gh
-  :requires consult
-  :defer t
+  :after consult
+  ;; :defer t
   :custom
   (consult-gh-preview-buffer-mode 'org-mode)
   (consult-gh-show-preview t)
@@ -1952,8 +1952,8 @@ _w_ where is something defined
   (consult-mu-action #'consult-mu--view-action))
 
 (use-package! consult-web
-  :requires (consult consult-notes)
-  :defer t
+  :after (consult consult-notes)
+  ;; :defer t
   :custom
   (consult-web-default-browse-function 'browse-url)
   (consult-web-alternate-browse-function 'eww-browse-url)

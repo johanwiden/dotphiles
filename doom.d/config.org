@@ -2294,6 +2294,7 @@ Configuration from karthink.
 #+END_SRC
 
 * consult
+** consult proper
 #+BEGIN_SRC emacs-lisp
 (after! consult
   ;; Consult has automatic preview for some (light weight) item types,
@@ -2340,13 +2341,13 @@ Configuration from karthink.
 ** denote
 #+BEGIN_SRC emacs-lisp
 (use-package! denote
-  :requires consult
-  :defer t
+  :after consult
+  ;; :defer t
   :config
   ;; Remember to check the doc strings of those variables.
   (setq denote-directory (expand-file-name "~/org/roam/notes/"))
   (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("emacs" "gravity" "inertia" "llm" "philosophy" "physics" "politics" "economics"))
+  (setq denote-known-keywords '("async" "emacs" "consult" "gravity" "inertia" "llm" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
@@ -2443,8 +2444,8 @@ Configuration from karthink.
 ** consult-notes
 #+BEGIN_SRC emacs-lisp
 (use-package! consult-notes
-  :requires (consult denote)
-  :defer t
+  :after denote
+  ;; :defer t
   :commands (consult-notes
              consult-notes-search-in-all-notes
              ;; if using org-roam
@@ -2467,8 +2468,8 @@ Configuration from karthink.
 ** denote-menu
 #+BEGIN_SRC emacs-lisp
 (use-package! denote-menu
-  :requires denote
-  :defer t
+  :after denote
+  ;; :defer t
   :commands (list-denotes
              denote-menu-clear-filters
              denote-menu-filter
@@ -2493,8 +2494,8 @@ Configuration from karthink.
 ** consult-gh
 #+BEGIN_SRC emacs-lisp
 (use-package! consult-gh
-  :requires consult
-  :defer t
+  :after consult
+  ;; :defer t
   :custom
   (consult-gh-preview-buffer-mode 'org-mode)
   (consult-gh-show-preview t)
@@ -2537,8 +2538,8 @@ Configuration from karthink.
 ** consult-web
 #+BEGIN_SRC emacs-lisp
 (use-package! consult-web
-  :requires (consult consult-notes)
-  :defer t
+  :after (consult consult-notes)
+  ;; :defer t
   :custom
   (consult-web-default-browse-function 'browse-url)
   (consult-web-alternate-browse-function 'eww-browse-url)
