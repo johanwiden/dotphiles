@@ -26,7 +26,7 @@
     (async-shell-command (concat command " " filename))))
 (bind-key (kbd "C-M-&") #'my/shell-command-on-file)
 
-;; (setq doom-modeline-height 20)
+(setq doom-modeline-height 20)
 ;; mono 18, var 15
 (setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
@@ -366,6 +366,7 @@
  completions-detailed t
  describe-bindings-outline t
  save-interprogram-paste-before-kill t
+ switch-to-buffer-obey-display-actions t
  ;; Change this from 10MB to 100MB
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
@@ -383,6 +384,8 @@
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
+(after! auth-source
+  (add-to-list 'auth-sources "secrets:Login"))
 
 (global-auto-revert-mode t)
 
@@ -471,6 +474,11 @@
 (after! org
   (require 'ox-gfm nil t))
 
+(use-package! org-books
+    :after org
+    :config
+    (setq org-books-file "~/Dokument/Böcker/org-books.org"))
+
 (setq org-roam-v2-ack t)
 (setq org-roam-directory (file-truename "~/org/roam/")
       org-roam-db-location (file-truename "~/org/roam/org-roam.db")
@@ -510,6 +518,7 @@
 
 (use-package! org-transclusion
   :after org
+  :defer t
   :init
   (map!
    :map global-map "<f12>" #'org-transclusion-add
@@ -867,6 +876,12 @@ Also used for highlighting.")
              ("ö" . dired-filter-map)
              ("ä" . dired-filter-mark-map)))
 
+(after! dired
+  (require 'dired-hist)
+  (add-hook 'dired-mode-hook #'dired-hist-mode)
+  (define-key dired-mode-map (kbd "C-M-a") #'dired-hist-go-back)
+  (define-key dired-mode-map (kbd "C-M-e") #'dired-hist-go-forward))
+
 (use-package! dired-narrow
   :after dired
   :commands dired-narrow
@@ -893,6 +908,10 @@ Also used for highlighting.")
       (visual-line-mode -1)
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
+
+(use-package! casual-dired
+  :after dired
+  :bind (:map dired-mode-map ("C-c C-o" . casual-dired-tmenu)))
 
 (use-package! dired+
     :after dired
@@ -1243,10 +1262,6 @@ browser defined by `browse-url-generic-program'."
   ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
   )
 
-(use-package! good-scroll
-  :config
-  (good-scroll-mode 1))
-
 (use-package! mixed-pitch)
 
 (use-package! hyperbole
@@ -1280,6 +1295,58 @@ browser defined by `browse-url-generic-program'."
   (hkey-ace-window-setup)
   ;; (global-set-key (kbd "s-o") 'hkey-operate)
   )
+
+(use-package! major-mode-hydra
+  ;; :defer t
+  :bind
+  ("M-SPC" . major-mode-hydra))
+
+(major-mode-hydra-define emacs-lisp-mode nil
+  ("Eval"
+   (("b" eval-buffer "buffer")
+    ("e" eval-defun "defun")
+    ("r" eval-region "region"))
+   "REPL"
+   (("I" ielm "ielm"))
+   "Test"
+   (("t" ert "prompt")
+    ("T" (ert t) "all")
+    ("F" (ert :failed) "failed"))
+   "Doc"
+   (("d" describe-foo-at-point "thing-at-pt")
+    ("f" describe-function "function")
+    ("v" describe-variable "variable")
+    ("i" info-lookup-symbol "info lookup"))))
+
+(pretty-hydra-define medusa/denote
+  (:color blue :quit-key "<escape>" :title "Denote")
+  ("Create" (
+    ("n" denote "_n_ew note" )
+    ("t" denote-type "other _t_ype" )
+    ("d" denote-date  "other _d_ate" )
+    ("s" denote-subdirectory  "other _s_ubdir" )
+    ("T" denote-template  "with _T_emplate" )
+    ("S" denote-signature  "with _S_ignature" ))
+   "Link" (
+    ("l" denote-link-or-create "_l_ink" )
+    ("L" denote-link-or-create-with-command "_L_ink with command" )
+    ("h" denote-org-extras-link-to-heading  "specific _h_eader" )
+    ("r" denote-add-links "by _r_egexp" )
+    ("d" denote-add-links "by _d_ired" )
+    ("b" denote-backlinks "_b_acklinks" ))
+   "Rename" (
+    ("RF" denote-rename-file "Rename File")
+    ("FT" denote-change-file-type-and-front-matter  "only FileType")
+    ("UF" denote-rename-file-using-front-matter "use Frontmatter"))
+   "Dyn. Block" (
+    ("DL" denote-org-extras-dblock-insert-links "dyn. Links" )
+    ("DB" denote-org-extras-dblock-insert-backlinks "dyn. Backlinks" ))
+   "Convert links" (
+    ("CF" denote-org-extras-convert-links-to-file-type "to File Type" )
+    ("CD" denote-org-extras-convert-links-to-denote-type "to Denote Type" ))
+  "Other" (
+     ("?" (info "denote") "Help")
+     ("M-SPC" major-mode-hydra "Major Mode Hydra"))))
 
 (after! projectile
   (progn
@@ -1481,10 +1548,6 @@ _w_ where is something defined
 
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 
-(use-package engine-mode
-  :config
-  (engine-mode t))
-
 ;; Note: This uses Company completion, so <F1> will display the candidates documentation.
 
 (load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
@@ -1573,12 +1636,6 @@ _w_ where is something defined
              (read-string "Look up in dictionary: "))
          current-prefix-arg))
   (lexic-search identifier nil nil t))
-
-(use-package! git-link
-  :defer t)
-
-(use-package! dwim-shell-command
-  :defer t)
 
 (use-package! persid
   :defer t
@@ -1778,9 +1835,10 @@ _w_ where is something defined
   ;; :defer t
   :config
   ;; Remember to check the doc strings of those variables.
-  (setq denote-directory (expand-file-name "~/org/roam/notes/"))
+  ;; (setq denote-directory (expand-file-name "~/org/roam/notes/"))
+  (setq denote-directory (expand-file-name "~/Sync/notes/"))
   (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("async" "emacs" "consult" "gravity" "inertia" "llm" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
+  (setq denote-known-keywords '("async" "bestpractices" "emacs" "consult" "gravity" "inertia" "life" "llm" "notes" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
@@ -1874,6 +1932,16 @@ _w_ where is something defined
   ;; `context-menu-mode'.
   (add-hook 'context-menu-functions #'denote-context-menu))
 
+(define-minor-mode denote-mode
+  "Denote is a simple note-taking tool for Emacs."
+  :lighter " Note"
+  :keymap (let ((map
+                 (make-sparse-keymap)))
+            (define-key map (kbd "C-l") 'denote-link-or-create)
+            (define-key map (kbd "C-n") 'denote-link-after-creating)
+            (define-key map (kbd "<f6>")(lambda () (interactive) (find-file "~/Sync/notes")))
+            map))
+
 (use-package! consult-notes
   :after denote
   ;; :defer t
@@ -1928,6 +1996,7 @@ _w_ where is something defined
   (consult-gh-file-action #'consult-gh--files-view-action)
   (consult-gh-large-file-warning-threshold 2500000)
   (consult-gh-prioritize-local-folder 'suggest)
+  (consult-gh-preview-buffer-mode 'org-mode)
   :config
   ;;add your main GitHub account (replace "armindarvish" with your user or org)
   (add-to-list 'consult-gh-default-orgs-list "johanwiden")
@@ -2055,22 +2124,12 @@ See also `process-lines'."
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
 
-(use-package! ement
-  :defer t
-  )
-
 (use-package! mistty
   :defer t
   :config
   (setq explicit-shell-file-name "/usr/bin/fish")
   ;; (setq explicit-shell-file-name "/usr/bin/bash")
   )
-
-;; For `eat-eshell-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-
-;; For `eat-eshell-visual-command-mode'.
-;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
 (use-package! igist
   :defer t
@@ -2080,13 +2139,80 @@ See also `process-lines'."
 
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 
-(use-package! tab-bookmark
-  :defer t)
-
-;; (use-package! casual
-;;   :defer t)
+(use-package! casual
+  :after calc
+  :bind
+    (:map calc-mode-map ("C-o" . casual-main-menu)))
 
 (use-package! gptel
   :defer t
   :config
   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
+
+(use-package! evil-matchit
+  ;; :defer t
+  :config
+  (global-evil-matchit-mode 1))
+
+(use-package! activities
+  :init
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+  :bind
+  (("C-x C-a C-n" . activities-new)
+   ("C-x C-a C-d" . activities-define)
+   ("C-x C-a C-a" . activities-resume)
+   ("C-x C-a C-s" . activities-suspend)
+   ("C-x C-a C-k" . activities-kill)
+   ("C-x C-a RET" . activities-switch)
+   ("C-x C-a b" . activities-switch-buffer)
+   ("C-x C-a g" . activities-revert)
+   ("C-x C-a l" . activities-list)))
+
+(defun ace-window-one-command ()
+  (interactive)
+  (let ((win (aw-select " ACE")))
+    (when (windowp win)
+      (with-selected-window win
+        (let* ((command (key-binding
+                         (read-key-sequence
+                          (format "Run in %s..." (buffer-name)))))
+               (this-command command))
+          (call-interactively command))))))
+
+(keymap-global-set "C-x O" 'ace-window-one-command)
+
+(defun ace-window-prefix ()
+  "Use `ace-window' to display the buffer of the next command.
+The next buffer is the buffer displayed by the next command invoked
+immediately after this command (ignoring reading from the minibuffer).
+Creates a new window before displaying the buffer.
+When `switch-to-buffer-obey-display-actions' is non-nil,
+`switch-to-buffer' commands are also supported."
+  (interactive)
+  (display-buffer-override-next-command
+   (lambda (buffer _)
+     (let (window type)
+       (setq
+        window (aw-select (propertize " ACE" 'face 'mode-line-highlight))
+        type 'reuse)
+       (cons window type)))
+   nil "[ace-window]")
+  (message "Use `ace-window' to display next command buffer..."))
+
+(keymap-global-set "C-x 4 o" 'ace-window-prefix)
+
+(use-package! jinx
+  ;; :defer t
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :config
+  (dolist (hook '(text-mode-hook org-mode-hook prog-mode-hook conf-mode-hook))
+    (add-hook hook #'jinx-mode)))
+
+(use-package! casual-avy
+  ;; :after avy
+  :bind ("C-c g" . casual-avy-tmenu))

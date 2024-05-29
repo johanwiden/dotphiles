@@ -88,8 +88,10 @@ exec swayidle -w \
 # Read `man 5 sway-input` for more information about this section.
 input "type:keyboard" {
     xkb_model pc104
-    xkb_layout us,se,ru
-    xkb_variant ,,phonetic
+    # xkb_layout us,se,ru
+    xkb_layout us,ru
+    # xkb_variant altgr-intl,,phonetic
+    xkb_variant altgr-intl,phonetic
     xkb_options "grp:rctrl_toggle,ctrl:nocaps"
 }
 

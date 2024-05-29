@@ -49,11 +49,14 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
                                         ;(unpin! t)
 (package! ace-link)
+(package! activities)
 (package! arxiv-mode)
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
 (package! casual)
+(package! casual-avy)
+(package! casual-dired)
 ;; (package! combobulate
 ;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-gh
@@ -67,32 +70,32 @@
 (package! denote)
 (package! denote-menu)
 (package! dired-filter)
-(package! dired-launch
-  :recipe (:host github :repo "thomp/dired-launch"))
+(package! dired-hist)
+(package! dired-launch)
 (package! dired-narrow)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
-(package! dwim-shell-command)
-(package! eat
-  :recipe (:host codeberg :repo "akib/emacs-eat"
-           :files ("*.el" ("term" "term/*.el") "*.texi"
-                   "*.ti" ("terminfo/e" "terminfo/e/*")
-                   ("terminfo/65" "terminfo/65/*")
-                   ("integration" "integration/*")
-                   (:exclude ".dir-locals.el" "*-tests.el"))))
+;; (package! dropbox
+;;   :recipe (:host github :repo "lorniu/emacs-dropbox"))
+;; (package! dwim-shell-command)
+;; (package! eat
+;;   :recipe (:host codeberg :repo "akib/emacs-eat"
+;;            :files ("*.el" ("term" "term/*.el") "*.texi"
+;;                    "*.ti" ("terminfo/e" "terminfo/e/*")
+;;                    ("terminfo/65" "terminfo/65/*")
+;;                    ("integration" "integration/*")
+;;                    (:exclude ".dir-locals.el" "*-tests.el"))))
 (package! elfeed)
 (package! elfeed-org)
-(package! ement)
-(package! engine-mode)
+;; (package! ement)
+;; (package! engine-mode)
 (package! epkg)
+(package! evil-matchit)
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 ;; (package! fish-completion)
 (package! fontaine)
 (package! ghub)
-(package! git-link)
-(package! good-scroll
-  :recipe (:host github :repo "io12/good-scroll.el"))
 (package! gptel)
 (package! hexrgb
   :recipe (:host github :repo "emacsmirror/hexrgb"))
@@ -107,8 +110,10 @@
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! igist)
+(package! jinx)
 (package! lexic)
 ;; (package! load-theme-buffer-local)
+(package! major-mode-hydra)
 (package! mistty)
 (package! mixed-pitch)
 (package! modus-themes
@@ -116,6 +121,8 @@
 (package! mouse3
   :recipe (:host github :repo "emacsmirror/mouse3"))
 (package! nov)
+(package! org-books
+  :recipe (:host github :repo "goderich/org-books"))
 (package! org-menu
   :recipe (:host github :repo "sheijk/org-menu"))
 (package! org-protocol-capture-html
@@ -133,9 +140,6 @@
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! persid
   :recipe (:host github :repo "rougier/persid"))
-;; (package! shrface)
-(package! tab-bookmark
-  :recipe (:host github :repo "minad/tab-bookmark"))
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds
@@ -148,4 +152,3 @@
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
 (package! xah-wolfram-mode
   :recipe (:host github :repo "xahlee/xah-wolfram-mode"))
-;; (package! zoxide)

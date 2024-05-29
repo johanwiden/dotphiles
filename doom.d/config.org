@@ -87,7 +87,7 @@ font string. You generally only need these two:
 
 ;See 'C-h v doom-font' for documentation and more examples of what they accept.
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-modeline-height 20)
+(setq doom-modeline-height 20)
 ;; mono 18, var 15
 (setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15)
       ;; doom-font (font-spec :family "Iosevka" :size 16)
@@ -603,6 +603,7 @@ Commented out 220811 https://discourse.doomemacs.org/t/common-config-anti-patter
  completions-detailed t
  describe-bindings-outline t
  save-interprogram-paste-before-kill t
+ switch-to-buffer-obey-display-actions t
  ;; Change this from 10MB to 100MB
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
@@ -620,6 +621,8 @@ Commented out 220811 https://discourse.doomemacs.org/t/common-config-anti-patter
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
+(after! auth-source
+  (add-to-list 'auth-sources "secrets:Login"))
 #+END_SRC
 
 ** lolsmacs
@@ -740,6 +743,14 @@ change `org-directory'. It must be set before org loads!
   (require 'ox-gfm nil t))
 #+END_SRC
 
+** org-books
+#+BEGIN_SRC emacs-lisp
+(use-package! org-books
+    :after org
+    :config
+    (setq org-books-file "~/Dokument/Böcker/org-books.org"))
+#+END_SRC
+
 ** org-roam
 #+BEGIN_SRC emacs-lisp
 (setq org-roam-v2-ack t)
@@ -816,6 +827,7 @@ END_SRC
 #+BEGIN_SRC emacs-lisp
 (use-package! org-transclusion
   :after org
+  :defer t
   :init
   (map!
    :map global-map "<f12>" #'org-transclusion-add
@@ -1274,6 +1286,16 @@ Also used for highlighting.")
              ("ä" . dired-filter-mark-map)))
 #+END_SRC
 
+** Hist
+dired-hist is a minor mode for Emacs that keeps track of visited Dired buffers or paths and lets you go back and forwards acrossthem.  This is similar to the facility provided in Info, EWW and in modern filemanagers.
+#+BEGIN_SRC emacs-lisp
+(after! dired
+  (require 'dired-hist)
+  (add-hook 'dired-mode-hook #'dired-hist-mode)
+  (define-key dired-mode-map (kbd "C-M-a") #'dired-hist-go-back)
+  (define-key dired-mode-map (kbd "C-M-e") #'dired-hist-go-forward))
+#+END_SRC
+
 ** Narrow
 Narrow dired to match filter
 #+BEGIN_SRC emacs-lisp
@@ -1310,6 +1332,13 @@ Launch application associated with file
       (visual-line-mode -1)
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
+#+END_SRC
+
+** casual-dired
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-dired
+  :after dired
+  :bind (:map dired-mode-map ("C-c C-o" . casual-dired-tmenu)))
 #+END_SRC
 
 * Dired plus
@@ -1707,13 +1736,6 @@ browser defined by `browse-url-generic-program'."
     )
 #+END_SRC
 
-* good-scroll
-#+BEGIN_SRC emacs-lisp
-  (use-package! good-scroll
-    :config
-    (good-scroll-mode 1))
-#+END_SRC
-
 * fish-completion
 If you enable this, do not enable it globally. e.g. it makes editing org-journal files a real pain.
 If you want to enable this, then uncomment install stanza in packages.el.
@@ -1765,6 +1787,69 @@ If you want to enable this, then uncomment install stanza in packages.el.
 #+END_SRC
 
 * Hydra
+** Pretty hydra
+pretty-hydra provides a macro pretty-hydra-define to make it easy to create hydras with a pretty table layout with some other bells and whistles.
+Based on pretty-hydra, major-mode-hydra allows you to create pretty hydras with a similar API and summon them with the same key across different major modes.
+#+BEGIN_SRC emacs-lisp
+(use-package! major-mode-hydra
+  ;; :defer t
+  :bind
+  ("M-SPC" . major-mode-hydra))
+#+END_SRC
+
+*** major-mode-hydra emacs-lisp-mode
+#+BEGIN_SRC emacs-lisp
+(major-mode-hydra-define emacs-lisp-mode nil
+  ("Eval"
+   (("b" eval-buffer "buffer")
+    ("e" eval-defun "defun")
+    ("r" eval-region "region"))
+   "REPL"
+   (("I" ielm "ielm"))
+   "Test"
+   (("t" ert "prompt")
+    ("T" (ert t) "all")
+    ("F" (ert :failed) "failed"))
+   "Doc"
+   (("d" describe-foo-at-point "thing-at-pt")
+    ("f" describe-function "function")
+    ("v" describe-variable "variable")
+    ("i" info-lookup-symbol "info lookup"))))
+#+END_SRC
+
+*** major-mode-hydra medusa/denote
+#+BEGIN_SRC emacs-lisp
+(pretty-hydra-define medusa/denote
+  (:color blue :quit-key "<escape>" :title "Denote")
+  ("Create" (
+    ("n" denote "_n_ew note" )
+    ("t" denote-type "other _t_ype" )
+    ("d" denote-date  "other _d_ate" )
+    ("s" denote-subdirectory  "other _s_ubdir" )
+    ("T" denote-template  "with _T_emplate" )
+    ("S" denote-signature  "with _S_ignature" ))
+   "Link" (
+    ("l" denote-link-or-create "_l_ink" )
+    ("L" denote-link-or-create-with-command "_L_ink with command" )
+    ("h" denote-org-extras-link-to-heading  "specific _h_eader" )
+    ("r" denote-add-links "by _r_egexp" )
+    ("d" denote-add-links "by _d_ired" )
+    ("b" denote-backlinks "_b_acklinks" ))
+   "Rename" (
+    ("RF" denote-rename-file "Rename File")
+    ("FT" denote-change-file-type-and-front-matter  "only FileType")
+    ("UF" denote-rename-file-using-front-matter "use Frontmatter"))
+   "Dyn. Block" (
+    ("DL" denote-org-extras-dblock-insert-links "dyn. Links" )
+    ("DB" denote-org-extras-dblock-insert-backlinks "dyn. Backlinks" ))
+   "Convert links" (
+    ("CF" denote-org-extras-convert-links-to-file-type "to File Type" )
+    ("CD" denote-org-extras-convert-links-to-denote-type "to Denote Type" ))
+  "Other" (
+     ("?" (info "denote") "Help")
+     ("M-SPC" major-mode-hydra "Major Mode Hydra"))))
+#+END_SRC
+
 ** hydra-projectile
 #+BEGIN_SRC emacs-lisp
 (after! projectile
@@ -1992,11 +2077,11 @@ _w_ where is something defined
 
 * engine-mode
 engine-mode is a global minor mode for Emacs. It enables you to easily define search engines, bind them to keybindings, and query them from the comfort of your editor.
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (use-package engine-mode
   :config
   (engine-mode t))
-#+END_SRC
++END_SRC
 
 * Common lisp
 Enabled in init.el: common-lisp
@@ -2106,17 +2191,11 @@ Enabled in init.el: common-lisp
   (lexic-search identifier nil nil t))
 #+END_SRC
 
-* git-link
-#+BEGIN_SRC emacs-lisp
-(use-package! git-link
-  :defer t)
-#+END_SRC
-
 * dwim-shell-command
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (use-package! dwim-shell-command
   :defer t)
-#+END_SRC
++END_SRC
 
 * persid
 #+BEGIN_SRC emacs-lisp
@@ -2345,9 +2424,10 @@ Configuration from karthink.
   ;; :defer t
   :config
   ;; Remember to check the doc strings of those variables.
-  (setq denote-directory (expand-file-name "~/org/roam/notes/"))
+  ;; (setq denote-directory (expand-file-name "~/org/roam/notes/"))
+  (setq denote-directory (expand-file-name "~/Sync/notes/"))
   (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("async" "emacs" "consult" "gravity" "inertia" "llm" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
+  (setq denote-known-keywords '("async" "bestpractices" "emacs" "consult" "gravity" "inertia" "life" "llm" "notes" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
@@ -2441,6 +2521,20 @@ Configuration from karthink.
   ;; `context-menu-mode'.
   (add-hook 'context-menu-functions #'denote-context-menu))
 #+END_SRC
+
+** minor-mode denote-mode
+#+BEGIN_SRC emacs-lisp
+(define-minor-mode denote-mode
+  "Denote is a simple note-taking tool for Emacs."
+  :lighter " Note"
+  :keymap (let ((map
+                 (make-sparse-keymap)))
+            (define-key map (kbd "C-l") 'denote-link-or-create)
+            (define-key map (kbd "C-n") 'denote-link-after-creating)
+            (define-key map (kbd "<f6>")(lambda () (interactive) (find-file "~/Sync/notes")))
+            map))
+#+END_SRC
+
 ** consult-notes
 #+BEGIN_SRC emacs-lisp
 (use-package! consult-notes
@@ -2508,6 +2602,7 @@ Configuration from karthink.
   (consult-gh-file-action #'consult-gh--files-view-action)
   (consult-gh-large-file-warning-threshold 2500000)
   (consult-gh-prioritize-local-folder 'suggest)
+  (consult-gh-preview-buffer-mode 'org-mode)
   :config
   ;;add your main GitHub account (replace "armindarvish" with your user or org)
   (add-to-list 'consult-gh-default-orgs-list "johanwiden")
@@ -2645,33 +2740,12 @@ Configuration from karthink.
          (executable-find browse-url-chrome-program)))
 #+END_SRC
 
-* load-theme-buffer-local
-+BEGIN_SRC emacs-lisp
-  (use-package! load-theme-buffer-local)
-  ;; (load "/home/jw/.config/emacs/.local/straight/repos/color-theme-buffer-local/load-theme-buffer-local.el")
-+END_SRC
-
-* shrface
-+BEGIN_SRC emacs-lisp
-  (use-package! shrface
-    :defer t
-    :config
-    (shrface-basic)
-    (shrface-trial)
-    (shrface-default-keybindings) ; setup default keybindings
-    (setq shrface-href-versatile t))
-
-  (after! eww
-    (require 'shrface)
-    (add-hook 'eww-after-render-hook #'shrface-mode))
-+END_SRC
-
 * ement matrix client
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (use-package! ement
   :defer t
   )
-#+END_SRC
++END_SRC
 
 * mistty
 #+BEGIN_SRC emacs-lisp
@@ -2684,13 +2758,13 @@ Configuration from karthink.
 #+END_SRC
 
 * eat
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 ;; For `eat-eshell-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 
 ;; For `eat-eshell-visual-command-mode'.
 ;; (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-#+END_SRC
++END_SRC
 
 * igist
 #+BEGIN_SRC emacs-lisp
@@ -2706,16 +2780,12 @@ Configuration from karthink.
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 #+END_SRC
 
-* tab-bookmark
-#+BEGIN_SRC emacs-lisp
-(use-package! tab-bookmark
-  :defer t)
-#+END_SRC
-
 * casual: calc transient
 #+BEGIN_SRC emacs-lisp
-;; (use-package! casual
-;;   :defer t)
+(use-package! casual
+  :after calc
+  :bind
+    (:map calc-mode-map ("C-o" . casual-main-menu)))
 #+END_SRC
 
 * gptel
@@ -2726,3 +2796,87 @@ Configuration from karthink.
   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
 #+END_SRC
 
+* evil-matchit
+#+BEGIN_SRC emacs-lisp
+(use-package! evil-matchit
+  ;; :defer t
+  :config
+  (global-evil-matchit-mode 1))
+#+END_SRC
+
+* activities
+Inspired by Genera’s and KDE’s concepts of “activities”, this Emacs library allows the user to manage frames/tabs, windows, and buffers according to their purpose.
+#+BEGIN_SRC emacs-lisp
+(use-package! activities
+  :init
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+  :bind
+  (("C-x C-a C-n" . activities-new)
+   ("C-x C-a C-d" . activities-define)
+   ("C-x C-a C-a" . activities-resume)
+   ("C-x C-a C-s" . activities-suspend)
+   ("C-x C-a C-k" . activities-kill)
+   ("C-x C-a RET" . activities-switch)
+   ("C-x C-a b" . activities-switch-buffer)
+   ("C-x C-a g" . activities-revert)
+   ("C-x C-a l" . activities-list)))
+#+END_SRC
+
+* ace-window-one-command, ace-window-prefix
+Temporarily select a window, and perform next command in it.
+#+BEGIN_SRC emacs-lisp
+(defun ace-window-one-command ()
+  (interactive)
+  (let ((win (aw-select " ACE")))
+    (when (windowp win)
+      (with-selected-window win
+        (let* ((command (key-binding
+                         (read-key-sequence
+                          (format "Run in %s..." (buffer-name)))))
+               (this-command command))
+          (call-interactively command))))))
+
+(keymap-global-set "C-x O" 'ace-window-one-command)
+
+(defun ace-window-prefix ()
+  "Use `ace-window' to display the buffer of the next command.
+The next buffer is the buffer displayed by the next command invoked
+immediately after this command (ignoring reading from the minibuffer).
+Creates a new window before displaying the buffer.
+When `switch-to-buffer-obey-display-actions' is non-nil,
+`switch-to-buffer' commands are also supported."
+  (interactive)
+  (display-buffer-override-next-command
+   (lambda (buffer _)
+     (let (window type)
+       (setq
+        window (aw-select (propertize " ACE" 'face 'mode-line-highlight))
+        type 'reuse)
+       (cons window type)))
+   nil "[ace-window]")
+  (message "Use `ace-window' to display next command buffer..."))
+
+(keymap-global-set "C-x 4 o" 'ace-window-prefix)
+#+END_SRC
+
+* jinx spell checker
+#+BEGIN_SRC emacs-lisp
+(use-package! jinx
+  ;; :defer t
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :config
+  (dolist (hook '(text-mode-hook org-mode-hook prog-mode-hook conf-mode-hook))
+    (add-hook hook #'jinx-mode)))
+#+END_SRC
+
+* casual-avy: avy transient
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-avy
+  ;; :after avy
+  :bind ("C-c g" . casual-avy-tmenu))
+#+END_SRC

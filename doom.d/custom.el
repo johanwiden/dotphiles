@@ -3,12 +3,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "~/.config/emacs/.local/etc/bookmarks")
+ '(bmkp-last-as-first-bookmark-file "/home/jw/.config/emacs/.local/etc/bookmarks")
  '(custom-safe-themes t)
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(package-selected-packages '(consult org-roam))
  '(safe-local-variable-values
-   '((eval ispell-change-dictionary "en_US")
+   '((denote-mode . t)
+     (eval ispell-change-dictionary "en_US")
      (eval org-expiry-deinsinuate)
      (org-blank-before-new-entry
       (heading . auto)
