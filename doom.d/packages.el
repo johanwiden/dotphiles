@@ -54,13 +54,18 @@
 (package! bookmark+
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
-(package! casual)
+(package! casual-suite)
+(package! casual-calc)
 (package! casual-avy)
 (package! casual-dired)
+(package! casual-info)
+(package! casual-isearch)
 ;; (package! combobulate
 ;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-gh
   :recipe (:host github :repo "armindarvish/consult-gh"))
+(package! consult-gnome-search
+  :recipe (:host github :repo "juergenhoetzel/consult-gnome-search"))
 (package! consult-mu
   :recipe (:host github :repo "armindarvish/consult-mu" :files (:defaults "extrass/*.el")))
 (package! consult-notes)
@@ -85,6 +90,7 @@
 ;;                    ("terminfo/65" "terminfo/65/*")
 ;;                    ("integration" "integration/*")
 ;;                    (:exclude ".dir-locals.el" "*-tests.el"))))
+(package! alert)
 (package! elfeed)
 (package! elfeed-org)
 ;; (package! ement)
@@ -94,8 +100,10 @@
 (package! facemenu+
   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 ;; (package! fish-completion)
+(package! focus)
 (package! fontaine)
 (package! ghub)
+(package! go-translate)
 (package! gptel)
 (package! hexrgb
   :recipe (:host github :repo "emacsmirror/hexrgb"))
@@ -123,6 +131,7 @@
 (package! nov)
 (package! org-books
   :recipe (:host github :repo "goderich/org-books"))
+(package! org-download)
 (package! org-menu
   :recipe (:host github :repo "sheijk/org-menu"))
 (package! org-protocol-capture-html
@@ -136,16 +145,28 @@
 (package! org-transclusion)
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
+(package! paw
+  :recipe (:host github :repo "chenyanming/paw" :files ("*")))
+;; (package! paw
+;;   :recipe (:local-repo "paw"))
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! persid
   :recipe (:host github :repo "rougier/persid"))
+(package! posframe)
+(package! request)
+(package! sdcv)
+(package! shrface
+  :recipe (:host github :repo "chenyanming/shrface"))
+(package! svg-lib)
 (package! thingatpt+
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
 (package! unfill)
 (package! w3m)
+(package! wallabag
+  :recipe (:host github :repo "chenyanming/wallabag.el" :files ("*.el" "*.alist" "*.css")))
 (package! websocket)
 (package! windower)
 (package! xah-math-input

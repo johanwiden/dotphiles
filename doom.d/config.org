@@ -591,7 +591,6 @@ Commented out 220811 https://discourse.doomemacs.org/t/common-config-anti-patter
 ** My defaults
 #+BEGIN_SRC emacs-lisp
 (setq-default
- bookmark-save-flag 1 ; Save bookmark list immediately when it has been updated.
  help-window-select t             ; Focus new help windows when opened
  ;;debug-on-error t
  ;;jit-lock-defer-time 0
@@ -608,10 +607,14 @@ Commented out 220811 https://discourse.doomemacs.org/t/common-config-anti-patter
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
  )
+(customize-set-variable 'bookmark-default-file "/home/jw/bookmarks/emacs-bookmarks")
+(customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
   (progn
     (setq recentf-max-saved-items 10000)
+    (customize-set-variable 'recentf-save-file "/home/jw/bookmarks/emacs-recentf")
+    (recentf-load-list)
     (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
   (setq savehist-autosave-interval 600))
@@ -990,81 +993,6 @@ https://karthinks.com/software/avy-can-do-anything/
                                               (hkey-either))))))
 #+END_SRC
 
-* isearch transient menu
-#+BEGIN_SRC emacs-lisp
-(require 'transient)
-
-(transient-define-prefix cc/isearch-menu ()
-  "isearch Menu"
-  [["Edit Search String"
-    ("e"
-     "Edit the search string (recursive)"
-     isearch-edit-string
-     :transient nil)
-    ("w"
-     "Pull next word or character word from buffer"
-     isearch-yank-word-or-char
-     :transient nil)
-    ("s"
-     "Pull next symbol or character from buffer"
-     isearch-yank-symbol-or-char
-     :transient nil)
-    ("l"
-     "Pull rest of line from buffer"
-     isearch-yank-line
-     :transient nil)
-    ("y"
-     "Pull string from kill ring"
-     isearch-yank-kill
-     :transient nil)
-    ("t"
-     "Pull thing from buffer"
-     isearch-forward-thing-at-point
-     :transient nil)]
-
-   ["Replace"
-    ("q"
-     "Start ‘query-replace’"
-     isearch-query-replace
-     :if-nil buffer-read-only
-     :transient nil)
-    ("x"
-     "Start ‘query-replace-regexp’"
-     isearch-query-replace-regexp
-     :if-nil buffer-read-only
-     :transient nil)]]
-
-  [["Toggle"
-    ("X"
-     "Toggle regexp searching"
-     isearch-toggle-regexp
-     :transient nil)
-    ("S"
-     "Toggle symbol searching"
-     isearch-toggle-symbol
-     :transient nil)
-    ("W"
-     "Toggle word searching"
-     isearch-toggle-word
-     :transient nil)
-    ("F"
-     "Toggle case fold"
-     isearch-toggle-case-fold
-     :transient nil)
-    ("L"
-     "Toggle lax whitespace"
-     isearch-toggle-lax-whitespace
-     :transient nil)]
-
-   ["Misc"
-    ("o"
-     "occur"
-     isearch-occur
-     :transient nil)]])
-
-(define-key isearch-mode-map (kbd "<f2>") 'cc/isearch-menu)
-
-#+END_SRC
 * Cursor
 With zenburn the cursor-color will be black for all but the initial frame unless we do some workaround.
 #+BEGIN_SRC emacs-lisp
@@ -1332,6 +1260,12 @@ Launch application associated with file
       (visual-line-mode -1)
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
+#+END_SRC
+
+** casual-suite
+Ensures that all casual packages are installed.
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-suite)
 #+END_SRC
 
 ** casual-dired
@@ -2434,7 +2368,7 @@ Configuration from karthink.
   (setq denote-prompts '(title keywords))
   (setq denote-excluded-directories-regexp nil)
   (setq denote-excluded-keywords-regexp nil)
-  (setq denote-rename-no-confirm nil) ; Set to t if you are familiar with `denote-rename-file'
+  (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
 
   ;; Pick dates, where relevant, with Org's advanced interface:
   (setq denote-date-prompt-use-org-read-date t)
@@ -2453,7 +2387,9 @@ Configuration from karthink.
 
   ;; If you use Markdown or plain text files (Org renders links as buttons
   ;; right away)
-  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
+  (add-hook 'text-mode-hook #'denote-fontify-links-mode)
+  ;; denote 3.0.0
+  ;; (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
 
   ;; We use different ways to specify a path for demo purposes.
   (setq denote-dired-directories
@@ -2780,12 +2716,22 @@ Configuration from karthink.
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 #+END_SRC
 
-* casual: calc transient
+* casual-calc: calc transient
 #+BEGIN_SRC emacs-lisp
-(use-package! casual
+(use-package! casual-calc
   :after calc
   :bind
-    (:map calc-mode-map ("C-o" . casual-main-menu)))
+    (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
+#+END_SRC
+
+* casual-isearch
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-isearch
+  ;; :defer t
+  ;; :bind
+  ;; (:map isearch-mode-map ((kbd "<f2>") . casual-isearch-tmenu))
+  :config
+  (define-key isearch-mode-map (kbd "<f2>") #'casual-isearch-tmenu))
 #+END_SRC
 
 * gptel
@@ -2793,6 +2739,7 @@ Configuration from karthink.
 (use-package! gptel
   :defer t
   :config
+  (setq gptel-model "gpt-4o")
   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
 #+END_SRC
 
@@ -2866,12 +2813,18 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 * jinx spell checker
 #+BEGIN_SRC emacs-lisp
 (use-package! jinx
-  ;; :defer t
+  :defer t
+  :init
+  (add-hook 'doom-init-ui-hook #'global-jinx-mode)
+  ;; :hook (conf-mode text-mode prog-mode org-mode)
   :bind (("M-$" . jinx-correct)
          ("C-M-$" . jinx-languages))
   :config
-  (dolist (hook '(text-mode-hook org-mode-hook prog-mode-hook conf-mode-hook))
-    (add-hook hook #'jinx-mode)))
+  (after! ispell
+    (global-set-key [remap ispell-word] #'jinx-correct))
+  (after! evil-commands
+    (global-set-key [remap evil-next-flyspell-error] #'jinx-next)
+    (global-set-key [remap evil-prev-flyspell-error] #'jinx-previous)))
 #+END_SRC
 
 * casual-avy: avy transient
@@ -2879,4 +2832,146 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (use-package! casual-avy
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
+#+END_SRC
+
+* casual-info: info-mode transient
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-info
+  ;; :defer t
+  :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
+  :config
+  ;; Use web-browser history navigation bindings
+  (keymap-set Info-mode-map "M-[" #'Info-history-back)
+  (keymap-set Info-mode-map "M-]" #'Info-history-forward)
+  ;; Bind p and n to paragraph navigation
+  (keymap-set Info-mode-map "p" #'casual-info-browse-backward-paragraph)
+  (keymap-set Info-mode-map "n" #'casual-info-browse-forward-paragraph)
+  ;; Bind h and l to navigate to previous and next nodes
+  ;; Bind j and k to navigate to next and previous references
+  (keymap-set Info-mode-map "h" #'Info-prev)
+  (keymap-set Info-mode-map "j" #'Info-next-reference)
+  (keymap-set Info-mode-map "k" #'Info-prev-reference)
+  (keymap-set Info-mode-map "l" #'Info-next)
+  ;; Bind / to search
+  (keymap-set Info-mode-map "/" #'Info-search)
+  ;; Set Bookmark
+  (keymap-set Info-mode-map "B" #'bookmark-set)
+
+  (add-hook 'Info-mode-hook #'hl-line-mode)
+  (add-hook 'Info-mode-hook #'scroll-lock-mode))
+#+END_SRC
+
+* paw
+#+BEGIN_SRC emacs-lisp
+(use-package! paw
+  :defer t
+  :init
+  (setq paw-db-file (expand-file-name "paw.sqlite" org-directory))
+  ;; ecdict dictionary
+  (setq paw-ecdict-db (expand-file-name "ecdict.db" org-directory))
+  ;; setup ECDICT before using it, and create the files manually if not exist
+  ;; (setq paw-ecdict-known-words-files `(,(expand-file-name "eudic.csv" org-directory)
+  ;;                                      ,(expand-file-name "english.txt" org-directory)))
+  ;; setup ECDICT before using it, and create the file manually if not exists
+  ;; (setq paw-ecdict-default-known-words-file (expand-file-name "english.txt" org-directory))
+  :custom
+  (paw-svg-enable t) ;; use svg-lib to generate icons
+  ;; (paw-pbm-enable t) ;; use builtin pmb icons
+  (paw-detect-language-p nil)
+  ;; (paw-python-program (if (string-equal system-type "android") "python3.10" "python3"))
+  (paw-python-program "python3")
+  (paw-click-overlay-enable t)
+  (paw-annotation-read-only-enable t)
+  ;; (paw-annotation-show-unknown-words-p t) ;; setup ECDICT before using it
+  ;; (paw-ecdict-frq 3000) ;; setup ECDICT before using it
+  ;; (paw-ecdict-bnc 3000) ;; setup ECDICT before using it
+  ;; (paw-ecdict-tags "cet6 ielts toefl gre") ;; setup ECDICT before using it
+  ;; (paw-ecdict-oxford 0) ;; setup ECDICT before using it
+  ;; (paw-ecdict-collins-max-level 4) ;; to setup ECDICT before using it
+  ;; (paw-posframe-p (if (string-equal system-type "android") t))
+  ;; For online words, you have to apply api on
+  ;; https://my.eudic.net/OpenAPI/Authorization
+  ;; (setq paw-authorization-keys  "xxxxx")
+  ;; limit other languages web buttons number
+  (paw-english-web-button-number (if (eq system-type 'android) 4 4))
+  ;; limit japanese web buttons number
+  (paw-japanese-web-button-number (if (eq system-type 'android) 3 4))
+  ;; limit general web buttons number
+  (paw-general-web-button-number (if (eq system-type 'android) 2 4))
+  ;; (paw-default-say-word-function (if (eq system-type 'android) 'paw-android-say-word 'paw-say-word))
+  ;; (paw-sdcv-dictionary-list '("简明英汉字典增强版"))
+  ;; add online word by default for add button
+  ;; (paw-add-button-online-p t)
+  :config
+  (setq paw-note-dir (expand-file-name "Dict_Notes" org-directory))
+  ;; if the file was moved to other places after adding annotations, we can add
+  ;; the parent path of the file for paw to search. This is necessary for
+  ;; multiple clients (PC/Mobile/Pad) to use the same database but file location
+  ;; is different.
+  (setq paw-annotation-search-paths '("~/calibre_library"
+                                      "~/Data/Books/"
+                                      "/storage/emulated/0/Books/"
+                                      ;; "/storage/emulated/0/Download/"
+                                      ;; "/storage/emulated/0/Download/Telegram"
+                                      ;; "/storage/emulated/0/Org/web/"
+                                      "~/org/roam"
+                                      "~/Sync/notes"
+                                       ))
+
+  ;; show image annotation in *paw-view-note*
+  (add-hook 'paw-view-note-mode-hook #'org-display-inline-images)
+  (add-hook 'context-menu-functions #'paw-annotation-context-menu)
+
+  ;; use popweb as browse function
+  ;; (unless (string-equal system-type "android")
+  ;;     (setq paw-dictionary-browse-function 'popweb-url-input)
+  ;;     (setq paw-mdict-dictionary-function 'popweb-url-input))
+  )
+#+END_SRC
+
+* sdcv: Interface for sdcv (StarDict console version)
+#+BEGIN_SRC emacs-lisp
+(use-package! sdcv
+  :defer t
+  :config
+  (setq sdcv-env-lang "en_US.UTF-8")
+  (setq sdcv-program "sdcv")
+  (setq sdcv-only-data-dir nil) ;; sdcv --only-data-dir ...
+  (setq sdcv-dictionary-data-dir nil) ;; sdcv --data-dir ...
+  (setq sdcv-dictionary-simple-list
+        '("Merriam-Webster's Advanced Learner's Dictionary (En-En)"))
+  (setq sdcv-dictionary-complete-list
+        '("Merriam-Webster's Advanced Learner's Dictionary (En-En)"))
+  )
+#+END_SRC
+
+* org-download
+#+BEGIN_SRC emacs-lisp
+(use-package! org-download
+  :defer t
+  :init
+  (add-hook 'dired-mode-hook 'org-download-enable)
+  :config
+  (setq org-download-image-dir "~/Pictures/org-download"))
+#+END_SRC
+
+* go-translate
+#+BEGIN_SRC emacs-lisp
+(use-package! go-translate
+  :defer t
+  :config
+  (setq gt-langs '(en fr))
+  (setq gt-default-translator (gt-translator :engines (gt-google-engine))))
+#+END_SRC
+
+* svg-lib
+#+BEGIN_SRC emacs-lisp
+(use-package! svg-lib
+  :defer t)
+#+END_SRC
+
+* shrface
+#+BEGIN_SRC emacs-lisp
+(use-package! shrface
+  :defer t)
 #+END_SRC
