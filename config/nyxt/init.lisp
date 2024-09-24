@@ -7,7 +7,7 @@
 ;;; Load quicklisp. Not sure it works.
 #-quicklisp
 (let ((quicklisp-init
-       (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
+        (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
@@ -29,8 +29,10 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;; #+nyxt-3
 ;; (define-nyxt-user-system-and-load nyxt-user/basic-config
 ;;   :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf"))
+;; (define-nyxt-user-system-and-load nyxt-user/basic-config
+;;   :components ("keybinds" "passwd" "commands" "hsplit" "style" "unpdf"))
 (define-nyxt-user-system-and-load nyxt-user/basic-config
-  :components ("keybinds" "passwd" "commands" "hsplit" "style" "unpdf"))
+  :components ("keybinds" "commands" "hsplit" "style" "unpdf"))
 
 ;;; Loading extensions and third-party-dependent configs. See the
 ;;; matching files for where to find those extensions.
@@ -71,16 +73,16 @@ loads."
 
 ;; Basic modes setup for web-buffer.
 (define-configuration web-buffer
-  ((default-modes `(,@*web-buffer-modes*
-                    ,@%slot-value%))))
+    ((default-modes `(,@*web-buffer-modes*
+                      ,@%slot-value%))))
 
 ;;; Set new buffer URL (a.k.a. start page, new tab page).
 ;;; It does not change the first buffer opened if you're on 2.*.
 (define-configuration browser
-  ((remote-execution-p t)
-   (default-new-buffer-url (quri:uri "https://lispcookbook.github.io/cl-cookbook/"))
-   (external-editor-program
-    (list "emacsclient" "-cn" "-a" ""))))
+    ((remote-execution-p t)
+     (default-new-buffer-url (quri:uri "https://lispcookbook.github.io/cl-cookbook/"))
+     (external-editor-program
+      (list "emacsclient" "-cn" "-a" ""))))
 ;; (define-configuration browser
 ;;   (
 ;;    ;; Whether code sent to the socket gets executed.  You must understand the
@@ -91,18 +93,18 @@ loads."
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
-  ((default-modes `(:proxy-mode
-                    ,@*web-buffer-modes*
-                    ,@%slot-value%))))
+    ((default-modes `(:proxy-mode
+                      ,@*web-buffer-modes*
+                      ,@%slot-value%))))
 
 ;;; Set up QWERTY home row as the hint keys.
 (define-configuration :hint-mode
-  ((hints-alphabet "DSJKHLFAGNMXCWEIO")))
+    ((hints-alphabet "DSJKHLFAGNMXCWEIO")))
 
 ;;; This makes auto-mode to prompt me about remembering this or that
 ;;; mode when I toggle it.
 (define-configuration modable-buffer
-  ((prompt-on-mode-toggle-p t)))
+    ((prompt-on-mode-toggle-p t)))
 
 ;;; Setting WebKit-specific settings. Not exactly the best way to
 ;;; configure Nyxt. See
@@ -112,25 +114,25 @@ loads."
   (when (slot-boundp
          buffer #+nyxt-3 'nyxt/renderer/gtk::gtk-object
          #+nyxt-2 'nyxt::gtk-object)
-      (let* ((settings (webkit:webkit-web-view-get-settings
-                        (nyxt/renderer/gtk::gtk-object buffer))))
-        (setf
-         ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
-         (webkit:webkit-settings-enable-resizable-text-areas settings) t
-         ;; Write console errors/warnings to the shell, to ease debugging.
-         (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
-         ;; "Inspect element" context menu option available at any moment.
-         (webkit:webkit-settings-enable-developer-extras settings) t
-         ;; Enable WebRTC.
-         (webkit:webkit-settings-enable-media-stream settings) t
-         ;; Use Cantarell-18 as the default font.
-         (webkit:webkit-settings-default-font-family settings) "Iosevka Comfy Duo"
-         (webkit:webkit-settings-default-font-size settings) 16
-         ;; Use Hack-17 as the monospace font.
-         (webkit:webkit-settings-monospace-font-family settings) "Iosevka Comfy Fixed"
-         (webkit:webkit-settings-default-monospace-font-size settings) 16
-         ;; Use Unifont for pictograms.
-         (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
+    (let* ((settings (webkit:webkit-web-view-get-settings
+                      (nyxt/renderer/gtk::gtk-object buffer))))
+      (setf
+       ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
+       (webkit:webkit-settings-enable-resizable-text-areas settings) t
+       ;; Write console errors/warnings to the shell, to ease debugging.
+       (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
+       ;; "Inspect element" context menu option available at any moment.
+       (webkit:webkit-settings-enable-developer-extras settings) t
+       ;; Enable WebRTC.
+       (webkit:webkit-settings-enable-media-stream settings) t
+       ;; Use Cantarell-18 as the default font.
+       (webkit:webkit-settings-default-font-family settings) "Iosevka Comfy Duo"
+       (webkit:webkit-settings-default-font-size settings) 16
+       ;; Use Hack-17 as the monospace font.
+       (webkit:webkit-settings-monospace-font-family settings) "Iosevka Comfy Fixed"
+       (webkit:webkit-settings-default-monospace-font-size settings) 16
+       ;; Use Unifont for pictograms.
+       (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
   ;; Set the view background to black.
   (cffi:foreign-funcall
    "webkit_web_view_set_background_color"

@@ -2,27 +2,27 @@
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
       "height": 1555,
-      "width": 1918,
+      "width": 1276,
       "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
       "height": 1555,
-      "width": 1918,
+      "width": 1276,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
       "height": 1555,
-      "width": 1918,
+      "width": 1276,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAB30AAAYSAAAAAAAAAAAAAAd9AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAAB30AAAYS"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAABPsAAAYSAAAAAAAAAAAAAAT7AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAABPsAAAYS"
     },
     "screen": {
       "depth": 32,
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGBfwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAAAAAGFgAAAIoA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACEAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANIA////AAAHfgAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/AAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -160,6 +160,16 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "Joe Hill",
+          "Jason Ciaramella"
+        ],
+        "key": "/home/jw/Downloads/y1/joe-hills-the-cape.epub",
+        "pathtoebook": "/home/jw/Downloads/y1/joe-hills-the-cape.epub",
+        "timestamp": "2024-07-13T21:57:56.847Z",
+        "title": "Joe Hill’s The Cape"
+      },
       {
         "authors": [
           "Classical electrodynamics-Wiley (1999)-compressed"
@@ -331,12 +341,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_3.md",
         "timestamp": "2022-02-01T11:39:37.916Z",
         "title": "Laurentius Lars Svenonius Bure 3"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_2.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_2.md",
-        "timestamp": "2022-02-01T11:39:08.558Z",
-        "title": "Laurentius Lars Svenonius Bure 2"
       }
     ],
     "user_color_schemes": {

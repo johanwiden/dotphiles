@@ -369,7 +369,7 @@
  ;; Change this from 10MB to 100MB
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
- )
+ shr-color-visible-luminance-min 80)
 (customize-set-variable 'bookmark-default-file "/home/jw/bookmarks/emacs-bookmarks")
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
@@ -544,7 +544,9 @@
                   (let ((scroll-preserve-screen-position nil))
                     (scroll-up 1))) )
 
-(pcre-mode t)
+(use-package! pcre2el
+  :config
+  (pcre-mode t))
 
 (after! avy
   (setq avy-all-windows t)
@@ -788,43 +790,6 @@
 Also used for highlighting.")
     ))
 
-(use-package! dired-filter
-  :after dired
-  :config
-  (setq dired-filter-group-saved-groups
-        (make-list 1 '("default"
-                       ("Epub"
-                        (extension . "epub"))
-                       ("PDF"
-                        (extension . "pdf"))
-                       ("LaTeX"
-                        (extension "tex" "bib"))
-                       ("Org"
-                        (extension . "org"))
-                       ("Archives"
-                        (extension "zip" "rar" "gz" "bz2" "tar")))))
-  (bind-keys :map dired-mode-map
-             ("ö" . dired-filter-map)
-             ("ä" . dired-filter-mark-map)))
-
-(after! dired
-  (require 'dired-hist)
-  (add-hook 'dired-mode-hook #'dired-hist-mode)
-  (define-key dired-mode-map (kbd "C-M-a") #'dired-hist-go-back)
-  (define-key dired-mode-map (kbd "C-M-e") #'dired-hist-go-forward))
-
-(use-package! dired-narrow
-  :after dired
-  :commands dired-narrow
-  :config
-  (map! :map dired-mode-map
-        :desc "Live filtering" "å" #'dired-narrow))
-
-(use-package! dired-launch
-  :after dired
-  :config
-  (dired-launch-enable))
-
 (after! dired
   (progn
     (defun my-dired-init ()
@@ -833,8 +798,8 @@ Also used for highlighting.")
                  ("<delete>" . dired-unmark-backward)
                  ("<backspace>" . dired-up-directory))
 
-      (dired-filter-mode t)
-      (dired-filter-group-mode t)
+      ;; (dired-filter-mode t)
+      ;; (dired-filter-group-mode t)
       ;; (dired-collapse-mode 1)
       (visual-line-mode -1)
       (toggle-truncate-lines 1))
@@ -1877,6 +1842,12 @@ _w_ where is something defined
             (define-key map (kbd "<f6>")(lambda () (interactive) (find-file "~/Sync/notes")))
             map))
 
+(use-package! consult-denote
+  :after denote
+  ;; :defer t
+  :config
+  (consult-denote-mode 1))
+
 (use-package! consult-notes
   :after denote
   ;; :defer t
@@ -1917,27 +1888,27 @@ _w_ where is something defined
   (define-key denote-menu-mode-map (kbd "e")   #'denote-menu-export-to-dired))
 
 (use-package! consult-gh
-  :after consult
-  ;; :defer t
+  ;; :after (consult projectile)
+  :defer t
   :custom
-  (consult-gh-preview-buffer-mode 'org-mode)
   (consult-gh-show-preview t)
   (consult-gh-preview-key "M-o")
-  (consult-gh-default-clone-directory "~/projects/consult-gh")
+  (consult-gh-preview-buffer-mode 'org-mode)
+  ;; (consult-gh-default-clone-directory "~/projects/consult-gh")
   (consult-gh-repo-action #'consult-gh--repo-browse-files-action)
   (consult-gh-issue-action #'consult-gh--issue-view-action)
   (consult-gh-pr-action #'consult-gh--pr-view-action)
   (consult-gh-code-action #'consult-gh--code-view-action)
   (consult-gh-file-action #'consult-gh--files-view-action)
-  (consult-gh-large-file-warning-threshold 2500000)
-  (consult-gh-prioritize-local-folder 'suggest)
-  (consult-gh-preview-buffer-mode 'org-mode)
+  ;; (consult-gh-large-file-warning-threshold 2500000)
+  ;; (consult-gh-prioritize-local-folder 'suggest)
   :config
   ;;add your main GitHub account (replace "armindarvish" with your user or org)
   (add-to-list 'consult-gh-default-orgs-list "johanwiden")
   (setq consult-gh-default-orgs-list (append consult-gh-default-orgs-list '("alphapapa" "systemcrafters")))
   (require 'consult-gh-embark)
-  (require 'consult-gh-transient))
+  (add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list) ;;keep record of searched orgs
+  (add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)) ;;keep record of searched repos
 
 (use-package! consult-mu
   :after (consult mu4e)
@@ -2040,6 +2011,93 @@ _w_ where is something defined
   ;; (add-to-list 'consult-web-dynamic-omni "Line Multi")
   )
 
+(use-package! consult-omni
+  :after (consult consult-notes)
+  :custom
+   ;; General settings that apply to all sources
+  (consult-omni-show-preview t) ;;; show previews
+  (consult-omni-preview-key "C-o") ;;; set the preview key to C-o
+  (consult-omni-default-browse-function 'browse-url)
+  (consult-omni-alternate-browse-function 'eww-browse-url)
+  (consult-omni-default-preview-function #'browse-url)
+  :config
+  ;; Load Sources Core code
+  (require 'consult-omni-sources)
+  ;; Load Embark Actions
+  (require 'consult-omni-embark)
+
+  ;; Either load all source modules or a selected list
+
+  ;;; Select a list of modules you want to aload, otherwise all sources all laoded
+  (setq consult-omni-sources-modules-to-load (list 'consult-omni-apps
+                                                   'consult-omni-brave
+                                                   'consult-omni-brave-autosuggest
+                                                   'consult-omni-buffer
+                                                   'consult-omni-calc
+                                                   'consult-omni-consult-notes
+                                                   'consult-omni-dict
+                                                   'consult-omni-fd
+                                                   'consult-omni-find
+                                                   'consult-omni-gh
+                                                   'consult-omni-git-grep
+                                                   'consult-omni-gptel
+                                                   'consult-omni-grep
+                                                   'consult-omni-invidious
+                                                   'consult-omni-line-multi
+                                                   'consult-omni-locate
+                                                   'consult-omni-man
+                                                   'consult-omni-mu4e
+                                                   'consult-omni-numi
+                                                   'consult-omni-wkipedia
+                                                   'consult-omni-notes
+                                                   'consult-omni-ripgrep
+                                                   'consult-omni-ripgrep-all
+                                                   'consult-omni-stackoverflow
+                                                   'consult-omni-youtube))
+  (consult-omni-sources-load-modules)
+  ;;; set multiple sources for consult-omni-multi command. Change these lists as needed for different interactive commands. Keep in mind that each source has to be a key in `consult-omni-sources-alist'.
+  (setq consult-omni-multi-sources '("calc"
+                                     ;; "File"
+                                     ;; "Buffer"
+                                     ;; "Bookmark"
+                                     "Apps"
+                                     ;; "gptel"
+                                     "Brave"
+                                     "Dictionary"
+                                     ;; "Google"
+                                     "Wikipedia"
+                                     ;; "elfeed"
+                                     ;; "mu4e"
+                                     ;; "buffers text search"
+                                     "Notes Search"
+                                     ;; "Org Agenda"
+                                     "GitHub"
+                                     ;; "YouTube"
+                                     "Invidious"
+                                     ))
+
+;; Per source customization
+
+  ;;; Set API KEYs. It is recommended to use a function that returns the string for better security.
+  (setq consult-omni-google-customsearch-key
+        (secrets-get-secret "Login" "Password for 'YOUTUBE_V3_API_KEY' on 'apikey'"))
+  ;; (setq consult-omni-google-customsearch-key "YOUR-GOOGLE-API-KEY-OR-FUNCTION")
+  ;; (setq consult-omni-google-customsearch-cx "YOUR-GOOGLE-CX-NUMBER-OR-FUNCTION")
+  (setq consult-omni-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
+  (setq consult-omni-brave-autosuggest-api-key
+        (secrets-get-secret "Login" "Password for 'BRAVE_AUTOSUGGEST_API_KEY' on 'apikey'"))
+  (setq consult-omni-stackexchange-api-key
+        (secrets-get-secret "Login" "Password for 'STACKEXCHANGE_API_KEY' on 'apikey'"))
+  ;; (setq consult-omni-pubmed-api-key "YOUR-PUBMED-API-KEY-OR-FUNCTION")
+  (setq consult-omni-openai-api-key
+        (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
+
+;;; Pick you favorite autosuggest command.
+  (setq consult-omni-default-autosuggest-command #'consult-omni-dynamic-brave-autosuggest) ;;or any other autosuggest source you define
+
+ ;;; Set your shorthand favorite interactive command
+  (setq consult-omni-default-interactive-command #'consult-omni-multi))
+
 (defun ambrevar/call-process-to-string (program &rest args)
   "Call PROGRAM with ARGS and return output.
 See also `process-lines'."
@@ -2058,6 +2116,13 @@ See also `process-lines'."
          (let ((desktop-browser (ambrevar/call-process-to-string "xdg-mime" "query" "default" "text/html")))
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
+
+(use-package! mastodon
+  :defer t
+  :config
+  (setq mastodon-instance-url "https://social.vivaldi.net"
+       mastodon-active-user "JohanEWiden")
+  )
 
 (use-package! mistty
   :defer t
@@ -2201,34 +2266,65 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;;                                      ,(expand-file-name "english.txt" org-directory)))
   ;; setup ECDICT before using it, and create the file manually if not exists
   ;; (setq paw-ecdict-default-known-words-file (expand-file-name "english.txt" org-directory))
+
+  ;; jlpt dictionary
+  ;; (setq paw-jlpt-db (expand-file-name "japanese.db" org-directory))
+  ;; setup jlpt before using it, and create the files manually if not exist
+  ;; (setq paw-jlpt-known-words-files `(,(expand-file-name "japanese.txt" org-directory)))
+  ;; setup jlpt before using it, and create the file manually if not exists
+  ;; (setq paw-jlpt-default-known-words-file (expand-file-name "japanese.txt" org-directory))
   :custom
   (paw-svg-enable t) ;; use svg-lib to generate icons
   ;; (paw-pbm-enable t) ;; use builtin pmb icons
+  ;; Use all the icons icon on dashboard
+  (paw-all-the-icons-icon-enable t)
+  ;; Use all the icons button on non-android system
+  (paw-all-the-icons-button-enable (unless (eq system-type 'android) t))
   (paw-detect-language-p nil)
   ;; (paw-python-program (if (string-equal system-type "android") "python3.10" "python3"))
   (paw-python-program "python3")
+  (paw-detect-language-program 'gcld3) ;; android can only install cld3
   (paw-click-overlay-enable t)
   (paw-annotation-read-only-enable t)
   ;; (paw-annotation-show-unknown-words-p t) ;; setup ECDICT before using it
   ;; (paw-ecdict-frq 3000) ;; setup ECDICT before using it
-  ;; (paw-ecdict-bnc 3000) ;; setup ECDICT before using it
-  ;; (paw-ecdict-tags "cet6 ielts toefl gre") ;; setup ECDICT before using it
-  ;; (paw-ecdict-oxford 0) ;; setup ECDICT before using it
-  ;; (paw-ecdict-collins-max-level 4) ;; to setup ECDICT before using it
+  ;; (paw-ecdict-bnc -1) ;; all possible words, 0 no bnc data
+  ;; (paw-ecdict-tags "cet4 cet6 ielts toefl gre empty") ;; no easy words
+  ;; (paw-ecdict-oxford 0) ;; no easy words
+  ;; (paw-ecdict-collins-max-level 3) ;; no easy words
   ;; (paw-posframe-p (if (string-equal system-type "android") t))
   ;; For online words, you have to apply api on
   ;; https://my.eudic.net/OpenAPI/Authorization
-  ;; (setq paw-authorization-keys  "xxxxx")
+  ;; (paw-authorization-keys (auth-source-pick-first-password :host "eudic-api-key"))
   ;; limit other languages web buttons number
   (paw-english-web-button-number (if (eq system-type 'android) 4 4))
   ;; limit japanese web buttons number
   (paw-japanese-web-button-number (if (eq system-type 'android) 3 4))
   ;; limit general web buttons number
-  (paw-general-web-button-number (if (eq system-type 'android) 2 4))
+  (paw-general-web-button-number (if (eq system-type 'android) 2 3))
   ;; (paw-default-say-word-function (if (eq system-type 'android) 'paw-android-say-word 'paw-say-word))
+  ;; (paw-tts-zh-cn-voice "zh-CN-YunjianNeural") ; zh-CN-XiaoxiaoNeural, zh-CN-YunyangNeural
   ;; (paw-sdcv-dictionary-list '("简明英汉字典增强版"))
   ;; add online word by default for add button
   ;; (paw-add-button-online-p t)
+  ;; show the note both in minibuffer or/and *paw-view-note*
+  ;; To use this, you need to setup ECDICT (English) or JLPT (Japanese) before
+  ;; use this, otherwise, use the 'buffer instead
+  ;; (paw-view-note-show-type (if (eq system-type 'android) 'buffer 'all))
+  (paw-view-note-show-type 'buffer)
+  ;; must be one of the studylist name in `paw-studylist', please run `paw-get-all-studylist' to get the available studylists.
+  ;; (paw-default-online-studylist "ID: 133584289117482484, Language: en, Name: Business")
+  ;; (paw-offline-studylist '(("English Studylist" ;; studylist name when choosing offline studylist
+  ;;                           (id . "1") ;; random id for internal use, but it could not be the same as any id in online study list defined in `paw-studylist'
+  ;;                           (language . "en") ;; language of the studylist
+  ;;                           (name . "English")) ;; name of the studylist
+  ;;                          ("Japanese Studylist"
+  ;;                           (id . "2")
+  ;;                           (language . "ja")
+  ;;                           (name . "Japanese"))))
+  ;; must be one of the studylist name in `paw-offline-studylist'
+  ;; (paw-default-offline-studylist "English Studylist")
+  (paw-search-page-max-rows (if (eq system-type 'android) 31 41))
   :config
   (setq paw-note-dir (expand-file-name "Dict_Notes" org-directory))
   ;; if the file was moved to other places after adding annotations, we can add
@@ -2246,7 +2342,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
                                        ))
 
   ;; show image annotation in *paw-view-note*
-  (add-hook 'paw-view-note-mode-hook #'org-display-inline-images)
+  (add-hook 'paw-view-note-after-render-hook #'org-display-inline-images)
   (add-hook 'context-menu-functions #'paw-annotation-context-menu)
 
   ;; use popweb as browse function

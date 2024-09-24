@@ -68,16 +68,19 @@
   :recipe (:host github :repo "juergenhoetzel/consult-gnome-search"))
 (package! consult-mu
   :recipe (:host github :repo "armindarvish/consult-mu" :files (:defaults "extrass/*.el")))
+(package! consult-denote)
 (package! consult-notes)
 (package! consult-web
   :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
+(package! consult-omni
+  :recipe (:host github :repo "armindarvish/consult-omni" :files (:defaults "sources/*.el")))
 (package! consult-recoll)
 (package! denote)
 (package! denote-menu)
-(package! dired-filter)
-(package! dired-hist)
-(package! dired-launch)
-(package! dired-narrow)
+;; (package! dired-filter)
+;; (package! dired-hist)
+;; (package! dired-launch)
+;; (package! dired-narrow)
 (package! dired+
   :recipe (:host github :repo "emacsmirror/dired-plus"))
 ;; (package! dropbox
@@ -115,13 +118,17 @@
 ;; (package! html-ts-mode
 ;;   :recipe (:host github :repo "mickeynp/html-ts-mode"))
 (package! hungry-delete)
+(package! hydra)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! igist)
 (package! jinx)
+(package! llama
+  :recipe (:host github :repo "tarsius/llama"))
 (package! lexic)
 ;; (package! load-theme-buffer-local)
 (package! major-mode-hydra)
+(package! mastodon)
 (package! mistty)
 (package! mixed-pitch)
 (package! modus-themes
@@ -149,6 +156,7 @@
   :recipe (:host github :repo "chenyanming/paw" :files ("*")))
 ;; (package! paw
 ;;   :recipe (:local-repo "paw"))
+(package! pcre2el)
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! persid

@@ -466,7 +466,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 488
+    "/home/jw/calibre_library": 496
   },
   "main_window_central_widget_state": {
     "layout": "wide",
@@ -527,6 +527,7 @@
     "__class__": "bytearray",
     "__value__": "AdnQywADAAAAAAYgAAACUwAACfEAAAOoAAAGIAAAAlMAAAnxAAADqAAAAAAAAAAADwAAAAYgAAACUwAACfEAAAOo"
   },
+  "qv_open_at_shutdown": false,
   "recently_used_languages": [
     "English",
     "Polish"
