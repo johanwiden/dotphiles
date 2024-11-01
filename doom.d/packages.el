@@ -55,11 +55,11 @@
   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 (package! calibredb)
 (package! casual-suite)
-(package! casual-calc)
-(package! casual-avy)
-(package! casual-dired)
-(package! casual-info)
-(package! casual-isearch)
+;; (package! casual-calc)
+;; (package! casual-avy)
+;; (package! casual-dired)
+;; (package! casual-info)
+;; (package! casual-isearch)
 ;; (package! combobulate
 ;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-gh
@@ -171,6 +171,7 @@
   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
+(package! tldr)
 (package! unfill)
 (package! w3m)
 (package! wallabag

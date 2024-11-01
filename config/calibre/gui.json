@@ -307,29 +307,29 @@
     "frame_geometry": {
       "height": 1546,
       "width": 1280,
-      "x": 2560,
+      "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
       "height": 1546,
       "width": 1280,
-      "x": 2560,
+      "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
       "height": 1546,
       "width": 1280,
-      "x": 2560,
+      "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAoAAAAAAAAADv8AAAYJAAAKAAAAAAAAAA7/AAAGCQAAAAAAAAAADwAAAAoAAAAAAAAADv8AAAYJ"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAABP8AAAYJAAAAAAAAAAAAAAT/AAAGCQAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAYJ"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -339,9 +339,9 @@
       },
       "index_in_screens_list": 0,
       "manufacturer": "Dell Inc.",
-      "model": "DELL U3818DW-",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL-",
+      "model": "DELL U3818DW",
+      "name": "HDMI-A-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -466,7 +466,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 496
+    "/home/jw/calibre_library": 514
   },
   "main_window_central_widget_state": {
     "layout": "wide",
@@ -510,6 +510,7 @@
     "__value__": "AdnQywADAAD///9x////+QAABa4AAAYG////cf////kAAAWuAAAGBgAAAAAAAAAADwD///9x////+QAABa4AAAYG"
   },
   "previous_sort_order_BooksView": {
+    "#zotero_author": true,
     "authors": true,
     "pubdate": true,
     "size": false,
@@ -529,8 +530,9 @@
   },
   "qv_open_at_shutdown": false,
   "recently_used_languages": [
+    "Polish",
     "English",
-    "Polish"
+    "Russian"
   ],
   "scheduler_dialog_geometry": {
     "__class__": "bytearray",

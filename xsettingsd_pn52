@@ -26,6 +26,7 @@ Gtk/RecentFilesMaxAge -1
 Gtk/ShellShowsAppMenu 0
 Gtk/ShellShowsDesktop 1
 Gtk/ShowInputMethodMenu 0
+Gtk/ShowStatusShapes 0
 Gtk/ShowUnicodeMenu 0
 Gtk/TimeoutInitial 200
 Gtk/TimeoutRepeat 20

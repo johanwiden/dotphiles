@@ -2,27 +2,27 @@
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
       "height": 1555,
-      "width": 1276,
+      "width": 1278,
       "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
       "height": 1555,
-      "width": 1276,
+      "width": 1278,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
       "height": 1555,
-      "width": 1276,
+      "width": 1278,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAABPsAAAYSAAAAAAAAAAAAAAT7AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAABPsAAAYS"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAABP0AAAYSAAAAAAAAAAAAAAT9AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYS"
     },
     "screen": {
       "depth": 32,
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/AAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/gAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -160,6 +160,15 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "bagder"
+        ],
+        "key": "/home/jw/calibre_library/bagder/http2 explained (367)/http2 explained - bagder.epub",
+        "pathtoebook": "/home/jw/calibre_library/bagder/http2 explained (367)/http2 explained - bagder.epub",
+        "timestamp": "2024-10-10T09:26:24.197Z",
+        "title": "http2 explained"
+      },
       {
         "authors": [
           "Joe Hill",
@@ -335,12 +344,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_1.md",
         "timestamp": "2022-02-01T12:12:48.387Z",
         "title": "Seved Svensson Ribbing 1"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_3.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Laurentius_Lars_Svenonius_Bure_3.md",
-        "timestamp": "2022-02-01T11:39:37.916Z",
-        "title": "Laurentius Lars Svenonius Bure 3"
       }
     ],
     "user_color_schemes": {

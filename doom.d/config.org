@@ -189,6 +189,7 @@ font string. You generally only need these two:
       evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
       evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
       evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+      evil-replace-state-tag  (propertize "[Replace]" 'face '((:background "yellow" :foreground "red")))
       evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
 ;; Enable mode-line in vterm
@@ -1092,6 +1093,10 @@ With zenburn the cursor-color will be black for all but the initial frame unless
 Move between windows with Shift-arrow keys
 #+BEGIN_SRC emacs-lisp
 (windmove-default-keybindings)
+(after! evil
+  (progn
+    (define-key evil-insert-state-map (kbd "S-<right>") nil)
+    (define-key evil-insert-state-map (kbd "S-<left>") nil)))
 ;; (global-set-key (kbd "<kp-4>") 'windmove-left)
 ;; (global-set-key (kbd "<kp-6>") 'windmove-right)
 ;; (global-set-key (kbd "<kp-8>") 'windmove-up)
@@ -1134,6 +1139,33 @@ Move between windows with Shift-arrow keys
               (ibuffer-switch-to-saved-filter-groups "home")))
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
+
+(use-package! casual-ibuffer
+  :ensure nil
+  :bind (:map
+         ibuffer-mode-map
+         ("C-o" . casual-ibuffer-tmenu)
+         ("F" . casual-ibuffer-filter-tmenu)
+         ("s" . casual-ibuffer-sortby-tmenu)
+         ("<double-mouse-1>" . ibuffer-visit-buffer) ; optional
+         ("M-<double-mouse-1>" . ibuffer-visit-buffer-other-window) ; optional
+         ("{" . ibuffer-backwards-next-marked) ; optional
+         ("}" . ibuffer-forward-next-marked)   ; optional
+         ("[" . ibuffer-backward-filter-group) ; optional
+         ("]" . ibuffer-forward-filter-group)  ; optional
+         ("$" . ibuffer-toggle-filter-group))  ; optional
+  :after (ibuffer))
+#+END_SRC
+
+* re-builder
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-re-builder
+  :ensure nil
+  :bind (:map
+         reb-mode-map ("C-o" . casual-re-builder-tmenu)
+         :map
+         reb-lisp-mode-map ("C-o" . casual-re-builder-tmenu))
+  :after (re-builder))
 #+END_SRC
 
 * Thingatpt-plus
@@ -1271,14 +1303,20 @@ Launch application associated with file
 ** casual-suite
 Ensures that all casual packages are installed.
 #+BEGIN_SRC emacs-lisp
-(use-package! casual-suite)
+(use-package! casual-suite
+  :config
+  (keymap-set symbol-overlay-map "C-o" #'casual-symbol-overlay-tmenu))
 #+END_SRC
 
 ** casual-dired
 #+BEGIN_SRC emacs-lisp
 (use-package! casual-dired
-  :after dired
-  :bind (:map dired-mode-map ("C-c C-o" . casual-dired-tmenu)))
+  :ensure nil
+  :after dired+
+  :bind (:map dired-mode-map
+              ("C-c C-o" . casual-dired-tmenu)
+              ("C-c s" . #'casual-dired-sort-by-tmenu)
+              ("C-c /" . #'casual-dired-search-replace-tmenu)))
 #+END_SRC
 
 * Dired plus
@@ -1301,6 +1339,22 @@ Ensures that all casual packages are installed.
     :after dired
     ;;:defer t
     )
+
+(use-package! casual-bookmarks
+  :ensure nil
+  :bind (:map bookmark-bmenu-mode-map
+              ("C-o" . casual-bookmarks-tmenu)
+              ("S" . casual-bookmarks-sortby-tmenu)
+              ("J" . bookmark-jump))
+  :after (bookmark+))
+#+END_SRC
+
+* casual-editkit
+#+BEGIN_SRC emacs-lisp
+(use-package! casual-editkit
+  :ensure nil
+  :ensure nil
+  :bind (("C-o" . casual-editkit-main-tmenu)))
 #+END_SRC
 
 * w3m
@@ -2329,6 +2383,11 @@ Configuration from karthink.
   ;;  :preview-key "M-.")
   (global-set-key (kbd "C-s") 'consult-line)
 
+  (defun show-narrow-help (&rest _)
+    (cl-letf (((symbol-function #'minibuffer-message) #'message))
+      (consult-narrow-help)))
+  (advice-add #'consult--narrow-setup :after #'show-narrow-help)
+
   (defun consult-info-emacs ()
     "Search through Emacs info pages."
     (interactive)
@@ -2834,19 +2893,26 @@ Configuration from karthink.
 * casual-calc: calc transient
 #+BEGIN_SRC emacs-lisp
 (use-package! casual-calc
+  :ensure nil
   :after calc
   :bind
-    (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
+    (:map
+     calc-mode-map
+     ("C-o" . casual-calc-tmenu)
+     :map
+     calc-alg-map
+     ("C-o" . casual-calc-tmenu)))
 #+END_SRC
 
 * casual-isearch
 #+BEGIN_SRC emacs-lisp
 (use-package! casual-isearch
+  :ensure nil
   ;; :defer t
   ;; :bind
   ;; (:map isearch-mode-map ((kbd "<f2>") . casual-isearch-tmenu))
   :config
-  (define-key isearch-mode-map (kbd "<f2>") #'casual-isearch-tmenu))
+  (define-key isearch-mode-map (kbd "C-o") #'casual-isearch-tmenu))
 #+END_SRC
 
 * gptel
@@ -2945,6 +3011,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 * casual-avy: avy transient
 #+BEGIN_SRC emacs-lisp
 (use-package! casual-avy
+  :ensure nil
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
 #+END_SRC
@@ -2952,6 +3019,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 * casual-info: info-mode transient
 #+BEGIN_SRC emacs-lisp
 (use-package! casual-info
+  :ensure nil
   ;; :defer t
   :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
   :config
@@ -3115,6 +3183,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 * svg-lib
 #+BEGIN_SRC emacs-lisp
 (use-package! svg-lib
+  :defer t)
+#+END_SRC
+
+* tldr
+#+BEGIN_SRC emacs-lisp
+(use-package! tldr
   :defer t)
 #+END_SRC
 

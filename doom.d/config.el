@@ -128,6 +128,7 @@
       evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
       evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
       evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+      evil-replace-state-tag  (propertize "[Replace]" 'face '((:background "yellow" :foreground "red")))
       evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
 ;; Enable mode-line in vterm
@@ -716,6 +717,10 @@
 (ad-activate 'fill-delete-newlines)
 
 (windmove-default-keybindings)
+(after! evil
+  (progn
+    (define-key evil-insert-state-map (kbd "S-<right>") nil)
+    (define-key evil-insert-state-map (kbd "S-<left>") nil)))
 ;; (global-set-key (kbd "<kp-4>") 'windmove-left)
 ;; (global-set-key (kbd "<kp-6>") 'windmove-right)
 ;; (global-set-key (kbd "<kp-8>") 'windmove-up)
@@ -755,6 +760,30 @@
               (ibuffer-switch-to-saved-filter-groups "home")))
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
+
+(use-package! casual-ibuffer
+  :ensure nil
+  :bind (:map
+         ibuffer-mode-map
+         ("C-o" . casual-ibuffer-tmenu)
+         ("F" . casual-ibuffer-filter-tmenu)
+         ("s" . casual-ibuffer-sortby-tmenu)
+         ("<double-mouse-1>" . ibuffer-visit-buffer) ; optional
+         ("M-<double-mouse-1>" . ibuffer-visit-buffer-other-window) ; optional
+         ("{" . ibuffer-backwards-next-marked) ; optional
+         ("}" . ibuffer-forward-next-marked)   ; optional
+         ("[" . ibuffer-backward-filter-group) ; optional
+         ("]" . ibuffer-forward-filter-group)  ; optional
+         ("$" . ibuffer-toggle-filter-group))  ; optional
+  :after (ibuffer))
+
+(use-package! casual-re-builder
+  :ensure nil
+  :bind (:map
+         reb-mode-map ("C-o" . casual-re-builder-tmenu)
+         :map
+         reb-lisp-mode-map ("C-o" . casual-re-builder-tmenu))
+  :after (re-builder))
 
 (use-package! thingatpt+
   :defer t)
@@ -805,11 +834,17 @@ Also used for highlighting.")
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
 
-(use-package! casual-suite)
+(use-package! casual-suite
+  :config
+  (keymap-set symbol-overlay-map "C-o" #'casual-symbol-overlay-tmenu))
 
 (use-package! casual-dired
-  :after dired
-  :bind (:map dired-mode-map ("C-c C-o" . casual-dired-tmenu)))
+  :ensure nil
+  :after dired+
+  :bind (:map dired-mode-map
+              ("C-c C-o" . casual-dired-tmenu)
+              ("C-c s" . #'casual-dired-sort-by-tmenu)
+              ("C-c /" . #'casual-dired-search-replace-tmenu)))
 
 (use-package! dired+
     :after dired
@@ -823,9 +858,22 @@ Also used for highlighting.")
 ;;   (load "/home/jw/Downloads/dired+.el"))
 
 (use-package! bookmark+
-  :after dired
-  ;;:defer t
-  )
+    :after dired
+    ;;:defer t
+    )
+
+(use-package! casual-bookmarks
+  :ensure nil
+  :bind (:map bookmark-bmenu-mode-map
+              ("C-o" . casual-bookmarks-tmenu)
+              ("S" . casual-bookmarks-sortby-tmenu)
+              ("J" . bookmark-jump))
+  :after (bookmark+))
+
+(use-package! casual-editkit
+  :ensure nil
+  :ensure nil
+  :bind (("C-o" . casual-editkit-main-tmenu)))
 
 (use-package! w3m
   :defer t
@@ -1704,6 +1752,11 @@ _w_ where is something defined
   ;;  :preview-key "M-.")
   (global-set-key (kbd "C-s") 'consult-line)
 
+  (defun show-narrow-help (&rest _)
+    (cl-letf (((symbol-function #'minibuffer-message) #'message))
+      (consult-narrow-help)))
+  (advice-add #'consult--narrow-setup :after #'show-narrow-help)
+
   (defun consult-info-emacs ()
     "Search through Emacs info pages."
     (interactive)
@@ -2140,16 +2193,23 @@ See also `process-lines'."
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 
 (use-package! casual-calc
+  :ensure nil
   :after calc
   :bind
-    (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
+    (:map
+     calc-mode-map
+     ("C-o" . casual-calc-tmenu)
+     :map
+     calc-alg-map
+     ("C-o" . casual-calc-tmenu)))
 
 (use-package! casual-isearch
+  :ensure nil
   ;; :defer t
   ;; :bind
   ;; (:map isearch-mode-map ((kbd "<f2>") . casual-isearch-tmenu))
   :config
-  (define-key isearch-mode-map (kbd "<f2>") #'casual-isearch-tmenu))
+  (define-key isearch-mode-map (kbd "C-o") #'casual-isearch-tmenu))
 
 (use-package! gptel
   :defer t
@@ -2228,10 +2288,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
     (global-set-key [remap evil-prev-flyspell-error] #'jinx-previous)))
 
 (use-package! casual-avy
+  :ensure nil
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
 
 (use-package! casual-info
+  :ensure nil
   ;; :defer t
   :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
   :config
@@ -2378,6 +2440,9 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (setq gt-default-translator (gt-translator :engines (gt-google-engine))))
 
 (use-package! svg-lib
+  :defer t)
+
+(use-package! tldr
   :defer t)
 
 (use-package! shrface
