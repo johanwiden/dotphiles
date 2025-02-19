@@ -1,28 +1,28 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1555,
-      "width": 1278,
-      "x": 0,
-      "y": 0
+      "height": 1099,
+      "width": 1286,
+      "x": -3,
+      "y": -30
     },
     "full_screened": false,
     "geometry": {
-      "height": 1555,
-      "width": 1278,
+      "height": 1066,
+      "width": 1280,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1555,
-      "width": 1278,
+      "height": 1066,
+      "width": 1280,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAABP0AAAYSAAAAAAAAAAAAAAT9AAAGEgAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYS"
+      "__value__": "AdnQywADAAD////9////4gAABQIAAAQsAAAAAAAAAAAAAAT/AAAEKQAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAQp"
     },
     "screen": {
       "depth": 32,
@@ -34,9 +34,9 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
+      "manufacturer": "DEL",
       "model": "DELL U3818DW",
-      "name": "HDMI-A-1",
+      "name": "HDMI-1",
       "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/gAABhMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAFAAAABCoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -160,6 +160,24 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "key": "/home/jw/Comics/guido-crepax/guido-crepax-valentina.epub",
+        "pathtoebook": "/home/jw/Comics/guido-crepax/guido-crepax-valentina.epub",
+        "timestamp": "2024-12-21T21:29:32.304Z",
+        "title": "185512201 Guido Crepax Valentina"
+      },
+      {
+        "key": "/home/jw/.config/joplin-desktop/edit-f6efcb35cc694c8c9fabad71fb554a80.md",
+        "pathtoebook": "/home/jw/.config/joplin-desktop/edit-f6efcb35cc694c8c9fabad71fb554a80.md",
+        "timestamp": "2024-11-20T10:10:26.532Z",
+        "title": "edit-f6efcb35cc694c8c9fabad71fb554a80"
+      },
+      {
+        "key": "/home/jw/.config/joplin-desktop/edit-5753b7f724af40e8adf2444b3d539e8d.md",
+        "pathtoebook": "/home/jw/.config/joplin-desktop/edit-5753b7f724af40e8adf2444b3d539e8d.md",
+        "timestamp": "2024-11-20T10:02:25.036Z",
+        "title": "edit-5753b7f724af40e8adf2444b3d539e8d"
+      },
       {
         "authors": [
           "bagder"
@@ -326,24 +344,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Christoffer_Torstensson_af_Forstenaätten.md",
         "timestamp": "2022-02-01T13:13:51.521Z",
         "title": "Christoffer Torstensson af Forstenaätten"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Daniel_Torkelsson_Svinhufvud_af_Västergötland.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Daniel_Torkelsson_Svinhufvud_af_Västergötland.md",
-        "timestamp": "2022-02-01T13:01:00.295Z",
-        "title": "Daniel Torkelsson Svinhufvud af Västergötland"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_2.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_2.md",
-        "timestamp": "2022-02-01T12:12:58.787Z",
-        "title": "Seved Svensson Ribbing 2"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_1.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Seved_Svensson_Ribbing_1.md",
-        "timestamp": "2022-02-01T12:12:48.387Z",
-        "title": "Seved Svensson Ribbing 1"
       }
     ],
     "user_color_schemes": {

@@ -111,31 +111,31 @@
   },
   "geometry-of-import-foreign-geometry": {
     "frame_geometry": {
-      "height": 1549,
-      "width": 1278,
-      "x": 0,
-      "y": 0
+      "height": 1568,
+      "width": 1284,
+      "x": -3,
+      "y": -30
     },
     "full_screened": false,
     "geometry": {
-      "height": 1549,
+      "height": 1535,
       "width": 1278,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1549,
+      "height": 1535,
       "width": 1278,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAABP0AAAYMAAAAAAAAAAAAAAT9AAAGDAAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAYM"
+      "__value__": "AdnQywADAAD////9////4gAABQAAAAYBAAAAAAAAAAAAAAT9AAAF/gAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAX+"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -144,10 +144,10 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
-      "model": "DELL U3818DW-",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL-",
+      "manufacturer": "DEL",
+      "model": "DELL U3818DW",
+      "name": "HDMI-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -162,31 +162,31 @@
   },
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1550,
-      "width": 3790,
-      "x": 2560,
-      "y": 0
+      "height": 1568,
+      "width": 1284,
+      "x": 2557,
+      "y": -30
     },
     "full_screened": false,
     "geometry": {
-      "height": 1549,
+      "height": 1535,
       "width": 1278,
       "x": 2560,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1549,
+      "height": 1535,
       "width": 1278,
       "x": 2560,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAoAAAAAAAAAGM0AAAYNAAAKAAAAAAAAAA79AAAGDAAAAAAAAAAADwAAAAoAAAAAAAAADv0AAAYM"
+      "__value__": "AdnQywADAAAAAAn9////4gAADwAAAAYBAAAKAAAAAAAAAA79AAAF/gAAAAAAAAAADwAAAAoAAAAAAAAADv0AAAX+"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -195,10 +195,10 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
-      "model": "DELL U3818DW-",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL-",
+      "manufacturer": "DEL",
+      "model": "DELL U3818DW",
+      "name": "HDMI-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -217,7 +217,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAABLAAAFu/wCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAADwAAAW7AAAAWQD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFkA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAHkA////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIkA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAfgA////AAAAAQAAA/sAAAW7/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPAAABbsAAABQAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABZAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA6AP///wAAAKwAAAW7AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
+    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAABLAAAFqvwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAWqAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAIAA////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAA/sAAAWq/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAABaoAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAAKwAAAWqAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
   },
   "recent-books": [
     "/home/jw/Downloads/eb36629de8.epub",

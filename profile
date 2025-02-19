@@ -70,19 +70,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# Numenta visualizations
-# export HTM_SERVER="$HOME/projects/htm-community/nupic-history-server"
-# export CELL_VIZ="$HOME/projects/numenta/cell-viz"
-# export HTM_VIZ="$HOME/projects/htm-community/htm-school-viz"
-
 export NODE_PATH=${NODE_PATH}:$(npm root -g)
 
 # Common lisp
-if [[ "$(hostname)" = "asus-pn52" ]]; then
-    sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.9"
-else
-    sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.7"
-fi
+sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.9"
 export SBCL_HOME="${sbcl_install_dir}/lib/sbcl"
 sbcl_bin="${sbcl_install_dir}/bin"
 if [ -d "${sbcl_bin}" ] ; then
@@ -92,13 +83,6 @@ roswell_bin="$HOME/.roswell/bin"
 if [ -d "${roswell_bin}" ] ; then
     PATH="${roswell_bin}:$PATH"
 fi
-
-# if [[ -x /usr/bin/google-drive-ocamlfuse ]]; then
-#     mount | grep -q google_drive
-#     if [[ $? -ne 0 ]]; then
-#         google-drive-ocamlfuse ~/google_drive
-#     fi
-# fi
 
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
@@ -111,6 +95,22 @@ fi
 if [ -d "$HOME/.poetry/bin" ] ; then
     PATH="$HOME/.poetry/bin:$PATH"
 fi
+
+export JULIA_LOAD_PATH="/home/jw/projects/julia:$JULIA_LOAD_PATH"
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/jw/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/jw/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
 
 if [ -d "$HOME/perl5/bin" ] ; then
     PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
@@ -126,10 +126,11 @@ gpg-connect-agent /bye
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
 
-if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty4' ]; then
-    exec /usr/bin/sway >/tmp/startsway.log 2>&1
-fi
+#if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty4' ]; then
+#    exec /usr/bin/sway >/tmp/startsway.log 2>&1
+#fi
 
 # if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty5' ]; then
 #     exec /usr/bin/startx ~/.xinitrc.exwm >/tmp/startx.log 2>&1
 # fi
+. "$HOME/.cargo/env"

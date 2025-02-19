@@ -74,7 +74,9 @@
   :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
 (package! consult-omni
   :recipe (:host github :repo "armindarvish/consult-omni" :files (:defaults "sources/*.el")))
-(package! consult-recoll)
+;; (package! consult-recoll)
+(package! consult-recoll
+  :recipe (:host github :repo "emacs-straight/consult-recoll"))
 (package! denote)
 (package! denote-menu)
 ;; (package! dired-filter)
@@ -94,6 +96,7 @@
 ;;                    ("integration" "integration/*")
 ;;                    (:exclude ".dir-locals.el" "*-tests.el"))))
 (package! alert)
+(package! eldoc-box)
 (package! elfeed)
 (package! elfeed-org)
 ;; (package! ement)
@@ -122,13 +125,19 @@
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
 (package! igist)
+;; (package! immersive-translate)
+(package! immersive-translate
+  :recipe (:host github :repo "Elilif/emacs-immersive-translate"))
+(package! jieba
+  :recipe (:host github :repo "kisaragi-hiu/emacs-jieba"))
 (package! jinx)
 (package! llama
   :recipe (:host github :repo "tarsius/llama"))
 (package! lexic)
 ;; (package! load-theme-buffer-local)
 (package! major-mode-hydra)
-(package! mastodon)
+;; (package! mastodon)
+(package! maxima)
 (package! mistty)
 (package! mixed-pitch)
 (package! modus-themes
@@ -152,6 +161,7 @@
 (package! org-transclusion)
 (package! palette
   :recipe (:host github :repo "emacsmirror/palette"))
+(package! pangu-spacing)
 (package! paw
   :recipe (:host github :repo "chenyanming/paw" :files ("*")))
 ;; (package! paw
@@ -163,7 +173,9 @@
   :recipe (:host github :repo "rougier/persid"))
 (package! posframe)
 (package! request)
-(package! sdcv)
+(package! sdcv
+  :recipe (:host github :repo "manateelazycat/sdcv" :branch "master"))
+(package! shr-tag-pre-highlight)
 (package! shrface
   :recipe (:host github :repo "chenyanming/shrface"))
 (package! svg-lib)
@@ -172,7 +184,10 @@
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
 (package! tldr)
+(package! ultra-scroll
+  :recipe (:host github :repo "jdtsmith/ultra-scroll"))
 (package! unfill)
+(package! visual-replace)
 (package! w3m)
 (package! wallabag
   :recipe (:host github :repo "chenyanming/wallabag.el" :files ("*.el" "*.alist" "*.css")))

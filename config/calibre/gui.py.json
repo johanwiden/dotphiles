@@ -46,6 +46,8 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "stern",
+    "einstein",
     "slimak",
     "desz",
     "pora des",
@@ -68,9 +70,7 @@
     "spatial memory pipeline",
     "the spatial memory pipeline",
     "the apatial memory pipeline",
-    "pearl",
-    "geman",
-    "Dileep"
+    "pearl"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",

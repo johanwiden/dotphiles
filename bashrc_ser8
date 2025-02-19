@@ -147,19 +147,37 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/jw/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/jw/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
+
+# Activate python venv, but only if not already activated.
+command -v deactivate >/dev/null 2>&1 || source .venv/bin/activate
+
 # pyenv
-export PATH="/home/jw/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="/home/jw/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # python pdm: Enable python support for PEP582 (packages the project depends on are stored in a project subdirectory)
-if command -v pdm &> /dev/null ; then
-    if [ -n "$PYTHONPATH" ]; then
-        export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582':$PYTHONPATH
-    else
-        export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582'
-    fi
-fi
+# if command -v pdm &> /dev/null ; then
+#     if [ -n "$PYTHONPATH" ]; then
+#         export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582':$PYTHONPATH
+#     else
+#         export PYTHONPATH='/usr/lib/python3/dist-packages/pdm/pep582'
+#     fi
+# fi
 
 # Fasd offers quick access to files and directories for POSIX shells.
 # This will setup a command hook that executes on every command and advanced tab completion for zsh and bash.
@@ -235,3 +253,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+. "$HOME/.cargo/env"

@@ -5,14 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/bookmarks/emacs-bookmarks")
  '(custom-safe-themes t)
- '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
- '(package-selected-packages '(consult org-roam))
  '(safe-local-variable-values
-   '((etags-regen-ignores "test/manual/etags/")
-     (etags-regen-regexp-alist
-      (("c" "objc") "/[ \11]*DEFVAR_[A-Z_ \11(]+\"\\([^\"]+\\)\"/\\1/"
-       "/[ \11]*DEFVAR_[A-Z_ \11(]+\"[^\"]+\",[ \11]\\([A-Za-z0-9_]+\\)/\\1/"))
-     (dirvish-emerge-groups ("Recent" (predicate . recent-files-2h) nil nil)
+   '((dirvish-emerge-groups ("Recent" (predicate . recent-files-2h) nil nil)
       ("Torrent" (extensions "torrent") nil nil)
       ("Document" (extensions "ods" "odt" "org") nil nil)
       ("Iso" (extensions "iso") nil nil)
@@ -74,7 +68,6 @@
                           '("mode" "define") '("parenscript" "define")
                           "defpsmacro"))))
  '(send-mail-function 'mailclient-send-it)
- '(session-use-package t)
  '(smtpmail-smtp-server "smtp.gmail.com")
  '(smtpmail-smtp-service 25)
  '(warning-suppress-log-types
@@ -86,3 +79,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ts-fold-replacement-face ((t (:foreground unspecified :box nil :inherit font-lock-comment-face :weight light)))))
+(put 'downcase-region 'disabled nil)

@@ -178,16 +178,8 @@
 
 (use-package! fontaine
   :config
-  ;; (fontaine-restore-latest-preset)
-
-  ;; ;; Set `fontaine-recovered-preset' or fall back to desired style from
-  ;; ;; `fontaine-presets'.
-  ;; (if-let ((state fontaine-recovered-preset))
-  ;;     (fontaine-set-preset state)
-  ;;   (fontaine-set-preset 'regular))
-
-  ;; ;; The other side of `fontaine-restore-latest-preset'.
-  ;; (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset)
+  (setq fontaine-latest-state-file
+        (locate-user-emacs-file "fontaine-latest-state.eld"))
 
   ;; Iosevka Comfy is my highly customised build of Iosevka with
   ;; monospaced and duospaced (quasi-proportional) variants as well as
@@ -260,9 +252,6 @@
 
          :line-spacing nil)))
 
-  (setq fontaine-latest-state-file
-      (locate-user-emacs-file "fontaine-latest-state.eld"))
-
   ;; Set the last preset or fall back to desired style from `fontaine-presets'
   ;; (the `regular' in this case).
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
@@ -275,9 +264,7 @@
   ;; respects the key binding conventions.  Evaluate:
   ;;
   ;;     (info "(elisp) Key Binding Conventions")
-  (define-key global-map (kbd "C-c f") #'fontaine-set-preset)
-
-  (add-hook 'enable-theme-functions #'fontaine-apply-current-preset))
+  (define-key global-map (kbd "C-c f") #'fontaine-set-preset))
 
 ;; (defun my-update-active-mode-line-colors ()
 ;;   (set-face-attribute
@@ -354,6 +341,9 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
+(server-start)
+;; (setq server-kill-new-buffers nil)
+
 (setq-default
  help-window-select t             ; Focus new help windows when opened
  ;;debug-on-error t
@@ -371,14 +361,16 @@
  large-file-warning-threshold 500000000
  show-paren-context-when-offscreen 'overlay
  shr-color-visible-luminance-min 80)
-(customize-set-variable 'bookmark-default-file "/home/jw/bookmarks/emacs-bookmarks")
+(customize-set-variable 'user-emacs-directory "/home/jw/bookmarks/cache/")
+(customize-set-variable 'projectile-cache-file (expand-file-name "projectile.cache" user-emacs-directory))
+(customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
+(customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
+(setq doom-cache-dir user-emacs-directory)
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
   (progn
     (setq recentf-max-saved-items 10000)
-    (customize-set-variable 'recentf-save-file "/home/jw/bookmarks/emacs-recentf")
-    (recentf-load-list)
     (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
   (setq savehist-autosave-interval 600))
@@ -390,6 +382,26 @@
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
 (after! auth-source
   (add-to-list 'auth-sources "secrets:Login"))
+(customize-set-variable 'immersive-translate-chatgpt-model "gpt-4o")
+(setopt magit-format-file-function #'magit-format-file-nerd-icons)
+(map! :map (shrface-mode-map wallabag-entry-mode-map nov-mode-map eww-mode-map mu4e-view-mode-map elfeed-show-mode-map)
+      :n "TAB" 'shrface-outline-cycle
+      :n "<tab>" 'shrface-outline-cycle
+      :n "<backtab>" 'shrface-outline-cycle-buffer
+      :localleader
+      "k" 'shrface-previous-headline
+      "j" 'shrface-next-headline
+      "l" 'shrface-links-consult
+      "i" 'imenu-list
+      "h" 'shrface-headline-consult
+      "o" 'shrface-occur
+      "b" 'shrface-toggle-bullets
+      ;; if you use paw.el, you can add some paw functions as well
+      "a" 'paw-show-all-annotations
+      "r" 'paw-clear-annotation-overlay
+      "c" 'paw-add-annotation
+      "," 'paw-list-annotations
+)
 
 (global-auto-revert-mode t)
 
@@ -422,8 +434,12 @@
 
 (map! [remap dabbrev-expand] #'hippie-expand)
 
+(setq org-log-done 'time)
+(setq org-log-into-drawer t)
 (setq org-directory "~/org/")
 (setq org-attach-id-dir "~/org/attachments/")
+;; Learn about then ! and more by reading the relevant section of the Org manual.
+;; Evaluate: (info "(org) Tracking TODO state changes")
 
 (after! org
   (progn
@@ -872,8 +888,14 @@ Also used for highlighting.")
 
 (use-package! casual-editkit
   :ensure nil
-  :ensure nil
+  :defer t
   :bind (("C-o" . casual-editkit-main-tmenu)))
+
+(use-package! casual-calendar
+  :ensure nil
+  :defer t
+  :bind (:map calendar-mode-map
+              ("C-o" . casual-calendar)))
 
 (use-package! w3m
   :defer t
@@ -1106,6 +1128,58 @@ browser defined by `browse-url-generic-program'."
          ("m" . elfeed-toggle-star)
          ("q" . bjm/elfeed-save-db-and-bury))
   :config
+  ;; (add-hook 'elfeed-show-mode-hook #'org-indent-mode)
+  (add-hook 'elfeed-show-mode-hook #'eldoc-mode)
+  (add-hook 'elfeed-show-mode-hook #'eldoc-box-hover-mode)
+  (add-hook 'elfeed-show-mode-hook #'shrface-wallabag-setup)
+
+  (advice-add 'elfeed-insert-html :around #'shrface-elfeed-advice)
+
+  (require 'shrface)
+
+  (defun shrface-wallabag-setup ()
+    (unless shrface-toggle-bullets
+      (shrface-regexp)
+      (setq-local imenu-create-index-function #'shrface-imenu-get-tree))
+    (if (string-equal system-type "android")
+        (setq-local touch-screen-enable-hscroll nil))
+    ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+    )
+  (defun shrface-elfeed-advice (orig-fun &rest args)
+    (require 'eww)
+    (let ((shrface-org nil)
+          (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+          ;; make it large enough, it would not fill the column
+          ;; I uses visual-line-mode, writeroom-mode for improving the reading experience instead
+          (shr-width 7000)
+          (shr-indentation 3)
+          (shr-table-vertical-line "|")
+          (shr-external-rendering-functions
+           (append '((title . eww-tag-title)
+                     (form . eww-tag-form)
+                     (input . eww-tag-input)
+                     (button . eww-form-submit)
+                     (textarea . eww-tag-textarea)
+                     (select . eww-tag-select)
+                     (link . eww-tag-link)
+                     (meta . eww-tag-meta)
+                     ;; (a . eww-tag-a)
+                     (code . shrface-tag-code)
+                     (pre . shrface-shr-tag-pre-highlight))
+                   shrface-supported-faces-alist))
+          (shrface-toggle-bullets nil)
+          (shrface-href-versatile t)
+          (shr-use-fonts nil))
+      (apply orig-fun args)
+      (with-current-buffer "*elfeed-entry*"
+        (when (bound-and-true-p paw-annotation-mode)
+          (paw-clear-annotation-overlay)
+          (paw-show-all-annotations)
+          (if paw-annotation-show-wordlists-words-p
+              (paw-focus-find-words :wordlist t))
+          (if paw-annotation-show-unknown-words-p
+              (paw-focus-find-words))) )))
+
   (defalias 'elfeed-toggle-star
     (elfeed-expose #'elfeed-search-toggle-all 'star)))
 
@@ -1169,15 +1243,83 @@ browser defined by `browse-url-generic-program'."
   :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
-  ;; (add-hook 'nov-mode-hook #'shrface-mode)
-  ;; :config
-  ;; (require 'shrface)
-  ;; (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))
-  ;; (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions))
   :bind
   (:map nov-mode-map
         ("<home>" . move-beginning-of-line)
-        ("<end>" . move-end-of-line)))
+        ("<end>" . move-end-of-line))
+  :config
+  (add-hook 'nov-mode-hook #'eldoc-mode)
+  ;; (add-hook 'nov-mode-hook #'org-indent-mode)
+  (add-hook 'nov-mode-hook #'eldoc-box-hover-mode)
+  (add-hook 'nov-mode-hook #'shrface-nov-setup)
+  (require 'shrface)
+  ;; (define-key nov-mode-map (kbd "C-c C-l") 'shrface-links-consult)
+  ;; (define-key nov-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
+  (setq nov-render-html-function #'my-nov-render-html)
+  ;; (advice-add 'my-nov-visit-relative-file :override #'nov-visit-relative-file)
+  (advice-add 'shr--remove-blank-lines-at-the-end :override #'my-shr--remove-blank-lines-at-the-end))
+
+(defun my-nov-render-html ()
+  (require 'eww)
+  (let ((shrface-org nil)
+        (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+        (shr-table-vertical-line "|")
+        (shr-width 7000) ;; make it large enough, it would not fill the column (use visual-line-mode/writeroom-mode instead)
+        (shr-indentation 3) ;; remove all unnecessary indentation
+        (tab-width 8)
+        (shr-external-rendering-functions
+         (append '((img . nov-render-img)
+                   (svg . nov-render-svg)
+                   (title . nov-render-title)
+                   (pre . shrface-shr-tag-pre-highlight)
+                   (code . shrface-tag-code)
+                   (form . eww-tag-form)
+                   (input . eww-tag-input)
+                   (button . eww-form-submit)
+                   (textarea . eww-tag-textarea)
+                   (select . eww-tag-select)
+                   (link . eww-tag-link)
+                   (meta . eww-tag-meta))
+                 shrface-supported-faces-alist))
+        (shrface-toggle-bullets nil)
+        (shrface-href-versatile t)
+        (shr-use-fonts nil)           ; nil to use default font
+        (shr-map nov-mode-map))
+
+    ;; HACK: `shr-external-rendering-functions' doesn't cover
+    ;; every usage of `shr-tag-img'
+    (cl-letf (((symbol-function 'shr-tag-img) 'nov-render-img))
+      (shr-render-region (point-min) (point-max)))
+
+    ;; workaround, show annotations when document updates
+    (when (bound-and-true-p paw-annotation-mode)
+      (paw-clear-annotation-overlay)
+      (paw-show-all-annotations)
+      (if paw-annotation-show-wordlists-words-p
+          (paw-focus-find-words :wordlist t))
+      (if paw-annotation-show-unknown-words-p
+          (paw-focus-find-words)))))
+
+(defun my-shr--remove-blank-lines-at-the-end (start end)
+  "A fix for `shr--remove-blank-lines-at-the-end' which will remove image at the end of the document."
+  (save-restriction
+    (save-excursion
+      (narrow-to-region start end)
+      (goto-char end)
+      (when (and (re-search-backward "[^ \n]" nil t)
+                 (not (eobp)))
+        (forward-line 1)
+        (delete-region (point) (min (1+ (point)) (point-max)))))))
+
+(defun shrface-nov-setup ()
+  (unless shrface-toggle-bullets
+    (shrface-regexp))
+  (set-visited-file-name nil t)
+  (setq tab-width 8)
+  (if (string-equal system-type "android")
+      (setq-local touch-screen-enable-hscroll nil))
+  ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+  )
 
 ;; (defun my-window-displaying-calibredb-entry-p (window)
 ;;   (equal (with-current-buffer (window-buffer window) major-mode)
@@ -1192,6 +1334,31 @@ browser defined by `browse-url-generic-program'."
 (use-package! calibredb
   :defer t
   :config
+  (advice-add 'calibredb-show-entry :around #'shrface-calibredb-advice)
+  (defun shrface-calibredb-advice (orig-fun &rest args)
+    (require 'eww)
+    (let ((shrface-org nil)
+        (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+        (shr-width 60)
+        (shr-indentation 3)
+        (shr-table-vertical-line "|")
+        (shr-external-rendering-functions
+         (append '((title . eww-tag-title)
+                   (form . eww-tag-form)
+                   (input . eww-tag-input)
+                   (button . eww-form-submit)
+                   (textarea . eww-tag-textarea)
+                   (select . eww-tag-select)
+                   (link . eww-tag-link)
+                   (meta . eww-tag-meta)
+                   ;; (a . eww-tag-a)
+                   (code . shrface-tag-code)
+                   (pre . shrface-shr-tag-pre-highlight))
+                 shrface-supported-faces-alist))
+        (shrface-toggle-bullets nil)
+        (shrface-href-versatile t)
+        (shr-use-fonts nil))
+    (apply orig-fun args)))
   (setq sql-sqlite-program "/usr/bin/sqlite3")
   (setq calibredb-program "/usr/bin/calibredb")
   (setq calibredb-root-dir (expand-file-name "~/calibre_library"))
@@ -1203,10 +1370,56 @@ browser defined by `browse-url-generic-program'."
                                   ("https://bookserver.archive.org/catalog/")
                                   ("http://arxiv.maplepop.com/catalog/")
                                   ("https://m.gutenberg.org/ebooks.opds/")
-                                  ))
+                                  )))
 
-  ;; (add-to-list 'display-buffer-alist (cons "\\*calibredb-entry\\*" (cons #'my-position-calibredb-entry-buffer nil)))
-  )
+(after! eww
+  (progn
+    (require 'shrface)
+    ;; (define-key eww-mode-map (kbd "C-c C-l") 'shrface-links-consult)
+    ;; (define-key eww-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
+    (advice-add 'eww-display-html :around #'shrface-eww-advice)
+    ;; (add-hook 'eww-after-render-hook #'org-indent-mode)
+    (add-hook 'eww-after-render-hook #'eldoc-mode)
+    (add-hook 'eww-after-render-hook #'eldoc-box-hover-mode)
+    (add-hook 'eww-after-render-hook #'shrface-eww-setup)
+    (defun shrface-eww-setup ()
+      (unless shrface-toggle-bullets
+        (shrface-regexp)
+        (setq-local imenu-create-index-function #'shrface-imenu-get-tree))
+      ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+      ;; workaround to show annotations in eww
+      (when (bound-and-true-p paw-annotation-mode)
+        (paw-clear-annotation-overlay)
+        (paw-show-all-annotations)
+        (if paw-annotation-show-wordlists-words-p
+            (paw-focus-find-words :wordlist t))
+        (if paw-annotation-show-unknown-words-p
+          (paw-focus-find-words))))
+
+    (defun shrface-eww-advice (orig-fun &rest args)
+      (require 'eww)
+      (let ((shrface-org nil)
+            (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+            (shr-table-vertical-line "|")
+            (shr-width 65)
+            (shr-indentation 3)
+            (shr-external-rendering-functions
+             (append '((title . eww-tag-title)
+                       (form . eww-tag-form)
+                       (input . eww-tag-input)
+                       (button . eww-form-submit)
+                       (textarea . eww-tag-textarea)
+                       (select . eww-tag-select)
+                       (link . eww-tag-link)
+                       (meta . eww-tag-meta)
+                       ;; (a . eww-tag-a)
+                       (code . shrface-tag-code)
+                       (pre . shrface-shr-tag-pre-highlight))
+                     shrface-supported-faces-alist))
+            (shrface-toggle-bullets nil)
+            (shrface-href-versatile t)
+            (shr-use-fonts nil))
+        (apply orig-fun args)))))
 
 (use-package! mixed-pitch)
 
@@ -1214,10 +1427,10 @@ browser defined by `browse-url-generic-program'."
   :defer t
   :config
   ;; (require 'hyperbole)
-  ;; (hyperbole-mode 1)
+  (hyperbole-mode 1)
   (setq hsys-org-enable-smart-keys t)
-  (global-set-key (kbd "H-<return>") 'hkey-either)
-  (global-set-key (kbd "S-s-<return>") 'assist-key)
+  ;; (global-set-key (kbd "S-s-<return>") 'hkey-either)
+  ;; (global-set-key (kbd "s-S") 'assist-key)
   (global-set-key (kbd "<mouse-9>") 'action-mouse-key-emacs)
   (global-set-key (kbd "<double-mouse-9>") 'action-mouse-key-emacs)
   (global-set-key (kbd "<triple-mouse-9>") 'action-mouse-key-emacs)
@@ -1448,6 +1661,11 @@ _w_ where is something defined
   (interactive)
   (list fore (* fore 0.7) (* fore 0.3)))
 
+(defun jw/skatt3 (fore skatt-procent)
+  "Given before tax calculate payment and tax, assuming skatt-procent tax"
+  (interactive)
+  (list fore (* fore (- 1.0 skatt-procent)) (* fore skatt-procent)))
+
 (use-package! hledger-mode
   :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'")
@@ -1493,26 +1711,6 @@ _w_ where is something defined
   (setq hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
 
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
-
-;; Note: This uses Company completion, so <F1> will display the candidates documentation.
-
-(load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
-(load "/home/jw/.roswell/helper.el")
-;; (setq common-lisp-hyperspec-root
-;;       ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
-;;       "file:///home/jw/lisp/HyperSpec/")
-;; (setq browse-url-browser-function ‘eww-browse-url)
-;; (setq common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
-;; block images in EWW browser
-;; (setq-default shr-inhibit-images t)
-;; (setq inferior-lisp-program "sbcl")
-(setq sly-default-lisp 'roswell)
-(setq ros-config "/home/jw/.roswell/ros-conf.lisp")
-(setq sly-lisp-implementations
-      `((sbcl ("sbcl") :coding-system utf-8-unix)
-        (roswell ("ros" "-Q" "-l" ,ros-config "run"))
-        (qlot ("qlot" "exec" "ros" "-l" ,ros-config "run" "-S" ".")
-              :coding-system utf-8-unix)))
 
 (use-package! arxiv-mode
   :defer t)
@@ -1606,12 +1804,40 @@ _w_ where is something defined
           (:maildir "/gmail/[Gmail]/Utkast"        :key . ?d)
           (:maildir "/gmail/[Gmail]/All e-post"    :key . ?a)))
 (after! mu4e
-  (setq sendmail-program (executable-find "msmtp")
-        send-mail-function #'smtpmail-send-it
-        smtpmail-smtp-server "smtp.google.com"
-        message-sendmail-f-is-evil t
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail))
+  (progn
+    (setq sendmail-program (executable-find "msmtp")
+          send-mail-function #'smtpmail-send-it
+          smtpmail-smtp-server "smtp.google.com"
+          message-sendmail-f-is-evil t
+          message-sendmail-extra-arguments '("--read-envelope-from")
+          message-send-mail-function #'message-send-mail-with-sendmail)
+    ;; (define-key mu4e-view-mode-map (kbd "C-c C-l") 'shrface-links-consult)
+    ;; (define-key mu4e-view-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
+    (advice-add 'mu4e-shr2text :around #'shrface-mu4e-advice)
+    (defun shrface-mu4e-advice (orig-fun &rest args)
+      (require 'eww)
+      (let ((shrface-org nil)
+            (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+            (shr-table-vertical-line "")
+            (shr-width 90)
+            (shr-indentation 3)
+            (shr-external-rendering-functions
+             (append '((title . eww-tag-title)
+                       (form . eww-tag-form)
+                       (input . eww-tag-input)
+                       (button . eww-form-submit)
+                       (textarea . eww-tag-textarea)
+                       (select . eww-tag-select)
+                       (link . eww-tag-link)
+                       (meta . eww-tag-meta)
+                       ;; (a . eww-tag-a)
+                       (code . shrface-tag-code)
+                       (pre . shrface-shr-tag-pre-highlight))
+                     shrface-supported-faces-alist))
+            (shrface-toggle-bullets nil)
+            (shrface-href-versatile t)
+            (shr-use-fonts nil))
+        (apply orig-fun args)))))
 
 (after! which-key
   (setq which-key-side-window-location 'right)
@@ -2170,13 +2396,6 @@ See also `process-lines'."
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
 
-(use-package! mastodon
-  :defer t
-  :config
-  (setq mastodon-instance-url "https://social.vivaldi.net"
-       mastodon-active-user "JohanEWiden")
-  )
-
 (use-package! mistty
   :defer t
   :config
@@ -2205,11 +2424,18 @@ See also `process-lines'."
 
 (use-package! casual-isearch
   :ensure nil
-  ;; :defer t
+  :defer t
   ;; :bind
   ;; (:map isearch-mode-map ((kbd "<f2>") . casual-isearch-tmenu))
   :config
   (define-key isearch-mode-map (kbd "C-o") #'casual-isearch-tmenu))
+
+(use-package! visual-replace
+  :ensure nil
+  :defer t
+  :bind (("C-c r" . visual-replace)
+          :map isearch-mode-map
+          ("C-c r" . visual-replace-from-isearch)))
 
 (use-package! gptel
   :defer t
@@ -2289,12 +2515,13 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
 (use-package! casual-avy
   :ensure nil
+  :defer t
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
 
 (use-package! casual-info
   :ensure nil
-  ;; :defer t
+  :defer t
   :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
   :config
   ;; Use web-browser history navigation bindings
@@ -2317,38 +2544,178 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (add-hook 'Info-mode-hook #'hl-line-mode)
   (add-hook 'Info-mode-hook #'scroll-lock-mode))
 
+(use-package! eldoc-box
+  ;; :defer t
+)
+
+(use-package! immersive-translate
+  :defer t
+  :config
+  (setq immersive-translate-backend 'chatgpt
+        immersive-translate-chatgpt-host "api.openai.com"))
+
+(use-package! jieba
+  ;; :defer t
+)
+
+(use-package! pangu-spacing
+  :defer t)
+
+(use-package! wallabag
+  ;; :defer t
+  ;; :load-path "~/.config/emacs/.local/straight/repos/wallabag/"
+  :config
+  (setq wallabag-host "https://app.wallabag.it") ;; wallabag server host name
+  (setq wallabag-username "johanwiden") ;; username
+  ;; (setq wallabag-username "johan") ;; username
+  ;; (setq wallabag-password (auth-source-pick-first-password :host "<wallabag-host>")
+  ;;       wallabag-secret (auth-source-pick-first-password :host "<wallabag-client>"))
+  (setq wallabag-password (secrets-get-secret "Login" "Password for 'WALLABAG_PASSWORD' on 'apikey'")
+        wallabag-secret (secrets-get-secret "Login" "Password for 'WALLABAG_SECRET' on 'apikey'"))
+  ;; (setq wallabag-password "pengalosa") ;; password
+  (setq wallabag-clientid "28948_5xfysd48cv0g0ksgc84wwgwskc8s0s8wg84k0koo8k8sk0ksgk") ;; created with API clients management
+  ;; (setq wallabag-clientid "1_28hh2e86jqkgckkogkcscwcwggcwcks408cwskcw8g40s88kgs") ;; created with API clients management
+  ;; (setq wallabag-secret "1y9pknyk85twccggg0cswkc088cc04css0c4oww8840wgsggoc") ;; created with API clients management
+  (setq wallabag-db-file "~/org/wallabag.sqlite") ;; optional, default is saved to ~/.emacs.d/.cache/wallabag.sqlite
+  ;; (run-with-timer 0 3540 'wallabag-request-token) ;; optional, auto refresh token, token should refresh every hour
+  ;; (add-hook 'wallabag-entry-mode-hook #'org-indent-mode)
+  (add-hook 'wallabag-entry-mode-hook #'eldoc-mode)
+  (add-hook 'wallabag-entry-mode-hook #'eldoc-box-hover-mode)
+  (add-hook 'wallabag-entry-mode-hook #'shrface-wallabag-setup)
+
+  (advice-add 'wallabag-entry-quit :after #'(lambda (&rest args)
+                                              (interactive)
+                                              (if (get-buffer "*Ilist*")
+                                                  (kill-buffer "*Ilist*"))))
+
+  (require 'shrface)
+
+  (defun shrface-wallabag-setup ()
+    (unless shrface-toggle-bullets
+      (shrface-regexp)
+      (setq-local imenu-create-index-function #'shrface-imenu-get-tree))
+    (if (string-equal system-type "android")
+        (setq-local touch-screen-enable-hscroll nil))
+    ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+    )
+
+  (setq wallabag-render-html-function #'my-wallabag-render-html)
+  (defun my-wallabag-render-html (begin end)
+    (require 'eww)
+    (let ((shrface-org nil)
+          (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+          ;; make it large enough, it would not fill the column
+          ;; I uses visual-line-mode, writeroom-mode for improving the reading experience instead
+          (shr-width 7000)
+          (shr-indentation (if (string-equal system-type "android") 0 0))
+          (shr-table-vertical-line "|")
+          (shr-external-rendering-functions
+           (append '((title . eww-tag-title)
+                     (form . eww-tag-form)
+                     (input . eww-tag-input)
+                     (button . eww-form-submit)
+                     (textarea . eww-tag-textarea)
+                     (select . eww-tag-select)
+                     (link . eww-tag-link)
+                     (meta . eww-tag-meta)
+                     ;; (a . eww-tag-a)
+                     (code . shrface-tag-code)
+                     (pre . shrface-shr-tag-pre-highlight))
+                   shrface-supported-faces-alist))
+          (shrface-toggle-bullets nil)
+          (shrface-href-versatile t)
+          (shr-use-fonts nil))
+      (shr-render-region begin end))
+    ;; workaround, show annotations when document updates
+    (when (bound-and-true-p paw-annotation-mode)
+      (paw-clear-annotation-overlay)
+      (paw-show-all-annotations)
+      (if paw-annotation-show-wordlists-words-p
+          (paw-focus-find-words :wordlist t))
+      (if paw-annotation-show-unknown-words-p
+        (paw-focus-find-words)))))
+
 (use-package! paw
   :defer t
+  :hook
+  ;; my personal configs
+  (paw-view-note-mode . paw-view-note-setup)
+  (paw-annotation-mode . paw-annotation-setup)
   :init
+  (require 'paw-hsk)
+  (paw-hsk-update-word-lists)
   (setq paw-db-file (expand-file-name "paw.sqlite" org-directory))
   ;; ecdict dictionary
-  (setq paw-ecdict-db (expand-file-name "ecdict.db" org-directory))
+  (setq paw-ecdict-db (expand-file-name "stardict.db" org-directory))
   ;; setup ECDICT before using it, and create the files manually if not exist
-  ;; (setq paw-ecdict-known-words-files `(,(expand-file-name "eudic.csv" org-directory)
-  ;;                                      ,(expand-file-name "english.txt" org-directory)))
+  ;; (setq paw-ecdict-wordlist-files `(
+  ;;                                   ;; ,(expand-file-name "美国当代英语语料库.csv" org-directory) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
+  ;;                                   ,(expand-file-name "mawl.csv" org-directory) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
+  ;;                                   ,(expand-file-name "opal.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "5000.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "极品GRE红宝书.csv" org-directory)
+  ;;                                   ,(expand-file-name "gre.txt" org-directory)
+  ;;                                   ,(expand-file-name "托福绿宝书.csv" org-directory)
+  ;;                                   ,(expand-file-name "2021_Teachers_AcademicCollocationList.csv" org-directory) ;; https://www.pearsonpte.com/teachers/academic-collocation
+  ;;                                   ,(expand-file-name "The Unofficial Harry Potter Vocabulary Builder.csv" org-directory)
+  ;;                                   ,(expand-file-name "Illustrated Everyday Expressions with Stories.csv" org-directory)
+  ;;                                   ,(expand-file-name "Essential Idioms in English.csv" org-directory)
+  ;;                                   ,(expand-file-name "IELTS_word_lists.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Advanced.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Intermediate.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Beginner.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "idioms.txt" org-directory)
+  ;;                                   ,(expand-file-name "phrase-list.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "英语生词本.csv" org-directory)
+  ;;                                   ))
+  ;; setup ECDICT before using it, and create the files manually if not exist
+  (setq paw-ecdict-known-words-files `(,(expand-file-name "eudic.csv" org-directory)
+                                       ,(expand-file-name "english.txt" org-directory)))
   ;; setup ECDICT before using it, and create the file manually if not exists
-  ;; (setq paw-ecdict-default-known-words-file (expand-file-name "english.txt" org-directory))
+  (setq paw-ecdict-default-known-words-file (expand-file-name "english.txt" org-directory))
 
   ;; jlpt dictionary
   ;; (setq paw-jlpt-db (expand-file-name "japanese.db" org-directory))
+  ;; setup jlpt before using it, and create the files manually if not exist
+  ;; (setq paw-jlpt-wordlist-files `(,(expand-file-name "日语生词本.csv" org-directory)
+  ;;                                 ,(expand-file-name "日本语红宝书.csv" org-directory)
+  ;;                                 ,(expand-file-name "蓝宝书日语文法.csv" org-directory)
+  ;;                                 ,(expand-file-name "NEW-JLPT.csv" org-directory)
+  ;;                                   ))
   ;; setup jlpt before using it, and create the files manually if not exist
   ;; (setq paw-jlpt-known-words-files `(,(expand-file-name "japanese.txt" org-directory)))
   ;; setup jlpt before using it, and create the file manually if not exists
   ;; (setq paw-jlpt-default-known-words-file (expand-file-name "japanese.txt" org-directory))
   :custom
+  (paw-non-ascii-word-separator "⁣") ;; Invisible separator character, for chinese
+  (paw-non-ascii-language "zh") ;; For chinese
+  (paw-go-translate-langs '(en zh)) ;; For chinese
   (paw-svg-enable t) ;; use svg-lib to generate icons
   ;; (paw-pbm-enable t) ;; use builtin pmb icons
   ;; Use all the icons icon on dashboard
-  (paw-all-the-icons-icon-enable t)
+  (paw-all-the-icons-icon-enable nil)
+  ;; Use nerd icon on dashboard
+  (paw-nerd-icons-icon-enable t)
   ;; Use all the icons button on non-android system
-  (paw-all-the-icons-button-enable (unless (eq system-type 'android) t))
-  (paw-detect-language-p nil)
+  ;; (paw-all-the-icons-button-enable (unless (eq system-type 'android) t))
+  ;; you can use (face-attribute 'org-block :background) or other color
+  (paw-view-note-background-color (face-attribute 'org-block :background))
+  (paw-detect-language-p t)
   ;; (paw-python-program (if (string-equal system-type "android") "python3.10" "python3"))
   (paw-python-program "python3")
-  (paw-detect-language-program 'gcld3) ;; android can only install cld3
+  ;; (paw-detect-language-program 'gcld3) ;; android can only install cld3
+  (paw-detect-language-program
+   (pcase system-type
+     ('gnu/linux 'gcld3)
+     ('windows-nt 'gcld3)
+     ('darwin 'pycld2)
+     ('android 'gcld3)))
+  ;; Note for SER8: gcld3 is in a python venv, activated through shell command: source .venv/bin/activate
+  ;; Note also that gcld3 is not an application, it is a python library.
   (paw-click-overlay-enable t)
   (paw-annotation-read-only-enable t)
-  ;; (paw-annotation-show-unknown-words-p t) ;; setup ECDICT before using it
+  ;; (paw-annotation-show-wordlists-words-p t) ;; setup ECDICT before using it
+  ;; (paw-annotation-show-unknown-words-p nil) ;; setup ECDICT before using it
   ;; (paw-ecdict-frq 3000) ;; setup ECDICT before using it
   ;; (paw-ecdict-bnc -1) ;; all possible words, 0 no bnc data
   ;; (paw-ecdict-tags "cet4 cet6 ielts toefl gre empty") ;; no easy words
@@ -2367,6 +2734,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; (paw-default-say-word-function (if (eq system-type 'android) 'paw-android-say-word 'paw-say-word))
   ;; (paw-tts-zh-cn-voice "zh-CN-YunjianNeural") ; zh-CN-XiaoxiaoNeural, zh-CN-YunyangNeural
   ;; (paw-sdcv-dictionary-list '("简明英汉字典增强版"))
+  (paw-sdcv-dictionary-list '("Org CC-Cedict"))
   ;; add online word by default for add button
   ;; (paw-add-button-online-p t)
   ;; show the note both in minibuffer or/and *paw-view-note*
@@ -2384,9 +2752,24 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;;                           (id . "2")
   ;;                           (language . "ja")
   ;;                           (name . "Japanese"))))
+  (paw-offline-studylist '(("Chinese Studylist" ;; studylist name when choosing offline studylist
+			      (id . "1") ;; random id for internal use, but it could not be the same as any id in online study list defined in `paw-studylist'
+			      (language . "zh") ;; language of the studylist
+			      (name . "Chinese")) ;; name of the studylist
+			     ))
+  (paw-search-function #'paw-chinese-search-function)
+  (paw-chinese-sdcv-exact-match t)
+  (paw-hsk-levels-to-highlight "hsk1 hsk2 hsk3 hsk4 hsk5 hsk6 hsk7-to-9")
+  (paw-view-note-meaning-src-lang "org")
   ;; must be one of the studylist name in `paw-offline-studylist'
   ;; (paw-default-offline-studylist "English Studylist")
   (paw-search-page-max-rows (if (eq system-type 'android) 31 41))
+  (paw-add-offline-word-without-asking t)
+  (paw-add-online-word-without-asking t)
+  ;; ;; Servers to add online words. It could be eudic, anki, or both.
+  ;; (paw-online-word-servers '(eudic anki))
+  ;; ;; The default Anki deck to use.
+  ;; (paw-anki-deck "English")
   :config
   (setq paw-note-dir (expand-file-name "Dict_Notes" org-directory))
   ;; if the file was moved to other places after adding annotations, we can add
@@ -2401,7 +2784,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
                                       ;; "/storage/emulated/0/Org/web/"
                                       "~/org/roam"
                                       "~/Sync/notes"
-                                       ))
+                                      ))
 
   ;; show image annotation in *paw-view-note*
   (add-hook 'paw-view-note-after-render-hook #'org-display-inline-images)
@@ -2411,7 +2794,19 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; (unless (string-equal system-type "android")
   ;;     (setq paw-dictionary-browse-function 'popweb-url-input)
   ;;     (setq paw-mdict-dictionary-function 'popweb-url-input))
-  )
+  (after! wallabag
+    (paw-server)))
+
+(defun paw-view-note-setup ()
+   ;; (org-writeroom-setup)
+  (visual-line-mode)
+  ;; (org-modern-mode)
+  (pangu-spacing-mode)
+  (hl-line-mode -1))
+
+(defun paw-annotation-setup()
+  ;; TODO need manual enable later
+  (flyspell-mode -1))
 
 (use-package! sdcv
   :defer t
@@ -2439,11 +2834,133 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (setq gt-langs '(en fr))
   (setq gt-default-translator (gt-translator :engines (gt-google-engine))))
 
+(use-package! maxima
+  :defer t
+  :init
+  (add-hook 'maxima-mode-hook #'maxima-hook-function)
+  (add-hook 'maxima-inferior-mode-hook #'maxima-hook-function)
+  (setq
+	 org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
+	 maxima-display-maxima-buffer nil)
+  :mode ("\\.mac\\'" . maxima-mode)
+  :interpreter ("maxima" . maxima-mode))
+
 (use-package! svg-lib
   :defer t)
 
 (use-package! tldr
   :defer t)
 
+(use-package! shr-tag-pre-highlight
+  :defer t
+  :after shr
+  :config
+  (add-to-list 'shr-external-rendering-functions
+               '(pre . shr-tag-pre-highlight)))
+
 (use-package! shrface
-  :defer t)
+  :defer t
+  :config
+  (setq shr-cookie-policy nil)
+  (if (string-equal system-type "android")
+      (setq shrface-bullets-bullet-list
+        '("▼"
+          "▽"
+          "▿"
+          "▾"))
+    (setq shrface-bullets-bullet-list
+          '("▼"
+            "▽"
+            "▿"
+            "▾"
+            )
+          )
+    )
+
+  (add-hook 'outline-view-change-hook 'shrface-outline-visibility-changed)
+
+  (require 'shr-tag-pre-highlight)
+  (setq shr-tag-pre-highlight-lang-modes
+        '(("ocaml" . tuareg) ("elisp" . emacs-lisp) ("ditaa" . artist)
+          ("asymptote" . asy) ("dot" . fundamental) ("sqlite" . sql)
+          ("calc" . fundamental) ("C" . c) ("cpp" . c++) ("C++" . c++)
+          ("screen" . shell-script) ("shell" . sh) ("bash" . sh)
+          ("rust" . rustic)
+          ("rust" . rustic)
+          ("awk" . bash)
+          ("json" . "js")
+          ;; Used by language-detection.el
+          ("emacslisp" . emacs-lisp)
+          ;; Used by Google Code Prettify
+          ("el" . emacs-lisp)))
+
+  (defun shrface-shr-tag-pre-highlight (pre)
+    "Highlighting code in PRE."
+    (let* ((shr-folding-mode 'none)
+           (shr-current-font 'default)
+           (code (with-temp-buffer
+                   (shr-generic pre)
+                   ;; (indent-rigidly (point-min) (point-max) 2)
+                   (buffer-string)))
+           (lang (or (shr-tag-pre-highlight-guess-language-attr pre)
+                     (let ((sym (language-detection-string code)))
+                       (and sym (symbol-name sym)))))
+           (mode (and lang
+                      (shr-tag-pre-highlight--get-lang-mode lang))))
+      (shr-ensure-newline)
+      (shr-ensure-newline)
+      (setq start (point))
+      (insert
+       ;; (propertize (concat "#+BEGIN_SRC " lang "\n") 'face 'org-block-begin-line)
+       (or (and (fboundp mode)
+                (with-demoted-errors "Error while fontifying: %S"
+                  (shr-tag-pre-highlight-fontify code mode)))
+           code)
+       ;; (propertize "#+END_SRC" 'face 'org-block-end-line )
+       )
+      (shr-ensure-newline)
+      (setq end (point))
+      (pcase (frame-parameter nil 'background-mode)
+        ('light
+         (add-face-text-property start end '(:background "#D8DEE9" :extend t)))
+        ('dark
+         (add-face-text-property start end '(:background "#292b2e" :extend t))))
+      (shr-ensure-newline)
+      (insert "\n"))))
+
+(use-package! ultra-scroll
+  :init
+  ;; (customize-set-variable 'pixel-scroll-precision-large-scroll-height 5.0)
+  ;; (customize-set-variable 'pixel-scroll-precision-interpolate-mice t)
+  (customize-set-variable 'pixel-scroll-precision-interpolate-page t)
+  ;; (customize-set-variable 'pixel-scroll-precision-use-momentum t)
+  ;; (pixel-scroll-precision-mode 1)
+  ;; scroll one line at a time (less "jumpy" than defaults)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
+
+;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/maxima/")
+ ;; (autoload 'maxima-mode "maxima" "Maxima mode" t)
+ ;; (autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+ ;; (autoload 'maxima "maxima" "Maxima interaction" t)
+ ;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+ ;; (setq imaxima-use-maxima-mode-flag t)
+ ;; (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
+(use-package! maxima
+  :init
+  (add-hook 'maxima-mode-hook #'maxima-hook-function)
+  (add-hook 'maxima-inferior-mode-hook #'maxima-hook-function)
+  (setq
+	 org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
+	 maxima-display-maxima-buffer nil)
+  :mode ("\\.mac\\'" . maxima-mode)
+  :interpreter ("maxima" . maxima-mode))
+
+(after! julia-repl
+  (progn
+    (julia-repl-set-terminal-backend 'vterm)))

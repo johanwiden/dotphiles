@@ -101,7 +101,7 @@
        ;;ansible
        biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       debugger          ; FIXME stepping through code, to help you add bugs
+       ;;debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -128,7 +128,7 @@
        ;;beancount         ; mind the GAAP
        (cc +lsp +tree-sitter)  ; C > C++ == 1
        ;;clojure           ; java with a lisp
-       (common-lisp +sly +sly-macrostep +sly-repl-ansi-color)  ; if you've seen one lisp, you've seen them all
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -154,7 +154,8 @@
        (json +tree-sitter)   ; At least it ain't XML
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
        ;;(javascript +tree-sitter)  ; all(hope(abandon(ye(who(enter(here))))))
-       ;;julia             ; a better, faster MATLAB
+       ;; (julia +snail)      ; a better, faster MATLAB
+       (julia +lsp)      ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
@@ -196,7 +197,7 @@
        ;;zig               ; C, but simpler
 
        :email
-       (mu4e +org +gmail)
+       (mu4e +mbsync +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
@@ -209,4 +210,4 @@
 
        :config
        literate
-       (default +bindings +smartparens))
+       (default +bindings +gnupg +smartparens))
