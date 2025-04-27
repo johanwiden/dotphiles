@@ -254,31 +254,31 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1568,
-      "width": 1924,
-      "x": -3,
-      "y": -30
+      "height": 1562,
+      "width": 1915,
+      "x": 3,
+      "y": 35
     },
     "full_screened": false,
     "geometry": {
-      "height": 1535,
-      "width": 1918,
-      "x": 0,
-      "y": 0
+      "height": 1525,
+      "width": 1915,
+      "x": 3,
+      "y": 72
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1535,
-      "width": 1918,
-      "x": 0,
-      "y": 0
+      "height": 1525,
+      "width": 1915,
+      "x": 3,
+      "y": 72
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////9////4gAAB4AAAAYBAAAAAAAAAAAAAAd9AAAF/gAAAAAAAAAADwAAAAAAAAAAAAAAB30AAAX+"
+      "__value__": "AdnQywADAAAAAAADAAAAIwAAB30AAAY8AAAAAwAAAEgAAAd9AAAGPAAAAAAAAAAADwAAAAADAAAASAAAB30AAAY8"
     },
     "screen": {
-      "depth": 32,
+      "depth": 24,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -287,10 +287,10 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "DEL",
+      "manufacturer": "Dell Inc.",
       "model": "DELL U3818DW",
-      "name": "HDMI-1",
-      "serial": "",
+      "name": "HDMI-A-0",
+      "serial": "5KC0384P04NL",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -306,30 +306,30 @@
   "geometry-of-metasingle_window_geometry3": {
     "frame_geometry": {
       "height": 1568,
-      "width": 1286,
-      "x": -3,
-      "y": -30
+      "width": 1280,
+      "x": 320,
+      "y": 32
     },
     "full_screened": false,
     "geometry": {
-      "height": 1535,
+      "height": 1531,
       "width": 1280,
-      "x": 0,
-      "y": 0
+      "x": 320,
+      "y": 69
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1535,
+      "height": 1531,
       "width": 1280,
-      "x": 0,
-      "y": 0
+      "x": 320,
+      "y": 69
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////9////4gAABQIAAAYBAAAAAAAAAAAAAAT/AAAF/gAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAX+"
+      "__value__": "AdnQywADAAAAAAFAAAAAIAAABj8AAAY/AAABQAAAAEUAAAY/AAAGPwAAAAAAAAAADwAAAAFAAAAARQAABj8AAAY/"
     },
     "screen": {
-      "depth": 32,
+      "depth": 24,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -338,10 +338,10 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "DEL",
+      "manufacturer": "Dell Inc.",
       "model": "DELL U3818DW",
-      "name": "HDMI-1",
-      "serial": "",
+      "name": "HDMI-A-0",
+      "serial": "5KC0384P04NL",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -466,7 +466,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 518
+    "/home/jw/calibre_library": 522
   },
   "main_window_central_widget_state": {
     "layout": "wide",

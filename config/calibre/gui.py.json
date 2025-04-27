@@ -46,6 +46,7 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "Dicke",
     "stern",
     "einstein",
     "slimak",
@@ -69,8 +70,7 @@
     "filipek",
     "spatial memory pipeline",
     "the spatial memory pipeline",
-    "the apatial memory pipeline",
-    "pearl"
+    "the apatial memory pipeline"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",

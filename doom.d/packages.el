@@ -78,6 +78,7 @@
 (package! consult-recoll
   :recipe (:host github :repo "emacs-straight/consult-recoll"))
 (package! denote)
+(package! denote-org)
 (package! denote-menu)
 ;; (package! dired-filter)
 ;; (package! dired-hist)
@@ -172,6 +173,7 @@
 (package! persid
   :recipe (:host github :repo "rougier/persid"))
 (package! posframe)
+(package! pulsar)
 (package! request)
 (package! sdcv
   :recipe (:host github :repo "manateelazycat/sdcv" :branch "master"))
@@ -184,16 +186,18 @@
 (package! thing-cmds
   :recipe (:host github :repo "emacsmirror/thing-cmds"))
 (package! tldr)
-(package! ultra-scroll
-  :recipe (:host github :repo "jdtsmith/ultra-scroll"))
+;; (package! ultra-scroll
+;;   :recipe (:host github :repo "jdtsmith/ultra-scroll"))
 (package! unfill)
 (package! visual-replace)
 (package! w3m)
 (package! wallabag
   :recipe (:host github :repo "chenyanming/wallabag.el" :files ("*.el" "*.alist" "*.css")))
+;; (package! wallabag
+;;   :recipe (:host github :local-repo "wallabag.el" :files ("*.el" "*.alist" "*.css")))
 (package! websocket)
 (package! windower)
 (package! xah-math-input
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
-(package! xah-wolfram-mode
-  :recipe (:host github :repo "xahlee/xah-wolfram-mode"))
+;; (package! xah-wolfram-mode
+;;   :recipe (:host github :repo "xahlee/xah-wolfram-mode"))

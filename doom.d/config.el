@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq user-full-name "Johan Widén"
+(setopt user-full-name "Johan Widén"
       user-mail-address "j.e.widen@gmail.com")
 
 (defvar my/is-termux
@@ -26,119 +26,148 @@
     (async-shell-command (concat command " " filename))))
 (bind-key (kbd "C-M-&") #'my/shell-command-on-file)
 
-(setq doom-modeline-height 20)
-;; mono 18, var 15
-(setq doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15)
-      ;; doom-font (font-spec :family "Iosevka" :size 16)
-      ;; doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 13)
-      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 15)
-      ;;doom-variable-pitch-font (font-spec :family "Overpass" :size 12)
-      ;;doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
-      ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
-      ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
-      )
-(set-face-attribute 'default nil :font "Iosevka Comfy Fixed-15")
-;;(set-face-attribute 'default nil :font "Iosevka-16")
-;;(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Fixed" :height 1.0)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Comfy Duo" :height 1.0)
-;;(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
-;;(set-face-attribute 'variable-pitch nil :family "Libre Baskerville" :height 1.0)
-(custom-set-faces!
-  '(aw-leading-char-face
-    :foreground "white" :background "red"
-    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
-;; doom modeline
-;; (custom-set-faces!
-;;   '(mode-line :height 0.9)
-;;   '(mode-line-inactive :height 0.9))
-(require 'doom-modeline)
+(setopt doom-modeline-height 20)
+  ;; mono 18, var 15
+  ;; (setopt doom-font "Iosevka Comfy Fixed-15")
 
-;;
-;; evil-state
-;;
+;;  (setopt doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15)
+        ;; doom-font (font-spec :family "Iosevka" :size 16)
+        ;; doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 13)
+;;        doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 15)
+        ;;doom-variable-pitch-font (font-spec :family "Overpass" :size 12)
+        ;;doom-variable-pitch-font (font-spec :family "FiraGO" :size 15)
+        ;;doom-variable-pitch-font (font-spec :family "Libre Baskerville" :height 1.0)
+        ;;doom-serif-font (font-spec :family "Libre Baskerville" :height 1.0)
+;;        )
+  
+  ;; (set-face-attribute 'default nil :font "Iosevka Comfy Fixed-15")
+  ;; ;;(set-face-attribute 'default nil :font "Iosevka-16")
+  ;; ;;(set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :height 1.0)
+  ;; (set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Fixed" :height 1.0)
+  ;; (set-face-attribute 'variable-pitch nil :family "Iosevka Comfy Duo" :height 1.0)
+  ;; ;;(set-face-attribute 'variable-pitch nil :family "FiraGO" :height 1.0)
+  ;; ;;(set-face-attribute 'variable-pitch nil :family "Libre Baskerville" :height 1.0)
+  ;; (custom-set-faces!
+  ;;   '(aw-leading-char-face
+  ;;     :foreground "white" :background "red"
+  ;;     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+  (defun jw/default-font ()
+    (interactive)
+    (setopt doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15 :weight 'regular)
+          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 15))
+    (doom/reload-font))
+  (defun jw/small-font ()
+    (interactive)
+    (setopt doom-font (font-spec :family "Iosevka Comfy Motion" :size 12 :weight 'regular)
+          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 12))
+    (doom/reload-font))
+  (defun jw/regular-font ()
+    (interactive)
+    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 15 :weight 'regular)
+          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 15))
+    (doom/reload-font))
+  (defun jw/medium-font ()
+    (interactive)
+    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 17 :weight 'semilight)
+          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 17))
+    (doom/reload-font))
+  (defun jw/large-font ()
+    (interactive)
+    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 21 :weight 'semilight)
+          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 21))
+    (doom/reload-font))
 
-(doom-modeline-def-segment evil-state
-  "The current evil state.  Requires `evil-mode' to be enabled."
-  (when (bound-and-true-p evil-local-mode)
-    (s-trim-right (evil-state-property evil-state :tag t))))
+  ;; doom modeline
+  ;; (custom-set-faces!
+  ;;   '(mode-line :height 0.9)
+  ;;   '(mode-line-inactive :height 0.9))
+  (require 'doom-modeline)
 
-(doom-modeline-def-modeline 'main
-  '(eldoc bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check time))
+  ;;
+  ;; evil-state
+  ;;
 
-(doom-modeline-def-modeline 'minimal
-  '(bar window-number evil-state modals matches buffer-info-simple)
-  '(media-info major-mode time))
+  (doom-modeline-def-segment evil-state
+    "The current evil state.  Requires `evil-mode' to be enabled."
+    (when (bound-and-true-p evil-local-mode)
+      (s-trim-right (evil-state-property evil-state :tag t))))
 
-(doom-modeline-def-modeline 'special
-  '(eldoc bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info battery irc-buffers debug minor-modes input-method indent-info buffer-encoding major-mode process time))
+  (doom-modeline-def-modeline 'main
+    '(eldoc bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+    '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check time))
 
-(doom-modeline-def-modeline 'project
-  '(bar window-number evil-state modals buffer-default-directory remote-host buffer-position)
-  '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
+  (doom-modeline-def-modeline 'minimal
+    '(bar window-number evil-state modals matches buffer-info-simple)
+    '(media-info major-mode time))
 
-(doom-modeline-def-modeline 'dashboard
-  '(bar window-number evil-state modals buffer-default-directory-simple remote-host)
-  '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
+  (doom-modeline-def-modeline 'special
+    '(eldoc bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
+    '(compilation objed-state misc-info battery irc-buffers debug minor-modes input-method indent-info buffer-encoding major-mode process time))
 
-(doom-modeline-def-modeline 'vcs
-  '(bar window-number evil-state modals matches buffer-info remote-host buffer-position parrot selection-info)
-  '(compilation misc-info battery irc mu4e gnus github debug minor-modes buffer-encoding major-mode process time))
+  (doom-modeline-def-modeline 'project
+    '(bar window-number evil-state modals buffer-default-directory remote-host buffer-position)
+    '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
 
-(doom-modeline-def-modeline 'package
-  '(bar window-number evil-state modals package)
-  '(compilation misc-info major-mode process time))
+  (doom-modeline-def-modeline 'dashboard
+    '(bar window-number evil-state modals buffer-default-directory-simple remote-host)
+    '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
 
-(doom-modeline-def-modeline 'info
-  '(bar window-number evil-state modals buffer-info info-nodes buffer-position parrot selection-info)
-  '(compilation misc-info buffer-encoding major-mode time))
+  (doom-modeline-def-modeline 'vcs
+    '(bar window-number evil-state modals matches buffer-info remote-host buffer-position parrot selection-info)
+    '(compilation misc-info battery irc mu4e gnus github debug minor-modes buffer-encoding major-mode process time))
 
-(doom-modeline-def-modeline 'media
-  '(bar window-number evil-state modals buffer-size buffer-info)
-  '(compilation misc-info media-info major-mode process vcs time))
+  (doom-modeline-def-modeline 'package
+    '(bar window-number evil-state modals package)
+    '(compilation misc-info major-mode process time))
 
-(doom-modeline-def-modeline 'message
-  '(eldoc bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info battery debug minor-modes input-method indent-info buffer-encoding major-mode time))
+  (doom-modeline-def-modeline 'info
+    '(bar window-number evil-state modals buffer-info info-nodes buffer-position parrot selection-info)
+    '(compilation misc-info buffer-encoding major-mode time))
 
-(doom-modeline-def-modeline 'pdf
-  '(bar window-number evil-state modals matches buffer-info pdf-pages)
-  '(compilation misc-info major-mode process vcs time))
+  (doom-modeline-def-modeline 'media
+    '(bar window-number evil-state modals buffer-size buffer-info)
+    '(compilation misc-info media-info major-mode process vcs time))
 
-(doom-modeline-def-modeline 'org-src
-  '(eldoc bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process check time))
+  (doom-modeline-def-modeline 'message
+    '(eldoc bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
+    '(compilation objed-state misc-info battery debug minor-modes input-method indent-info buffer-encoding major-mode time))
 
-(doom-modeline-def-modeline 'helm
-  '(bar evil-state helm-buffer-id helm-number helm-follow helm-prefix-argument)
-  '(helm-help time))
+  (doom-modeline-def-modeline 'pdf
+    '(bar window-number evil-state modals matches buffer-info pdf-pages)
+    '(compilation misc-info major-mode process vcs time))
 
-(doom-modeline-def-modeline 'timemachine
-  '(eldoc bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
-  '(misc-info minor-modes indent-info buffer-encoding major-mode time))
+  (doom-modeline-def-modeline 'org-src
+    '(eldoc bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
+    '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process check time))
 
-(doom-modeline-def-modeline 'calculator
-  '(window-number evil-state modals matches calc buffer-position)
-  '(misc-info minor-modes major-mode process))
+  (doom-modeline-def-modeline 'helm
+    '(bar evil-state helm-buffer-id helm-number helm-follow helm-prefix-argument)
+    '(helm-help time))
 
-(setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "dark green" :foreground "black")))
-      evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "goldenrod" :foreground "black")))
-      evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
-      evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-      evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
-      evil-replace-state-tag  (propertize "[Replace]" 'face '((:background "yellow" :foreground "red")))
-      evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+  (doom-modeline-def-modeline 'timemachine
+    '(eldoc bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
+    '(misc-info minor-modes indent-info buffer-encoding major-mode time))
 
-;; Enable mode-line in vterm
-(after! doom-modeline
-  (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
-  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main))
-  (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
+  (doom-modeline-def-modeline 'calculator
+    '(window-number evil-state modals matches calc buffer-position)
+    '(misc-info minor-modes major-mode process))
+
+  (setopt evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "dark green" :foreground "black")))
+        evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "goldenrod" :foreground "black")))
+        evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
+        evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
+        evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+        evil-replace-state-tag  (propertize "[Replace]" 'face '((:background "yellow" :foreground "red")))
+        evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+
+  ;; Enable mode-line in vterm
+  (after! doom-modeline
+    (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
+    (add-to-list 'doom-modeline-mode-alist '(shell-mode . main))
+    (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
 
 ;; The concise one which relies on "implicit fallback values"
-;; (setq fontaine-presets
+;; (setopt fontaine-presets
 ;;       '((tiny
 ;;          :default-family "Iosevka Comfy Wide Fixed"
 ;;          :default-height 70)
@@ -178,14 +207,14 @@
 
 (use-package! fontaine
   :config
-  (setq fontaine-latest-state-file
+  (setopt fontaine-latest-state-file
         (locate-user-emacs-file "fontaine-latest-state.eld"))
 
   ;; Iosevka Comfy is my highly customised build of Iosevka with
   ;; monospaced and duospaced (quasi-proportional) variants as well as
   ;; support or no support for ligatures:
   ;; <https://github.com/protesilaos/iosevka-comfy>.
-  (setq fontaine-presets
+  (setopt fontaine-presets
       '((small
          :default-family "Iosevka Comfy Motion"
          :default-height 100
@@ -287,18 +316,18 @@
 ;; (add-hook 'modus-themes-post-load-hook #'my-update-active-mode-line-colors)
 
 ;; Can also be done with
-(setq modus-themes-common-palette-overrides
+(setopt modus-themes-common-palette-overrides
       '((bg-mode-line-active bg-yellow-subtle)))
 
 (use-package! modus-themes
   :init
   ;; Add all your customizations prior to loading the themes
-  (setq modus-themes-completions
+  (setopt modus-themes-completions
         (quote ((matches . (extrabold background intense))
                 (selection . (semibold accented intense))
                 (popup . (accented)))))
   ;; 1.5 1.3 1.8
-  (setq modus-themes-mixed-fonts t
+  (setopt modus-themes-mixed-fonts t
         modus-themes-bold-constructs t
         modus-themes-variable-pitch-ui t
         modus-themes-prompts '(bold)
@@ -308,13 +337,13 @@
                                 (agenda-structure . (variable-pitch light 1.0))
 				(t . (medium))))
   :config
-  (setq custom-safe-themes t)
-  ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-intense)
-  ;; (setq modus-themes-common-palette-overrides modus-themes-preset-overrides-faint)
+  (setopt custom-safe-themes t)
+  ;; (setopt modus-themes-common-palette-overrides modus-themes-preset-overrides-intense)
+  ;; (setopt modus-themes-common-palette-overrides modus-themes-preset-overrides-faint)
   (load-theme 'modus-vivendi-tinted)
-  (setq doom-theme 'modus-vivendi-tinted)
+  (setopt doom-theme 'modus-vivendi-tinted)
   ;; (load-theme 'modus-vivendi)
-  ;; (setq doom-theme 'modus-vivendi)
+  ;; (setopt doom-theme 'modus-vivendi)
   ;; :bind ("<f5>" . modus-themes-toggle)
   )
 
@@ -342,7 +371,7 @@
     (load secret.el)))
 
 (server-start)
-;; (setq server-kill-new-buffers nil)
+;; (setopt server-kill-new-buffers nil)
 
 (setq-default
  help-window-select t             ; Focus new help windows when opened
@@ -365,18 +394,18 @@
 (customize-set-variable 'projectile-cache-file (expand-file-name "projectile.cache" user-emacs-directory))
 (customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
 (customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
-(setq doom-cache-dir user-emacs-directory)
+(setopt doom-cache-dir user-emacs-directory)
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
   (progn
-    (setq recentf-max-saved-items 10000)
+    (setopt recentf-max-saved-items 10000)
     (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
-  (setq savehist-autosave-interval 600))
+  (setopt savehist-autosave-interval 600))
 (require 'saveplace-pdf-view)
 (save-place-mode 1)
-(setq use-package-verbose t)
+(setopt use-package-verbose t)
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
@@ -416,9 +445,9 @@
                        (cadr defs)
                      (if `(keymapp (bound-and-true-p ,(cadr defs)))
                          (eval (cadr defs)))))
-       (setq defs (cddr defs)))))
+       (setopt defs (cddr defs)))))
 
-(setq hippie-expand-try-functions-list
+(setopt hippie-expand-try-functions-list
       '(try-complete-file-name-partially
         try-complete-file-name
         try-expand-all-abbrevs
@@ -434,16 +463,16 @@
 
 (map! [remap dabbrev-expand] #'hippie-expand)
 
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
-(setq org-directory "~/org/")
-(setq org-attach-id-dir "~/org/attachments/")
+(setopt org-log-done 'time)
+(setopt org-log-into-drawer t)
+(setopt org-directory "~/org/")
+(setopt org-attach-id-dir "~/org/attachments/")
 ;; Learn about then ! and more by reading the relevant section of the Org manual.
 ;; Evaluate: (info "(org) Tracking TODO state changes")
 
 (after! org
   (progn
-    (setq org-use-speed-commands t)
+    (setopt org-use-speed-commands t)
     (add-to-list
      'org-capture-templates
      `("P" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
@@ -468,7 +497,7 @@
     ;; With re-search-forward: Do not attempt to search for the empty string. Use instead something like
     ;; "^\*\* ", to search for all org-journal top entries.
     (customize-set-variable 'org-journal-search-forward-fn 're-search-forward)
-    (setq org-journal-date-prefix "#+TITLE: "
+    (setopt org-journal-date-prefix "#+TITLE: "
           org-journal-file-format "private-%Y-%m-%d.org"
           org-journal-dir "~/org/roam/"
           org-journal-carryover-items nil
@@ -484,7 +513,7 @@
   ;; (require 'ob-shell)
   ;; (require 'ob-core)
   ;; (require 'ob-tangle)
-  ;; (setq org-babel-load-languages '((emacs-lisp . t)
+  ;; (setopt org-babel-load-languages '((emacs-lisp . t)
   ;;                                  (ledger . t)
   ;;                                  (python . t)
   ;;                                  (shell . t)  ; in my case /bin/bash
@@ -497,10 +526,10 @@
 (use-package! org-books
     :after org
     :config
-    (setq org-books-file "~/Dokument/Böcker/org-books.org"))
+    (setopt org-books-file "~/Dokument/Böcker/org-books.org"))
 
-(setq org-roam-v2-ack t)
-(setq org-roam-directory (file-truename "~/org/roam/")
+(setopt org-roam-v2-ack t)
+(setopt org-roam-directory (file-truename "~/org/roam/")
       org-roam-db-location (file-truename "~/org/roam/org-roam.db")
       org-id-link-to-org-use-id t)
 
@@ -514,7 +543,7 @@
 ;;         if you don't care about startup time, use
 ;;  :hook (after-init . org-roam-ui-mode)
     :config
-    (setq org-roam-ui-sync-theme t
+    (setopt org-roam-ui-sync-theme t
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
@@ -529,7 +558,7 @@
 
 (use-package! org-similarity
   :config
-  (setq org-similarity-directory org-roam-directory)
+  (setopt org-similarity-directory org-roam-directory)
   )
 
 (use-package! org-tempo
@@ -546,9 +575,9 @@
    :prefix "n"
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
 
-(setq display-line-numbers-type nil)
+(setopt display-line-numbers-type nil)
 
-(setq epkg-repository "~/epkgs/")
+(setopt epkg-repository "~/epkgs/")
 
 (global-set-key [(hyper up)]
                 (lambda ()
@@ -566,10 +595,10 @@
   (pcre-mode t))
 
 (after! avy
-  (setq avy-all-windows t)
+  (setopt avy-all-windows t)
   (setq avy-single-candidate-jump nil)
   ;; Avoid collision with action keys
-  (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?e ?l))
+  (setopt avy-keys '(?a ?s ?d ?f ?g ?h ?j ?e ?l))
   (global-set-key (kbd "M-j") 'avy-goto-char-timer)
   (defun avy-action-kill-whole-line (pt)
     (save-excursion
@@ -742,7 +771,7 @@
 ;; (global-set-key (kbd "<kp-8>") 'windmove-up)
 ;; (global-set-key (kbd "<kp-2>") 'windmove-down)
 
-(setq ibuffer-saved-filter-groups
+(setopt ibuffer-saved-filter-groups
       '(("home"
          ("dired" (mode . dired-mode))
          ("journal" (name . "private-"))
@@ -774,7 +803,7 @@
           #'(lambda ()
               (ibuffer-auto-mode 1)
               (ibuffer-switch-to-saved-filter-groups "home")))
-(setq ibuffer-expert t)
+(setopt ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
 
 (use-package! casual-ibuffer
@@ -868,7 +897,7 @@ Also used for highlighting.")
     ;; diredp requires dired-actual-switches to be a string, not nil, but
     ;; this variable is only non nil in dired buffers
     (setq dired-actual-switches "-al")
-    ;; (setq diredp-image-preview-in-tooltip 300)
+    ;; (setopt diredp-image-preview-in-tooltip 300)
     )
 ;; (after! dired
 ;;   (load "/home/jw/Downloads/dired+.el"))
@@ -900,15 +929,15 @@ Also used for highlighting.")
 (use-package! w3m
   :defer t
   :config
-  (setq w3m-key-binding 'info)
+  (setopt w3m-key-binding 'info)
    (define-key w3m-mode-map [up] 'previous-line)
    (define-key w3m-mode-map [down] 'next-line)
    (define-key w3m-mode-map [left] 'backward-char)
    (define-key w3m-mode-map [right] 'forward-char)
-  (setq w3m-default-display-inline-images t)
-  (setq w3m-make-new-session t)
-  (setq w3m-use-cookies t)
-  (setq w3m-default-save-directory "~/Downloads/")
+  (setopt w3m-default-display-inline-images t)
+  (setopt w3m-make-new-session t)
+  (setopt w3m-use-cookies t)
+  (setopt w3m-default-save-directory "~/Downloads/")
   (add-hook 'w3m-display-hook
           (lambda (url)
             (rename-buffer
@@ -977,8 +1006,8 @@ Also used for highlighting.")
   (ace-link-setup-default))
 
 (setq browse-url-mosaic-program nil)
-;; (setq browse-url-browser-function 'w3m-browse-url)
-(setq browse-url-new-window-flag t)
+;; (setopt browse-url-browser-function 'w3m-browse-url)
+(setopt browse-url-new-window-flag t)
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 (autoload 'browse-url-interactive-arg "browse-url")
 
@@ -1118,6 +1147,8 @@ browser defined by `browse-url-generic-program'."
 
 (use-package! elfeed
   :defer t
+  :hook
+  (elfeed-show-mode . paw-annotation-mode)
   :bind (:map elfeed-search-mode-map
          ("A" . bjm/elfeed-show-all)
          ("E" . bjm/elfeed-show-emacs)
@@ -1186,7 +1217,7 @@ browser defined by `browse-url-generic-program'."
 (use-package! elfeed-org
   :after elfeed
   :init
-  (setq rmh-elfeed-org-files (list "~/.config/doom/elfeed.org"))
+  (setopt rmh-elfeed-org-files (list "~/.config/doom/elfeed.org"))
   :config
 
   (defun z/hasCap (s) ""
@@ -1243,6 +1274,8 @@ browser defined by `browse-url-generic-program'."
   :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
+  :hook
+  (nov-mode . paw-annotation-mode)
   :bind
   (:map nov-mode-map
         ("<home>" . move-beginning-of-line)
@@ -1255,7 +1288,7 @@ browser defined by `browse-url-generic-program'."
   (require 'shrface)
   ;; (define-key nov-mode-map (kbd "C-c C-l") 'shrface-links-consult)
   ;; (define-key nov-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
-  (setq nov-render-html-function #'my-nov-render-html)
+  (setopt nov-render-html-function #'my-nov-render-html)
   ;; (advice-add 'my-nov-visit-relative-file :override #'nov-visit-relative-file)
   (advice-add 'shr--remove-blank-lines-at-the-end :override #'my-shr--remove-blank-lines-at-the-end))
 
@@ -1359,14 +1392,14 @@ browser defined by `browse-url-generic-program'."
         (shrface-href-versatile t)
         (shr-use-fonts nil))
     (apply orig-fun args)))
-  (setq sql-sqlite-program "/usr/bin/sqlite3")
-  (setq calibredb-program "/usr/bin/calibredb")
-  (setq calibredb-root-dir (expand-file-name "~/calibre_library"))
-  (setq calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
-  (setq calibredb-library-alist '(("~/calibre_library")))
-  (setq calibredb-date-width 0)
-  (setq calibredb-download-dir (expand-file-name "~/Downloads"))
-  (setq calibredb-library-alist '(("/home/jw/calibre_library")
+  (setopt sql-sqlite-program "/usr/bin/sqlite3")
+  (setopt calibredb-program "/usr/bin/calibredb")
+  (setopt calibredb-root-dir (expand-file-name "~/calibre_library"))
+  (setopt calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
+  (setopt calibredb-library-alist '(("~/calibre_library")))
+  (setopt calibredb-date-width 0)
+  (setopt calibredb-download-dir (expand-file-name "~/Downloads"))
+  (setopt calibredb-library-alist '(("/home/jw/calibre_library")
                                   ("https://bookserver.archive.org/catalog/")
                                   ("http://arxiv.maplepop.com/catalog/")
                                   ("https://m.gutenberg.org/ebooks.opds/")
@@ -1428,7 +1461,7 @@ browser defined by `browse-url-generic-program'."
   :config
   ;; (require 'hyperbole)
   (hyperbole-mode 1)
-  (setq hsys-org-enable-smart-keys t)
+  (setopt hsys-org-enable-smart-keys t)
   ;; (global-set-key (kbd "S-s-<return>") 'hkey-either)
   ;; (global-set-key (kbd "s-S") 'assist-key)
   (global-set-key (kbd "<mouse-9>") 'action-mouse-key-emacs)
@@ -1489,7 +1522,7 @@ browser defined by `browse-url-generic-program'."
    "Link" (
     ("l" denote-link-or-create "_l_ink" )
     ("L" denote-link-or-create-with-command "_L_ink with command" )
-    ("h" denote-org-extras-link-to-heading  "specific _h_eader" )
+    ("h" denote-org-link-to-heading  "specific _h_eader" )
     ("r" denote-add-links "by _r_egexp" )
     ("d" denote-add-links "by _d_ired" )
     ("b" denote-backlinks "_b_acklinks" ))
@@ -1498,11 +1531,11 @@ browser defined by `browse-url-generic-program'."
     ("FT" denote-change-file-type-and-front-matter  "only FileType")
     ("UF" denote-rename-file-using-front-matter "use Frontmatter"))
    "Dyn. Block" (
-    ("DL" denote-org-extras-dblock-insert-links "dyn. Links" )
-    ("DB" denote-org-extras-dblock-insert-backlinks "dyn. Backlinks" ))
+    ("DL" denote-org-dblock-insert-links "dyn. Links" )
+    ("DB" denote-org-dblock-insert-backlinks "dyn. Backlinks" ))
    "Convert links" (
-    ("CF" denote-org-extras-convert-links-to-file-type "to File Type" )
-    ("CD" denote-org-extras-convert-links-to-denote-type "to Denote Type" ))
+    ("CF" denote-org-convert-links-to-file-type "to File Type" )
+    ("CD" denote-org-convert-links-to-denote-type "to Denote Type" ))
   "Other" (
      ("?" (info "denote") "Help")
      ("M-SPC" major-mode-hydra "Major Mode Hydra"))))
@@ -1708,9 +1741,29 @@ _w_ where is something defined
   ;;             (add-to-list 'company-backends 'hledger-company)))
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
-  (setq hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
+  (setopt hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
 
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
+
+;; Note: This uses Company completion, so <F1> will display the candidates documentation.
+
+(load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
+(load "/home/jw/.roswell/helper.el")
+;; (setopt common-lisp-hyperspec-root
+;;       ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
+;;       "file:///home/jw/lisp/HyperSpec/")
+;; (setopt browse-url-browser-function ‘eww-browse-url)
+;; (setopt common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
+;; block images in EWW browser
+;; (setq-default shr-inhibit-images t)
+;; (setopt inferior-lisp-program "sbcl")
+(setopt sly-default-lisp 'roswell)
+(setopt ros-config "/home/jw/.roswell/ros-conf.lisp")
+(setopt sly-lisp-implementations
+      `((sbcl ("sbcl") :coding-system utf-8-unix)
+        (roswell ("ros" "-Q" "-l" ,ros-config "run"))
+        (qlot ("qlot" "exec" "ros" "-l" ,ros-config "run" "-S" ".")
+              :coding-system utf-8-unix)))
 
 (use-package! arxiv-mode
   :defer t)
@@ -1745,9 +1798,6 @@ _w_ where is something defined
    '(
      ["zws" "​"]
      )))
-
-(use-package! xah-wolfram-mode
-  :defer t)
 
 (use-package! lexic
   :defer t
@@ -1791,26 +1841,25 @@ _w_ where is something defined
 
 ;; if you built from source
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-  (setq mu4e-compose-signature "Johan Widén, tel: +46705367346\nRisvägen 5 A, 192 73 Sollentuna, SWEDEN")
-  (setq
-    mu4e-sent-folder   "/gmail/[Gmail]/Skickat"       ;; folder for sent messages
-    mu4e-drafts-folder "/gmail/[Gmail]/Utkast"        ;; unfinished messages
-    mu4e-trash-folder  "/gmail/[Gmail]/Papperskorgen" ;; trashed messages
-    mu4e-refile-folder "/gmail/[Gmail]/All e-post")   ;; saved messages
-  (setq mu4e-maildir-shortcuts
-        '((:maildir "/gmail/INBOX"                 :key . ?i)
-          (:maildir "/gmail/[Gmail]/Skickat"       :key . ?s)
-          (:maildir "/gmail/[Gmail]/Papperskorgen" :key . ?t)
-          (:maildir "/gmail/[Gmail]/Utkast"        :key . ?d)
-          (:maildir "/gmail/[Gmail]/All e-post"    :key . ?a)))
+  ;; (setopt mu4e-compose-signature "Johan Widén, tel: +46705367346\nRisvägen 5 A, 192 73 Sollentuna, SWEDEN")
+(setq mu4e-sent-folder   "/gmail/[Gmail]/Skickat"       ;; folder for sent messages
+      mu4e-drafts-folder "/gmail/[Gmail]/Utkast"        ;; unfinished messages
+      mu4e-trash-folder  "/gmail/[Gmail]/Papperskorgen" ;; trashed messages
+      mu4e-refile-folder "/gmail/[Gmail]/All e-post")   ;; saved messages
+(setopt mu4e-maildir-shortcuts
+        '((:maildir "/gmail/INBOX"                 :key ?i)
+          (:maildir "/gmail/[Gmail]/Skickat"       :key ?s)
+          (:maildir "/gmail/[Gmail]/Papperskorgen" :key ?t)
+          (:maildir "/gmail/[Gmail]/Utkast"        :key ?d)
+          (:maildir "/gmail/[Gmail]/All e-post"    :key ?a)))
 (after! mu4e
   (progn
-    (setq sendmail-program (executable-find "msmtp")
-          send-mail-function #'smtpmail-send-it
-          smtpmail-smtp-server "smtp.google.com"
-          message-sendmail-f-is-evil t
-          message-sendmail-extra-arguments '("--read-envelope-from")
-          message-send-mail-function #'message-send-mail-with-sendmail)
+    (setopt sendmail-program (executable-find "msmtp")
+            send-mail-function #'smtpmail-send-it
+            smtpmail-smtp-server "smtp.google.com"
+            message-sendmail-f-is-evil t
+            message-sendmail-extra-arguments '("--read-envelope-from")
+            message-send-mail-function #'message-send-mail-with-sendmail)
     ;; (define-key mu4e-view-mode-map (kbd "C-c C-l") 'shrface-links-consult)
     ;; (define-key mu4e-view-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
     (advice-add 'mu4e-shr2text :around #'shrface-mu4e-advice)
@@ -1840,10 +1889,10 @@ _w_ where is something defined
         (apply orig-fun args)))))
 
 (after! which-key
-  (setq which-key-side-window-location 'right)
-  (setq which-key-side-window-max-height 0.5)
-  (setq which-key-side-window-max-width 0.5)
-  ;; (setq which-key-allow-imprecise-window-fit nil)
+  (setopt which-key-side-window-location 'right)
+  (setopt which-key-side-window-max-height 0.5)
+  (setopt which-key-side-window-max-width 0.5)
+  ;; (setopt which-key-allow-imprecise-window-fit nil)
   )
 
 (use-package! vertico-flat
@@ -1863,7 +1912,7 @@ _w_ where is something defined
               ("C-M-l" . embark-export))
   :init (vertico-multiform-mode 1)
   :config
-  (setq vertico-multiform-categories
+  (setopt vertico-multiform-categories
          '((file my/vertico-grid-mode reverse)
            (jinx grid (vertico-grid-annotate . 20))
            (project-file my/vertico-grid-mode reverse)
@@ -1882,7 +1931,7 @@ _w_ where is something defined
            (consult-compile-error reverse)
            ;; (buffer flat (vertico-cycle . t))
            (t buffer)))
-  ;;  (setq vertico-multiform-commands
+  ;;  (setopt vertico-multiform-commands
   ;;        '((jinx-correct reverse)
   ;;          (tab-bookmark-open reverse)
   ;;          (dired-goto-file unobtrusive)
@@ -1935,8 +1984,8 @@ _w_ where is something defined
       (vertico-grid-mode 1))
      (t (vertico-grid-mode 0)
         (setq vertico-count my/vertico-count-orig))))
-  (setq vertico-grid-separator "    ")
-  (setq vertico-grid-lookahead 50))
+  (setopt vertico-grid-separator "    ")
+  (setopt vertico-grid-lookahead 50))
 
 (use-package! vertico-reverse
   ;; :disabled
@@ -1946,7 +1995,7 @@ _w_ where is something defined
   :after vertico
   ;; :hook (vertico-buffer-mode . vertico-buffer-setup)
   :config
-  (setq vertico-buffer-display-action 'display-buffer-reuse-window))
+  (setopt vertico-buffer-display-action 'display-buffer-reuse-window))
 
 (after! embark
   (global-set-key (kbd "C-:") 'embark-dwim)
@@ -2002,7 +2051,17 @@ _w_ where is something defined
   (defun consult-info-completion ()
     "Search through completion info pages."
     (interactive)
-    (consult-info "orderless" "embark" "company")))
+    (consult-info "orderless" "embark" "company"))
+
+  (consult-customize
+   consult-line
+   :add-history (seq-some #'thing-at-point '(region symbol)))
+
+  (defalias 'consult-line-thing-at-point 'consult-line)
+
+  (consult-customize
+   consult-line-thing-at-point
+   :initial (thing-at-point 'symbol)))
 
 (use-package! wgrep
   :defer t)
@@ -2012,29 +2071,26 @@ _w_ where is something defined
   ;; :defer t
   :config
   ;; Remember to check the doc strings of those variables.
-  ;; (setq denote-directory (expand-file-name "~/org/roam/notes/"))
-  (setq denote-directory (expand-file-name "~/Sync/notes/"))
+  ;; (setopt denote-directory (expand-file-name "~/org/roam/notes/"))
+  (setopt denote-directory (expand-file-name "~/Sync/notes/"))
   (setq denote-save-buffer-after-creation nil)
-  (setq denote-known-keywords '("async" "bestpractices" "emacs" "consult" "gravity" "inertia" "life" "llm" "notes" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
-  (setq denote-infer-keywords t)
-  (setq denote-sort-keywords t)
+  (setopt denote-known-keywords '("async" "bestpractices" "emacs" "consult" "gravity" "inertia" "life" "llm" "notes" "orgroam" "philosophy" "physics" "politics" "template" "economics"))
+  (setopt denote-infer-keywords t)
+  (setopt denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
-  (setq denote-prompts '(title keywords))
+  (setopt denote-prompts '(title keywords))
   (setq denote-excluded-directories-regexp nil)
   (setq denote-excluded-keywords-regexp nil)
-  (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
+  (setopt denote-rename-confirmations '(rewrite-front-matter modify-file-name))
+  (setopt denote-org-store-link-to-heading 'id)
 
   ;; Pick dates, where relevant, with Org's advanced interface:
-  (setq denote-date-prompt-use-org-read-date t)
+  (setopt denote-date-prompt-use-org-read-date t)
 
   ;; Read this manual for how to specify `denote-templates'.  We do not
   ;; include an example here to avoid potential confusion.
 
   (setq denote-date-format nil) ; read doc string
-
-  ;; By default, we do not show the context of links.  We just display
-  ;; file names.  This provides a more informative view.
-  (setq denote-backlinks-show-context t)
 
   ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
   ;; advanced.
@@ -2046,7 +2102,7 @@ _w_ where is something defined
   ;; (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
 
   ;; We use different ways to specify a path for demo purposes.
-  (setq denote-dired-directories
+  (setopt denote-dired-directories
         (list denote-directory
               (thread-last denote-directory (expand-file-name "attachments"))
               (expand-file-name "~/Documents/books")))
@@ -2092,7 +2148,7 @@ _w_ where is something defined
     (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
 
   (with-eval-after-load 'org-capture
-    (setq denote-org-capture-specifiers "%l\n%i\n%?")
+    (setopt denote-org-capture-specifiers "%l\n%i\n%?")
     (add-to-list 'org-capture-templates
                  '("n" "New note (with denote.el)" plain
                    (file denote-last-path)
@@ -2110,6 +2166,11 @@ _w_ where is something defined
   ;; context menu, use the following and then enable
   ;; `context-menu-mode'.
   (add-hook 'context-menu-functions #'denote-context-menu))
+
+(use-package! denote-org
+  :after denote
+  ;; :defer t
+)
 
 (define-minor-mode denote-mode
   "Denote is a simple note-taking tool for Emacs."
@@ -2136,16 +2197,16 @@ _w_ where is something defined
              consult-notes-org-roam-find-node
              consult-notes-org-roam-find-node-relation)
   :config
-  (setq consult-notes-file-dir-sources `(("Denote"  ?d  ,(denote-directory))
+  (setopt consult-notes-file-dir-sources `(("Denote"  ?d  ,(denote-directory))
                                          ("Org"     ?o  "~/org/roam"))) ;; Set notes dir(s), see below
   ;; Set org-roam integration, denote integration, or org-heading integration e.g.:
-  ;; (setq consult-notes-org-headings-files '("~/path/to/file1.org"
+  ;; (setopt consult-notes-org-headings-files '("~/path/to/file1.org"
   ;;                                          "~/path/to/file2.org"))
   ;; (consult-notes-org-roam-mode)
   (when (locate-library "denote")
     (consult-notes-denote-mode))
   ;; ;; search only for text files in denote dir
-  ;; (setq consult-notes-denote-files-function (function denote-directory-text-only-files))
+  ;; (setopt consult-notes-denote-files-function (function denote-directory-text-only-files))
   )
 
 (use-package! denote-menu
@@ -2184,7 +2245,7 @@ _w_ where is something defined
   :config
   ;;add your main GitHub account (replace "armindarvish" with your user or org)
   (add-to-list 'consult-gh-default-orgs-list "johanwiden")
-  (setq consult-gh-default-orgs-list (append consult-gh-default-orgs-list '("alphapapa" "systemcrafters")))
+  (setopt consult-gh-default-orgs-list (append consult-gh-default-orgs-list '("alphapapa" "systemcrafters")))
   (require 'consult-gh-embark)
   (add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list) ;;keep record of searched orgs
   (add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)) ;;keep record of searched repos
@@ -2239,7 +2300,7 @@ _w_ where is something defined
   ;; (require 'consult-web-buffer)
   ;; (require 'consult-web-line-multi)
   ;; (require 'consult-web-notes)
-  ;; (setq consult-web-sources-modules-to-load '(consult-web-brave
+  ;; (setopt consult-web-sources-modules-to-load '(consult-web-brave
   ;;                                             consult-web-brave-autosuggest
   ;;                                             consult-web-doi
   ;;                                             consult-web-stackoverflow
@@ -2253,36 +2314,36 @@ _w_ where is something defined
   (require 'consult-web-embark)
 
   ;;; set multiple sources for consult-web-multi command. Change these lists as needed for different interactive commands. Keep in mind that each source has to be a key in `consult-web-sources-alist'.
-  ;; (setq consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
-  (setq consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
-  ;; (setq consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" )) ;; consult-web-dynamic
-  (setq consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" "Wikipedia")) ;; consult-web-dynamic
-  ;; (setq consult-web-scholar-sources (list "PubMed")) ;; consult-web-scholar
-  ;; (setq consult-web-omni-sources (list "elfeed" "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
-  ;; (setq consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
-  (setq consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
-  ;; (setq consult-web-dynamic-omni-sources (list "Known Project" "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "elfeed" "Brave" "Wikipedia" "gptel" "Youtube")) ;;consult-web-dynamic-omni
-  ;; (setq consult-web-dynamic-omni-sources (list "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Brave" "Wikipedia" "gptel")) ;;consult-web-dynamic-omni
-  (setq consult-web-dynamic-omni-sources (list "File" "Bookmark" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "Brave" "Wikipedia" "gptel" "YouTube")) ;;consult-web-dynamic-omni
+  ;; (setopt consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
+  (setopt consult-web-multi-sources (list "Brave" "Wikipedia" "chatGPT")) ;; consult-web-multi
+  ;; (setopt consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" )) ;; consult-web-dynamic
+  (setopt consult-web-dynamic-sources (list "gptel" "Brave" "StackOverflow" "Wikipedia")) ;; consult-web-dynamic
+  ;; (setopt consult-web-scholar-sources (list "PubMed")) ;; consult-web-scholar
+  ;; (setopt consult-web-omni-sources (list "elfeed" "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  ;; (setopt consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  (setopt consult-web-omni-sources (list "Brave" "Wikipedia" "gptel" "YouTube" 'consult-buffer-sources 'consult-notes-all-sources)) ;;consult-web-omni
+  ;; (setopt consult-web-dynamic-omni-sources (list "Known Project" "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "elfeed" "Brave" "Wikipedia" "gptel" "Youtube")) ;;consult-web-dynamic-omni
+  ;; (setopt consult-web-dynamic-omni-sources (list "File" "Bookmark" "Buffer" "Reference Roam Nodes" "Zettel Roam Nodes" "Brave" "Wikipedia" "gptel")) ;;consult-web-dynamic-omni
+  (setopt consult-web-dynamic-omni-sources (list "File" "Bookmark" "Reference Roam Nodes" "Zettel Roam Nodes" "Line Multi" "Brave" "Wikipedia" "gptel" "YouTube")) ;;consult-web-dynamic-omni
 
   ;; Per source customization
   ;;; Pick you favorite autosuggest command.
-  (setq consult-web-default-autosuggest-command #'consult-web-dynamic-brave-autosuggest)
+  (setopt consult-web-default-autosuggest-command #'consult-web-dynamic-brave-autosuggest)
 
   ;;; Set API KEYs. It is recommended to use a function that returns the string for better security.
-  (setq consult-web-bing-api-key (secrets-get-secret "Login" "Password for 'BING_SEARCH_V7_SUBSCRIPTION_KEY' on 'apikey'"))
+  (setopt consult-web-bing-api-key (secrets-get-secret "Login" "Password for 'BING_SEARCH_V7_SUBSCRIPTION_KEY' on 'apikey'"))
   ;; (add-to-list 'consult-web-dynamic-sources "Bing")
-  (setq consult-web-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
+  (setopt consult-web-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
   ;; (add-to-list 'consult-web-dynamic-sources "Brave")
-  (setq consult-web-brave-autosuggest-api-key
+  (setopt consult-web-brave-autosuggest-api-key
         (secrets-get-secret "Login" "Password for 'BRAVE_AUTOSUGGEST_API_KEY' on 'apikey'"))
   ;; (add-to-list 'consult-web-dynamic-sources "Wikipedia")
-  (setq consult-web-stackexchange-api-key
+  (setopt consult-web-stackexchange-api-key
         (secrets-get-secret "Login" "Password for 'STACKEXCHANGE_API_KEY' on 'apikey'"))
   ;; (add-to-list 'consult-web-dynamic-sources "StackOverflow")
-  (setq consult-web-openai-api-key
+  (setopt consult-web-openai-api-key
         (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
-  (setq consult-web-google-customsearch-key
+  (setopt consult-web-google-customsearch-key
         (secrets-get-secret "Login" "Password for 'YOUTUBE_V3_API_KEY' on 'apikey'"))
   ;; (add-to-list 'consult-web-dynamic-sources "chatGPT")
   ;; (add-to-list consult-web-dynamic-sources "gptel")
@@ -2308,7 +2369,7 @@ _w_ where is something defined
   ;; Either load all source modules or a selected list
 
   ;;; Select a list of modules you want to aload, otherwise all sources all laoded
-  (setq consult-omni-sources-modules-to-load (list 'consult-omni-apps
+  (setopt consult-omni-sources-modules-to-load (list 'consult-omni-apps
                                                    'consult-omni-brave
                                                    'consult-omni-brave-autosuggest
                                                    'consult-omni-buffer
@@ -2335,7 +2396,7 @@ _w_ where is something defined
                                                    'consult-omni-youtube))
   (consult-omni-sources-load-modules)
   ;;; set multiple sources for consult-omni-multi command. Change these lists as needed for different interactive commands. Keep in mind that each source has to be a key in `consult-omni-sources-alist'.
-  (setq consult-omni-multi-sources '("calc"
+  (setopt consult-omni-multi-sources '("calc"
                                      ;; "File"
                                      ;; "Buffer"
                                      ;; "Bookmark"
@@ -2358,24 +2419,24 @@ _w_ where is something defined
 ;; Per source customization
 
   ;;; Set API KEYs. It is recommended to use a function that returns the string for better security.
-  (setq consult-omni-google-customsearch-key
+  (setopt consult-omni-google-customsearch-key
         (secrets-get-secret "Login" "Password for 'YOUTUBE_V3_API_KEY' on 'apikey'"))
-  ;; (setq consult-omni-google-customsearch-key "YOUR-GOOGLE-API-KEY-OR-FUNCTION")
-  ;; (setq consult-omni-google-customsearch-cx "YOUR-GOOGLE-CX-NUMBER-OR-FUNCTION")
-  (setq consult-omni-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
-  (setq consult-omni-brave-autosuggest-api-key
+  ;; (setopt consult-omni-google-customsearch-key "YOUR-GOOGLE-API-KEY-OR-FUNCTION")
+  ;; (setopt consult-omni-google-customsearch-cx "YOUR-GOOGLE-CX-NUMBER-OR-FUNCTION")
+  (setopt consult-omni-brave-api-key (secrets-get-secret "Login" "Password for 'BRAVE_SEARCH_API_KEY' on 'apikey'"))
+  (setopt consult-omni-brave-autosuggest-api-key
         (secrets-get-secret "Login" "Password for 'BRAVE_AUTOSUGGEST_API_KEY' on 'apikey'"))
-  (setq consult-omni-stackexchange-api-key
+  (setopt consult-omni-stackexchange-api-key
         (secrets-get-secret "Login" "Password for 'STACKEXCHANGE_API_KEY' on 'apikey'"))
-  ;; (setq consult-omni-pubmed-api-key "YOUR-PUBMED-API-KEY-OR-FUNCTION")
-  (setq consult-omni-openai-api-key
+  ;; (setopt consult-omni-pubmed-api-key "YOUR-PUBMED-API-KEY-OR-FUNCTION")
+  (setopt consult-omni-openai-api-key
         (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
 
 ;;; Pick you favorite autosuggest command.
-  (setq consult-omni-default-autosuggest-command #'consult-omni-dynamic-brave-autosuggest) ;;or any other autosuggest source you define
+  (setopt consult-omni-default-autosuggest-command #'consult-omni-dynamic-brave-autosuggest) ;;or any other autosuggest source you define
 
  ;;; Set your shorthand favorite interactive command
-  (setq consult-omni-default-interactive-command #'consult-omni-multi))
+  (setopt consult-omni-default-interactive-command #'consult-omni-multi))
 
 (defun ambrevar/call-process-to-string (program &rest args)
   "Call PROGRAM with ARGS and return output.
@@ -2388,7 +2449,7 @@ See also `process-lines'."
     (with-current-buffer standard-output
       (apply 'process-file program nil t nil args))))
 
-(setq browse-url-generic-program
+(setopt browse-url-generic-program
       (or
        (executable-find (or (getenv "BROWSER") ""))
        (when (executable-find "xdg-mime")
@@ -2399,15 +2460,15 @@ See also `process-lines'."
 (use-package! mistty
   :defer t
   :config
-  (setq explicit-shell-file-name "/usr/bin/fish")
-  ;; (setq explicit-shell-file-name "/usr/bin/bash")
+  (setopt explicit-shell-file-name "/usr/bin/fish")
+  ;; (setopt explicit-shell-file-name "/usr/bin/bash")
   )
 
 (use-package! igist
   :defer t
   :config
-  (setq igist-current-user-name "johanwiden")
-  (setq igist-auth-marker 'igist))
+  (setopt igist-current-user-name "johanwiden")
+  (setopt igist-auth-marker 'igist))
 
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 
@@ -2453,7 +2514,7 @@ See also `process-lines'."
   (activities-mode)
   (activities-tabs-mode)
   ;; Prevent `edebug' default bindings from interfering.
-  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+  (setopt edebug-inhibit-emacs-lisp-mode-bindings t)
 
   :bind
   (("C-x C-a C-n" . activities-new)
@@ -2551,7 +2612,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (use-package! immersive-translate
   :defer t
   :config
-  (setq immersive-translate-backend 'chatgpt
+  (setopt immersive-translate-backend 'chatgpt
         immersive-translate-chatgpt-host "api.openai.com"))
 
 (use-package! jieba
@@ -2564,19 +2625,23 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (use-package! wallabag
   ;; :defer t
   ;; :load-path "~/.config/emacs/.local/straight/repos/wallabag/"
+  :hook
+  (wallabag-entry-mode . paw-annotation-mode)
   :config
-  (setq wallabag-host "https://app.wallabag.it") ;; wallabag server host name
-  (setq wallabag-username "johanwiden") ;; username
-  ;; (setq wallabag-username "johan") ;; username
-  ;; (setq wallabag-password (auth-source-pick-first-password :host "<wallabag-host>")
+  (setopt wallabag-host "https://app.wallabag.it") ;; wallabag server host name
+  (setopt wallabag-username "johanwiden") ;; username
+  ;; (setopt wallabag-username "johan") ;; username
+  ;; (setopt wallabag-password (auth-source-pick-first-password :host "<wallabag-host>")
   ;;       wallabag-secret (auth-source-pick-first-password :host "<wallabag-client>"))
-  (setq wallabag-password (secrets-get-secret "Login" "Password for 'WALLABAG_PASSWORD' on 'apikey'")
+  (setopt wallabag-password (secrets-get-secret "Login" "Password for 'WALLABAG_PASSWORD' on 'apikey'")
         wallabag-secret (secrets-get-secret "Login" "Password for 'WALLABAG_SECRET' on 'apikey'"))
-  ;; (setq wallabag-password "pengalosa") ;; password
-  (setq wallabag-clientid "28948_5xfysd48cv0g0ksgc84wwgwskc8s0s8wg84k0koo8k8sk0ksgk") ;; created with API clients management
-  ;; (setq wallabag-clientid "1_28hh2e86jqkgckkogkcscwcwggcwcks408cwskcw8g40s88kgs") ;; created with API clients management
-  ;; (setq wallabag-secret "1y9pknyk85twccggg0cswkc088cc04css0c4oww8840wgsggoc") ;; created with API clients management
-  (setq wallabag-db-file "~/org/wallabag.sqlite") ;; optional, default is saved to ~/.emacs.d/.cache/wallabag.sqlite
+  ;; (setopt wallabag-password "pengalosa") ;; password
+  (setopt wallabag-clientid "28948_5xfysd48cv0g0ksgc84wwgwskc8s0s8wg84k0koo8k8sk0ksgk") ;; created with API clients management
+  ;; (setopt wallabag-clientid "1_28hh2e86jqkgckkogkcscwcwggcwcks408cwskcw8g40s88kgs") ;; created with API clients management
+  ;; (setopt wallabag-secret "1y9pknyk85twccggg0cswkc088cc04css0c4oww8840wgsggoc") ;; created with API clients management
+  (setopt wallabag-search-print-items '("title" "domain" "tag" "reading-time" "date")) ;; control what content should be show in *wallabag-search*
+  (setopt wallabag-search-page-max-rows 32) ;; how many items shown in one page
+  (setopt wallabag-db-file "~/org/wallabag.sqlite") ;; optional, default is saved to ~/.emacs.d/.cache/wallabag.sqlite
   ;; (run-with-timer 0 3540 'wallabag-request-token) ;; optional, auto refresh token, token should refresh every hour
   ;; (add-hook 'wallabag-entry-mode-hook #'org-indent-mode)
   (add-hook 'wallabag-entry-mode-hook #'eldoc-mode)
@@ -2599,7 +2664,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
     ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
     )
 
-  (setq wallabag-render-html-function #'my-wallabag-render-html)
+  (setopt wallabag-render-html-function #'my-wallabag-render-html)
   (defun my-wallabag-render-html (begin end)
     (require 'eww)
     (let ((shrface-org nil)
@@ -2643,49 +2708,51 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (paw-annotation-mode . paw-annotation-setup)
   :init
   (require 'paw-hsk)
+  (require 'paw-jieba)
   (paw-hsk-update-word-lists)
-  (setq paw-db-file (expand-file-name "paw.sqlite" org-directory))
+  (setopt paw-note-dir (expand-file-name "paw" org-directory))
+  (setopt paw-db-file (expand-file-name "paw.sqlite" paw-note-dir))
   ;; ecdict dictionary
-  (setq paw-ecdict-db (expand-file-name "stardict.db" org-directory))
+  (setopt paw-ecdict-db (expand-file-name "stardict.db" paw-note-dir))
   ;; setup ECDICT before using it, and create the files manually if not exist
-  ;; (setq paw-ecdict-wordlist-files `(
-  ;;                                   ;; ,(expand-file-name "美国当代英语语料库.csv" org-directory) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
-  ;;                                   ,(expand-file-name "mawl.csv" org-directory) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
-  ;;                                   ,(expand-file-name "opal.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "5000.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "极品GRE红宝书.csv" org-directory)
-  ;;                                   ,(expand-file-name "gre.txt" org-directory)
-  ;;                                   ,(expand-file-name "托福绿宝书.csv" org-directory)
-  ;;                                   ,(expand-file-name "2021_Teachers_AcademicCollocationList.csv" org-directory) ;; https://www.pearsonpte.com/teachers/academic-collocation
-  ;;                                   ,(expand-file-name "The Unofficial Harry Potter Vocabulary Builder.csv" org-directory)
-  ;;                                   ,(expand-file-name "Illustrated Everyday Expressions with Stories.csv" org-directory)
-  ;;                                   ,(expand-file-name "Essential Idioms in English.csv" org-directory)
-  ;;                                   ,(expand-file-name "IELTS_word_lists.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Advanced.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Intermediate.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Beginner.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "idioms.txt" org-directory)
-  ;;                                   ,(expand-file-name "phrase-list.csv" org-directory) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
-  ;;                                   ,(expand-file-name "英语生词本.csv" org-directory)
+  ;; (setopt paw-ecdict-wordlist-files `(
+  ;;                                   ;; ,(expand-file-name "美国当代英语语料库.csv" paw-note-dir) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
+  ;;                                   ,(expand-file-name "mawl.csv" paw-note-dir) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
+  ;;                                   ,(expand-file-name "opal.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "5000.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "极品GRE红宝书.csv" paw-note-dir)
+  ;;                                   ,(expand-file-name "gre.txt" paw-note-dir)
+  ;;                                   ,(expand-file-name "托福绿宝书.csv" paw-note-dir)
+  ;;                                   ,(expand-file-name "2021_Teachers_AcademicCollocationList.csv" paw-note-dir) ;; https://www.pearsonpte.com/teachers/academic-collocation
+  ;;                                   ,(expand-file-name "The Unofficial Harry Potter Vocabulary Builder.csv" paw-note-dir)
+  ;;                                   ,(expand-file-name "Illustrated Everyday Expressions with Stories.csv" paw-note-dir)
+  ;;                                   ,(expand-file-name "Essential Idioms in English.csv" paw-note-dir)
+  ;;                                   ,(expand-file-name "IELTS_word_lists.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Advanced.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Intermediate.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "Cambridge_word_lists_-_Beginner.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "idioms.txt" paw-note-dir)
+  ;;                                   ,(expand-file-name "phrase-list.csv" paw-note-dir) ;; https://www.oxfordlearnersdictionaries.com/wordlists/
+  ;;                                   ,(expand-file-name "英语生词本.csv" paw-note-dir)
   ;;                                   ))
   ;; setup ECDICT before using it, and create the files manually if not exist
-  (setq paw-ecdict-known-words-files `(,(expand-file-name "eudic.csv" org-directory)
-                                       ,(expand-file-name "english.txt" org-directory)))
+  (setq paw-ecdict-known-words-files `(,(expand-file-name "eudic.csv" paw-note-dir)
+                                       ,(expand-file-name "english.txt" paw-note-dir)))
   ;; setup ECDICT before using it, and create the file manually if not exists
-  (setq paw-ecdict-default-known-words-file (expand-file-name "english.txt" org-directory))
+  (setopt paw-ecdict-default-known-words-file (expand-file-name "english.txt" paw-note-dir))
 
   ;; jlpt dictionary
-  ;; (setq paw-jlpt-db (expand-file-name "japanese.db" org-directory))
+  ;; (setopt paw-jlpt-db (expand-file-name "japanese.db" paw-note-dir))
   ;; setup jlpt before using it, and create the files manually if not exist
-  ;; (setq paw-jlpt-wordlist-files `(,(expand-file-name "日语生词本.csv" org-directory)
-  ;;                                 ,(expand-file-name "日本语红宝书.csv" org-directory)
-  ;;                                 ,(expand-file-name "蓝宝书日语文法.csv" org-directory)
-  ;;                                 ,(expand-file-name "NEW-JLPT.csv" org-directory)
+  ;; (setopt paw-jlpt-wordlist-files `(,(expand-file-name "日语生词本.csv" paw-note-dir)
+  ;;                                 ,(expand-file-name "日本语红宝书.csv" paw-note-dir)
+  ;;                                 ,(expand-file-name "蓝宝书日语文法.csv" paw-note-dir)
+  ;;                                 ,(expand-file-name "NEW-JLPT.csv" paw-note-dir)
   ;;                                   ))
   ;; setup jlpt before using it, and create the files manually if not exist
-  ;; (setq paw-jlpt-known-words-files `(,(expand-file-name "japanese.txt" org-directory)))
+  ;; (setopt paw-jlpt-known-words-files `(,(expand-file-name "japanese.txt" paw-note-dir)))
   ;; setup jlpt before using it, and create the file manually if not exists
-  ;; (setq paw-jlpt-default-known-words-file (expand-file-name "japanese.txt" org-directory))
+  ;; (setopt paw-jlpt-default-known-words-file (expand-file-name "japanese.txt" paw-note-dir))
   :custom
   (paw-non-ascii-word-separator "⁣") ;; Invisible separator character, for chinese
   (paw-non-ascii-language "zh") ;; For chinese
@@ -2732,7 +2799,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; limit general web buttons number
   (paw-general-web-button-number (if (eq system-type 'android) 2 3))
   ;; (paw-default-say-word-function (if (eq system-type 'android) 'paw-android-say-word 'paw-say-word))
-  ;; (paw-tts-zh-cn-voice "zh-CN-YunjianNeural") ; zh-CN-XiaoxiaoNeural, zh-CN-YunyangNeural
+  (paw-tts-zh-cn-voice "zh-CN-YunjianNeural") ; zh-CN-XiaoxiaoNeural, zh-CN-YunyangNeural
   ;; (paw-sdcv-dictionary-list '("简明英汉字典增强版"))
   (paw-sdcv-dictionary-list '("Org CC-Cedict"))
   ;; add online word by default for add button
@@ -2763,15 +2830,24 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (paw-view-note-meaning-src-lang "org")
   ;; must be one of the studylist name in `paw-offline-studylist'
   ;; (paw-default-offline-studylist "English Studylist")
-  (paw-search-page-max-rows (if (eq system-type 'android) 31 41))
+  (paw-default-offline-studylist "Chinese Studylist")
+  (paw-search-page-max-rows (pcase system-type
+                              ('gnu/linux 31)
+                              ('windows-nt 31)
+                              ('darwin 31)
+                              ('android 31)))
+  ;; be careful if using auto adjust, paw-search-page-max-rows will be ignored, it may be unstable
+  (paw-search-page-max-rows-auto-adjust t)
   (paw-add-offline-word-without-asking t)
   (paw-add-online-word-without-asking t)
   ;; ;; Servers to add online words. It could be eudic, anki, or both.
   ;; (paw-online-word-servers '(eudic anki))
   ;; ;; The default Anki deck to use.
   ;; (paw-anki-deck "English")
+  (paw-view-note-click-enable t)
+  (paw-view-note-back-to-original-buffer-supported-modes
+   '("pdf-viewer" paw-search-mode nov-mode org-mode wallabag-entry-mode))
   :config
-  (setq paw-note-dir (expand-file-name "Dict_Notes" org-directory))
   ;; if the file was moved to other places after adding annotations, we can add
   ;; the parent path of the file for paw to search. This is necessary for
   ;; multiple clients (PC/Mobile/Pad) to use the same database but file location
@@ -2782,6 +2858,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
                                       ;; "/storage/emulated/0/Download/"
                                       ;; "/storage/emulated/0/Download/Telegram"
                                       ;; "/storage/emulated/0/Org/web/"
+                                      "~/org/notes/web/"
                                       "~/org/roam"
                                       "~/Sync/notes"
                                       ))
@@ -2790,10 +2867,20 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (add-hook 'paw-view-note-after-render-hook #'org-display-inline-images)
   (add-hook 'context-menu-functions #'paw-annotation-context-menu)
 
+  (unless (string-equal system-type "android")
+    (let ((func (cond
+                 ((fboundp 'eaf-open-browser-other-window)
+                  'eaf-open-browser-other-window)
+                 (t 'browse-url))))
+      (setopt paw-dictionary-browse-function func)
+      (setopt paw-mdict-dictionary-function func)))
+
+  (setopt paw-sdcv-env-lang (getenv "LANG"))
+  (setopt paw-sdcv-dictionary-data-dir (expand-file-name "dict" doom-private-dir))
   ;; use popweb as browse function
   ;; (unless (string-equal system-type "android")
-  ;;     (setq paw-dictionary-browse-function 'popweb-url-input)
-  ;;     (setq paw-mdict-dictionary-function 'popweb-url-input))
+  ;;     (setopt paw-dictionary-browse-function 'popweb-url-input)
+  ;;     (setopt paw-mdict-dictionary-function 'popweb-url-input))
   (after! wallabag
     (paw-server)))
 
@@ -2811,10 +2898,10 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (use-package! sdcv
   :defer t
   :config
-  (setq sdcv-env-lang "en_US.UTF-8")
-  (setq sdcv-program "sdcv")
-  (setq sdcv-only-data-dir nil) ;; sdcv --only-data-dir ...
-  (setq sdcv-dictionary-data-dir nil) ;; sdcv --data-dir ...
+  (setopt sdcv-env-lang "en_US.UTF-8")
+  (setopt sdcv-program "sdcv")
+  (setopt sdcv-only-data-dir nil) ;; sdcv --only-data-dir ...
+  (setopt sdcv-dictionary-data-dir nil) ;; sdcv --data-dir ...
   (setq sdcv-dictionary-simple-list
         '("Merriam-Webster's Advanced Learner's Dictionary (En-En)"))
   (setq sdcv-dictionary-complete-list
@@ -2826,13 +2913,13 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :init
   (add-hook 'dired-mode-hook 'org-download-enable)
   :config
-  (setq org-download-image-dir "~/Pictures/org-download"))
+  (setopt org-download-image-dir "~/Pictures/org-download"))
 
 (use-package! go-translate
   :defer t
   :config
-  (setq gt-langs '(en fr))
-  (setq gt-default-translator (gt-translator :engines (gt-google-engine))))
+  (setopt gt-langs '(en fr))
+  (setopt gt-default-translator (gt-translator :engines (gt-google-engine))))
 
 (use-package! maxima
   :defer t
@@ -2863,12 +2950,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :config
   (setq shr-cookie-policy nil)
   (if (string-equal system-type "android")
-      (setq shrface-bullets-bullet-list
+      (setopt shrface-bullets-bullet-list
         '("▼"
           "▽"
           "▿"
           "▾"))
-    (setq shrface-bullets-bullet-list
+    (setopt shrface-bullets-bullet-list
           '("▼"
             "▽"
             "▿"
@@ -2928,28 +3015,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
       (shr-ensure-newline)
       (insert "\n"))))
 
-(use-package! ultra-scroll
-  :init
-  ;; (customize-set-variable 'pixel-scroll-precision-large-scroll-height 5.0)
-  ;; (customize-set-variable 'pixel-scroll-precision-interpolate-mice t)
-  (customize-set-variable 'pixel-scroll-precision-interpolate-page t)
-  ;; (customize-set-variable 'pixel-scroll-precision-use-momentum t)
-  ;; (pixel-scroll-precision-mode 1)
-  ;; scroll one line at a time (less "jumpy" than defaults)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-  (setq scroll-conservatively 101 ; important!
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
-
 ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/maxima/")
  ;; (autoload 'maxima-mode "maxima" "Maxima mode" t)
  ;; (autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
  ;; (autoload 'maxima "maxima" "Maxima interaction" t)
  ;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
- ;; (setq imaxima-use-maxima-mode-flag t)
+ ;; (setopt imaxima-use-maxima-mode-flag t)
  ;; (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
 (use-package! maxima
   :init
@@ -2964,3 +3035,76 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (after! julia-repl
   (progn
     (julia-repl-set-terminal-backend 'vterm)))
+
+(use-package! pulsar
+  ;; :defer t
+  :config
+  ;; Check the default value of `pulsar-pulse-functions'.  That is where
+  ;; you add more commands that should cause a pulse after they are
+  ;; invoked
+
+  (setopt pulsar-pulse t)
+  (setopt pulsar-delay 0.055)
+  (setopt pulsar-iterations 10)
+  (setopt pulsar-face 'pulsar-magenta)
+  (setopt pulsar-highlight-face 'pulsar-yellow)
+
+  (pulsar-global-mode 1)
+
+  ;; OR use the local mode for select mode hooks
+
+  ;; (dolist (hook '(org-mode-hook emacs-lisp-mode-hook))
+  ;;   (add-hook hook #'pulsar-mode))
+
+  ;; pulsar does not define any key bindings.  This is just a sample that
+  ;; respects the key binding conventions.  Evaluate:
+  ;;
+  ;;     (info "(elisp) Key Binding Conventions")
+  ;;
+  ;; The author uses C-x l for `pulsar-pulse-line' and C-x L for
+  ;; `pulsar-highlight-line'.
+  ;;
+  ;; You can replace `pulsar-highlight-line' with the command
+  ;; `pulsar-highlight-dwim'.
+  (let ((map global-map))
+    (define-key map (kbd "C-c h p") #'pulsar-pulse-line)
+    (define-key map (kbd "C-c h h") #'pulsar-highlight-line));; Check the default value of `pulsar-pulse-functions'.  That is where
+;; you add more commands that should cause a pulse after they are
+;; invoked
+
+(setopt pulsar-pulse t)
+(setopt pulsar-delay 0.055)
+(setopt pulsar-iterations 10)
+(setopt pulsar-face 'pulsar-magenta)
+(setopt pulsar-highlight-face 'pulsar-yellow)
+
+(pulsar-global-mode 1)
+
+;; OR use the local mode for select mode hooks
+
+(dolist (hook '(org-mode-hook emacs-lisp-mode-hook))
+  (add-hook hook #'pulsar-mode))
+
+;; pulsar does not define any key bindings.  This is just a sample that
+;; respects the key binding conventions.  Evaluate:
+;;
+;;     (info "(elisp) Key Binding Conventions")
+;;
+;; The author uses C-x l for `pulsar-pulse-line' and C-x L for
+;; `pulsar-highlight-line'.
+;;
+;; You can replace `pulsar-highlight-line' with the command
+;; `pulsar-highlight-dwim'.
+(let ((map global-map))
+  (define-key map (kbd "C-c h p") #'pulsar-pulse-line)
+  (define-key map (kbd "C-c h h") #'pulsar-highlight-line))
+;; Use pulsar with next-error
+(add-hook 'next-error-hook #'pulsar-pulse-line)
+;; Recenter and then pulse current line
+;; integration with the `consult' package:
+(add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
+(add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
+
+;; integration with the built-in `imenu':
+(add-hook 'imenu-after-jump-hook #'pulsar-recenter-top)
+(add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry))
