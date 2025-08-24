@@ -3,65 +3,66 @@
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
-;; use 'M-x doom/reload'.
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
-                                        ;(package! some-package)
+;; (package! some-package)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format
-                                        ;(package! another-package
-                                        ;  :recipe (:host github :repo "username/repo"))
+;; (package! another-package
+;;   :recipe (:host github :repo "username/repo"))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
-                                        ;(package! this-package
-                                        ;  :recipe (:host github :repo "username/repo"
-                                        ;           :files ("some-file.el" "src/lisp/*.el")))
+;; (package! this-package
+;;   :recipe (:host github :repo "username/repo"
+;;            :files ("some-file.el" "src/lisp/*.el")))
 
 ;; If you'd like to disable a package included with Doom, you can do so here
 ;; with the `:disable' property:
-                                        ;(package! builtin-package :disable t)
+;; (package! builtin-package :disable t)
 
 ;; You can override the recipe of a built in package without having to specify
 ;; all the properties for `:recipe'. These will inherit the rest of its recipe
 ;; from Doom or MELPA/ELPA/Emacsmirror:
-                                        ;(package! builtin-package :recipe (:nonrecursive t))
-                                        ;(package! builtin-package-2 :recipe (:repo "myfork/package"))
+;; (package! builtin-package :recipe (:nonrecursive t))
+;; (package! builtin-package-2 :recipe (:repo "myfork/package"))
 
 ;; Specify a `:branch' to install a package from a particular branch or tag.
 ;; This is required for some packages whose default branch isn't 'master' (which
 ;; our package manager can't deal with; see radian-software/straight.el#279)
-                                        ;(package! builtin-package :recipe (:branch "develop"))
+;; (package! builtin-package :recipe (:branch "develop"))
 
 ;; Use `:pin' to specify a particular commit to install.
-                                        ;(package! builtin-package :pin "1a2b3c4d5e")
+;; (package! builtin-package :pin "1a2b3c4d5e")
 
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...
-                                        ;(unpin! pinned-package)
+;; (unpin! pinned-package)
 ;; ...or multiple packages
-                                        ;(unpin! pinned-package another-pinned-package)
+;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
-                                        ;(unpin! t)
+;; (unpin! t)
+
 (package! ace-link)
 (package! activities)
+(package! alert)
 (package! arxiv-mode)
-(package! bookmark+
-  :recipe (:host github :repo "emacsmirror/bookmark-plus"))
+
+;; (package! bookmark+
+;;   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
+;; (package! bufferlo)                     ;
+;; (package! bufferlo
+;;   :recipe (:host github :repo "florommel/bufferlo" :branch "fix-tab-group-restore"))
+(package! bufferlo
+  :recipe (:host github :repo "florommel/bufferlo"))
+
 (package! calibredb)
 (package! casual-suite)
-;; (package! casual-calc)
-;; (package! casual-avy)
-;; (package! casual-dired)
-;; (package! casual-info)
-;; (package! casual-isearch)
-;; (package! combobulate
-;;   :recipe (:host github :repo "mickeynp/combobulate"))
 (package! consult-gh
   :recipe (:host github :repo "armindarvish/consult-gh"))
 (package! consult-gnome-search
@@ -74,70 +75,57 @@
   :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
 (package! consult-omni
   :recipe (:host github :repo "armindarvish/consult-omni" :files (:defaults "sources/*.el")))
-;; (package! consult-recoll)
 (package! consult-recoll
   :recipe (:host github :repo "emacs-straight/consult-recoll"))
+
 (package! denote)
 (package! denote-org)
 (package! denote-menu)
-;; (package! dired-filter)
-;; (package! dired-hist)
-;; (package! dired-launch)
-;; (package! dired-narrow)
-(package! dired+
-  :recipe (:host github :repo "emacsmirror/dired-plus"))
-;; (package! dropbox
-;;   :recipe (:host github :repo "lorniu/emacs-dropbox"))
-;; (package! dwim-shell-command)
-;; (package! eat
-;;   :recipe (:host codeberg :repo "akib/emacs-eat"
-;;            :files ("*.el" ("term" "term/*.el") "*.texi"
-;;                    "*.ti" ("terminfo/e" "terminfo/e/*")
-;;                    ("terminfo/65" "terminfo/65/*")
-;;                    ("integration" "integration/*")
-;;                    (:exclude ".dir-locals.el" "*-tests.el"))))
-(package! alert)
+;; (package! dired+
+;;   :recipe (:host github :repo "emacsmirror/dired-plus"))
+
 (package! eldoc-box)
 (package! elfeed)
 (package! elfeed-org)
-;; (package! ement)
-;; (package! engine-mode)
 (package! epkg)
 (package! evil-matchit)
-(package! facemenu+
-  :recipe (:host github :repo "emacsmirror/facemenu-plus"))
-;; (package! fish-completion)
+
+;; (package! facemenu+
+;;   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
 (package! focus)
 (package! fontaine)
+
 (package! ghub)
-(package! go-translate)
-(package! gptel)
-(package! hexrgb
-  :recipe (:host github :repo "emacsmirror/hexrgb"))
-(package! hide-comnt
-  :recipe (:host github :repo "emacsmirror/hide-comnt"))
-(package! highlight
-  :recipe (:host github :repo "emacsmirror/highlight"))
+;; (package! go-translate :pin "9ffbcdd")
+(package! go-translate
+  :recipe (:host github :repo "lorniu/go-translate"))
+
+;; (package! hexrgb
+;;   :recipe (:host github :repo "emacsmirror/hexrgb"))
+;; (package! hide-comnt
+;;   :recipe (:host github :repo "emacsmirror/hide-comnt"))
+;; (package! highlight
+;;   :recipe (:host github :repo "emacsmirror/highlight"))
 (package! hledger-mode)
-;; (package! html-ts-mode
-;;   :recipe (:host github :repo "mickeynp/html-ts-mode"))
 (package! hungry-delete)
 (package! hydra)
 (package! hyperbole
   :recipe (:host github :repo "rswgnu/hyperbole"))
+
 (package! igist)
-;; (package! immersive-translate)
 (package! immersive-translate
   :recipe (:host github :repo "Elilif/emacs-immersive-translate"))
+
 (package! jieba
   :recipe (:host github :repo "kisaragi-hiu/emacs-jieba"))
 (package! jinx)
+
 (package! llama
   :recipe (:host github :repo "tarsius/llama"))
 (package! lexic)
-;; (package! load-theme-buffer-local)
+
 (package! major-mode-hydra)
-;; (package! mastodon)
+(package! math-preview)
 (package! maxima)
 (package! mistty)
 (package! mixed-pitch)
@@ -145,7 +133,9 @@
   :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
 (package! mouse3
   :recipe (:host github :repo "emacsmirror/mouse3"))
+
 (package! nov)
+
 (package! org-books
   :recipe (:host github :repo "goderich/org-books"))
 (package! org-download)
@@ -160,13 +150,12 @@
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! org-transclusion)
-(package! palette
-  :recipe (:host github :repo "emacsmirror/palette"))
+
+;; (package! palette
+;;   :recipe (:host github :repo "emacsmirror/palette"))
 (package! pangu-spacing)
 (package! paw
   :recipe (:host github :repo "chenyanming/paw" :files ("*")))
-;; (package! paw
-;;   :recipe (:local-repo "paw"))
 (package! pcre2el)
 (package! pdftotext
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
@@ -174,30 +163,40 @@
   :recipe (:host github :repo "rougier/persid"))
 (package! posframe)
 (package! pulsar)
+
+(package! rainbow-delimiters)
+(package! reader
+  :recipe (:host codeberg :repo "divyaranjan/emacs-reader"
+           :files ("*.el" "render-core.so")
+           :pre-build ("make" "all")))
 (package! request)
+
 (package! sdcv
   :recipe (:host github :repo "manateelazycat/sdcv" :branch "master"))
 (package! shr-tag-pre-highlight)
 (package! shrface
   :recipe (:host github :repo "chenyanming/shrface"))
 (package! svg-lib)
-(package! thingatpt+
-  :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
-(package! thing-cmds
-  :recipe (:host github :repo "emacsmirror/thing-cmds"))
+
+(package! tab-bar-groups)
+;; (package! tabspaces)
+;; (package! thingatpt+
+;;   :recipe (:host github :repo "emacsmirror/thingatpt-plus"))
+;; (package! thing-cmds
+;;   :recipe (:host github :repo "emacsmirror/thing-cmds"))
 (package! tldr)
-;; (package! ultra-scroll
-;;   :recipe (:host github :repo "jdtsmith/ultra-scroll"))
+(package! transient-showcase
+  :recipe (:host github :repo "positron-solutions/transient-showcase" :branch "master"))
+
 (package! unfill)
+
 (package! visual-replace)
+
 (package! w3m)
 (package! wallabag
   :recipe (:host github :repo "chenyanming/wallabag.el" :files ("*.el" "*.alist" "*.css")))
-;; (package! wallabag
-;;   :recipe (:host github :local-repo "wallabag.el" :files ("*.el" "*.alist" "*.css")))
 (package! websocket)
 (package! windower)
+
 (package! xah-math-input
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
-;; (package! xah-wolfram-mode
-;;   :recipe (:host github :repo "xahlee/xah-wolfram-mode"))

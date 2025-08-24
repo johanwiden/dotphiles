@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setopt user-full-name "Johan Widén"
-      user-mail-address "j.e.widen@gmail.com")
+        user-mail-address "j.e.widen@gmail.com")
 
 (defvar my/is-termux
   (string-suffix-p
@@ -53,28 +53,28 @@
   ;;     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
   (defun jw/default-font ()
     (interactive)
-    (setopt doom-font (font-spec :family "Iosevka Comfy Fixed" :size 15 :weight 'regular)
-          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 15))
+    (setopt doom-font (font-spec :family "Aporetic Sans Mono" :size 15 :weight 'normal)
+          doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 15))
     (doom/reload-font))
   (defun jw/small-font ()
     (interactive)
-    (setopt doom-font (font-spec :family "Iosevka Comfy Motion" :size 12 :weight 'regular)
-          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Duo" :size 12))
+    (setopt doom-font (font-spec :family "Aporetic Sans Mono" :size 12 :weight 'normal)
+          doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 12))
     (doom/reload-font))
   (defun jw/regular-font ()
     (interactive)
-    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 15 :weight 'regular)
-          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 15))
+    (setopt doom-font (font-spec :family "Aporetic Sans Mono" :size 15 :weight 'normal)
+          doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 15))
     (doom/reload-font))
   (defun jw/medium-font ()
     (interactive)
-    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 17 :weight 'semilight)
-          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 17))
+    (setopt doom-font (font-spec :family "Aporetic Sans Mono" :size 17 :weight 'normal)
+          doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 17))
     (doom/reload-font))
   (defun jw/large-font ()
     (interactive)
-    (setopt doom-font (font-spec :family "Iosevka Comfy" :size 21 :weight 'semilight)
-          doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 21))
+    (setopt doom-font (font-spec :family "Aporetic Sans Mono" :size 21 :weight 'normal)
+          doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 21))
     (doom/reload-font))
 
   ;; doom modeline
@@ -216,14 +216,14 @@
   ;; <https://github.com/protesilaos/iosevka-comfy>.
   (setopt fontaine-presets
       '((small
-         :default-family "Iosevka Comfy Motion"
+         :default-family "Aporetic Sans Mono"
          :default-height 100
-         :variable-pitch-family "Iosevka Comfy Duo")
+         :variable-pitch-family "Aporetic Sans")
         (regular) ; like this it uses all the fallback values and is named `regular'
         (medium
-         :default-weight semilight
+         :default-weight normal
          :default-height 130
-         :bold-weight extrabold)
+         :bold-weight bold)
         (large
          :inherit medium
          :default-height 160)
@@ -233,8 +233,8 @@
          ;; I keep all properties for didactic purposes, but most can be
          ;; omitted.  See the fontaine manual for the technicalities:
          ;; <https://protesilaos.com/emacs/fontaine>.
-         :default-family "Iosevka Comfy"
-         :default-weight regular
+         :default-family "Aporetic Sans Mono"
+         :default-weight normal
          :default-height 115
 
          :fixed-pitch-family nil ; falls back to :default-family
@@ -245,7 +245,7 @@
          :fixed-pitch-serif-weight nil ; falls back to :default-weight
          :fixed-pitch-serif-height 1.0
 
-         :variable-pitch-family "Iosevka Comfy Motion Duo"
+         :variable-pitch-family "Aporetic Sans"
          :variable-pitch-weight nil
          :variable-pitch-height 1.0
 
@@ -387,7 +387,7 @@
  save-interprogram-paste-before-kill t
  switch-to-buffer-obey-display-actions t
  ;; Change this from 10MB to 100MB
- large-file-warning-threshold 500000000
+ large-file-warning-threshold 5000000000
  show-paren-context-when-offscreen 'overlay
  shr-color-visible-luminance-min 80)
 (customize-set-variable 'user-emacs-directory "/home/jw/bookmarks/cache/")
@@ -395,6 +395,7 @@
 (customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
 (customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
 (setopt doom-cache-dir user-emacs-directory)
+(customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" user-emacs-directory))
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (after! recentf
@@ -406,6 +407,7 @@
 (require 'saveplace-pdf-view)
 (save-place-mode 1)
 (setopt use-package-verbose t)
+(tooltip-mode 1)
 (add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
@@ -413,6 +415,9 @@
   (add-to-list 'auth-sources "secrets:Login"))
 (customize-set-variable 'immersive-translate-chatgpt-model "gpt-4o")
 (setopt magit-format-file-function #'magit-format-file-nerd-icons)
+(setopt tab-bar-format
+        '(tab-bar-format-menu-bar tab-bar-format-history tab-bar-format-tabs-groups
+          tab-bar-separator tab-bar-format-add-tab))
 (map! :map (shrface-mode-map wallabag-entry-mode-map nov-mode-map eww-mode-map mu4e-view-mode-map elfeed-show-mode-map)
       :n "TAB" 'shrface-outline-cycle
       :n "<tab>" 'shrface-outline-cycle
@@ -451,7 +456,7 @@
       '(try-complete-file-name-partially
         try-complete-file-name
         try-expand-all-abbrevs
-        try-expand-line
+        ;; try-expand-line
         try-expand-dabbrev-visible
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill
@@ -830,27 +835,6 @@
          reb-lisp-mode-map ("C-o" . casual-re-builder-tmenu))
   :after (re-builder))
 
-(use-package! thingatpt+
-  :defer t)
-
-(use-package! hide-comnt
-  :defer t)
-
-(use-package! thing-cmds
-:defer t)
-
-(use-package! hexrgb
-  :defer t)
-
-(use-package! palette
-:defer t)
-
-(use-package! facemenu+
-:defer t)
-
-(use-package! highlight
-:defer t)
-
 (global-set-key (kbd "S-<down-mouse-1>") #'mouse-set-mark)
 ;; was: mouse-appearance-menu
 (use-package! mouse3)
@@ -885,27 +869,17 @@ Also used for highlighting.")
 
 (use-package! casual-dired
   :ensure nil
-  :after dired+
+  :after dired
   :bind (:map dired-mode-map
               ("C-c C-o" . casual-dired-tmenu)
               ("C-c s" . #'casual-dired-sort-by-tmenu)
               ("C-c /" . #'casual-dired-search-replace-tmenu)))
 
-(use-package! dired+
-    :after dired
-    :config
-    ;; diredp requires dired-actual-switches to be a string, not nil, but
-    ;; this variable is only non nil in dired buffers
-    (setq dired-actual-switches "-al")
-    ;; (setopt diredp-image-preview-in-tooltip 300)
-    )
-;; (after! dired
-;;   (load "/home/jw/Downloads/dired+.el"))
-
-(use-package! bookmark+
-    :after dired
-    ;;:defer t
-    )
+;; (use-package! bookmark+
+;;   :after dired
+;;   ;;:defer t
+;;   :config
+;;   (setopt bmkp-last-as-first-bookmark-file nil))
 
 (use-package! casual-bookmarks
   :ensure nil
@@ -913,7 +887,19 @@ Also used for highlighting.")
               ("C-o" . casual-bookmarks-tmenu)
               ("S" . casual-bookmarks-sortby-tmenu)
               ("J" . bookmark-jump))
-  :after (bookmark+))
+  :after dired)
+
+(setq eshell-prompt-regexp "^.* λ ") ;; modify according to your prompt
+
+(add-hook 'eshell-mode-hook 'outline-minor-mode)
+(add-hook 'eshell-mode-hook (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
+(add-hook 'eshell-mode-hook (lambda ()
+           (setq-local imenu-generic-expression `(("Prompt" ,(concat eshell-prompt-regexp "\\(.*\\)") 1)))))
+
+(use-package! rainbow-delimiters
+  ;; :defer t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package! casual-editkit
   :ensure nil
@@ -1399,6 +1385,13 @@ browser defined by `browse-url-generic-program'."
   (setopt calibredb-library-alist '(("~/calibre_library")))
   (setopt calibredb-date-width 0)
   (setopt calibredb-download-dir (expand-file-name "~/Downloads"))
+  (setq calibredb-virtual-library-alist '(("1. cpp" . "cpp")
+                                          ("2. fantasy" . "fantasy")
+                                          ("3. fiction" . "lit-fiction")
+                                          ("4. manual" . "manual")
+                                          ("5. physics" . "physics")
+                                          ("6. tensor" . "tensor-calc")
+                                          ("7. science fiction" . "scifi")))
   (setopt calibredb-library-alist '(("/home/jw/calibre_library")
                                   ("https://bookserver.archive.org/catalog/")
                                   ("http://arxiv.maplepop.com/catalog/")
@@ -1842,16 +1835,16 @@ _w_ where is something defined
 ;; if you built from source
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
   ;; (setopt mu4e-compose-signature "Johan Widén, tel: +46705367346\nRisvägen 5 A, 192 73 Sollentuna, SWEDEN")
-(setq mu4e-sent-folder   "/gmail/[Gmail]/Skickat"       ;; folder for sent messages
-      mu4e-drafts-folder "/gmail/[Gmail]/Utkast"        ;; unfinished messages
+(setq mu4e-sent-folder   "/gmail/[Gmail]/Sent Mail"     ;; folder for sent messages
+      mu4e-drafts-folder "/gmail/[Gmail]/Drafts"        ;; unfinished messages
       mu4e-trash-folder  "/gmail/[Gmail]/Papperskorgen" ;; trashed messages
-      mu4e-refile-folder "/gmail/[Gmail]/All e-post")   ;; saved messages
+      mu4e-refile-folder "/gmail/[Gmail]/All Mail")     ;; saved messages
 (setopt mu4e-maildir-shortcuts
         '((:maildir "/gmail/INBOX"                 :key ?i)
-          (:maildir "/gmail/[Gmail]/Skickat"       :key ?s)
+          (:maildir "/gmail/[Gmail]/Sent Mail"     :key ?s)
           (:maildir "/gmail/[Gmail]/Papperskorgen" :key ?t)
-          (:maildir "/gmail/[Gmail]/Utkast"        :key ?d)
-          (:maildir "/gmail/[Gmail]/All e-post"    :key ?a)))
+          (:maildir "/gmail/[Gmail]/Drafts"        :key ?d)
+          (:maildir "/gmail/[Gmail]/All Mail"      :key ?a)))
 (after! mu4e
   (progn
     (setopt sendmail-program (executable-find "msmtp")
@@ -1919,6 +1912,7 @@ _w_ where is something defined
            (imenu buffer)
            (consult-location buffer)
            (consult-grep buffer)
+           (embark-keybinding grid)
            ;; (notmuch-result reverse)
            (minor-mode reverse)
            ;; (reftex-label (:not unobtrusive))
@@ -2165,7 +2159,38 @@ _w_ where is something defined
   ;; If you want to have Denote commands available via a right click
   ;; context menu, use the following and then enable
   ;; `context-menu-mode'.
-  (add-hook 'context-menu-functions #'denote-context-menu))
+  (add-hook 'context-menu-functions #'denote-context-menu)
+
+  ;; Transient setup for Denote
+  ;; https://gist.github.com/ashton314/1de93821d255412cdadfbcf98cd30cad
+  (transient-define-prefix denote-transient ()
+  "Denote dispatch"
+  [["Note creation (d)"
+    ("dd" "new note" denote)
+    ("dj" "new or existing journal entry" denote-journal-new-or-existing-entry)
+    ("dn" "open or new" denote-open-or-create)
+    ("dt" "new specifying date and time" denote-date)
+    ("ds" "create in subdirectory " denote-subdirectory)]
+   ["Folgezettel (f)"
+    ("fc" "create parent/child/sibling" denote-sequence)
+    ("ff" "find parent/child/sibling notes" denote-sequence-find)
+    ("fr" "reparent (adopt) current note into another sequence" denote-sequence-reparent)
+    ("fp" "find previous sibling" denote-sequence-find-previous-sibling :transient t)
+    ("fn" "find next sibling" denote-sequence-find-next-sibling :transient t)]]
+  [["Bookkeeping (b)"
+    ("br" "prompt and rename" denote-rename-file)
+    ("bf" "rename with frontmatter" denote-rename-file-using-front-matter)
+    ("bk" "modify keywords" denote-rename-file-keywords)]
+   ["Linking (l)"
+    ("li" "insert link" denote-link)
+    ("lh" "insert link to org heading" denote-org-link-to-heading)
+    ("lb" "show backlinks" denote-backlinks)
+    ("lg" "visit backlink" denote-find-backlink)
+    ("lo" "org backlink block" denote-org-dblock-insert-backlinks)]]
+  [["Searching (s)"
+    ("sd" "deft" deft)
+    ("sn" "consult-notes" consult-notes)
+    ("ss" "consult-notes search" consult-notes-search-in-all-notes)]]))
 
 (use-package! denote-org
   :after denote
@@ -2498,11 +2523,12 @@ See also `process-lines'."
           :map isearch-mode-map
           ("C-c r" . visual-replace-from-isearch)))
 
-(use-package! gptel
-  :defer t
-  :config
-  (setq gptel-model "gpt-4o")
-  (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
+(setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
+;; (use-package! gptel
+;;   :defer t
+;;   :config
+;;   (setq gptel-model "gpt-4o")
+;;   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
 
 (use-package! evil-matchit
   ;; :defer t
@@ -2526,6 +2552,65 @@ See also `process-lines'."
    ("C-x C-a b" . activities-switch-buffer)
    ("C-x C-a g" . activities-revert)
    ("C-x C-a l" . activities-list)))
+
+(use-package! bufferlo
+  ;; :defer t
+  :init
+  (setopt bufferlo-bookmark-tab-replace-policy 'new)
+  (setopt bufferlo-bookmark-restore-tab-groups t)
+  (bufferlo-mode))
+
+(use-package! tab-bar-groups
+  :init
+  (setq tab-bar-groups-colors
+        '("yellow" "green" "orange" "brown" "magenta" "cyan" "goldenrod" "red"))
+  :config
+  (tab-bar-groups-activate))
+
+;; (defun jw/tab-bar-group (bookmark-name effective-bookmark-name new-frame-p frame)
+;;   "For each tab in tab-bar-tabs, conditionally add tab to a tab-group"
+;;   ;; (interactive)
+;;   (cl-loop for tab in (tab-bar-tabs)
+;;            do (let ((current-tab-name (cdr (assq 'name tab))))
+;;                 (cond
+;;                  ((string-match-p (rx "partition") current-tab-name)
+;;                   (tab-bar-groups-assign-group "thermo" tab))
+;;                  ((string-match-p (rx "thermodyna") current-tab-name)
+;;                   (tab-bar-groups-assign-group "thermo" tab))
+;;                  ((string-match-p (rx "Gibbs free") current-tab-name)
+;;                   (tab-bar-groups-assign-group "thermo" tab))
+;;                  ((string-match-p (rx "internal ene") current-tab-name)
+;;                   (tab-bar-groups-assign-group "thermo" tab))
+;;                  ((string-match-p (rx "state func") current-tab-name)
+;;                   (tab-bar-groups-assign-group "thermo" tab))
+;;                  ((string-match-p (rx "generalized") current-tab-name)
+;;                   (tab-bar-groups-assign-group "anal" tab))
+;;                  ((string-match-p (rx "total deriva") current-tab-name)
+;;                   (tab-bar-groups-assign-group "anal" tab))
+;;                  (t t)))))
+
+;; (add-hook 'bufferlo-bookmark-frame-handler-functions 'jw/tab-bar-group)
+
+;; (defun jw/tab-bar-group (tab)
+;;   "Conditionally add current tab to a tab group"
+;;   (let ((current-tab-name (cdr (assq 'name tab))))
+;;   (cond
+;;    ((string-match-p (rx "partition") current-tab-name)
+;;     (tab-bar-groups-assign-group "anal" tab))
+;;    ((string-match-p (rx "eneralized") current-tab-name)
+;;     (tab-bar-groups-assign-group "thermo" tab))
+;;    (t (message (format "jw A%sA" current-tab-name))))))
+
+;; (add-hook 'tab-bar-tab-post-open-functions 'jw/tab-bar-group)
+
+;; (defun my/tab-bar-tab-post-open-function (tab)
+;;   (my/tab-bar-set-id nil tab)
+;;   (my/tab-bar-tab-set-project-and-group tab 'maybe-sort))
+;; (add-hook 'tab-bar-tab-post-open-functions #'my/tab-bar-tab-post-open-function)
+
+;;     (when (eq tab-bar-new-tab-choice 'clone)
+;;       (let* ((tabs (funcall tab-bar-tabs-function))
+;;              (orig-tab (nth (tab-bar--tab-index-recent 1) tabs)))
 
 (defun ace-window-one-command ()
   (interactive)
@@ -2580,6 +2665,26 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
 
+(use-package! casual-eshell
+  :ensure nil
+  :defer t
+  :bind (:map eshell-mode-map
+              ("C-o" . casual-eshell-tmenu)))
+
+(use-package! casual-compile
+  :ensure nil
+  :defer t
+  :bind (:map compilation-mode-map
+              ("C-o" . casual-compile-tmenu))
+        (:map grep-mode-map
+              ("C-o" . casual-compile-tmenu)))
+
+(use-package! casual-elisp
+  :ensure nil
+  :defer t
+  :bind (:map emacs-lisp-mode-map
+              ("M-m" . casual-elisp-tmenu)))
+
 (use-package! casual-info
   :ensure nil
   :defer t
@@ -2604,6 +2709,36 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
   (add-hook 'Info-mode-hook #'hl-line-mode)
   (add-hook 'Info-mode-hook #'scroll-lock-mode))
+
+(use-package! casual-man
+  :ensure nil
+  :defer t
+  :bind (:map Man-mode-map ("C-o" . casual-man-tmenu))
+  :config
+  ;; The following keybindings are recommended to support consistent behavior between Man-mode and casual-man-tmenu.
+  (keymap-set Man-mode-map "n" #'casual-lib-browse-forward-paragraph)
+  (keymap-set Man-mode-map "p" #'casual-lib-browse-backward-paragraph)
+  (keymap-set Man-mode-map "[" #'Man-previous-section)
+  (keymap-set Man-mode-map "]" #'Man-next-section)
+  (keymap-set Man-mode-map "j" #'next-line)
+  (keymap-set Man-mode-map "k" #'previous-line)
+  (keymap-set Man-mode-map "K" #'Man-kill)
+  (keymap-set Man-mode-map "o" #'casual-man-occur-options))
+
+(use-package! casual-help
+  :ensure nil
+  :defer t
+  :bind (:map help-mode-map ("C-o" . casual-help-tmenu))
+  :config
+  ;; The following keybindings are recommended to support consistent behavior between help-mode and casual-help-tmenu.
+  (keymap-set help-mode-map "M-[" #'help-go-back)
+  (keymap-set help-mode-map "M-]" #'help-go-forward)
+  (keymap-set help-mode-map "p" #'casual-lib-browse-backward-paragraph)
+  (keymap-set help-mode-map "n" #'casual-lib-browse-forward-paragraph)
+  (keymap-set help-mode-map "P" #'help-goto-previous-page)
+  (keymap-set help-mode-map "N" #'help-goto-next-page)
+  (keymap-set help-mode-map "j" #'forward-button)
+  (keymap-set help-mode-map "k" #'backward-button))
 
 (use-package! eldoc-box
   ;; :defer t
@@ -2714,6 +2849,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (setopt paw-db-file (expand-file-name "paw.sqlite" paw-note-dir))
   ;; ecdict dictionary
   (setopt paw-ecdict-db (expand-file-name "stardict.db" paw-note-dir))
+  (setq paw-say-word-functions '(paw-edge-tts-say-word))
   ;; setup ECDICT before using it, and create the files manually if not exist
   ;; (setopt paw-ecdict-wordlist-files `(
   ;;                                   ;; ,(expand-file-name "美国当代英语语料库.csv" paw-note-dir) ;; https://www.eapfoundation.com/vocab/academic/other/mawl/
@@ -2767,7 +2903,8 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; (paw-all-the-icons-button-enable (unless (eq system-type 'android) t))
   ;; you can use (face-attribute 'org-block :background) or other color
   (paw-view-note-background-color (face-attribute 'org-block :background))
-  (paw-detect-language-p t)
+  ;; (paw-detect-language-p t)
+  (paw-detect-language-p nil)
   ;; (paw-python-program (if (string-equal system-type "android") "python3.10" "python3"))
   (paw-python-program "python3")
   ;; (paw-detect-language-program 'gcld3) ;; android can only install cld3
@@ -2824,7 +2961,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 			      (language . "zh") ;; language of the studylist
 			      (name . "Chinese")) ;; name of the studylist
 			     ))
-  (paw-search-function #'paw-chinese-search-function)
+  ;; (paw-search-function #'paw-chinese-search-function)
   (paw-chinese-sdcv-exact-match t)
   (paw-hsk-levels-to-highlight "hsk1 hsk2 hsk3 hsk4 hsk5 hsk6 hsk7-to-9")
   (paw-view-note-meaning-src-lang "org")
@@ -2877,23 +3014,77 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
   (setopt paw-sdcv-env-lang (getenv "LANG"))
   (setopt paw-sdcv-dictionary-data-dir (expand-file-name "dict" doom-private-dir))
-  ;; use popweb as browse function
-  ;; (unless (string-equal system-type "android")
-  ;;     (setopt paw-dictionary-browse-function 'popweb-url-input)
-  ;;     (setopt paw-mdict-dictionary-function 'popweb-url-input))
+
+  (unless (string-equal system-type "android")
+    (let ((func (cond
+                 ((fboundp 'eaf-open-browser-other-window)
+                  'eaf-open-browser-other-window)
+                 (t 'browse-url))))
+      (setq paw-dictionary-browse-function func)
+      (setq paw-mdict-dictionary-function func)))
+
   (after! wallabag
     (paw-server)))
 
 (defun paw-view-note-setup ()
    ;; (org-writeroom-setup)
-  (visual-line-mode)
+  (when (fboundp 'visual-line-mode)
+    (visual-line-mode))
   ;; (org-modern-mode)
-  (pangu-spacing-mode)
-  (hl-line-mode -1))
+  (when (fboundp 'pangu-spacing-mode)
+    (pangu-spacing-mode))
+  (when (bound-and-true-p hl-line-mode)
+    (hl-line-mode -1)))
 
 (defun paw-annotation-setup()
   ;; TODO need manual enable later
-  (flyspell-mode -1))
+  (when (bound-and-true-p flyspell-mode)
+    (flyspell-mode -1)))
+
+(after! paw
+;; override the original gt-init, to remove the Processing message
+(cl-defmethod gt-init :around ((render gt-render) translator)
+  (gt-log-funcall "init (%s %s)" render translator)
+  (condition-case err
+      (progn (cl-call-next-method render translator)
+             (gt-update translator))
+    (error (gt-log 'render (format "%s initialize failed, abort" (eieio-object-class render)))
+           (user-error (format "[output init error] %s" err)))))
+(cl-defmethod gt-output ((render paw-gt-translate-render) translator)
+  (deactivate-mark)
+  (when (= (oref translator state) 3)
+    (let* ((ret (gt-extract-data render translator))
+           (buffer (get-buffer (oref render buffer-name)))
+           (section (oref render section)))
+      (if-let (err (cl-find-if (lambda (r) (<= (plist-get r :state) 1)) ret))
+          (setq paw-go-translate-running-p nil)
+        ;; (error "%s" (plist-get err :result))
+        ;; (error "Translation Error")
+        (if (buffer-live-p buffer)
+            (with-current-buffer buffer
+              (save-excursion
+                (let* ((buffer-read-only nil)
+                       (translation (mapconcat (lambda (r) (string-join (plist-get r :result) "\n")) ret "\n\n")))
+                  (unless (string-match-p section (org-no-properties (org-get-heading t t t t)))
+                    (goto-char (point-min))
+                    (search-forward (format "** %s" section) nil t))
+                  (org-end-of-subtree t t)
+                  ;; (forward-line)
+                  ;; (delete-region (region-beginning) (region-end))
+                  (let ((bg-color paw-view-note-background-color))
+                    (paw-insert-and-make-overlay
+                     translation
+                     'face `(:background ,bg-color :extend t))
+                    (insert "\n"))
+                  (if (or paw-ask-ai-p paw-ai-translate-p paw-ai-translate-context-p)
+                      (insert "\n"))
+                  (beginning-of-line)
+                  ;; (message "Translation completed")
+                  ;; (message "Translation completed %s" translation)
+                  ) )
+              (deactivate-mark))))))
+  (setq paw-go-translate-running-p nil))
+  )
 
 (use-package! sdcv
   :defer t
@@ -2937,6 +3128,10 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
 (use-package! tldr
   :defer t)
+
+(use-package! transient-showcase
+  ;; :defer t
+  )
 
 (use-package! shr-tag-pre-highlight
   :defer t
@@ -3108,3 +3303,93 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 ;; integration with the built-in `imenu':
 (add-hook 'imenu-after-jump-hook #'pulsar-recenter-top)
 (add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry))
+
+(use-package! reader
+  :defer t)
+
+(use-package! math-preview
+  :defer t
+  :config
+  (setopt math-preview-command "/home/jw/projects/html/math-preview/math-preview.js"))
+
+;;; A Help Transient on C-S-h
+(transient-define-prefix hrm-help-transient ()
+  "Help commands that I use. A subset of C-h with others thrown in."
+  ["Help Commands"
+   ["Mode &amp; Bindings"
+    ("m" "Mode" describe-mode)
+    ("M" "Minor Modes" consult-minor-mode-menu)
+    ("b" "Major Bindings" which-key-show-full-major-mode)
+    ("B" "Minor Bindings" which-key-show-full-minor-mode-keymap)
+    ("d" "Descbinds" describe-bindings) ; or embark-bindings
+    ("t" "Top Bindings  " which-key-show-top-level)
+    ]
+   ["Describe"
+    ("C" "Command" helpful-command)
+    ("f" "Function" helpful-callable)
+    ("v" "Variable " helpful-variable)
+    ("k" "Key" helpful-key)
+    ("s" "Symbol" helpful-symbol)
+    ("l" "Library" apropos-library)
+    ]
+   ["Info on"
+    ("C-c" "Command" Info-goto-emacs-command-node)
+    ("C-f" "Function" info-lookup-symbol)
+    ("C-v" "Variable" info-lookup-symbol) ; fails if transient-detect-key-conflicts
+    ("C-k" "Key" Info-goto-emacs-key-command-node)
+    ("C-s" "Symbol" info-lookup-symbol)
+    ]
+   ["Goto Source"
+    ""
+    ("F" "Function" find-function-other-frame)
+    ("V" "Variable" find-variable-other-frame)
+    ("K" "Key" find-function-on-key-other-frame)
+    ""
+    ("L" "Library" find-library-other-frame)
+    ]
+   ["Apropos"
+    ("ac" "Command" apropos-command)
+    ("af" "Function" apropos-function)
+    ("av" "Variable" apropos-variable)
+    ("aV" "Value" apropos-value)
+    ("aL" "Local Value" apropos-local-value)
+    ("ad" "Documentation" apropos-documentation)
+    ]
+   ]
+  [
+   ["Internals"
+    ("I" "Input Method" describe-input-method)
+    ("G" "Language Env" describe-language-environment)
+    ("S" "Syntax" describe-syntax)
+    ("T" "Categories" describe-categories)
+    ("O" "Coding System" describe-coding-system)
+    ("o" "Coding Briefly" describe-current-coding-system-briefly)
+    ("T" "Display Table" describe-current-display-table)
+    ("e" "Echo Messages" view-echo-area-messages)
+    ("H" "Lossage" view-lossage)
+    ]
+   ["Describe"
+    ("." "At Point" helpful-at-point)
+    ("c" "Key Short" describe-key-briefly)
+    ("p" "Key Map" describe-keymap)
+    ("A" "Face" describe-face)
+    ("i" "Icon" describe-icon)
+    ("w" "Where Is" where-is)
+    ("=" "Position" what-cursor-position)
+    ("g" "Shortdoc" shortdoc-display-group)
+    ]
+   ["Info Manuals"
+    ("C-i" "Info" info)
+    ("C-4" "Other Window" info-other-window)
+    ("C-e" "Emacs" info-emacs-manual)
+    ("C-l" "Elisp" info-elisp-manual)
+    ("C-r" "Pick Manual" info-display-manual)
+    ]
+   ["External"
+    ("N" "Man" consult-man)
+    ("W" "Dictionary" lookup-word-at-point)
+    ("D" "Dash" dash-at-point)
+    ]
+   ]
+  )
+(global-set-key (kbd "C-c C-S-h") 'hrm-help-transient)

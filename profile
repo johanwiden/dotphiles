@@ -14,6 +14,11 @@ export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
 export BROWSER=vivaldi
 
+# Chinese input method
+export XMODIFIERS=@im=fcitx5
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -125,6 +130,8 @@ fi
 gpg-connect-agent /bye
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
+
+fcitx5 -d > /tmp/jw_fcitx5.log 2>&1
 
 #if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty4' ]; then
 #    exec /usr/bin/sway >/tmp/startsway.log 2>&1

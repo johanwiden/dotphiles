@@ -162,54 +162,58 @@
   },
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1568,
-      "width": 1284,
-      "x": 2557,
-      "y": -30
+      "height": 721,
+      "width": 1296,
+      "x": 1259,
+      "y": 240
     },
     "full_screened": false,
     "geometry": {
-      "height": 1535,
-      "width": 1278,
-      "x": 2560,
-      "y": 0
+      "height": 661,
+      "width": 1274,
+      "x": 1270,
+      "y": 289
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1535,
-      "width": 1278,
-      "x": 2560,
-      "y": 0
+      "height": 661,
+      "width": 1274,
+      "x": 1270,
+      "y": 289
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAn9////4gAADwAAAAYBAAAKAAAAAAAAAA79AAAF/gAAAAAAAAAADwAAAAoAAAAAAAAADv0AAAX+"
+      "__value__": "AdnQywADAAAAAATrAAAA8AAACfoAAAPAAAAE9gAAASEAAAnvAAADtQAAAAAAAAAADwAAAAT2AAABIQAACe8AAAO1"
     },
     "screen": {
       "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "DEL",
-      "model": "DELL U3818DW",
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
       "name": "HDMI-1",
       "serial": "",
       "size_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840
       },
       "virtual_geometry": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
       }
     }
+  },
+  "html-editor-state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAD9AAAAAAAAAL4AAAVgAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAQv////8AAAAAAAAAAAAAAB4AaAB0AG0AbABfAGYAbwByAG0AYQB0AF8AYgBhAHIBAAAAgP////8AAAAAAAAAAA=="
   },
   "main_window_geometry": {
     "__class__": "bytearray",
@@ -217,16 +221,19 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAABLAAAFqvwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAWqAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAIAA////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAA/sAAAWq/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAABaoAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAAKwAAAWqAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
+    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAACnAAACQPwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAJAAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAH0A////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAA40AAAJA/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAAAkAAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAALoAAAJAAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
   },
   "recent-books": [
-    "/home/jw/Downloads/eb36629de8.epub",
-    "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-    "/home/jw/calibre_library/Unknown/Far Rainbow (983)/Far Rainbow - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/Space Apprentice (982)/Space Apprentice - Unknown.epub",
-    "/home/jw/Downloads/Roadside Picnic by Arkady Strugatsky, Boris Strugatsky, Ursula K. Le Guin, Olena Bormashenko (z-lib.org).epub",
-    "/home/jw/calibre_library/Arkady Strugatsky/Roadside Picnic (961)/Roadside Picnic - Arkady Strugatsky.epub",
-    "/home/jw/Downloads/strugacki-arkadij_piknik-na-skraju-drogi.epub"
+    "/home/jw/calibre_library/Unknown/The Department Of Truth Vol. 4 (1805)/The Department Of Truth Vol. 4 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/The Department of Truth_ Wild Fictions (1804)/The Department of Truth_ Wild Fictions - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/The Deviant, Vol. 1 (1803)/The Deviant, Vol. 1 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/W0rldtr33 (2023), Vol. 2 (1802)/W0rldtr33 (2023), Vol. 2 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 2 (1801)/DEPARTMENT OF TRUTH, Vol. 2 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 3 (1800)/DEPARTMENT OF TRUTH, Vol. 3 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 1 (1799)/DEPARTMENT OF TRUTH, Vol. 1 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/Saga Vol. 6 (1794)/Saga Vol. 6 - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/The Deadliest Bouquet, Vol. 1 (TPB) (1790)/The Deadliest Bouquet, Vol. 1 (TPB) - Unknown.epub",
+    "/home/jw/calibre_library/Unknown/SFSX (SAFE SEX), Vol. 1 (1789)/SFSX (SAFE SEX), Vol. 1 - Unknown.epub"
   ],
   "reports-ui-state": {},
   "saved_seaches_state": {

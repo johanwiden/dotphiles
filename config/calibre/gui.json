@@ -83,13 +83,22 @@
     false,
     300
   ],
-  "cover_grid_color": [
-    80,
-    80,
-    80
-  ],
+  "cover_grid_background": {
+    "dark": [
+      45,
+      45,
+      45
+    ],
+    "dark_texture": null,
+    "light": [
+      80,
+      80,
+      80
+    ],
+    "light_texture": null,
+    "migrated": true
+  },
   "cover_grid_show_title": true,
-  "cover_grid_texture": null,
   "custom_colors_for_color_dialog": [
     [
       255,
@@ -254,31 +263,82 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1562,
-      "width": 1915,
-      "x": 3,
-      "y": 35
+      "height": 1436,
+      "width": 1297,
+      "x": -11,
+      "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 1525,
-      "width": 1915,
-      "x": 3,
-      "y": 72
+      "height": 1376,
+      "width": 1275,
+      "x": 0,
+      "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1525,
-      "width": 1915,
-      "x": 3,
-      "y": 72
+      "height": 1376,
+      "width": 1275,
+      "x": 0,
+      "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAADAAAAIwAAB30AAAY8AAAAAwAAAEgAAAd9AAAGPAAAAAAAAAAADwAAAAADAAAASAAAB30AAAY8"
+      "__value__": "AdnQywADAAD////1////zwAABQUAAAVqAAAAAAAAAAAAAAT6AAAFXwAAAAAAAAAADwAAAAAAAAAAAAAABPoAAAVf"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
+      "name": "HDMI-1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840
+      },
+      "virtual_geometry": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "geometry-of-convert_single_dialog_geom": {
+    "frame_geometry": {
+      "height": 1560,
+      "width": 3792,
+      "x": -11,
+      "y": -49
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 1500,
+      "width": 3770,
+      "x": 0,
+      "y": 0
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 1500,
+      "width": 3770,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAD////1////zwAADsQAAAXmAAAAAAAAAAAAAA65AAAF2wAAAAAAAAAADwAAAAAAAAAAAAAADrkAAAXb"
+    },
+    "screen": {
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -287,10 +347,61 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
+      "manufacturer": "DEL",
       "model": "DELL U3818DW",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL",
+      "name": "HDMI-1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 1600,
+        "width": 3840
+      },
+      "virtual_geometry": {
+        "height": 1600,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "geometry-of-create-virtual-library-dialog": {
+    "frame_geometry": {
+      "height": 412,
+      "width": 777,
+      "x": -11,
+      "y": -49
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 352,
+      "width": 755,
+      "x": 0,
+      "y": 0
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 352,
+      "width": 755,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAD////1////zwAAAv0AAAFqAAAAAAAAAAAAAALyAAABXwAAAAAAAAAADwAAAAAAAAAAAAAAAvIAAAFf"
+    },
+    "screen": {
+      "depth": 32,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 1600,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "DEL",
+      "model": "DELL U3818DW",
+      "name": "HDMI-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -305,31 +416,31 @@
   },
   "geometry-of-metasingle_window_geometry3": {
     "frame_geometry": {
-      "height": 1568,
-      "width": 1280,
-      "x": 320,
-      "y": 32
+      "height": 1588,
+      "width": 1302,
+      "x": -11,
+      "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 1531,
+      "height": 1528,
       "width": 1280,
-      "x": 320,
-      "y": 69
+      "x": 0,
+      "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1531,
+      "height": 1528,
       "width": 1280,
-      "x": 320,
-      "y": 69
+      "x": 0,
+      "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAFAAAAAIAAABj8AAAY/AAABQAAAAEUAAAY/AAAGPwAAAAAAAAAADwAAAAFAAAAARQAABj8AAAY/"
+      "__value__": "AdnQywADAAD////1////zwAABQoAAAYCAAAAAAAAAAAAAAT/AAAF9wAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAX3"
     },
     "screen": {
-      "depth": 24,
+      "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1600,
@@ -338,10 +449,10 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
+      "manufacturer": "DEL",
       "model": "DELL U3818DW",
-      "name": "HDMI-A-0",
-      "serial": "5KC0384P04NL",
+      "name": "HDMI-1",
+      "serial": "",
       "size_in_logical_pixels": {
         "height": 1600,
         "width": 3840
@@ -407,49 +518,49 @@
   },
   "geometry-of-trash-view-for-library-geometry": {
     "frame_geometry": {
-      "height": 650,
-      "width": 551,
-      "x": 353,
-      "y": 415
+      "height": 1148,
+      "width": 573,
+      "x": -11,
+      "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 650,
+      "height": 1088,
       "width": 551,
-      "x": 353,
-      "y": 415
+      "x": 0,
+      "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 650,
+      "height": 1088,
       "width": 551,
-      "x": 353,
-      "y": 415
+      "x": 0,
+      "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAFhAAABnwAAA4cAAAQoAAABYQAAAZ8AAAOHAAAEKAAAAAAAAAAADwAAAAFhAAABnwAAA4cAAAQo"
+      "__value__": "AdnQywADAAD////1////zwAAAjEAAARKAAAAAAAAAAAAAAImAAAEPwAAAAAAAAAADwAAAAAAAAAAAAAAAiYAAAQ/"
     },
     "screen": {
       "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Dell Inc.",
-      "model": "DELL U3818DW",
-      "name": "HDMI-A-1",
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
+      "name": "HDMI-1",
       "serial": "",
       "size_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840
       },
       "virtual_geometry": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
@@ -466,7 +577,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 522
+    "/home/jw/calibre_library": 648
   },
   "main_window_central_widget_state": {
     "layout": "wide",
@@ -530,8 +641,8 @@
   },
   "qv_open_at_shutdown": false,
   "recently_used_languages": [
-    "Polish",
     "English",
+    "Polish",
     "Russian"
   ],
   "scheduler_dialog_geometry": {

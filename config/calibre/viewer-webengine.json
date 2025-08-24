@@ -1,28 +1,28 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1099,
-      "width": 1286,
-      "x": -3,
-      "y": -30
+      "height": 1582,
+      "width": 1300,
+      "x": -11,
+      "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 1066,
-      "width": 1280,
+      "height": 1522,
+      "width": 1278,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1066,
-      "width": 1280,
+      "height": 1522,
+      "width": 1278,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////9////4gAABQIAAAQsAAAAAAAAAAAAAAT/AAAEKQAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAQp"
+      "__value__": "AdnQywADAAD////1////zwAABQgAAAX8AAAAAAAAAAAAAAT9AAAF8QAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAXx"
     },
     "screen": {
       "depth": 32,
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAFAAAABCoAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/gAABfIAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -160,6 +160,82 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "Arnold Henry Savage Landor"
+        ],
+        "key": "/home/jw/calibre_library/Arnold Henry Savage Landor/In the Forbidden Land (3)/In the Forbidden Land - Arnold Henry Savage Landor.epub",
+        "pathtoebook": "/home/jw/calibre_library/Arnold Henry Savage Landor/In the Forbidden Land (3)/In the Forbidden Land - Arnold Henry Savage Landor.epub",
+        "timestamp": "2025-06-28T14:05:52.080Z",
+        "title": "In the Forbidden Land"
+      },
+      {
+        "authors": [
+          "Jeff Hawkins"
+        ],
+        "key": "/home/jw/calibre_library/Jeff Hawkins/A framework for intelligence and cortical function based on grid cells in the neocortex (400)/A framework for intelligence and cortical - Jeff Hawkins.epub",
+        "pathtoebook": "/home/jw/calibre_library/Jeff Hawkins/A framework for intelligence and cortical function based on grid cells in the neocortex (400)/A framework for intelligence and cortical - Jeff Hawkins.epub",
+        "timestamp": "2025-06-28T12:13:34.574Z",
+        "title": "Framework for Cortical Function"
+      },
+      {
+        "authors": [
+          "Jeff Hawkins"
+        ],
+        "key": "/home/jw/calibre_library/Jeff Hawkins/A theory of how columns in the neocortex enable learning the structure of the world (401)/A theory of how columns in the neocortex e - Jeff Hawkins.epub",
+        "pathtoebook": "/home/jw/calibre_library/Jeff Hawkins/A theory of how columns in the neocortex enable learning the structure of the world (401)/A theory of how columns in the neocortex e - Jeff Hawkins.epub",
+        "timestamp": "2025-06-28T12:13:06.006Z",
+        "title": "Object Learning with Cortical Columns"
+      },
+      {
+        "authors": [
+          "Marcus Lewis"
+        ],
+        "key": "/home/jw/calibre_library/Marcus Lewis/Locations in the Neocortex_ A theory of sensorimotor object recognition using cortical grid cel (402)/Locations in the Neocortex_ A theory of se - Marcus Lewis.epub",
+        "pathtoebook": "/home/jw/calibre_library/Marcus Lewis/Locations in the Neocortex_ A theory of sensorimotor object recognition using cortical grid cel (402)/Locations in the Neocortex_ A theory of se - Marcus Lewis.epub",
+        "timestamp": "2025-06-28T12:12:25.403Z",
+        "title": "Locations in the Neocortex"
+      },
+      {
+        "authors": [
+          "Subutai Ahmad"
+        ],
+        "key": "/home/jw/calibre_library/Yuwei Cui/The HTM spatial pooler - a neocortical algorithm for online sparse distributed coding (407)/The HTM spatial pooler - a neocortical alg - Yuwei Cui.epub",
+        "pathtoebook": "/home/jw/calibre_library/Yuwei Cui/The HTM spatial pooler - a neocortical algorithm for online sparse distributed coding (407)/The HTM spatial pooler - a neocortical alg - Yuwei Cui.epub",
+        "timestamp": "2025-06-28T12:10:16.716Z",
+        "title": "Online Sparse Coding"
+      },
+      {
+        "authors": [
+          "Jeff Hawkins"
+        ],
+        "key": "/home/jw/calibre_library/Jeff Hawkins/Why neurons have thousands of synapses (408)/Why neurons have thousands of synapses - Jeff Hawkins.epub",
+        "pathtoebook": "/home/jw/calibre_library/Jeff Hawkins/Why neurons have thousands of synapses (408)/Why neurons have thousands of synapses - Jeff Hawkins.epub",
+        "timestamp": "2025-06-28T12:09:19.179Z",
+        "title": "Sequence Memory in Neocortex"
+      },
+      {
+        "authors": [
+          "Randall C. O’Reilly",
+          "Yuko Munakata",
+          "Michael J. Frank",
+          "Thomas E. Hazy",
+          "Contributors"
+        ],
+        "key": "/home/jw/calibre_library/Randall C. O'Reilly/Computational Cognitive Neuroscience (554)/Computational Cognitive Neuroscience - Randall C. O'Reilly.epub",
+        "pathtoebook": "/home/jw/calibre_library/Randall C. O'Reilly/Computational Cognitive Neuroscience (554)/Computational Cognitive Neuroscience - Randall C. O'Reilly.epub",
+        "timestamp": "2025-06-28T09:56:47.734Z",
+        "title": "Computational Cognitive Neuroscience"
+      },
+      {
+        "authors": [
+          "Jeff Geerling"
+        ],
+        "key": "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (573)/Ansible for DevOps - Jeff Geerling.epub",
+        "pathtoebook": "/home/jw/calibre_library/Jeff Geerling/Ansible for DevOps (573)/Ansible for DevOps - Jeff Geerling.epub",
+        "timestamp": "2025-06-28T09:38:53.360Z",
+        "title": "Ansible for DevOps"
+      },
       {
         "key": "/home/jw/Comics/guido-crepax/guido-crepax-valentina.epub",
         "pathtoebook": "/home/jw/Comics/guido-crepax/guido-crepax-valentina.epub",
@@ -296,54 +372,6 @@
         "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",
         "timestamp": "2022-02-06T10:55:44.123Z",
         "title": "Peder Jensen Bagge dä"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Iver_Jensen_Jernskjæg_Baden.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Iver_Jensen_Jernskjæg_Baden.md",
-        "timestamp": "2022-02-05T12:46:55.874Z",
-        "title": "Iver Jensen Jernskjæg Baden"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Mads_Pedersen_Bagge.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Mads_Pedersen_Bagge.md",
-        "timestamp": "2022-02-05T09:23:45.636Z",
-        "title": "Mads Pedersen Bagge"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Catharina_Magdalena_Leuhusen.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Catharina_Magdalena_Leuhusen.md",
-        "timestamp": "2022-02-01T16:27:57.992Z",
-        "title": "Catharina Magdalena Leuhusen"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Olga_Ragnhild_Westerlund.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Olga_Ragnhild_Westerlund.md",
-        "timestamp": "2022-02-01T16:03:05.386Z",
-        "title": "Olga Ragnhild Westerlund"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Johannes_Vultejus.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Johannes_Vultejus.md",
-        "timestamp": "2022-02-01T14:25:04.782Z",
-        "title": "Johannes Vultejus"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Christina_Larsdotter_von_Köllen.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Christina_Larsdotter_von_Köllen.md",
-        "timestamp": "2022-02-01T13:58:26.897Z",
-        "title": "Christina Larsdotter von Köllen"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Andreas_Valdemari_Regiomigius.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Andreas_Valdemari_Regiomigius.md",
-        "timestamp": "2022-02-01T13:44:46.447Z",
-        "title": "Andreas Valdemari Regiomigius"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Christoffer_Torstensson_af_Forstenaätten.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Christoffer_Torstensson_af_Forstenaätten.md",
-        "timestamp": "2022-02-01T13:13:51.521Z",
-        "title": "Christoffer Torstensson af Forstenaätten"
       }
     ],
     "user_color_schemes": {

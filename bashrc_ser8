@@ -163,7 +163,7 @@ esac
 # <<< juliaup initialize <<<
 
 # Activate python venv, but only if not already activated.
-command -v deactivate >/dev/null 2>&1 || source .venv/bin/activate
+command -v deactivate >/dev/null 2>&1 || source ~/.venv/bin/activate
 
 # pyenv
 # export PATH="/home/jw/.pyenv/bin:$PATH"
