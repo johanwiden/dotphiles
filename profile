@@ -14,6 +14,12 @@ export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
 export BROWSER=vivaldi
 
+# See /etc/default/keyboard, https://github.com/flatpak/flatpak/issues/5341 Language keyboard Layout Bug
+# If this does not work, then try adding to /etc/environment.
+export XKB_DEFAULT_MODEL=pc104
+export XKB_DEFAULT_LAYOUT=us
+export XKB_DEFAULT_VARIANT=altgr-intl
+
 # Chinese input method
 export XMODIFIERS=@im=fcitx5
 export GTK_IM_MODULE=fcitx5

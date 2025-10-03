@@ -63,6 +63,8 @@
 
 (package! calibredb)
 (package! casual-suite)
+;; (package! casual-eww
+;;   :recipe (:host github :repo "dandrake/casual-eww"))
 (package! consult-gh
   :recipe (:host github :repo "armindarvish/consult-gh"))
 (package! consult-gnome-search
@@ -96,9 +98,9 @@
 (package! fontaine)
 
 (package! ghub)
-;; (package! go-translate :pin "9ffbcdd")
-(package! go-translate
-  :recipe (:host github :repo "lorniu/go-translate"))
+(package! gt)
+;; (package! gt
+;;   :recipe (:host github :repo "lorniu/gt"))
 
 ;; (package! hexrgb
 ;;   :recipe (:host github :repo "emacsmirror/hexrgb"))
@@ -187,6 +189,8 @@
 (package! tldr)
 (package! transient-showcase
   :recipe (:host github :repo "positron-solutions/transient-showcase" :branch "master"))
+(package! typst-ts-mode
+  :recipe (:host codeberg :repo "meow_king/typst-ts-mode"))
 
 (package! unfill)
 

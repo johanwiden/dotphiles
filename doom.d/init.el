@@ -77,6 +77,7 @@
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        ;;snippets          ; my elves. They type so I don't have to
+       (whitespace +guess +trim)  ; a butler for your whitespace
        word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
@@ -84,6 +85,7 @@
        electric          ; smarter, keyword-based electric-indent
        eww               ; the internet is gross
        ibuffer           ; interactive buffer management
+       tramp             ; remote files at your arthritic fingertips
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -125,6 +127,7 @@
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
+       ;;ada               ; In strong typing we (blindly) trust
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        (cc +lsp +tree-sitter)  ; C > C++ == 1
@@ -199,7 +202,7 @@
        ;;zig               ; C, but simpler
 
        :email
-       (mu4e +mbsync +gmail)
+       (mu4e +mbsync +gmail +org)
        ;;notmuch
        ;;(wanderlust +gmail)
 

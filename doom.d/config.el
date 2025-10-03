@@ -1382,7 +1382,7 @@ browser defined by `browse-url-generic-program'."
   (setopt calibredb-program "/usr/bin/calibredb")
   (setopt calibredb-root-dir (expand-file-name "~/calibre_library"))
   (setopt calibredb-db-dir (concat calibredb-root-dir "/metadata.db"))
-  (setopt calibredb-library-alist '(("~/calibre_library")))
+  ;; (setopt calibredb-library-alist '(("~/calibre_library")))
   (setopt calibredb-date-width 0)
   (setopt calibredb-download-dir (expand-file-name "~/Downloads"))
   (setq calibredb-virtual-library-alist '(("1. cpp" . "cpp")
@@ -1392,10 +1392,10 @@ browser defined by `browse-url-generic-program'."
                                           ("5. physics" . "physics")
                                           ("6. tensor" . "tensor-calc")
                                           ("7. science fiction" . "scifi")))
-  (setopt calibredb-library-alist '(("/home/jw/calibre_library")
-                                  ("https://bookserver.archive.org/catalog/")
-                                  ("http://arxiv.maplepop.com/catalog/")
-                                  ("https://m.gutenberg.org/ebooks.opds/")
+  (setopt calibredb-library-alist '(("/home/jw/calibre_library" (name . "Calibre"))
+                                  ("https://bookserver.archive.org/catalog/" (name . "archive"))
+                                  ("http://arxiv.maplepop.com/catalog/" (name . "arxiv"))
+                                  ("https://m.gutenberg.org/ebooks.opds/" (name . "Gutenberg"))
                                   )))
 
 (after! eww
@@ -1692,6 +1692,14 @@ _w_ where is something defined
   (interactive)
   (list fore (* fore (- 1.0 skatt-procent)) (* fore skatt-procent)))
 
+(defun jw/copy-file-content-to-clipboard () ; From https://emacs.stackexchange.com/questions/64982/copy-a-file-content-to-clipboard-with-dired/64993#64993
+  "Copy content of file selected in dired, to clipboard"
+  (interactive)
+  (let ((buf  (find-file-noselect (dired-get-file-for-visit))))
+    (with-current-buffer buf
+      (kill-new (buffer-substring-no-properties (point-min) (point-max))))
+    (kill-buffer buf)))
+
 (use-package! hledger-mode
   :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'")
@@ -1837,12 +1845,12 @@ _w_ where is something defined
   ;; (setopt mu4e-compose-signature "Johan Widén, tel: +46705367346\nRisvägen 5 A, 192 73 Sollentuna, SWEDEN")
 (setq mu4e-sent-folder   "/gmail/[Gmail]/Sent Mail"     ;; folder for sent messages
       mu4e-drafts-folder "/gmail/[Gmail]/Drafts"        ;; unfinished messages
-      mu4e-trash-folder  "/gmail/[Gmail]/Papperskorgen" ;; trashed messages
+      mu4e-trash-folder  "/gmail/[Gmail]/Bin" ;; trashed messages
       mu4e-refile-folder "/gmail/[Gmail]/All Mail")     ;; saved messages
 (setopt mu4e-maildir-shortcuts
         '((:maildir "/gmail/INBOX"                 :key ?i)
           (:maildir "/gmail/[Gmail]/Sent Mail"     :key ?s)
-          (:maildir "/gmail/[Gmail]/Papperskorgen" :key ?t)
+          (:maildir "/gmail/[Gmail]/Bin" :key ?t)
           (:maildir "/gmail/[Gmail]/Drafts"        :key ?d)
           (:maildir "/gmail/[Gmail]/All Mail"      :key ?a)))
 (after! mu4e
@@ -2740,6 +2748,31 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-set help-mode-map "j" #'forward-button)
   (keymap-set help-mode-map "k" #'backward-button))
 
+(use-package! casual-bibtex
+  :ensure nil
+  :defer t
+  :bind (:map bibtex-mode-map ("M-m" . casual-bibtex-tmenu))
+  :config
+  ;; The following keybindings are recommended to support consistent behavior between bibtex-mode-map and casual-bibtex-tmenu.
+  (add-hook 'bibtex-mode-hook 'hl-line-mode)
+
+  (keymap-set bibtex-mode-map "<TAB>" #'bibtex-next-field)
+  (keymap-set bibtex-mode-map "<backtab>" #'previous-line)
+
+  (keymap-set bibtex-mode-map "C-n" #'bibtex-next-field)
+  (keymap-set bibtex-mode-map "M-n" #'bibtex-next-entry)
+  (keymap-set bibtex-mode-map "M-p" #'bibtex-previous-entry)
+
+  (keymap-set bibtex-mode-map "<prior>" #'bibtex-previous-entry)
+  (keymap-set bibtex-mode-map "<next>" #'bibtex-next-entry)
+
+  (keymap-set bibtex-mode-map "C-c C-o" #'bibtex-url)
+  (keymap-set bibtex-mode-map "C-c C-c" #'casual-bibtex-fill-and-clean)
+
+  (keymap-set bibtex-mode-map "<clear>" #'bibtex-empty-field)
+  (keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
+  (keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field))
+
 (use-package! eldoc-box
   ;; :defer t
 )
@@ -3041,50 +3074,50 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (when (bound-and-true-p flyspell-mode)
     (flyspell-mode -1)))
 
-(after! paw
-;; override the original gt-init, to remove the Processing message
-(cl-defmethod gt-init :around ((render gt-render) translator)
-  (gt-log-funcall "init (%s %s)" render translator)
-  (condition-case err
-      (progn (cl-call-next-method render translator)
-             (gt-update translator))
-    (error (gt-log 'render (format "%s initialize failed, abort" (eieio-object-class render)))
-           (user-error (format "[output init error] %s" err)))))
-(cl-defmethod gt-output ((render paw-gt-translate-render) translator)
-  (deactivate-mark)
-  (when (= (oref translator state) 3)
-    (let* ((ret (gt-extract-data render translator))
-           (buffer (get-buffer (oref render buffer-name)))
-           (section (oref render section)))
-      (if-let (err (cl-find-if (lambda (r) (<= (plist-get r :state) 1)) ret))
-          (setq paw-go-translate-running-p nil)
-        ;; (error "%s" (plist-get err :result))
-        ;; (error "Translation Error")
-        (if (buffer-live-p buffer)
-            (with-current-buffer buffer
-              (save-excursion
-                (let* ((buffer-read-only nil)
-                       (translation (mapconcat (lambda (r) (string-join (plist-get r :result) "\n")) ret "\n\n")))
-                  (unless (string-match-p section (org-no-properties (org-get-heading t t t t)))
-                    (goto-char (point-min))
-                    (search-forward (format "** %s" section) nil t))
-                  (org-end-of-subtree t t)
-                  ;; (forward-line)
-                  ;; (delete-region (region-beginning) (region-end))
-                  (let ((bg-color paw-view-note-background-color))
-                    (paw-insert-and-make-overlay
-                     translation
-                     'face `(:background ,bg-color :extend t))
-                    (insert "\n"))
-                  (if (or paw-ask-ai-p paw-ai-translate-p paw-ai-translate-context-p)
-                      (insert "\n"))
-                  (beginning-of-line)
-                  ;; (message "Translation completed")
-                  ;; (message "Translation completed %s" translation)
-                  ) )
-              (deactivate-mark))))))
-  (setq paw-go-translate-running-p nil))
-  )
+;; (after! paw
+;; ;; override the original gt-init, to remove the Processing message
+;; (cl-defmethod gt-init :around ((render gt-render) translator)
+;;   (gt-log-funcall "init (%s %s)" render translator)
+;;   (condition-case err
+;;       (progn (cl-call-next-method render translator)
+;;              (gt-update translator))
+;;     (error (gt-log 'render (format "%s initialize failed, abort" (eieio-object-class render)))
+;;            (user-error (format "[output init error] %s" err)))))
+;; (cl-defmethod gt-output ((render paw-gt-translate-render) translator)
+;;   (deactivate-mark)
+;;   (when (= (oref translator state) 3)
+;;     (let* ((ret (gt-extract-data render translator))
+;;            (buffer (get-buffer (oref render buffer-name)))
+;;            (section (oref render section)))
+;;       (if-let (err (cl-find-if (lambda (r) (<= (plist-get r :state) 1)) ret))
+;;           (setq paw-go-translate-running-p nil)
+;;         ;; (error "%s" (plist-get err :result))
+;;         ;; (error "Translation Error")
+;;         (if (buffer-live-p buffer)
+;;             (with-current-buffer buffer
+;;               (save-excursion
+;;                 (let* ((buffer-read-only nil)
+;;                        (translation (mapconcat (lambda (r) (string-join (plist-get r :result) "\n")) ret "\n\n")))
+;;                   (unless (string-match-p section (org-no-properties (org-get-heading t t t t)))
+;;                     (goto-char (point-min))
+;;                     (search-forward (format "** %s" section) nil t))
+;;                   (org-end-of-subtree t t)
+;;                   ;; (forward-line)
+;;                   ;; (delete-region (region-beginning) (region-end))
+;;                   (let ((bg-color paw-view-note-background-color))
+;;                     (paw-insert-and-make-overlay
+;;                      translation
+;;                      'face `(:background ,bg-color :extend t))
+;;                     (insert "\n"))
+;;                   (if (or paw-ask-ai-p paw-ai-translate-p paw-ai-translate-context-p)
+;;                       (insert "\n"))
+;;                   (beginning-of-line)
+;;                   ;; (message "Translation completed")
+;;                   ;; (message "Translation completed %s" translation)
+;;                   ) )
+;;               (deactivate-mark))))))
+;;   (setq paw-go-translate-running-p nil))
+;;   )
 
 (use-package! sdcv
   :defer t
@@ -3106,7 +3139,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :config
   (setopt org-download-image-dir "~/Pictures/org-download"))
 
-(use-package! go-translate
+(use-package! gt
   :defer t
   :config
   (setopt gt-langs '(en fr))
@@ -3311,6 +3344,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :defer t
   :config
   (setopt math-preview-command "/home/jw/projects/html/math-preview/math-preview.js"))
+
+(use-package! typst-ts-mode
+  ;; :defer t
+  :config
+  (keymap-set typst-ts-mode-map "C-c C-c" #'typst-ts-tmenu)
+  )
 
 ;;; A Help Transient on C-S-h
 (transient-define-prefix hrm-help-transient ()
