@@ -53,6 +53,7 @@
 (package! alert)
 (package! arxiv-mode)
 
+(package! biblio)
 ;; (package! bookmark+
 ;;   :recipe (:host github :repo "emacsmirror/bookmark-plus"))
 ;; (package! bufferlo)                     ;
@@ -65,6 +66,9 @@
 (package! casual-suite)
 ;; (package! casual-eww
 ;;   :recipe (:host github :repo "dandrake/casual-eww"))
+(package! cc-cedict
+  :recipe (:host github :repo "xuchunyang/cc-cedict.el"))
+(package! citar-denote)
 (package! consult-gh
   :recipe (:host github :repo "armindarvish/consult-gh"))
 (package! consult-gnome-search
@@ -81,8 +85,10 @@
   :recipe (:host github :repo "emacs-straight/consult-recoll"))
 
 (package! denote)
+(package! denote-explore)
 (package! denote-org)
 (package! denote-menu)
+(package! denote-sequence)
 ;; (package! dired+
 ;;   :recipe (:host github :repo "emacsmirror/dired-plus"))
 
@@ -138,6 +144,7 @@
 
 (package! nov)
 
+(package! openwith)
 (package! org-books
   :recipe (:host github :repo "goderich/org-books"))
 (package! org-download)
@@ -152,6 +159,7 @@
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
 (package! org-transclusion)
+(package! org-web-tools)
 
 ;; (package! palette
 ;;   :recipe (:host github :repo "emacsmirror/palette"))
@@ -163,15 +171,19 @@
   :recipe (:host github :repo "tecosaur/pdftotext.el"))
 (package! persid
   :recipe (:host github :repo "rougier/persid"))
+(package! pinyin-convert
+  :recipe (:host github :repo "tprost/pinyin-convert.el"))
 (package! posframe)
 (package! pulsar)
 
 (package! rainbow-delimiters)
 (package! reader
-  :recipe (:host codeberg :repo "divyaranjan/emacs-reader"
+  :recipe (:type git :host codeberg :repo "divyaranjan/emacs-reader"
            :files ("*.el" "render-core.so")
-           :pre-build ("make" "all")))
+           :pre-build ("make" "clean" "all")))
 (package! request)
+(package! rime
+  :recipe (:host github :repo "DogLooksGood/emacs-rime" :files ("*.el" "Makefile" "lib.c")))
 
 (package! sdcv
   :recipe (:host github :repo "manateelazycat/sdcv" :branch "master"))
@@ -201,6 +213,10 @@
   :recipe (:host github :repo "chenyanming/wallabag.el" :files ("*.el" "*.alist" "*.css")))
 (package! websocket)
 (package! windower)
+(package! writegood-mode)
 
 (package! xah-math-input
   :recipe (:host github :repo "DiamondBond/xah-math-input"))
+
+(package! zh-utils
+  :recipe (:host codeberg :repo "jiewawa/zh-utils"))

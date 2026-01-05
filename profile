@@ -13,6 +13,7 @@ export EDITOR="emacsclient -c"
 export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
 export BROWSER=vivaldi
+export PRINTER=HL-L2445DW
 
 # See /etc/default/keyboard, https://github.com/flatpak/flatpak/issues/5341 Language keyboard Layout Bug
 # If this does not work, then try adding to /etc/environment.

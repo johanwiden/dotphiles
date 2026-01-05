@@ -263,28 +263,28 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1436,
-      "width": 1297,
+      "height": 1438,
+      "width": 1296,
       "x": -11,
       "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 1376,
-      "width": 1275,
+      "height": 1378,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1376,
-      "width": 1275,
+      "height": 1378,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////1////zwAABQUAAAVqAAAAAAAAAAAAAAT6AAAFXwAAAAAAAAAADwAAAAAAAAAAAAAABPoAAAVf"
+      "__value__": "AdnQywADAAD////1////zwAABQQAAAVsAAAAAAAAAAAAAAT5AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPkAAAVh"
     },
     "screen": {
       "depth": 32,
@@ -414,6 +414,57 @@
       }
     }
   },
+  "geometry-of-duplicates-question-dialog-geometry": {
+    "frame_geometry": {
+      "height": 440,
+      "width": 772,
+      "x": -11,
+      "y": -49
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 380,
+      "width": 750,
+      "x": 0,
+      "y": 0
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 380,
+      "width": 750,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAD////1////zwAAAvgAAAGGAAAAAAAAAAAAAALtAAABewAAAAAAAAAADwAAAAAAAAAAAAAAAu0AAAF7"
+    },
+    "screen": {
+      "depth": 32,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
+      "name": "HDMI-1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840
+      },
+      "virtual_geometry": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
   "geometry-of-metasingle_window_geometry3": {
     "frame_geometry": {
       "height": 1588,
@@ -443,22 +494,22 @@
       "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "DEL",
-      "model": "DELL U3818DW",
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
       "name": "HDMI-1",
       "serial": "",
       "size_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840
       },
       "virtual_geometry": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
@@ -577,7 +628,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 648
+    "/home/jw/calibre_library": 660
   },
   "main_window_central_widget_state": {
     "layout": "wide",

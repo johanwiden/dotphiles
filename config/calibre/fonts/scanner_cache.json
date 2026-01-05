@@ -8064,6 +8064,150 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
+    "/usr/share/fonts/truetype/hack/Hack-Bold.ttf||313472:1573378808.0": {
+      "family_name": "Hack",
+      "font-family": "Hack",
+      "font-stretch": "normal",
+      "font-style": "normal",
+      "font-weight": "bold",
+      "fs_type": 0,
+      "full_name": "Hack Bold",
+      "is_bold": true,
+      "is_italic": false,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        11,
+        8,
+        9,
+        3,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "path": "/usr/share/fonts/truetype/hack/Hack-Bold.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Bold",
+      "weight": 700,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/hack/Hack-BoldItalic.ttf||318212:1573378808.0": {
+      "family_name": "Hack",
+      "font-family": "Hack",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "bold",
+      "fs_type": 0,
+      "full_name": "Hack Bold Italic",
+      "is_bold": true,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        11,
+        8,
+        9,
+        3,
+        2,
+        2,
+        9,
+        2,
+        4
+      ],
+      "path": "/usr/share/fonts/truetype/hack/Hack-BoldItalic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Bold Italic",
+      "weight": 700,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/hack/Hack-Italic.ttf||312008:1573378808.0": {
+      "family_name": "Hack",
+      "font-family": "Hack",
+      "font-stretch": "normal",
+      "font-style": "italic",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Hack Italic",
+      "is_bold": false,
+      "is_italic": true,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": false,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        11,
+        6,
+        9,
+        3,
+        2,
+        2,
+        9,
+        2,
+        4
+      ],
+      "path": "/usr/share/fonts/truetype/hack/Hack-Italic.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Italic",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
+    "/usr/share/fonts/truetype/hack/Hack-Regular.ttf||305316:1573378808.0": {
+      "family_name": "Hack",
+      "font-family": "Hack",
+      "font-stretch": "normal",
+      "font-style": "normal",
+      "font-weight": "normal",
+      "fs_type": 0,
+      "full_name": "Hack Regular",
+      "is_bold": false,
+      "is_italic": false,
+      "is_oblique": false,
+      "is_otf": false,
+      "is_regular": true,
+      "is_wws": false,
+      "os2_version": 4,
+      "panose": [
+        2,
+        11,
+        6,
+        9,
+        3,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "path": "/usr/share/fonts/truetype/hack/Hack-Regular.ttf",
+      "preferred_family_name": null,
+      "preferred_subfamily_name": null,
+      "subfamily_name": "Regular",
+      "weight": 400,
+      "width": 5,
+      "wws_family_name": null,
+      "wws_subfamily_name": null
+    },
     "/usr/share/fonts/truetype/lato/Lato-Black.ttf||614544:1438879318.0": {
       "family_name": "Lato Black",
       "font-family": "Lato Black",
@@ -9288,7 +9432,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||208872:1749121331.0": {
+    "/usr/share/fonts/truetype/libreoffice/opens___.ttf||208872:1759400563.0": {
       "family_name": "OpenSymbol",
       "font-family": "OpenSymbol",
       "font-stretch": "normal",
@@ -9324,7 +9468,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/cmex10.ttf||20688:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/cmex10.ttf||20688:1757020957.0": {
       "family_name": "cmex10",
       "font-family": "cmex10",
       "font-stretch": "normal",
@@ -9360,7 +9504,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/cmmi10.ttf||32044:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/cmmi10.ttf||32044:1757020957.0": {
       "family_name": "cmmi10",
       "font-family": "cmmi10",
       "font-stretch": "normal",
@@ -9396,7 +9540,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/cmr10.ttf||26188:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/cmr10.ttf||26188:1757020957.0": {
       "family_name": "cmr10",
       "font-family": "cmr10",
       "font-stretch": "normal",
@@ -9432,7 +9576,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/cmsy10.ttf||28484:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/cmsy10.ttf||28484:1757020957.0": {
       "family_name": "cmsy10",
       "font-family": "cmsy10",
       "font-stretch": "normal",
@@ -9468,7 +9612,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/dsrom10.ttf||9944:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/dsrom10.ttf||9944:1757020957.0": {
       "family_name": "dsrom10",
       "font-family": "dsrom10",
       "font-stretch": "normal",
@@ -9504,7 +9648,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/esint10.ttf||27700:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/esint10.ttf||27700:1757020957.0": {
       "family_name": "esint10",
       "font-family": "esint10",
       "font-stretch": "normal",
@@ -9540,7 +9684,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/eufm10.ttf||23476:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/eufm10.ttf||23476:1757020957.0": {
       "family_name": "eufm10",
       "font-family": "eufm10",
       "font-stretch": "normal",
@@ -9576,7 +9720,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/msam10.ttf||26628:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/msam10.ttf||26628:1757020957.0": {
       "family_name": "msam10",
       "font-family": "msam10",
       "font-stretch": "normal",
@@ -9612,7 +9756,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/msbm10.ttf||36468:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/msbm10.ttf||36468:1757020957.0": {
       "family_name": "msbm10",
       "font-family": "msbm10",
       "font-stretch": "normal",
@@ -9648,7 +9792,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/rsfs10.ttf||10932:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/rsfs10.ttf||10932:1757020957.0": {
       "family_name": "rsfs10",
       "font-family": "rsfs10",
       "font-stretch": "normal",
@@ -9684,7 +9828,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/stmary10.ttf||19172:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/stmary10.ttf||19172:1757020957.0": {
       "family_name": "stmary10",
       "font-family": "stmary10",
       "font-stretch": "normal",
@@ -9720,7 +9864,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/lyx/wasy10.ttf||21292:1737046796.0": {
+    "/usr/share/fonts/truetype/lyx/wasy10.ttf||21292:1757020957.0": {
       "family_name": "wasy10",
       "font-family": "wasy10",
       "font-stretch": "normal",
@@ -9756,7 +9900,7 @@
       "wws_family_name": null,
       "wws_subfamily_name": null
     },
-    "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf||10788068:1727974282.0": {
+    "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf||10788592:1750626632.0": {
       "family_name": "Noto Color Emoji",
       "font-family": "Noto Color Emoji",
       "font-stretch": "normal",

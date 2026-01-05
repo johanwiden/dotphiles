@@ -1,49 +1,49 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1582,
-      "width": 1300,
+      "height": 1438,
+      "width": 1297,
       "x": -11,
       "y": -49
     },
     "full_screened": false,
     "geometry": {
-      "height": 1522,
-      "width": 1278,
+      "height": 1378,
+      "width": 1275,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1522,
-      "width": 1278,
+      "height": 1378,
+      "width": 1275,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////1////zwAABQgAAAX8AAAAAAAAAAAAAAT9AAAF8QAAAAAAAAAADwAAAAAAAAAAAAAABP0AAAXx"
+      "__value__": "AdnQywADAAD////1////zwAABQUAAAVsAAAAAAAAAAAAAAT6AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPoAAAVh"
     },
     "screen": {
       "depth": 32,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "DEL",
-      "model": "DELL U3818DW",
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
       "name": "HDMI-1",
       "serial": "",
       "size_in_logical_pixels": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840
       },
       "virtual_geometry": {
-        "height": 1600,
+        "height": 2160,
         "width": 3840,
         "x": 0,
         "y": 0
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAGE/wCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAYFAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE/gAABfIAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAIJPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAgkAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAAChAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE+wAABWIAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -97,6 +97,10 @@
       "mode": "normal"
     },
     "debugging section": {
+      "case_sensitive": false,
+      "mode": "normal"
+    },
+    "dragon": {
       "case_sensitive": false,
       "mode": "normal"
     },
@@ -160,6 +164,42 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "key": "/home/jw/Downloads/japan-resa-förslag.md",
+        "pathtoebook": "/home/jw/Downloads/japan-resa-förslag.md",
+        "timestamp": "2026-01-04T16:55:59.108Z",
+        "title": "japan-resa-förslag"
+      },
+      {
+        "key": "/home/jw/Downloads/japan.md",
+        "pathtoebook": "/home/jw/Downloads/japan.md",
+        "timestamp": "2025-12-30T14:21:53.648Z",
+        "title": "japan"
+      },
+      {
+        "authors": [
+          "Drew Neil"
+        ],
+        "key": "/home/jw/calibre_library/Drew Neil/Practical Vim_ Edit Text at the Speed of Thought (1347)/Practical Vim_ Edit Text at the Speed of T - Drew Neil.epub",
+        "pathtoebook": "/home/jw/calibre_library/Drew Neil/Practical Vim_ Edit Text at the Speed of Thought (1347)/Practical Vim_ Edit Text at the Speed of T - Drew Neil.epub",
+        "timestamp": "2025-12-01T09:01:23.959Z",
+        "title": "Practical Vim, Second Edition"
+      },
+      {
+        "key": "/home/jw/Widén_220125_2022-02-12.gpkg.media/home/jw/släktforskning/ancestry.se/media/brev_f_erik_gustaf_arnold_widen_1914-09-15.md",
+        "pathtoebook": "/home/jw/Widén_220125_2022-02-12.gpkg.media/home/jw/släktforskning/ancestry.se/media/brev_f_erik_gustaf_arnold_widen_1914-09-15.md",
+        "timestamp": "2025-11-09T08:51:33.429Z",
+        "title": "brev f erik gustaf arnold widen 1914-09-15"
+      },
+      {
+        "authors": [
+          "Various Authors"
+        ],
+        "key": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
+        "pathtoebook": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
+        "timestamp": "2025-10-14T20:50:41.299Z",
+        "title": "Tor.com: Summer 2023 Short Fiction"
+      },
       {
         "authors": [
           "Arnold Henry Savage Landor"
@@ -300,15 +340,6 @@
       },
       {
         "authors": [
-          "Various Authors"
-        ],
-        "key": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
-        "pathtoebook": "/home/jw/Downloads/Tor.com-Summer-2023.epub",
-        "timestamp": "2023-09-17T08:48:15.448Z",
-        "title": "Tor.com: Summer 2023 Short Fiction"
-      },
-      {
-        "authors": [
           "EZCOO"
         ],
         "key": "/home/jw/Downloads/eb36629de8.epub",
@@ -342,36 +373,6 @@
         "pathtoebook": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
         "timestamp": "2022-11-16T21:55:53.011Z",
         "title": "Common Lisp Recipes"
-      },
-      {
-        "key": "/home/jw/calibre_library/Unknown/SV-NRGDM-IM-EU0381 tcm507-45188 (1312)/SV-NRGDM-IM-EU0381 tcm507-45188 - Unknown.pdf",
-        "pathtoebook": "/home/jw/calibre_library/Unknown/SV-NRGDM-IM-EU0381 tcm507-45188 (1312)/SV-NRGDM-IM-EU0381 tcm507-45188 - Unknown.pdf",
-        "timestamp": "2022-11-11T08:55:42.842Z",
-        "title": "SV-NRGDM-IM-EU0381 tcm507-45188"
-      },
-      {
-        "authors": [
-          "The Common Lisp Cookbook contributors"
-        ],
-        "key": "/home/jw/projects/cl/cl-cookbook/common-lisp-cookbook.epub",
-        "pathtoebook": "/home/jw/projects/cl/cl-cookbook/common-lisp-cookbook.epub",
-        "timestamp": "2022-09-09T11:53:33.424Z",
-        "title": "The Common Lisp Cookbook: Diving into the programmable programming language"
-      },
-      {
-        "authors": [
-          "The Common Lisp Cookbook contributors"
-        ],
-        "key": "/home/jw/calibre_library/The Common Lisp Cookbook contributors/The Common Lisp Cookbook_ Diving into the programmable programming language (1303)/The Common Lisp Cookbook_ Diving into the - The Common Lisp Cookbook contributors.epub",
-        "pathtoebook": "/home/jw/calibre_library/The Common Lisp Cookbook contributors/The Common Lisp Cookbook_ Diving into the programmable programming language (1303)/The Common Lisp Cookbook_ Diving into the - The Common Lisp Cookbook contributors.epub",
-        "timestamp": "2022-09-05T11:59:46.823Z",
-        "title": "The Common Lisp Cookbook: Diving into the programmable programming language"
-      },
-      {
-        "key": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",
-        "pathtoebook": "/home/jw/släktforskning/ancestry.se/media/Peder_Jensen_Bagge_dä.md",
-        "timestamp": "2022-02-06T10:55:44.123Z",
-        "title": "Peder Jensen Bagge dä"
       }
     ],
     "user_color_schemes": {

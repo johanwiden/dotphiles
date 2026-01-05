@@ -162,28 +162,28 @@
   },
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 721,
-      "width": 1296,
+      "height": 722,
+      "width": 1295,
       "x": 1259,
       "y": 240
     },
     "full_screened": false,
     "geometry": {
-      "height": 661,
-      "width": 1274,
+      "height": 662,
+      "width": 1273,
       "x": 1270,
       "y": 289
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 661,
-      "width": 1274,
+      "height": 662,
+      "width": 1273,
       "x": 1270,
       "y": 289
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAATrAAAA8AAACfoAAAPAAAAE9gAAASEAAAnvAAADtQAAAAAAAAAADwAAAAT2AAABIQAACe8AAAO1"
+      "__value__": "AdnQywADAAAAAATrAAAA8AAACfkAAAPBAAAE9gAAASEAAAnuAAADtgAAAAAAAAAADwAAAAT2AAABIQAACe4AAAO2"
     },
     "screen": {
       "depth": 32,
@@ -213,7 +213,7 @@
   },
   "html-editor-state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAD9AAAAAAAAAL4AAAVgAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAQv////8AAAAAAAAAAAAAAB4AaAB0AG0AbABfAGYAbwByAG0AYQB0AF8AYgBhAHIBAAAAgP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAD9AAAAAAAAAL4AAAH+AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAQv////8AAAAAAAAAAAAAAB4AaAB0AG0AbABfAGYAbwByAG0AYQB0AF8AYgBhAHIBAAAAgP////8AAAAAAAAAAA=="
   },
   "main_window_geometry": {
     "__class__": "bytearray",
@@ -221,19 +221,19 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAACnAAACQPwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAJAAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAH0A////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAA40AAAJA/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAAAkAAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAALoAAAJAAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
+    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAACkAAACQfwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAJBAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAH0A////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAA4sAAAJB/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAAAkEAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAAL4AAAJBAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
   },
   "recent-books": [
-    "/home/jw/calibre_library/Unknown/The Department Of Truth Vol. 4 (1805)/The Department Of Truth Vol. 4 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/The Department of Truth_ Wild Fictions (1804)/The Department of Truth_ Wild Fictions - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/The Deviant, Vol. 1 (1803)/The Deviant, Vol. 1 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/W0rldtr33 (2023), Vol. 2 (1802)/W0rldtr33 (2023), Vol. 2 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 2 (1801)/DEPARTMENT OF TRUTH, Vol. 2 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 3 (1800)/DEPARTMENT OF TRUTH, Vol. 3 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/DEPARTMENT OF TRUTH, Vol. 1 (1799)/DEPARTMENT OF TRUTH, Vol. 1 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/Saga Vol. 6 (1794)/Saga Vol. 6 - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/The Deadliest Bouquet, Vol. 1 (TPB) (1790)/The Deadliest Bouquet, Vol. 1 (TPB) - Unknown.epub",
-    "/home/jw/calibre_library/Unknown/SFSX (SAFE SEX), Vol. 1 (1789)/SFSX (SAFE SEX), Vol. 1 - Unknown.epub"
+    "/home/jw/calibre_library/Scott Snyder/Wytches (1900)/Wytches - Scott Snyder.epub",
+    "/home/jw/calibre_library/Brian K. Vaughan/We Stand On Guard (1899)/We Stand On Guard - Brian K. Vaughan.epub",
+    "/home/jw/calibre_library/Eric Stephenson/They're Not Like Us, Vol. 1_ Black Holes For The Young (1897)/They're Not Like Us, Vol. 1_ Black Holes F - Eric Stephenson.epub",
+    "/home/jw/calibre_library/Eric Stephenson/They're Not Like Us (1898)/They're Not Like Us - Eric Stephenson.epub",
+    "/home/jw/calibre_library/David Lapham/Stray Bullets_ Sunshine Roses (1893)/Stray Bullets_ Sunshine Roses - David Lapham.epub",
+    "/home/jw/calibre_library/David Lapham/Stray Bullets_ Sunshine Roses (1894)/Stray Bullets_ Sunshine Roses - David Lapham.epub",
+    "/home/jw/calibre_library/David Lapham/Stray Bullets_ Sunshine Roses (1895)/Stray Bullets_ Sunshine Roses - David Lapham.epub",
+    "/home/jw/calibre_library/David Lapham/Stray Bullets_ Sunshine Roses (1896)/Stray Bullets_ Sunshine Roses - David Lapham.epub",
+    "/home/jw/calibre_library/Justin Jordan/The Strange Talent Of Luther Strode 4th Printing (1890)/The Strange Talent Of Luther Strode 4th Pr - Justin Jordan.epub",
+    "/home/jw/calibre_library/Justin Jordan/The Strange Talent Of Luther Strode (1891)/The Strange Talent Of Luther Strode - Justin Jordan.epub"
   ],
   "reports-ui-state": {},
   "saved_seaches_state": {

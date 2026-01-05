@@ -295,56 +295,57 @@
   ;;     (info "(elisp) Key Binding Conventions")
   (define-key global-map (kbd "C-c f") #'fontaine-set-preset))
 
-;; (defun my-update-active-mode-line-colors ()
-;;   (set-face-attribute
-;;    'mode-line nil
-;;    :foreground (modus-themes-get-color-value 'fg-mode-line-active)
-;;    :background "goldenrod"
-;;    :box '(:line-width
-;;           1
-;;           :color
-;;           (modus-themes-get-color-value 'border-mode-line-active))))
-;; (defun my-update-active-mode-line-colors ()
-;;   (set-face-attribute
-;;    'mode-line nil
-;;    :background "dark olive green"))
-;; (defun my-update-active-mode-line-colors ()
-;;   (modus-themes-with-colors
-;;     (custom-set-faces
-;;      `(mode-line ((t :background ,bg-yellow-subtle))))))
-
-;; (add-hook 'modus-themes-post-load-hook #'my-update-active-mode-line-colors)
-
-;; Can also be done with
-(setopt modus-themes-common-palette-overrides
-      '((bg-mode-line-active bg-yellow-subtle)))
-
 (use-package! modus-themes
   :init
-  ;; Add all your customizations prior to loading the themes
-  (setopt modus-themes-completions
-        (quote ((matches . (extrabold background intense))
-                (selection . (semibold accented intense))
-                (popup . (accented)))))
-  ;; 1.5 1.3 1.8
-  (setopt modus-themes-mixed-fonts t
-        modus-themes-bold-constructs t
-        modus-themes-variable-pitch-ui t
-        modus-themes-prompts '(bold)
-        modus-themes-org-blocks 'tinted-background
-        modus-themes-headings '((1 . (light variable-pitch 1.0))
-                                (agenda-date . (1.0))
-                                (agenda-structure . (variable-pitch light 1.0))
-				(t . (medium))))
+  ;; Starting with version 5.0.0 of the `modus-themes', other packages
+  ;; can be built on top to provide their own "Modus" derivatives.
+  ;; For example, this is what I do with my `ef-themes' and
+  ;; `standard-themes' (starting with versions 2.0.0 and 3.0.0,
+  ;; respectively).
+  ;;
+  ;; The `modus-themes-include-derivatives-mode' makes all Modus
+  ;; commands that act on a theme consider all such derivatives, if
+  ;; their respective packages are available and have been loaded.
+  ;;
+  ;; Note that those packages can even completely take over from the
+  ;; Modus themes such that, for example, `modus-themes-rotate' only
+  ;; goes through the Ef themes (to this end, the Ef themes provide
+  ;; the `ef-themes-take-over-modus-themes-mode' and the Standard
+  ;; themes have the `standard-themes-take-over-modus-themes-mode'
+  ;; equivalent).
+  ;;
+  ;; If you only care about the Modus themes, then (i) you do not need
+  ;; to enable the `modus-themes-include-derivatives-mode' and (ii) do
+  ;; not install and activate those other theme packages.
+  (modus-themes-include-derivatives-mode 1)
+
   :config
+   (setq modus-themes-custom-auto-reload nil
+        modus-themes-to-toggle '(modus-operandi modus-vivendi)
+        modus-themes-to-rotate modus-themes-items
+        modus-themes-mixed-fonts t
+        modus-themes-variable-pitch-ui t
+        modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-completions '((t . (bold)))
+        modus-themes-prompts '(bold)
+        modus-themes-headings
+        '((agenda-structure . (variable-pitch light 2.2))
+          (agenda-date . (variable-pitch regular 1.3))
+          (t . (regular 1.15))))
+
+  (setq modus-themes-common-palette-overrides nil)
+
+  ;; Finally, load your theme of choice (or a random one with
+  ;; `modus-themes-load-random', `modus-themes-load-random-dark',
+  ;; `modus-themes-load-random-light').
+  (modus-themes-load-theme 'modus-operandi)
   (setopt custom-safe-themes t)
-  ;; (setopt modus-themes-common-palette-overrides modus-themes-preset-overrides-intense)
-  ;; (setopt modus-themes-common-palette-overrides modus-themes-preset-overrides-faint)
   (load-theme 'modus-vivendi-tinted)
   (setopt doom-theme 'modus-vivendi-tinted)
   ;; (load-theme 'modus-vivendi)
   ;; (setopt doom-theme 'modus-vivendi)
-  ;; :bind ("<f5>" . modus-themes-toggle)
+  ;; :bind ("<f5>" . modus-themes-rotate)
   )
 
 (defun ap/load-doom-theme (theme)
@@ -370,9 +371,6 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
-(server-start)
-;; (setopt server-kill-new-buffers nil)
-
 (setq-default
  help-window-select t             ; Focus new help windows when opened
  ;;debug-on-error t
@@ -395,6 +393,7 @@
 (customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
 (customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
 (setopt doom-cache-dir user-emacs-directory)
+(setopt doom-profile-cache-dir user-emacs-directory)
 (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" user-emacs-directory))
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
@@ -404,6 +403,7 @@
     (add-hook 'find-file-hook 'recentf-save-list)))
 (after! savehist
   (setopt savehist-autosave-interval 600))
+;; (auto-save-mode -1)
 (require 'saveplace-pdf-view)
 (save-place-mode 1)
 (setopt use-package-verbose t)
@@ -581,6 +581,78 @@
    :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
 
 (setopt display-line-numbers-type nil)
+
+(setq! citar-bibliography '("/home/jw/Dokument/Böcker/mylibrary.bib"))
+(setq! ews-bibtex-directory "/home/jw/Dokument/Böcker")
+;; (after! citar
+;;   (progn
+;;     (setq! citar-bibliography '("/home/jw/Dokument/Böcker/my-library.bib"))
+;;     ))
+
+(use-package! citar-denote
+  :after (citar denote)
+  :custom
+  (citar-open-always-create-notes t)
+  :init
+  (citar-denote-mode)
+  :bind
+  (("C-c w b c" . citar-create-note)
+   ("C-c w b n" . citar-denote-open-note)
+   ("C-c w b x" . citar-denote-nocite)
+   :map org-mode-map
+   ("C-c w b k" . citar-denote-add-citekey)
+   ("C-c w b K" . citar-denote-remove-citekey)
+   ("C-c w b d" . citar-denote-dwim)
+   ("C-c w b e" . citar-denote-open-reference-entry)))
+
+(after! denote
+  (load "/home/jw/projects/emacs/emacs-writing-studio/ews.el"))
+
+(after! (bibtex denote)
+  (progn
+    (setq bibtex-user-optional-fields
+          '(("keywords" "Keywords to describe the entry" "")
+            ("file"     "Relative or absolute path to attachments" "" )))
+    (ews-bibtex-register)
+    (global-set-key (kbd "C-c w b r") 'ews-bibtex-register)
+    (global-set-key (kbd "C-c w b o") 'citar-open)
+    (global-set-key (kbd "C-c w h") 'consult-org-heading)
+    (global-set-key (kbd "C-c w g") 'consult-grep)
+    (keymap-set org-mode-map "C-c w n" #'ews-org-insert-notes-drawer)
+    (keymap-set org-mode-map "C-c w p" #'ews-org-insert-screenshot)
+    (keymap-set org-mode-map "C-c w c" #'ews-org-count-words)
+    ;; Export citations with Org Mode
+    (require 'oc-natbib)
+    (require 'oc-csl)
+    ))
+
+;; Biblio package for adding BibTeX records
+(use-package! biblio
+  :after (bibtex denote)
+  :bind
+  (("C-c w b b" . ews-bibtex-biblio-lookup)))
+
+;; Easy insertion of weblinks
+(use-package! org-web-tools
+  :after (bibtex denote)
+  :bind
+  (("C-c w w" . org-web-tools-insert-link-for-url)))
+
+;; Open files with external applications
+(use-package openwith
+  :after denote
+  :config
+  (openwith-mode t)
+  :custom
+  (openwith-associations nil))
+
+;; Writegood-Mode for weasel words, passive writing and repeated word detection
+(use-package writegood-mode
+  :bind
+  (("C-c w s r" . writegood-reading-ease))
+  ;; :hook
+  ;; (text-mode . writegood-mode)
+  )
 
 (setopt epkg-repository "~/epkgs/")
 
@@ -1260,85 +1332,91 @@ browser defined by `browse-url-generic-program'."
   :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
-  :hook
-  (nov-mode . paw-annotation-mode)
+  ;; :hook
+  ;; (nov-mode . paw-annotation-mode)
   :bind
   (:map nov-mode-map
         ("<home>" . move-beginning-of-line)
         ("<end>" . move-end-of-line))
   :config
-  (add-hook 'nov-mode-hook #'eldoc-mode)
-  ;; (add-hook 'nov-mode-hook #'org-indent-mode)
-  (add-hook 'nov-mode-hook #'eldoc-box-hover-mode)
-  (add-hook 'nov-mode-hook #'shrface-nov-setup)
-  (require 'shrface)
-  ;; (define-key nov-mode-map (kbd "C-c C-l") 'shrface-links-consult)
-  ;; (define-key nov-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
-  (setopt nov-render-html-function #'my-nov-render-html)
-  ;; (advice-add 'my-nov-visit-relative-file :override #'nov-visit-relative-file)
-  (advice-add 'shr--remove-blank-lines-at-the-end :override #'my-shr--remove-blank-lines-at-the-end))
+  (setq nov-text-width 80)
+  ;; (setq visual-fill-column-center-text t)
+  ;; (add-hook 'nov-mode-hook 'visual-line-mode)
+  ;; (add-hook 'nov-mode-hook 'visual-fill-column-mode)
 
-(defun my-nov-render-html ()
-  (require 'eww)
-  (let ((shrface-org nil)
-        (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
-        (shr-table-vertical-line "|")
-        (shr-width 7000) ;; make it large enough, it would not fill the column (use visual-line-mode/writeroom-mode instead)
-        (shr-indentation 3) ;; remove all unnecessary indentation
-        (tab-width 8)
-        (shr-external-rendering-functions
-         (append '((img . nov-render-img)
-                   (svg . nov-render-svg)
-                   (title . nov-render-title)
-                   (pre . shrface-shr-tag-pre-highlight)
-                   (code . shrface-tag-code)
-                   (form . eww-tag-form)
-                   (input . eww-tag-input)
-                   (button . eww-form-submit)
-                   (textarea . eww-tag-textarea)
-                   (select . eww-tag-select)
-                   (link . eww-tag-link)
-                   (meta . eww-tag-meta))
-                 shrface-supported-faces-alist))
-        (shrface-toggle-bullets nil)
-        (shrface-href-versatile t)
-        (shr-use-fonts nil)           ; nil to use default font
-        (shr-map nov-mode-map))
-
-    ;; HACK: `shr-external-rendering-functions' doesn't cover
-    ;; every usage of `shr-tag-img'
-    (cl-letf (((symbol-function 'shr-tag-img) 'nov-render-img))
-      (shr-render-region (point-min) (point-max)))
-
-    ;; workaround, show annotations when document updates
-    (when (bound-and-true-p paw-annotation-mode)
-      (paw-clear-annotation-overlay)
-      (paw-show-all-annotations)
-      (if paw-annotation-show-wordlists-words-p
-          (paw-focus-find-words :wordlist t))
-      (if paw-annotation-show-unknown-words-p
-          (paw-focus-find-words)))))
-
-(defun my-shr--remove-blank-lines-at-the-end (start end)
-  "A fix for `shr--remove-blank-lines-at-the-end' which will remove image at the end of the document."
-  (save-restriction
-    (save-excursion
-      (narrow-to-region start end)
-      (goto-char end)
-      (when (and (re-search-backward "[^ \n]" nil t)
-                 (not (eobp)))
-        (forward-line 1)
-        (delete-region (point) (min (1+ (point)) (point-max)))))))
-
-(defun shrface-nov-setup ()
-  (unless shrface-toggle-bullets
-    (shrface-regexp))
-  (set-visited-file-name nil t)
-  (setq tab-width 8)
-  (if (string-equal system-type "android")
-      (setq-local touch-screen-enable-hscroll nil))
-  ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+  ;; (add-hook 'nov-mode-hook #'eldoc-mode)
+  ;; ;; (add-hook 'nov-mode-hook #'org-indent-mode)
+  ;; (add-hook 'nov-mode-hook #'eldoc-box-hover-mode)
+  ;; (add-hook 'nov-mode-hook #'shrface-nov-setup)
+  ;; (require 'shrface)
+  ;; ;; (define-key nov-mode-map (kbd "C-c C-l") 'shrface-links-consult)
+  ;; ;; (define-key nov-mode-map (kbd "C-c C-h") 'shrface-headline-consult)
+  ;; (setopt nov-render-html-function #'my-nov-render-html)
+  ;; ;; (advice-add 'my-nov-visit-relative-file :override #'nov-visit-relative-file)
+  ;; (advice-add 'shr--remove-blank-lines-at-the-end :override #'my-shr--remove-blank-lines-at-the-end)
   )
+
+;; (defun my-nov-render-html ()
+;;   (require 'eww)
+;;   (let ((shrface-org nil)
+;;         (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
+;;         (shr-table-vertical-line "|")
+;;         (shr-width 7000) ;; make it large enough, it would not fill the column (use visual-line-mode/writeroom-mode instead)
+;;         (shr-indentation 3) ;; remove all unnecessary indentation
+;;         (tab-width 8)
+;;         (shr-external-rendering-functions
+;;          (append '((img . nov-render-img)
+;;                    (svg . nov-render-svg)
+;;                    (title . nov-render-title)
+;;                    (pre . shrface-shr-tag-pre-highlight)
+;;                    (code . shrface-tag-code)
+;;                    (form . eww-tag-form)
+;;                    (input . eww-tag-input)
+;;                    (button . eww-form-submit)
+;;                    (textarea . eww-tag-textarea)
+;;                    (select . eww-tag-select)
+;;                    (link . eww-tag-link)
+;;                    (meta . eww-tag-meta))
+;;                  shrface-supported-faces-alist))
+;;         (shrface-toggle-bullets nil)
+;;         (shrface-href-versatile t)
+;;         (shr-use-fonts nil)           ; nil to use default font
+;;         (shr-map nov-mode-map))
+
+;;     ;; HACK: `shr-external-rendering-functions' doesn't cover
+;;     ;; every usage of `shr-tag-img'
+;;     (cl-letf (((symbol-function 'shr-tag-img) 'nov-render-img))
+;;       (shr-render-region (point-min) (point-max)))
+
+;;     ;; workaround, show annotations when document updates
+;;     (when (bound-and-true-p paw-annotation-mode)
+;;       (paw-clear-annotation-overlay)
+;;       (paw-show-all-annotations)
+;;       (if paw-annotation-show-wordlists-words-p
+;;           (paw-focus-find-words :wordlist t))
+;;       (if paw-annotation-show-unknown-words-p
+;;           (paw-focus-find-words)))))
+
+;; (defun my-shr--remove-blank-lines-at-the-end (start end)
+;;   "A fix for `shr--remove-blank-lines-at-the-end' which will remove image at the end of the document."
+;;   (save-restriction
+;;     (save-excursion
+;;       (narrow-to-region start end)
+;;       (goto-char end)
+;;       (when (and (re-search-backward "[^ \n]" nil t)
+;;                  (not (eobp)))
+;;         (forward-line 1)
+;;         (delete-region (point) (min (1+ (point)) (point-max)))))))
+
+;; (defun shrface-nov-setup ()
+;;   (unless shrface-toggle-bullets
+;;     (shrface-regexp))
+;;   (set-visited-file-name nil t)
+;;   (setq tab-width 8)
+;;   (if (string-equal system-type "android")
+;;       (setq-local touch-screen-enable-hscroll nil))
+;;   ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
+;;   )
 
 ;; (defun my-window-displaying-calibredb-entry-p (window)
 ;;   (equal (with-current-buffer (window-buffer window) major-mode)
@@ -1894,6 +1972,14 @@ _w_ where is something defined
   (setopt which-key-side-window-max-height 0.5)
   (setopt which-key-side-window-max-width 0.5)
   ;; (setopt which-key-allow-imprecise-window-fit nil)
+  (which-key-add-key-based-replacements
+    "C-c w"   "Emacs Writing Studio"
+    "C-c w b" "Bibliographic"
+    "C-c w d" "Denote"
+    "C-c w m" "Multimedia"
+    "C-c w s" "Spelling and Grammar"
+    "C-c w t" "Themes"
+    "C-c w x" "Explore")
   )
 
 (use-package! vertico-flat
@@ -2105,9 +2191,9 @@ _w_ where is something defined
 
   ;; We use different ways to specify a path for demo purposes.
   (setopt denote-dired-directories
-        (list denote-directory
-              (thread-last denote-directory (expand-file-name "attachments"))
-              (expand-file-name "~/Documents/books")))
+          (list denote-directory
+                (thread-last denote-directory (expand-file-name "attachments"))
+                (expand-file-name "~/Documents/books")))
 
   ;; Generic (great if you rename files Denote-style in lots of places):
   ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
@@ -2128,6 +2214,14 @@ _w_ where is something defined
     (define-key map (kbd "C-c n z") #'denote-signature) ; "zettelkasten" mnemonic
     (define-key map (kbd "C-c n s") #'denote-subdirectory)
     (define-key map (kbd "C-c n t") #'denote-template)
+    (define-key map (kbd "C-c w d b") #'denote-find-backlink)
+    (define-key map (kbd "C-c w d d") #'denote-date)
+    (define-key map (kbd "C-c w d l") #'denote-find-link)
+    (define-key map (kbd "C-c w d i") #'denote-link-or-create)
+    (define-key map (kbd "C-c w d k") #'denote-rename-file-keywords)
+    (define-key map (kbd "C-c w d n") #'denote)
+    (define-key map (kbd "C-c w d r") #'denote-rename-file)
+    (define-key map (kbd "C-c w d R") #'denote-rename-file-using-front-matter)
     ;; If you intend to use Denote with a variety of file types, it is
     ;; easier to bind the link-related commands to the `global-map', as
     ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
@@ -2172,38 +2266,39 @@ _w_ where is something defined
   ;; Transient setup for Denote
   ;; https://gist.github.com/ashton314/1de93821d255412cdadfbcf98cd30cad
   (transient-define-prefix denote-transient ()
-  "Denote dispatch"
-  [["Note creation (d)"
-    ("dd" "new note" denote)
-    ("dj" "new or existing journal entry" denote-journal-new-or-existing-entry)
-    ("dn" "open or new" denote-open-or-create)
-    ("dt" "new specifying date and time" denote-date)
-    ("ds" "create in subdirectory " denote-subdirectory)]
-   ["Folgezettel (f)"
-    ("fc" "create parent/child/sibling" denote-sequence)
-    ("ff" "find parent/child/sibling notes" denote-sequence-find)
-    ("fr" "reparent (adopt) current note into another sequence" denote-sequence-reparent)
-    ("fp" "find previous sibling" denote-sequence-find-previous-sibling :transient t)
-    ("fn" "find next sibling" denote-sequence-find-next-sibling :transient t)]]
-  [["Bookkeeping (b)"
-    ("br" "prompt and rename" denote-rename-file)
-    ("bf" "rename with frontmatter" denote-rename-file-using-front-matter)
-    ("bk" "modify keywords" denote-rename-file-keywords)]
-   ["Linking (l)"
-    ("li" "insert link" denote-link)
-    ("lh" "insert link to org heading" denote-org-link-to-heading)
-    ("lb" "show backlinks" denote-backlinks)
-    ("lg" "visit backlink" denote-find-backlink)
-    ("lo" "org backlink block" denote-org-dblock-insert-backlinks)]]
-  [["Searching (s)"
-    ("sd" "deft" deft)
-    ("sn" "consult-notes" consult-notes)
-    ("ss" "consult-notes search" consult-notes-search-in-all-notes)]]))
+    "Denote dispatch"
+    [["Note creation (d)"
+      ("dd" "new note" denote)
+      ("dj" "new or existing journal entry" denote-journal-new-or-existing-entry)
+      ("dn" "open or new" denote-open-or-create)
+      ("dt" "new specifying date and time" denote-date)
+      ("ds" "create in subdirectory " denote-subdirectory)]
+     ["Folgezettel (f)"
+      ("fc" "create parent/child/sibling" denote-sequence)
+      ("ff" "find parent/child/sibling notes" denote-sequence-find)
+      ("fr" "reparent (adopt) current note into another sequence" denote-sequence-reparent)
+      ("fp" "find previous sibling" denote-sequence-find-previous-sibling :transient t)
+      ("fn" "find next sibling" denote-sequence-find-next-sibling :transient t)]]
+    [["Bookkeeping (b)"
+      ("br" "prompt and rename" denote-rename-file)
+      ("bf" "rename with frontmatter" denote-rename-file-using-front-matter)
+      ("bk" "modify keywords" denote-rename-file-keywords)]
+     ["Linking (l)"
+      ("li" "insert link" denote-link)
+      ("lh" "insert link to org heading" denote-org-link-to-heading)
+      ("lb" "show backlinks" denote-backlinks)
+      ("lg" "visit backlink" denote-find-backlink)
+      ("lo" "org backlink block" denote-org-dblock-insert-backlinks)]]
+    [["Searching (s)"
+      ("sd" "deft" deft)
+      ("sn" "consult-notes" consult-notes)
+      ("ss" "consult-notes search" consult-notes-search-in-all-notes)]]))
 
 (use-package! denote-org
   :after denote
   ;; :defer t
-)
+  :bind
+  (("C-c w d h" . denote-org-link-to-heading)))
 
 (define-minor-mode denote-mode
   "Denote is a simple note-taking tool for Emacs."
@@ -2229,6 +2324,9 @@ _w_ where is something defined
              ;; if using org-roam
              consult-notes-org-roam-find-node
              consult-notes-org-roam-find-node-relation)
+  :bind
+  (("C-c w d f" . consult-notes)
+   ("C-c w d g" . consult-notes-search-in-all-notes))
   :config
   (setopt consult-notes-file-dir-sources `(("Denote"  ?d  ,(denote-directory))
                                          ("Org"     ?o  "~/org/roam"))) ;; Set notes dir(s), see below
@@ -2259,6 +2357,54 @@ _w_ where is something defined
   (define-key denote-menu-mode-map (kbd "/ k") #'denote-menu-filter-by-keyword)
   (define-key denote-menu-mode-map (kbd "/ o") #'denote-menu-filter-out-keyword)
   (define-key denote-menu-mode-map (kbd "e")   #'denote-menu-export-to-dired))
+
+(use-package denote-sequence
+  ;; :defer t
+  ;; :bind
+  ;; ( :map global-map
+  ;;   ;; Here we make "C-c n s" a prefix for all "[n]otes with [s]equence".
+  ;;   ;; This is just for demonstration purposes: use the key bindings
+  ;;   ;; that work for you.  Also check the commands:
+  ;;   ;;
+  ;;   ;; - `denote-sequence-new-parent'
+  ;;   ;; - `denote-sequence-new-sibling'
+  ;;   ;; - `denote-sequence-new-child'
+  ;;   ;; - `denote-sequence-new-child-of-current'
+  ;;   ;; - `denote-sequence-new-sibling-of-current'
+  ;;   ("C-c n s s" . denote-sequence)
+  ;;   ("C-c n s f" . denote-sequence-find)
+  ;;   ("C-c n s l" . denote-sequence-link)
+  ;;   ("C-c n s d" . denote-sequence-dired)
+  ;;   ("C-c n s r" . denote-sequence-reparent)
+  ;;   ("C-c n s c" . denote-sequence-convert))
+  :config
+  ;; The default sequence scheme is `numeric'.
+  (setq denote-sequence-scheme 'alphanumeric))
+
+(use-package denote-explore
+  ;; :defer t
+  :after denote
+  :bind
+  (;; Statistics
+   ("C-c w x c" . denote-explore-count-notes)
+   ("C-c w x C" . denote-explore-count-keywords)
+   ("C-c w x b" . denote-explore-barchart-keywords)
+   ("C-c w x e" . denote-explore-barchart-filetypes)
+   ;; Random walks
+   ("C-c w x r" . denote-explore-random-note)
+   ("C-c w x l" . denote-explore-random-link)
+   ("C-c w x k" . denote-explore-random-keyword)
+   ("C-c w x x" . denote-explore-random-regex)
+   ;; Denote Janitor
+   ("C-c w x d" . denote-explore-identify-duplicate-notes)
+   ("C-c w x z" . denote-explore-zero-keywords)
+   ("C-c w x s" . denote-explore-single-keywords)
+   ("C-c w x o" . denote-explore-sort-keywords)
+   ("C-c w x w" . denote-explore-rename-keyword)
+   ;; Visualise denote
+   ("C-c w x n" . denote-explore-network)
+   ("C-c w x v" . denote-explore-network-regenerate)
+   ("C-c w x D" . denote-explore-barchart-degree)))
 
 (use-package! consult-gh
   ;; :after (consult projectile)
@@ -2470,6 +2616,82 @@ _w_ where is something defined
 
  ;;; Set your shorthand favorite interactive command
   (setopt consult-omni-default-interactive-command #'consult-omni-multi))
+
+(after! consult
+ (defun consult--get-completion-options-from-help (exec)
+    "Generate exec options table vai `exec' -h."
+    (when (executable-find exec)
+      (let* ((-h (shell-command-to-string (concat exec  " --help")))
+             (-h-list (string-split -h "\\(\\.\\|:\\)\n"))
+             (doc-left-pad 30))
+        (mapcan (lambda (h)
+                  (let ((l (string-replace "\n" "" h)))
+                    (when (string-match (rx-to-string
+                                         '(: bol (* space)
+                                           (group "-" (? "-") (+ (or alnum "-")))
+                                           (? ", ") (? (group "-" (? "-") (+ (or alnum "-"))))
+                                           (? "=" (+ (or "_" "-" alnum)))
+                                           (+ space)
+                                           (group (* any)) eol))
+                                        l)
+                      (let* ((short (match-string 1 l))
+                             (long (match-string 2 l))
+                             (doc (match-string 3 l))
+                             (s-pad (- doc-left-pad (length short)))
+                             (l-pad (when long (- doc-left-pad (length long))))
+                             (s-doc (concat (make-string s-pad ?\s) doc))
+                             (l-doc (when long (concat (make-string l-pad ?\s) doc))))
+                        (if long
+                            (list `(,short . ,s-doc)
+                                  `(,long . ,l-doc))
+                          (list `(,short . ,s-doc)))))))
+                -h-list))))
+
+ (defmacro def-consult-help (command exec)
+   (let ((options-fun (intern (format "consult-%s-get-completion-options" exec)))
+         (options-alist (intern (format "consult-%s-completion-options-alist" exec)))
+         (annotion (intern (format "consult-%s-completion-annotation" exec)))
+         (table (intern (format "consult-%s-completion-table" exec)))
+         (capf (intern (format "consult-%s-completion-at-point" exec)))
+         (adv (intern (format "consult-%s-with-completion-at-point" exec))))
+     `(progn
+        (defun ,options-fun ()
+          "Generate options table vai -h."
+          (consult--get-completion-options-from-help ,exec))
+
+        (defcustom ,options-alist
+          (,options-fun)
+          ,(format "%s options alist." exec))
+
+        (defun ,annotion (candidate)
+          "Annotation for rg option."
+          (cdr (assoc candidate ,options-alist)))
+
+        (defun ,table ()
+          "List all option for rg."
+          (mapcar #'car ,options-alist))
+
+        (defun ,capf ()
+          "Completion option.
+This is the function to be used for the hook `completion-at-point-functions'."
+          (interactive)
+          (let* ((bds (bounds-of-thing-at-point 'symbol))
+                 (start (car bds))
+                 (end (cdr bds)))
+            (list start end (,table) :annotation-function #',annotion)))
+
+        (defun ,adv (orign &rest args)
+          (minibuffer-with-setup-hook
+              (:append
+               (lambda ()
+                 (add-hook 'completion-at-point-functions
+                           #',capf nil t)))
+            (apply orign args)))
+
+        (advice-add ,command :around ',adv))))
+
+ (def-consult-help 'consult-ripgrep "rg")
+ (def-consult-help 'consult-fd "fd"))
 
 (defun ambrevar/call-process-to-string (program &rest args)
   "Call PROGRAM with ARGS and return output.
@@ -2773,6 +2995,22 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
   (keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field))
 
+(use-package! casual-csv
+  :ensure nil
+  :defer t
+  :bind (:map csv-mode-map ("M-m" . casual-csv-tmenu))
+  :config
+  ;; disable line wrap
+  (add-hook 'csv-mode-hook
+            (lambda ()
+              (visual-line-mode -1)
+              (toggle-truncate-lines 1)))
+
+  ;; auto detect separator
+  (add-hook 'csv-mode-hook #'csv-guess-set-separator)
+  ;; turn on field alignment
+  (add-hook 'csv-mode-hook #'csv-align-mode))
+
 (use-package! eldoc-box
   ;; :defer t
 )
@@ -2783,7 +3021,20 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (setopt immersive-translate-backend 'chatgpt
         immersive-translate-chatgpt-host "api.openai.com"))
 
+(use-package! cc-cedict
+  ;; :defer t
+  :config
+  (setq cc-cedict-file "/home/jw/.stardict/dic/org-cc-cedict/cedict_1_0_ts_utf-8_mdbg.txt"))
+
+(use-package! pinyin-convert
+  ;; :defer t
+)
+
 (use-package! jieba
+  ;; :defer t
+)
+
+(use-package! zh-utils
   ;; :defer t
 )
 
@@ -2880,6 +3131,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (paw-hsk-update-word-lists)
   (setopt paw-note-dir (expand-file-name "paw" org-directory))
   (setopt paw-db-file (expand-file-name "paw.sqlite" paw-note-dir))
+  ;; Set SilverDict as the external dictionary function
+  (setq paw-external-dictionary-function 'paw-silverdict-search-details)
+  ;; Configure host and port (defaults shown below)
+  (setq paw-silverdict-host "localhost")  ; or your server IP
+  (setq paw-silverdict-port "2628")       ; default SilverDict port
+  ;; (setq paw-silverdict-query-path "/api/query/Chinese/")
   ;; ecdict dictionary
   (setopt paw-ecdict-db (expand-file-name "stardict.db" paw-note-dir))
   (setq paw-say-word-functions '(paw-edge-tts-say-word))
@@ -2936,6 +3193,9 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; (paw-all-the-icons-button-enable (unless (eq system-type 'android) t))
   ;; you can use (face-attribute 'org-block :background) or other color
   (paw-view-note-background-color (face-attribute 'org-block :background))
+  ;; For performance concerned, disable `paw-detect-language-p' and use
+  ;; `paw-ascii-rate', `paw-default-language' and `paw-non-ascii-language'
+  ;; instead.
   ;; (paw-detect-language-p t)
   (paw-detect-language-p nil)
   ;; (paw-python-program (if (string-equal system-type "android") "python3.10" "python3"))
@@ -3074,6 +3334,20 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (when (bound-and-true-p flyspell-mode)
     (flyspell-mode -1)))
 
+;; (defun paw-silverdict-search-details (&optional word en)
+;;   "Search WORD with SilverDict web server.
+;; The SilverDict server must be running on paw-silverdict-host:paw-silverdict-port.
+;; If WORD is not provided, uses the word at point via `paw-get-word'.
+;; EN parameter is ignored but kept for API compatibility."
+;;   (interactive)
+;;   (let* ((word (or word (paw-get-word)))
+;;          (url (format "http://%s:%s%s%s"
+;;                       paw-silverdict-host
+;;                       paw-silverdict-port
+;;                       paw-silverdict-query-path
+;;                       (url-hexify-string word))))
+;;     (browse-url url)))
+
 ;; (after! paw
 ;; ;; override the original gt-init, to remove the Processing message
 ;; (cl-defmethod gt-init :around ((render gt-render) translator)
@@ -3144,17 +3418,6 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :config
   (setopt gt-langs '(en fr))
   (setopt gt-default-translator (gt-translator :engines (gt-google-engine))))
-
-(use-package! maxima
-  :defer t
-  :init
-  (add-hook 'maxima-mode-hook #'maxima-hook-function)
-  (add-hook 'maxima-inferior-mode-hook #'maxima-hook-function)
-  (setq
-	 org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
-	 maxima-display-maxima-buffer nil)
-  :mode ("\\.mac\\'" . maxima-mode)
-  :interpreter ("maxima" . maxima-mode))
 
 (use-package! svg-lib
   :defer t)
@@ -3251,6 +3514,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
  ;; (setopt imaxima-use-maxima-mode-flag t)
  ;; (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
 (use-package! maxima
+  :defer t
   :init
   (add-hook 'maxima-mode-hook #'maxima-hook-function)
   (add-hook 'maxima-inferior-mode-hook #'maxima-hook-function)
@@ -3258,7 +3522,50 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 	 org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
 	 maxima-display-maxima-buffer nil)
   :mode ("\\.mac\\'" . maxima-mode)
-  :interpreter ("maxima" . maxima-mode))
+  :interpreter ("maxima" . maxima-mode)
+  :bind (:map maxima-mode-map
+              ;; Main motions commands, this can be used inside the maxima-mode buffer.
+              ("M-C-a" . maxima-goto-beginning-of-form)
+              ("M-C-e" . maxima-goto-end-of-form)
+              ("M-C-b" . maxima-goto-beginning-of-list)
+              ("M-C-f" . maxima-goto-end-of-list)
+              ("M-h"   . maxima-mark-form)
+              ("C-c )"   . maxima-check-parens-region)
+              ("C-c C-)" . maxima-check-form-parens)
+              ;; Completions command
+              ("M-TAB"       . maxima-complete)
+              ;; Help with the symbol under point, use (“d” for describe)
+              ("C-c C-d d"   . maxima-completion-help)
+              ("C-c C-d C-d" . maxima-completion-help)
+              ;; Eldoc-like information
+              ("C-c C-d s"   . maxima-symbol-doc)
+              ;; Apropos
+              ("C-c C-d a"   . maxima-apropos)
+              ("C-c C-d C-a" . maxima-apropos)
+              ;; To get apropos with the symbol under point, use
+              ("C-c C-d p"   . maxima-apropos-help)
+              ("C-c C-d C-p" . maxima-apropos-help)
+              ;; Maxima info manual, use
+              ("C-c C-d m"   . maxima-info)
+              ("C-c C-d C-m" . maxima-info)
+              ("C-c C-d i"   . maxima-info)
+              ("C-c C-d C-i" . maxima-info)
+              ;; Interaction with the Maxima process
+              ("C-c C-r"   . maxima-send-region)
+              ("C-c C-b"   . maxima-send-buffer)
+              ("C-c C-c"   . maxima-send-line)
+              ("C-c C-e"   . maxima-send-previous-form)
+              ;; Send the smallest set of lines which contains the cursor
+              ;; and contains no incomplete forms, and go to the next form.
+              ("C-RET"     . maxima-send-full-line-and-goto-next-form)
+              ;; As above, but with the region instead of the current line.
+              ("M-RET"     . maxima-send-completed-region-and-goto-next-form)
+              ;; Prompt for a file name to load into Maxima
+              ("C-c C-l"   . maxima-load-file))
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((maxima . t))))
 
 (after! julia-repl
   (progn
@@ -3339,6 +3646,9 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
 (use-package! reader
   :defer t)
+
+(after! pdf-tools
+  (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
 
 (use-package! math-preview
   :defer t
