@@ -77,94 +77,43 @@
           doom-variable-pitch-font (font-spec :family "Aporetic Sans" :size 21))
     (doom/reload-font))
 
-  ;; doom modeline
-  ;; (custom-set-faces!
-  ;;   '(mode-line :height 0.9)
-  ;;   '(mode-line-inactive :height 0.9))
-  (require 'doom-modeline)
+;; doom modeline
+;; (custom-set-faces!
+;;   '(mode-line :height 0.9)
+;;   '(mode-line-inactive :height 0.9))
+(require 'doom-modeline)
 
-  ;;
-  ;; evil-state
-  ;;
+;;
+;; evil-state
+;;
 
-  (doom-modeline-def-segment evil-state
-    "The current evil state.  Requires `evil-mode' to be enabled."
-    (when (bound-and-true-p evil-local-mode)
-      (s-trim-right (evil-state-property evil-state :tag t))))
+(doom-modeline-def-segment evil-state
+  "The current evil state.  Requires `evil-mode' to be enabled."
+  (when (bound-and-true-p evil-local-mode)
+    (s-trim-right (evil-state-property evil-state :tag t))))
 
-  (doom-modeline-def-modeline 'main
-    '(eldoc bar workspace-name window-number evil-state modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
-    '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check time))
+;; Exclude certain modelines from automatic modification
+(setq doom-modeline-excluded-modelines '(helm speedbar))
 
-  (doom-modeline-def-modeline 'minimal
-    '(bar window-number evil-state modals matches buffer-info-simple)
-    '(media-info major-mode time))
+;; Add segment to all modelines (after anchor segment)
+(doom-modeline-add-segment 'evil-state 'window-number)
+(doom-modeline-remove-segment 'modals)
 
-  (doom-modeline-def-modeline 'special
-    '(eldoc bar window-number evil-state modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
-    '(compilation objed-state misc-info battery irc-buffers debug minor-modes input-method indent-info buffer-encoding major-mode process time))
-
-  (doom-modeline-def-modeline 'project
-    '(bar window-number evil-state modals buffer-default-directory remote-host buffer-position)
-    '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
-
-  (doom-modeline-def-modeline 'dashboard
-    '(bar window-number evil-state modals buffer-default-directory-simple remote-host)
-    '(compilation misc-info battery irc mu4e gnus github debug minor-modes input-method major-mode process time))
-
-  (doom-modeline-def-modeline 'vcs
-    '(bar window-number evil-state modals matches buffer-info remote-host buffer-position parrot selection-info)
-    '(compilation misc-info battery irc mu4e gnus github debug minor-modes buffer-encoding major-mode process time))
-
-  (doom-modeline-def-modeline 'package
-    '(bar window-number evil-state modals package)
-    '(compilation misc-info major-mode process time))
-
-  (doom-modeline-def-modeline 'info
-    '(bar window-number evil-state modals buffer-info info-nodes buffer-position parrot selection-info)
-    '(compilation misc-info buffer-encoding major-mode time))
-
-  (doom-modeline-def-modeline 'media
-    '(bar window-number evil-state modals buffer-size buffer-info)
-    '(compilation misc-info media-info major-mode process vcs time))
-
-  (doom-modeline-def-modeline 'message
-    '(eldoc bar window-number evil-state modals matches buffer-info-simple buffer-position word-count parrot selection-info)
-    '(compilation objed-state misc-info battery debug minor-modes input-method indent-info buffer-encoding major-mode time))
-
-  (doom-modeline-def-modeline 'pdf
-    '(bar window-number evil-state modals matches buffer-info pdf-pages)
-    '(compilation misc-info major-mode process vcs time))
-
-  (doom-modeline-def-modeline 'org-src
-    '(eldoc bar window-number evil-state modals matches buffer-info buffer-position word-count parrot selection-info)
-    '(compilation objed-state misc-info debug lsp minor-modes input-method indent-info buffer-encoding major-mode process check time))
-
-  (doom-modeline-def-modeline 'helm
-    '(bar evil-state helm-buffer-id helm-number helm-follow helm-prefix-argument)
-    '(helm-help time))
-
-  (doom-modeline-def-modeline 'timemachine
-    '(eldoc bar window-number evil-state modals matches git-timemachine buffer-position word-count parrot selection-info)
-    '(misc-info minor-modes indent-info buffer-encoding major-mode time))
-
-  (doom-modeline-def-modeline 'calculator
-    '(window-number evil-state modals matches calc buffer-position)
-    '(misc-info minor-modes major-mode process))
-
-  (setopt evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "dark green" :foreground "black")))
-        evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "goldenrod" :foreground "black")))
-        evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "dark red") :foreground "white"))
-        evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-        evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
-        evil-replace-state-tag  (propertize "[Replace]" 'face '((:background "yellow" :foreground "red")))
+(setopt evil-normal-state-tag   (propertize "[Normal]"   'face '((:background "dark green" :foreground "black")))
+        evil-emacs-state-tag    (propertize "[Emacs]"    'face '((:background "goldenrod"  :foreground "black")))
+        evil-insert-state-tag   (propertize "[Insert]"   'face '((:background "dark red")  :foreground "white"))
+        evil-motion-state-tag   (propertize "[Motion]"   'face '((:background "blue")      :foreground "white"))
+        evil-visual-state-tag   (propertize "[Visual]"   'face '((:background "grey80"     :foreground "black")))
+        evil-replace-state-tag  (propertize "[Replace]"  'face '((:background "yellow"     :foreground "red")))
         evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
-  ;; Enable mode-line in vterm
-  (after! doom-modeline
-    (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main))
-    (add-to-list 'doom-modeline-mode-alist '(shell-mode . main))
-    (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
+;; Enable mode-line in vterm
+(with-eval-after-load 'doom-modeline
+  (add-to-list 'doom-modeline-mode-alist '(vterm-mode . main)))
+(with-eval-after-load 'doom-modeline
+  (add-to-list 'doom-modeline-mode-alist '(shell-mode . main)))
+(with-eval-after-load 'doom-modeline
+  (add-to-list 'doom-modeline-mode-alist '(eshell-mode . main)))
 
 ;; The concise one which relies on "implicit fallback values"
 ;; (setopt fontaine-presets
@@ -205,7 +154,7 @@
 ;;          :italic-slant italic
 ;;          :line-spacing nil)))
 
-(use-package! fontaine
+(use-package fontaine
   :config
   (setopt fontaine-latest-state-file
         (locate-user-emacs-file "fontaine-latest-state.eld"))
@@ -295,32 +244,13 @@
   ;;     (info "(elisp) Key Binding Conventions")
   (define-key global-map (kbd "C-c f") #'fontaine-set-preset))
 
-(use-package! modus-themes
+(use-package ef-themes
   :init
-  ;; Starting with version 5.0.0 of the `modus-themes', other packages
-  ;; can be built on top to provide their own "Modus" derivatives.
-  ;; For example, this is what I do with my `ef-themes' and
-  ;; `standard-themes' (starting with versions 2.0.0 and 3.0.0,
-  ;; respectively).
-  ;;
-  ;; The `modus-themes-include-derivatives-mode' makes all Modus
-  ;; commands that act on a theme consider all such derivatives, if
-  ;; their respective packages are available and have been loaded.
-  ;;
-  ;; Note that those packages can even completely take over from the
-  ;; Modus themes such that, for example, `modus-themes-rotate' only
-  ;; goes through the Ef themes (to this end, the Ef themes provide
-  ;; the `ef-themes-take-over-modus-themes-mode' and the Standard
-  ;; themes have the `standard-themes-take-over-modus-themes-mode'
-  ;; equivalent).
-  ;;
-  ;; If you only care about the Modus themes, then (i) you do not need
-  ;; to enable the `modus-themes-include-derivatives-mode' and (ii) do
-  ;; not install and activate those other theme packages.
   (modus-themes-include-derivatives-mode 1)
+  (ef-themes-take-over-modus-themes-mode 1)
 
   :config
-   (setq modus-themes-custom-auto-reload nil
+  (setq modus-themes-custom-auto-reload nil
         modus-themes-to-toggle '(modus-operandi modus-vivendi)
         modus-themes-to-rotate modus-themes-items
         modus-themes-mixed-fonts t
@@ -333,20 +263,10 @@
         '((agenda-structure . (variable-pitch light 2.2))
           (agenda-date . (variable-pitch regular 1.3))
           (t . (regular 1.15))))
-
-  (setq modus-themes-common-palette-overrides nil)
-
-  ;; Finally, load your theme of choice (or a random one with
-  ;; `modus-themes-load-random', `modus-themes-load-random-dark',
-  ;; `modus-themes-load-random-light').
-  (modus-themes-load-theme 'modus-operandi)
+  ;; autumn bio cherie dark dream duo-dark elea-dark fig maris-dark melissa-dark night owl rosa symbiosis trio-dark winter
+  (modus-themes-load-theme 'ef-autumn)
   (setopt custom-safe-themes t)
-  (load-theme 'modus-vivendi-tinted)
-  (setopt doom-theme 'modus-vivendi-tinted)
-  ;; (load-theme 'modus-vivendi)
-  ;; (setopt doom-theme 'modus-vivendi)
-  ;; :bind ("<f5>" . modus-themes-rotate)
-  )
+  (setopt doom-theme 'ef-autumn))
 
 (defun ap/load-doom-theme (theme)
   "Disable active themes and load a Doom theme."
@@ -397,28 +317,38 @@
 (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" user-emacs-directory))
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-(after! recentf
+(with-eval-after-load 'recentf
   (progn
     (setopt recentf-max-saved-items 10000)
     (add-hook 'find-file-hook 'recentf-save-list)))
-(after! savehist
+(with-eval-after-load 'savehist
   (setopt savehist-autosave-interval 600))
 ;; (auto-save-mode -1)
 (require 'saveplace-pdf-view)
 (save-place-mode 1)
 (setopt use-package-verbose t)
 (tooltip-mode 1)
-(add-hook 'text-mode-hook (lambda () (visual-line-mode 1)))
-(add-hook 'prog-mode-hook (lambda () (visual-line-mode 1)))
-(add-hook 'mistty-mode-hook (lambda () (visual-line-mode 1)))
-(after! auth-source
+(add-hook 'text-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (visual-wrap-prefix-mode 1)))
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (visual-wrap-prefix-mode 1)))
+(add-hook 'mistty-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (visual-wrap-prefix-mode 1)))
+(with-eval-after-load 'auth-source
   (add-to-list 'auth-sources "secrets:Login"))
 (customize-set-variable 'immersive-translate-chatgpt-model "gpt-4o")
 (setopt magit-format-file-function #'magit-format-file-nerd-icons)
 (setopt tab-bar-format
         '(tab-bar-format-menu-bar tab-bar-format-history tab-bar-format-tabs-groups
           tab-bar-separator tab-bar-format-add-tab))
-(map! :map (shrface-mode-map wallabag-entry-mode-map nov-mode-map eww-mode-map mu4e-view-mode-map elfeed-show-mode-map)
+;;  elfeed-show-mode-map
+(map! :map (shrface-mode-map wallabag-entry-mode-map nov-mode-map eww-mode-map mu4e-view-mode-map)
       :n "TAB" 'shrface-outline-cycle
       :n "<tab>" 'shrface-outline-cycle
       :n "<backtab>" 'shrface-outline-cycle-buffer
@@ -463,7 +393,7 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-(after! yasnippet
+(with-eval-after-load 'yasnippet
   (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
 
 (map! [remap dabbrev-expand] #'hippie-expand)
@@ -471,11 +401,11 @@
 (setopt org-log-done 'time)
 (setopt org-log-into-drawer t)
 (setopt org-directory "~/org/")
-(setopt org-attach-id-dir "~/org/attachments/")
+(setopt org-attach-id-dir "~/Sync/notes/attachment/")
 ;; Learn about then ! and more by reading the relevant section of the Org manual.
 ;; Evaluate: (info "(org) Tracking TODO state changes")
 
-(after! org
+(with-eval-after-load 'org
   (progn
     (setopt org-use-speed-commands t)
     (add-to-list
@@ -493,11 +423,16 @@
     (add-to-list
      'org-capture-templates
      `("w" "Web site" entry (file "")
-       "* %a :website:\n\n%U %?\n\n%:initial"))))
+       "* %a :website:\n\n%U %?\n\n%:initial"))
+    ;; Background color for transparent inline images
+    (defun org--create-inline-image-advice (img)
+      (nconc img (list :background "#f8f8f8")))
+    (advice-add 'org--create-inline-image
+                :filter-return #'org--create-inline-image-advice)))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org_archive\\|txt\\)$" . org-mode))
 
-(after! org-journal
+(with-eval-after-load 'org-journal
   (progn
     ;; With re-search-forward: Do not attempt to search for the empty string. Use instead something like
     ;; "^\*\* ", to search for all org-journal top entries.
@@ -509,7 +444,7 @@
           org-journal-date-format "%Y-%m-%d")
     (add-to-list 'org-agenda-files org-journal-dir)))
 
-(after! org
+(with-eval-after-load 'org
   (+org--babel-lazy-load 'python)
   (+org--babel-lazy-load 'shell)
   ;; (require 'ob-emacs-lisp)
@@ -525,10 +460,10 @@
   ;;                                  ))
   )
 
-(after! org
+(with-eval-after-load 'org
   (require 'ox-gfm nil t))
 
-(use-package! org-books
+(use-package org-books
     :after org
     :config
     (setopt org-books-file "~/Dokument/Böcker/org-books.org"))
@@ -538,10 +473,10 @@
       org-roam-db-location (file-truename "~/org/roam/org-roam.db")
       org-id-link-to-org-use-id t)
 
-(use-package! websocket
+(use-package websocket
     :after org-roam)
 
-(use-package! org-roam-ui
+(use-package org-roam-ui
     :after org-roam ;; or :after org
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;         a hookable mode anymore, you're advised to pick something yourself
@@ -553,24 +488,52 @@
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
-(use-package! org-menu
+(use-package org-menu
  :after org
  :config
  (define-key org-mode-map (kbd "C-c m") 'org-menu)
   )
 
-(use-package! org-recoll)
+(use-package org-recoll)
 
-(use-package! org-similarity
+(use-package org-remark
+ :after org
+ :bind (;; :bind keyword also implicitly defers org-remark itself.
+         ;; Keybindings before :map is set for global-map. Adjust the keybinds
+         ;; as you see fit.
+         ("C-c n m" . org-remark-mark)
+         ("C-c n l" . org-remark-mark-line)
+         :map org-remark-mode-map
+         ("C-c n o" . org-remark-open)
+         ("C-c n ]" . org-remark-view-next)
+         ("C-c n [" . org-remark-view-prev)
+         ("C-c n r" . org-remark-remove)
+         ("C-c n d" . org-remark-delete))
+ :config
+ (org-remark-global-tracking-mode +1)
+
+ ;; Optional if you would like to highlight websites via eww-mode
+ (with-eval-after-load 'eww
+   (org-remark-eww-mode +1))
+
+ ;; Optional if you would like to highlight EPUB books via nov.el
+ (with-eval-after-load 'nov
+   (org-remark-nov-mode +1))
+
+ ;; Optional if you would like to highlight Info documentation via Info-mode
+ (with-eval-after-load 'info
+   (org-remark-info-mode +1)))
+
+(use-package org-similarity
   :config
   (setopt org-similarity-directory org-roam-directory)
   )
 
-(use-package! org-tempo
+(use-package org-tempo
  :after org
   )
 
-(use-package! org-transclusion
+(use-package org-transclusion
   :after org
   :defer t
   :init
@@ -582,14 +545,14 @@
 
 (setopt display-line-numbers-type nil)
 
-(setq! citar-bibliography '("/home/jw/Dokument/Böcker/mylibrary.bib"))
-(setq! ews-bibtex-directory "/home/jw/Dokument/Böcker")
-;; (after! citar
+(setq citar-bibliography '("/home/jw/Dokument/Böcker/mylibrary.bib"))
+(setq ews-bibtex-directory "/home/jw/Dokument/Böcker")
+;; (with-eval-after-load 'citar
 ;;   (progn
-;;     (setq! citar-bibliography '("/home/jw/Dokument/Böcker/my-library.bib"))
+;;     (setopt citar-bibliography '("/home/jw/Dokument/Böcker/my-library.bib"))
 ;;     ))
 
-(use-package! citar-denote
+(use-package citar-denote
   :after (citar denote)
   :custom
   (citar-open-always-create-notes t)
@@ -605,10 +568,11 @@
    ("C-c w b d" . citar-denote-dwim)
    ("C-c w b e" . citar-denote-open-reference-entry)))
 
-(after! denote
+(with-eval-after-load 'denote
   (load "/home/jw/projects/emacs/emacs-writing-studio/ews.el"))
 
-(after! (bibtex denote)
+(with-eval-after-load 'bibtex
+  (with-eval-after-load 'denote
   (progn
     (setq bibtex-user-optional-fields
           '(("keywords" "Keywords to describe the entry" "")
@@ -624,16 +588,16 @@
     ;; Export citations with Org Mode
     (require 'oc-natbib)
     (require 'oc-csl)
-    ))
+    )))
 
 ;; Biblio package for adding BibTeX records
-(use-package! biblio
+(use-package biblio
   :after (bibtex denote)
   :bind
   (("C-c w b b" . ews-bibtex-biblio-lookup)))
 
 ;; Easy insertion of weblinks
-(use-package! org-web-tools
+(use-package org-web-tools
   :after (bibtex denote)
   :bind
   (("C-c w w" . org-web-tools-insert-link-for-url)))
@@ -667,11 +631,11 @@
                   (let ((scroll-preserve-screen-position nil))
                     (scroll-up 1))) )
 
-(use-package! pcre2el
+(use-package pcre2el
   :config
   (pcre-mode t))
 
-(after! avy
+(with-eval-after-load 'avy
   (setopt avy-all-windows t)
   (setq avy-single-candidate-jump nil)
   ;; Avoid collision with action keys
@@ -758,7 +722,7 @@
 
   ;; You can combine Hyperbole with Avy by creating an avy-dispatch function to press the Hyperbole action-key at target.
   ;; https://lists.gnu.org/archive/html/emacs-orgmode/2022-06/msg00686.html
-  (after! hyperbole
+  (with-eval-after-load 'hyperbole
     (add-to-list 'avy-dispatch-alist '(?: . (lambda (pt)
                                               (goto-char pt)
                                               (hkey-either))))))
@@ -818,28 +782,12 @@
             (whitespace-mode -1)
             (setq whitespace-style nil)))
 
-(use-package! hungry-delete
+(use-package hungry-delete
   :config
   (global-hungry-delete-mode))
 
-(use-package! unfill)
-
-;; https://stackoverflow.com/questions/42595418/how-to-remove-hyphens-during-fill-paragraph
-(defadvice fill-delete-newlines (before my-before-fill-delete-newlines)
-  "Replace -\\n with an empty string when calling `unfill-paragraph' or `unfill-region'."
-  (when (or (eq this-command 'unfill-paragraph)
-            (eq this-command 'unfill-region))
-    ;; (setq jw/arg0 (ad-get-arg 0))
-    ;; (setq jw/arg1 (ad-get-arg 1))
-    (goto-char (ad-get-arg 0))
-    (while (search-forward "-\n" (ad-get-arg 1) t)
-      (replace-match "")
-      (ad-set-arg 1 (- (ad-get-arg 1) 2)))))
-
-(ad-activate 'fill-delete-newlines)
-
 (windmove-default-keybindings)
-(after! evil
+(with-eval-after-load 'evil
   (progn
     (define-key evil-insert-state-map (kbd "S-<right>") nil)
     (define-key evil-insert-state-map (kbd "S-<left>") nil)))
@@ -883,7 +831,7 @@
 (setopt ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
 
-(use-package! casual-ibuffer
+(use-package casual-ibuffer
   :ensure nil
   :bind (:map
          ibuffer-mode-map
@@ -899,7 +847,7 @@
          ("$" . ibuffer-toggle-filter-group))  ; optional
   :after (ibuffer))
 
-(use-package! casual-re-builder
+(use-package casual-re-builder
   :ensure nil
   :bind (:map
          reb-mode-map ("C-o" . casual-re-builder-tmenu)
@@ -907,20 +855,19 @@
          reb-lisp-mode-map ("C-o" . casual-re-builder-tmenu))
   :after (re-builder))
 
-(global-set-key (kbd "S-<down-mouse-1>") #'mouse-set-mark)
-;; was: mouse-appearance-menu
-(use-package! mouse3)
-
-(after! dired
+(with-eval-after-load 'dired
   (progn
     (setq dired-clean-up-buffers-too nil) ; Avoid pesky questions about deleting orphan buffers
+    ; 260517: Ubuntu currently does not sort directories if --group-directories-first is used.
+    (setq dired-listing-switches
+          "-l --almost-all --human-readable --no-group")
     (defconst my-dired-media-files-extensions
       '("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg" "wmv" "mkv" "mov" "wma")
       "Media file extensions that should launch in VLC.
 Also used for highlighting.")
     ))
 
-(after! dired
+(with-eval-after-load 'dired
   (progn
     (defun my-dired-init ()
       "Bunch of stuff to run for dired, either immediately or when it's loaded."
@@ -932,14 +879,15 @@ Also used for highlighting.")
       ;; (dired-filter-group-mode t)
       ;; (dired-collapse-mode 1)
       (visual-line-mode -1)
+      (visual-wrap-prefix-mode -1)
       (toggle-truncate-lines 1))
     (add-hook 'dired-mode-hook 'my-dired-init)))
 
-(use-package! casual-suite
+(use-package casual-suite
   :config
   (keymap-set symbol-overlay-map "C-o" #'casual-symbol-overlay-tmenu))
 
-(use-package! casual-dired
+(use-package casual-dired
   :ensure nil
   :after dired
   :bind (:map dired-mode-map
@@ -947,13 +895,7 @@ Also used for highlighting.")
               ("C-c s" . #'casual-dired-sort-by-tmenu)
               ("C-c /" . #'casual-dired-search-replace-tmenu)))
 
-;; (use-package! bookmark+
-;;   :after dired
-;;   ;;:defer t
-;;   :config
-;;   (setopt bmkp-last-as-first-bookmark-file nil))
-
-(use-package! casual-bookmarks
+(use-package casual-bookmarks
   :ensure nil
   :bind (:map bookmark-bmenu-mode-map
               ("C-o" . casual-bookmarks-tmenu)
@@ -968,23 +910,23 @@ Also used for highlighting.")
 (add-hook 'eshell-mode-hook (lambda ()
            (setq-local imenu-generic-expression `(("Prompt" ,(concat eshell-prompt-regexp "\\(.*\\)") 1)))))
 
-(use-package! rainbow-delimiters
+(use-package rainbow-delimiters
   ;; :defer t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-(use-package! casual-editkit
+(use-package casual-editkit
   :ensure nil
   :defer t
   :bind (("C-o" . casual-editkit-main-tmenu)))
 
-(use-package! casual-calendar
+(use-package casual-calendar
   :ensure nil
   :defer t
   :bind (:map calendar-mode-map
               ("C-o" . casual-calendar)))
 
-(use-package! w3m
+(use-package w3m
   :defer t
   :config
   (setopt w3m-key-binding 'info)
@@ -1058,7 +1000,7 @@ Also used for highlighting.")
                    "http://www.reddit.com/search?q=%s"
                    nil))))
 
-(use-package! ace-link
+(use-package ace-link
   :defer t
   :config
   (ace-link-setup-default))
@@ -1129,14 +1071,15 @@ Version 2018-10-26"
   )
 
 ;; https://emacs.stackexchange.com/questions/45270/in-org-mode-how-can-i-make-a-post-capture-hook-run-only-for-certain-capture-tem
-;; (after! org (add-hook 'org-capture-after-finalize-hook 'tina/test-finalize))
-(after! org
+;; (with-eval-after-load 'org (add-hook 'org-capture-after-finalize-hook 'tina/test-finalize))
+(with-eval-after-load 'org
   (add-hook 'org-capture-prepare-finalize-hook 'jw/hook-clean-org-protocol-l-result))
 
-(use-package! org-protocol-capture-html
+(use-package org-protocol-capture-html
   :after org)
 
-(after! (w3m org-journal)
+(with-eval-after-load 'w3m
+(with-eval-after-load 'org-journal
   (progn
     (define-prefix-command 'launcher-map)
     (define-key launcher-map "c" #'link-hint-copy-link)
@@ -1151,184 +1094,9 @@ Version 2018-10-26"
     (define-key launcher-map "o" #'link-hint-open-link)
     ;;(define-key launcher-map "u" #'my/copy-id-to-clipboard)
     (define-key launcher-map "w" #'w3m-goto-url)
-    (global-set-key (kbd "C-c l") 'launcher-map)))
+    (global-set-key (kbd "C-c l") 'launcher-map))))
 
-;;shortcut functions
-(defun bjm/elfeed-show-all ()
-  (interactive)
-  (bookmark-maybe-load-default-file)
-  (bookmark-jump "elfeed-all"))
-
-(defun bjm/elfeed-show-emacs ()
-  (interactive)
-  (bookmark-maybe-load-default-file)
-  (bookmark-jump "elfeed-emacs"))
-
-(defun bjm/elfeed-show-daily ()
-  (interactive)
-  (bookmark-maybe-load-default-file)
-  (bookmark-jump "elfeed-daily"))
-
-;;functions to support syncing .elfeed between machines
-;;makes sure elfeed reads index from disk before launching
-(defun bjm/elfeed-load-db-and-open ()
-  "Wrapper to load the elfeed db from disk before opening"
-  (interactive)
-  (elfeed-db-load)
-  (elfeed)
-  (elfeed-search-update--force))
-
-;;write to disk when quiting
-(defun bjm/elfeed-save-db-and-bury ()
-  "Wrapper to save the elfeed db to disk before burying buffer"
-  (interactive)
-  (elfeed-db-save)
-  (quit-window))
-
-(defun mz/elfeed-browse-url (&optional use-generic-p)
-  "Visit the current entry in your browser using `browse-url'.
-If there is a prefix argument, visit the current entry in the
-browser defined by `browse-url-generic-program'."
-  (interactive "P")
-  (let ((entries (elfeed-search-selected)))
-    (cl-loop for entry in entries
-             do (if use-generic-p
-                    (browse-url-chrome (elfeed-entry-link entry))
-                  (browse-url (elfeed-entry-link entry))))
-    (mapc #'elfeed-search-update-entry entries)
-    (unless (or elfeed-search-remain-on-entry (use-region-p)))))
-
-(defun elfeed-mark-all-as-read ()
-  (interactive)
-  (mark-whole-buffer)
-  (elfeed-search-untag-all-unread))
-
-(use-package! elfeed
-  :defer t
-  :hook
-  (elfeed-show-mode . paw-annotation-mode)
-  :bind (:map elfeed-search-mode-map
-         ("A" . bjm/elfeed-show-all)
-         ("E" . bjm/elfeed-show-emacs)
-         ("D" . bjm/elfeed-show-daily)
-         ("b" . mz/elfeed-browse-url)
-         ("B" . elfeed-search-browse-url)
-         ("j" . mz/make-and-run-elfeed-hydra)
-         ("m" . elfeed-toggle-star)
-         ("q" . bjm/elfeed-save-db-and-bury))
-  :config
-  ;; (add-hook 'elfeed-show-mode-hook #'org-indent-mode)
-  (add-hook 'elfeed-show-mode-hook #'eldoc-mode)
-  (add-hook 'elfeed-show-mode-hook #'eldoc-box-hover-mode)
-  (add-hook 'elfeed-show-mode-hook #'shrface-wallabag-setup)
-
-  (advice-add 'elfeed-insert-html :around #'shrface-elfeed-advice)
-
-  (require 'shrface)
-
-  (defun shrface-wallabag-setup ()
-    (unless shrface-toggle-bullets
-      (shrface-regexp)
-      (setq-local imenu-create-index-function #'shrface-imenu-get-tree))
-    (if (string-equal system-type "android")
-        (setq-local touch-screen-enable-hscroll nil))
-    ;; (add-function :before-until (local 'eldoc-documentation-function) #'paw-get-eldoc-note)
-    )
-  (defun shrface-elfeed-advice (orig-fun &rest args)
-    (require 'eww)
-    (let ((shrface-org nil)
-          (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
-          ;; make it large enough, it would not fill the column
-          ;; I uses visual-line-mode, writeroom-mode for improving the reading experience instead
-          (shr-width 7000)
-          (shr-indentation 3)
-          (shr-table-vertical-line "|")
-          (shr-external-rendering-functions
-           (append '((title . eww-tag-title)
-                     (form . eww-tag-form)
-                     (input . eww-tag-input)
-                     (button . eww-form-submit)
-                     (textarea . eww-tag-textarea)
-                     (select . eww-tag-select)
-                     (link . eww-tag-link)
-                     (meta . eww-tag-meta)
-                     ;; (a . eww-tag-a)
-                     (code . shrface-tag-code)
-                     (pre . shrface-shr-tag-pre-highlight))
-                   shrface-supported-faces-alist))
-          (shrface-toggle-bullets nil)
-          (shrface-href-versatile t)
-          (shr-use-fonts nil))
-      (apply orig-fun args)
-      (with-current-buffer "*elfeed-entry*"
-        (when (bound-and-true-p paw-annotation-mode)
-          (paw-clear-annotation-overlay)
-          (paw-show-all-annotations)
-          (if paw-annotation-show-wordlists-words-p
-              (paw-focus-find-words :wordlist t))
-          (if paw-annotation-show-unknown-words-p
-              (paw-focus-find-words))) )))
-
-  (defalias 'elfeed-toggle-star
-    (elfeed-expose #'elfeed-search-toggle-all 'star)))
-
-(use-package! elfeed-org
-  :after elfeed
-  :init
-  (setopt rmh-elfeed-org-files (list "~/.config/doom/elfeed.org"))
-  :config
-
-  (defun z/hasCap (s) ""
-         (let ((case-fold-search nil))
-           (string-match-p "[[:upper:]]" s)))
-
-  (defun z/get-hydra-option-key (s)
-    "returns single upper case letter (converted to lower) or first"
-    (interactive)
-    (let ( (loc (z/hasCap s)))
-      (if loc
-          (downcase (substring s loc (+ loc 1)))
-        (substring s 0 1))))
-
-  (defun mz/make-elfeed-cats (tags)
-    "Returns a list of lists. Each one is line for the hydra configuration in the form (c function hint)"
-    (interactive)
-    (mapcar (lambda (tag)
-              (let* (
-                     (tagstring (symbol-name tag))
-                     (c (z/get-hydra-option-key tagstring)))
-                (list c (append '(elfeed-search-set-filter) (list (format "@6-months-ago +%s" tagstring) ))tagstring  )))
-            tags))
-
-  (defmacro mz/make-elfeed-hydra ()
-    `(defhydra mz/hydra-elfeed ()
-       "filter"
-       ,@(mz/make-elfeed-cats (elfeed-db-get-all-tags))
-       ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
-       ("M" elfeed-toggle-star "Mark")
-       ("A" (elfeed-search-set-filter "@6-months-ago") "All")
-       ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
-       ("Q" bjm/elfeed-save-db-and-bury "Quit Elfeed" :color blue)
-       ("q" nil "quit" :color blue)))
-
-  (defun mz/make-and-run-elfeed-hydra ()
-    ""
-    (interactive)
-    (mz/make-elfeed-hydra)
-    (mz/hydra-elfeed/body))
-
-  (defun my-elfeed-tag-sort (a b)
-    (let* ((a-tags (format "%s" (elfeed-entry-tags a)))
-           (b-tags (format "%s" (elfeed-entry-tags b))))
-      (if (string= a-tags b-tags)
-          (< (elfeed-entry-date b) (elfeed-entry-date a)))
-      (string< a-tags b-tags)))
-
-  (setf elfeed-search-sort-function #'my-elfeed-tag-sort)
-
-  (elfeed-org))
-
-(use-package! nov
+(use-package nov
   :defer t
   :init
   (push '("\\.epub\\'" . nov-mode) auto-mode-alist)
@@ -1428,7 +1196,7 @@ browser defined by `browse-url-generic-program'."
 ;;       (set-window-buffer agenda-window  buffer)
 ;;       agenda-window)))
 
-(use-package! calibredb
+(use-package calibredb
   :defer t
   :config
   (advice-add 'calibredb-show-entry :around #'shrface-calibredb-advice)
@@ -1476,7 +1244,7 @@ browser defined by `browse-url-generic-program'."
                                   ("https://m.gutenberg.org/ebooks.opds/" (name . "Gutenberg"))
                                   )))
 
-(after! eww
+(with-eval-after-load 'eww
   (progn
     (require 'shrface)
     ;; (define-key eww-mode-map (kbd "C-c C-l") 'shrface-links-consult)
@@ -1486,6 +1254,7 @@ browser defined by `browse-url-generic-program'."
     (add-hook 'eww-after-render-hook #'eldoc-mode)
     (add-hook 'eww-after-render-hook #'eldoc-box-hover-mode)
     (add-hook 'eww-after-render-hook #'shrface-eww-setup)
+    (setq eww-readable-urls '(".+"))
     (defun shrface-eww-setup ()
       (unless shrface-toggle-bullets
         (shrface-regexp)
@@ -1525,9 +1294,9 @@ browser defined by `browse-url-generic-program'."
             (shr-use-fonts nil))
         (apply orig-fun args)))))
 
-(use-package! mixed-pitch)
+(use-package mixed-pitch)
 
-(use-package! hyperbole
+(use-package hyperbole
   :defer t
   :config
   ;; (require 'hyperbole)
@@ -1559,7 +1328,7 @@ browser defined by `browse-url-generic-program'."
   ;; (global-set-key (kbd "s-o") 'hkey-operate)
   )
 
-(use-package! major-mode-hydra
+(use-package major-mode-hydra
   ;; :defer t
   :bind
   ("M-SPC" . major-mode-hydra))
@@ -1611,7 +1380,7 @@ browser defined by `browse-url-generic-program'."
      ("?" (info "denote") "Help")
      ("M-SPC" major-mode-hydra "Major Mode Hydra"))))
 
-(after! projectile
+(with-eval-after-load 'projectile
   (progn
     (defhydra hydra-projectile-other-window (:color teal)
       "projectile-other-window"
@@ -1621,7 +1390,7 @@ browser defined by `browse-url-generic-program'."
       ("b"  projectile-switch-to-buffer-other-window "buffer")
       ("q"  nil                                      "cancel" :color blue))
 
-    ;; (use-package! ggtags
+    ;; (use-package ggtags
     ;;   :config
     ;;   (add-hook 'c-mode-common-hook
     ;;             (lambda ()
@@ -1739,7 +1508,7 @@ _w_ where is something defined
     ;; (global-set-key (kbd "M-i") nil)
     ;; (global-set-key (kbd "M-i") #'help/hydra/left/describe/body)
 
-(after! parent-mode
+(with-eval-after-load 'parent-mode
   (defun help/parent-mode-display ()
     "Display this buffer's mode hierarchy."
     (interactive)
@@ -1778,7 +1547,7 @@ _w_ where is something defined
       (kill-new (buffer-substring-no-properties (point-min) (point-max))))
     (kill-buffer buf)))
 
-(use-package! hledger-mode
+(use-package hledger-mode
   :defer t
   :mode ("\\.journal\\'" "\\.hledger\\'")
   ;; :init
@@ -1807,47 +1576,29 @@ _w_ where is something defined
     (hledger-pulse-momentary-current-entry))
 
   :bind (:map hledger-mode-map
-         ("C-c j" . hledger-run-command)
-         ("C-c e" . hledger-jentry)
-         ("M-p" . hledger/prev-entry)
-         ("M-n" . hledger/next-entry))
+              ("C-c j" . hledger-run-command)
+              ("C-c e" . hledger-jentry)
+              ("M-p" . hledger/prev-entry)
+              ("M-n" . hledger/next-entry))
   :config
   (add-hook 'hledger-view-mode-hook #'hl-line-mode)
   ;; Auto-completion for account names
-  ;; (add-hook 'hledger-mode-hook
-  ;;           (lambda ()
-  ;;             (make-local-variable 'company-backends)
-  ;;             (add-to-list 'company-backends 'hledger-company)))
-  ;; Provide the path to you journal file.
-  ;; The default location is too opinionated.
+  (defun hledger-completion-accounts ()
+    (when-let ((bounds (and (boundp 'hledger-accounts-cache)
+                            (bounds-of-thing-at-point 'symbol))))
+      (list (car bounds) (point) hledger-accounts-cache)))
+
+  (add-hook 'hledger-mode-hook
+            (lambda ()
+              (add-hook 'completion-at-point-functions 'hledger-completion-accounts)))
   (setopt hledger-jfile "/home/jw/Dokument/hledger/pension/pension_2023.journal"))
 
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 
-;; Note: This uses Company completion, so <F1> will display the candidates documentation.
-
-(load "/home/jw/.roswell/lisp/quicklisp/clhs-use-local.el")
-(load "/home/jw/.roswell/helper.el")
-;; (setopt common-lisp-hyperspec-root
-;;       ;; “http://www.lispworks.com/reference/HyperSpec/&#8221;)
-;;       "file:///home/jw/lisp/HyperSpec/")
-;; (setopt browse-url-browser-function ‘eww-browse-url)
-;; (setopt common-lisp-hyperspec-symbol-table "/home/jw/lisp/HyperSpec/Data/Map_Sym.txt")
-;; block images in EWW browser
-;; (setq-default shr-inhibit-images t)
-;; (setopt inferior-lisp-program "sbcl")
-(setopt sly-default-lisp 'roswell)
-(setopt ros-config "/home/jw/.roswell/ros-conf.lisp")
-(setopt sly-lisp-implementations
-      `((sbcl ("sbcl") :coding-system utf-8-unix)
-        (roswell ("ros" "-Q" "-l" ,ros-config "run"))
-        (qlot ("qlot" "exec" "ros" "-l" ,ros-config "run" "-S" ".")
-              :coding-system utf-8-unix)))
-
-(use-package! arxiv-mode
+(use-package arxiv-mode
   :defer t)
 
-(use-package! pdftotext
+(use-package pdftotext
   :defer t
   ;; For prettyness
   ;; (add-hook 'pdftotext-mode-hook #'spell-fu-mode-disable)
@@ -1860,25 +1611,27 @@ _w_ where is something defined
   (defun pdftotext-enable ()
     "Enable pdftotext-mode."
     (interactive)
-    (after! pdf-tools (pdftotext-install)))
+    (with-eval-after-load 'pdf-tools (pdftotext-install)))
 
   (defun pdftotext-disable ()
     "Disable pdftotext-mode."
     (interactive)
-    (after! pdf-tools (progn
+    (with-eval-after-load 'pdf-tools (progn
                         (pdftotext-uninstall)
                         (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
                         (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)))))
 
-(use-package! xah-math-input
+(use-package xah-math-input
   :defer t
   :config
+  (define-key xah-math-input-keymap (kbd "S-SPC") nil) ; unset Shift+space
+  (define-key xah-math-input-keymap (kbd "<f8>") 'xah-math-input-change-to-symbol)
   (xah-math-input--add-to-hash
    '(
      ["zws" "​"]
      )))
 
-(use-package! lexic
+(use-package lexic
   :defer t
   :commands lexic-search lexic-list-dictionary
   :config
@@ -1910,13 +1663,9 @@ _w_ where is something defined
          current-prefix-arg))
   (lexic-search identifier nil nil t))
 
-(use-package! persid
+(use-package persid
   :defer t
   )
-
-(defun load-emacs-with-nyxt ()
-  (interactive)
-  (load "/home/jw/.config/doom/emacs-with-nyxt.el"))
 
 ;; if you built from source
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
@@ -1931,7 +1680,7 @@ _w_ where is something defined
           (:maildir "/gmail/[Gmail]/Bin" :key ?t)
           (:maildir "/gmail/[Gmail]/Drafts"        :key ?d)
           (:maildir "/gmail/[Gmail]/All Mail"      :key ?a)))
-(after! mu4e
+(with-eval-after-load 'mu4e
   (progn
     (setopt sendmail-program (executable-find "msmtp")
             send-mail-function #'smtpmail-send-it
@@ -1967,7 +1716,7 @@ _w_ where is something defined
             (shr-use-fonts nil))
         (apply orig-fun args)))))
 
-(after! which-key
+(with-eval-after-load 'which-key
   (setopt which-key-side-window-location 'right)
   (setopt which-key-side-window-max-height 0.5)
   (setopt which-key-side-window-max-width 0.5)
@@ -1982,15 +1731,15 @@ _w_ where is something defined
     "C-c w x" "Explore")
   )
 
-(use-package! vertico-flat
+(use-package vertico-flat
   ;; :bind (:map vertico-map
   ;;             ("M-q" . vertico-flat-mode))
   :after vertico)
 
-(use-package! vertico-unobtrusive
+(use-package vertico-unobtrusive
   :after vertico-flat)
 
-(use-package! vertico-multiform
+(use-package vertico-multiform
   :commands vertico-multiform-mode
   :after vertico-flat
   :bind (:map vertico-map
@@ -2057,7 +1806,7 @@ _w_ where is something defined
      (interactive)
      (vertico-multiform-vertical 'vertico-reverse-mode)))
 
-(use-package! vertico-grid
+(use-package vertico-grid
   :after vertico
   ;; :bind (:map vertico-map ("M-q" . vertico-grid-mode))
   :config
@@ -2075,17 +1824,20 @@ _w_ where is something defined
   (setopt vertico-grid-separator "    ")
   (setopt vertico-grid-lookahead 50))
 
-(use-package! vertico-reverse
+(use-package vertico-reverse
   ;; :disabled
   :after vertico)
 
-(use-package! vertico-buffer
+(use-package vertico-buffer
   :after vertico
   ;; :hook (vertico-buffer-mode . vertico-buffer-setup)
   :config
   (setopt vertico-buffer-display-action 'display-buffer-reuse-window))
 
-(after! embark
+(with-eval-after-load 'cape
+  (global-set-key (kbd "C-c p") cape-prefix-map))
+
+(with-eval-after-load 'embark
   (global-set-key (kbd "C-:") 'embark-dwim)
   (global-set-key (kbd "C-*") 'embark-select)
 
@@ -2098,10 +1850,12 @@ _w_ where is something defined
         (let ((embark-quit-after-action nil))
           (embark-dwim))))))
 
-(use-package! embark-consult
-  :after (embark consult))
+(use-package embark-consult
+  :defer t
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
-(after! consult
+(with-eval-after-load 'consult
   ;; Consult has automatic preview for some (light weight) item types,
   ;; but if we want to preview for example bookmarks
   ;; we need to invoke this explicitly, using a key binding.
@@ -2151,10 +1905,10 @@ _w_ where is something defined
    consult-line-thing-at-point
    :initial (thing-at-point 'symbol)))
 
-(use-package! wgrep
+(use-package wgrep
   :defer t)
 
-(use-package! denote
+(use-package denote
   :after consult
   ;; :defer t
   :config
@@ -2192,7 +1946,7 @@ _w_ where is something defined
   ;; We use different ways to specify a path for demo purposes.
   (setopt denote-dired-directories
           (list denote-directory
-                (thread-last denote-directory (expand-file-name "attachments"))
+                (thread-last denote-directory (expand-file-name "attachment"))
                 (expand-file-name "~/Documents/books")))
 
   ;; Generic (great if you rename files Denote-style in lots of places):
@@ -2294,7 +2048,7 @@ _w_ where is something defined
       ("sn" "consult-notes" consult-notes)
       ("ss" "consult-notes search" consult-notes-search-in-all-notes)]]))
 
-(use-package! denote-org
+(use-package denote-org
   :after denote
   ;; :defer t
   :bind
@@ -2310,13 +2064,13 @@ _w_ where is something defined
             (define-key map (kbd "<f6>")(lambda () (interactive) (find-file "~/Sync/notes")))
             map))
 
-(use-package! consult-denote
+(use-package consult-denote
   :after denote
   ;; :defer t
   :config
   (consult-denote-mode 1))
 
-(use-package! consult-notes
+(use-package consult-notes
   :after denote
   ;; :defer t
   :commands (consult-notes
@@ -2340,7 +2094,7 @@ _w_ where is something defined
   ;; (setopt consult-notes-denote-files-function (function denote-directory-text-only-files))
   )
 
-(use-package! denote-menu
+(use-package denote-menu
   :after denote
   ;; :defer t
   :commands (list-denotes
@@ -2406,7 +2160,7 @@ _w_ where is something defined
    ("C-c w x v" . denote-explore-network-regenerate)
    ("C-c w x D" . denote-explore-barchart-degree)))
 
-(use-package! consult-gh
+(use-package consult-gh
   ;; :after (consult projectile)
   :defer t
   :custom
@@ -2429,7 +2183,7 @@ _w_ where is something defined
   (add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list) ;;keep record of searched orgs
   (add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)) ;;keep record of searched repos
 
-(use-package! consult-mu
+(use-package consult-mu
   :after (consult mu4e)
   ;; :defer t
   :custom
@@ -2445,7 +2199,7 @@ _w_ where is something defined
   ;; open the message in mu4e-view-buffer when selected.
   (consult-mu-action #'consult-mu--view-action))
 
-(use-package! consult-web
+(use-package consult-web
   :after (consult consult-notes)
   ;; :defer t
   :custom
@@ -2530,7 +2284,7 @@ _w_ where is something defined
   ;; (add-to-list 'consult-web-dynamic-omni "Line Multi")
   )
 
-(use-package! consult-omni
+(use-package consult-omni
   :after (consult consult-notes)
   :custom
    ;; General settings that apply to all sources
@@ -2617,7 +2371,7 @@ _w_ where is something defined
  ;;; Set your shorthand favorite interactive command
   (setopt consult-omni-default-interactive-command #'consult-omni-multi))
 
-(after! consult
+(with-eval-after-load 'consult
  (defun consult--get-completion-options-from-help (exec)
     "Generate exec options table vai `exec' -h."
     (when (executable-find exec)
@@ -2693,6 +2447,59 @@ This is the function to be used for the hook `completion-at-point-functions'."
  (def-consult-help 'consult-ripgrep "rg")
  (def-consult-help 'consult-fd "fd"))
 
+(use-package consult-ripfd
+  ;; :defer t
+  )
+
+(defvar rg-ignore-flags
+  "-g \"!*.mp3\" -g \"!*.jpg\" -g \"!*.JPG\" -g \"!*.jpeg\" -g \"!*.png\"
+  -g \"!*.mkv\" -g \"!*.mp4\" -g \"!*.avi\" -g \"!*.zip\" -g \"!*.ddl\"
+  -g \"!*.ods\" -g \"!*.xlsx\" -g \"!*.m3u\" -g \"!*.url\" -g \"!*.aac\"
+  -g \"!*.mpc\" -g \"!*.sql\" -g \"!*.ydb\" -g \"!dist/\"
+  -g \"!.git/\" -g \"!git/*\" -g \"!node_modules/\" -g \"!*cache/\"
+  -g \"!.cache\" -g \"!vendor/\"
+  -g \"!.pki/\" -g \"!.local/share/*/\"
+  -g \"!coverage\" -g \"!build/\" -g \"!var/\" -g \"!npm/\"
+  -g \"!Library/\" -g \"!.DS_Store\" -g \"!.stfolder\""
+  "Exclusion flags for usage with ripgrep commands.")
+
+(defvar rg-find-files-command
+  (format "rg -L --ignore --hidden --files --color=never %s" rg-ignore-flags)
+  "Command for finding files with ripgrep.")
+
+(defvar rg-find-directories-command
+  (format "rg-dir -L --ignore --hidden --color=never %s" rg-ignore-flags)
+  "Command for finding directories with ripgrep.")
+
+(defun affe-find-file (&optional dir) (interactive) ; default dir is cwd
+       (setq affe-find-command rg-find-files-command)
+       (affe-find dir))
+
+(defun affe-find-directory (&optional dir) (interactive) ; default dir is cwd
+       (setq affe-find-command rg-find-directories-command)
+       (affe-find dir))
+
+(defun affe-find-file-home () (interactive)
+       (affe-find-file (substitute-in-file-name "$HOME")))
+
+(defun affe-find-directory-home () (interactive)
+       (affe-find-directory (substitute-in-file-name "$HOME")))
+
+(use-package affe
+  ;; :bind (("H-f"   . affe-find-file-home)
+  ;;        ("H-M-f" . affe-find-file)
+  ;;        ("H-s"   . affe-find-directory-home))
+  ;; :custom
+  ;; (affe-count 5000)
+  :config
+  ;; Manual preview key for `affe-grep'
+  (consult-customize affe-grep :preview-key "M-.")
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+  (setq input (cdr (orderless-compile input)))
+  (cons input (apply-partially #'orderless--highlight input t)))
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
+  )
+
 (defun ambrevar/call-process-to-string (program &rest args)
   "Call PROGRAM with ARGS and return output.
 See also `process-lines'."
@@ -2712,14 +2519,14 @@ See also `process-lines'."
            (substring desktop-browser 0 (string-match "\\.desktop" desktop-browser))))
        (executable-find browse-url-chrome-program)))
 
-(use-package! mistty
+(use-package mistty
   :defer t
   :config
   (setopt explicit-shell-file-name "/usr/bin/fish")
   ;; (setopt explicit-shell-file-name "/usr/bin/bash")
   )
 
-(use-package! igist
+(use-package igist
   :defer t
   :config
   (setopt igist-current-user-name "johanwiden")
@@ -2727,7 +2534,7 @@ See also `process-lines'."
 
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 
-(use-package! casual-calc
+(use-package casual-calc
   :ensure nil
   :after calc
   :bind
@@ -2738,7 +2545,7 @@ See also `process-lines'."
      calc-alg-map
      ("C-o" . casual-calc-tmenu)))
 
-(use-package! casual-isearch
+(use-package casual-isearch
   :ensure nil
   :defer t
   ;; :bind
@@ -2746,26 +2553,43 @@ See also `process-lines'."
   :config
   (define-key isearch-mode-map (kbd "C-o") #'casual-isearch-tmenu))
 
-(use-package! visual-replace
+(use-package visual-replace
   :ensure nil
   :defer t
   :bind (("C-c r" . visual-replace)
           :map isearch-mode-map
           ("C-c r" . visual-replace-from-isearch)))
 
-(setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
-;; (use-package! gptel
+(setq gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'"))
+;; (use-package gptel
 ;;   :defer t
 ;;   :config
 ;;   (setq gptel-model "gpt-4o")
-;;   (setq! gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
+;;   (setopt gptel-api-key (secrets-get-secret "Login" "Password for 'OPENAI_API_KEY' on 'apikey'")))
 
-(use-package! evil-matchit
+(use-package evil-matchit
   ;; :defer t
   :config
   (global-evil-matchit-mode 1))
 
-(use-package! activities
+(use-package flash
+  :after evil
+  :custom
+  (flash-multi-window t)
+  (flash-char-jump-labels t)
+  (flash-char-multi-line t)
+  (flash-isearch-toggle-key "C-|")
+  (flash-search-history t)
+  (flash-label-position 'before)
+  :config
+  ;; Search integration (labels during C-s, /, ?)
+  (require 'flash-isearch)
+  (flash-isearch-mode 1)
+  (require 'flash-evil)
+  (flash-evil-setup t)  ; t = also set up f/t/F/T char motions
+  )
+
+(use-package activities
   :init
   (activities-mode)
   (activities-tabs-mode)
@@ -2783,14 +2607,14 @@ See also `process-lines'."
    ("C-x C-a g" . activities-revert)
    ("C-x C-a l" . activities-list)))
 
-(use-package! bufferlo
+(use-package bufferlo
   ;; :defer t
   :init
   (setopt bufferlo-bookmark-tab-replace-policy 'new)
   (setopt bufferlo-bookmark-restore-tab-groups t)
   (bufferlo-mode))
 
-(use-package! tab-bar-groups
+(use-package tab-bar-groups
   :init
   (setq tab-bar-groups-colors
         '("yellow" "green" "orange" "brown" "magenta" "cyan" "goldenrod" "red"))
@@ -2875,7 +2699,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
 (keymap-global-set "C-x 4 o" 'ace-window-prefix)
 
-(use-package! jinx
+(use-package jinx
   :defer t
   :init
   (add-hook 'doom-init-ui-hook #'global-jinx-mode)
@@ -2883,25 +2707,25 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :bind (("M-$" . jinx-correct)
          ("C-M-$" . jinx-languages))
   :config
-  (after! ispell
+  (with-eval-after-load 'ispell
     (global-set-key [remap ispell-word] #'jinx-correct))
-  (after! evil-commands
+  (with-eval-after-load 'evil-commands
     (global-set-key [remap evil-next-flyspell-error] #'jinx-next)
     (global-set-key [remap evil-prev-flyspell-error] #'jinx-previous)))
 
-(use-package! casual-avy
+(use-package casual-avy
   :ensure nil
   :defer t
   ;; :after avy
   :bind ("C-c g" . casual-avy-tmenu))
 
-(use-package! casual-eshell
+(use-package casual-eshell
   :ensure nil
   :defer t
   :bind (:map eshell-mode-map
               ("C-o" . casual-eshell-tmenu)))
 
-(use-package! casual-compile
+(use-package casual-compile
   :ensure nil
   :defer t
   :bind (:map compilation-mode-map
@@ -2909,13 +2733,13 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
         (:map grep-mode-map
               ("C-o" . casual-compile-tmenu)))
 
-(use-package! casual-elisp
+(use-package casual-elisp
   :ensure nil
   :defer t
   :bind (:map emacs-lisp-mode-map
               ("M-m" . casual-elisp-tmenu)))
 
-(use-package! casual-info
+(use-package casual-info
   :ensure nil
   :defer t
   :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
@@ -2940,7 +2764,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (add-hook 'Info-mode-hook #'hl-line-mode)
   (add-hook 'Info-mode-hook #'scroll-lock-mode))
 
-(use-package! casual-man
+(use-package casual-man
   :ensure nil
   :defer t
   :bind (:map Man-mode-map ("C-o" . casual-man-tmenu))
@@ -2955,7 +2779,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-set Man-mode-map "K" #'Man-kill)
   (keymap-set Man-mode-map "o" #'casual-man-occur-options))
 
-(use-package! casual-help
+(use-package casual-help
   :ensure nil
   :defer t
   :bind (:map help-mode-map ("C-o" . casual-help-tmenu))
@@ -2970,7 +2794,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-set help-mode-map "j" #'forward-button)
   (keymap-set help-mode-map "k" #'backward-button))
 
-(use-package! casual-bibtex
+(use-package casual-bibtex
   :ensure nil
   :defer t
   :bind (:map bibtex-mode-map ("M-m" . casual-bibtex-tmenu))
@@ -2995,7 +2819,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-set bibtex-mode-map "M-<clear>" #'bibtex-kill-field)
   (keymap-set bibtex-mode-map "M-DEL" #'bibtex-kill-field))
 
-(use-package! casual-csv
+(use-package casual-csv
   :ensure nil
   :defer t
   :bind (:map csv-mode-map ("M-m" . casual-csv-tmenu))
@@ -3004,6 +2828,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (add-hook 'csv-mode-hook
             (lambda ()
               (visual-line-mode -1)
+              (visual-wrap-prefix-mode -1)
               (toggle-truncate-lines 1)))
 
   ;; auto detect separator
@@ -3011,37 +2836,77 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   ;; turn on field alignment
   (add-hook 'csv-mode-hook #'csv-align-mode))
 
-(use-package! eldoc-box
+(use-package casual-css
+  :ensure nil
+  :defer t
+  :bind (:map css-mode-map
+              ("M-m" . casual-css-tmenu)))
+
+(use-package casual-html
+  :ensure nil
+  :defer t
+  :bind (:map html-ts-mode-map
+              ("M-m" . casual-html-tmenu)
+              ("C-c m" . casual-html-tags-tmenu)))
+
+(use-package casual-eww
+  :ensure nil
+  :defer t
+  :bind
+  (:map eww-mode-map
+        ("C-o" . casual-eww-tmenu)
+        ("C-c C-o" . eww-browse-with-external-browser)
+        ("j" . shr-next-link)
+        ("k" . shr-previous-link)
+        ("[" . eww-previous-url)
+        ("]" . eww-next-url)
+        ("M-]" . eww-forward-url)
+        ("M-[" . eww-back-url)
+        ("n" . casual-lib-browse-forward-paragraph)
+        ("p" . casual-lib-browse-backward-paragraph)
+        ("P" . casual-eww-backward-paragraph-link)
+        ("N" . casual-eww-forward-paragraph-link)
+        ("M-l" . eww))
+  (:map eww-bookmark-mode-map
+        ("C-o" . casual-eww-bookmarks-tmenu)
+        ("p" . previous-line)
+        ("n" . next-line)
+        ("<double-mouse-1>" . eww-bookmark-browse)))
+
+(keymap-set org-mode-map "M-m" #'casual-org-tmenu)
+(keymap-set org-table-fedit-map "M-m" #'casual-org-table-fedit-tmenu)
+
+(use-package eldoc-box
   ;; :defer t
 )
 
-(use-package! immersive-translate
+(use-package immersive-translate
   :defer t
   :config
   (setopt immersive-translate-backend 'chatgpt
         immersive-translate-chatgpt-host "api.openai.com"))
 
-(use-package! cc-cedict
+(use-package cc-cedict
   ;; :defer t
   :config
   (setq cc-cedict-file "/home/jw/.stardict/dic/org-cc-cedict/cedict_1_0_ts_utf-8_mdbg.txt"))
 
-(use-package! pinyin-convert
+(use-package pinyin-convert
   ;; :defer t
 )
 
-(use-package! jieba
+(use-package jieba
   ;; :defer t
 )
 
-(use-package! zh-utils
+(use-package zh-utils
   ;; :defer t
 )
 
-(use-package! pangu-spacing
+(use-package pangu-spacing
   :defer t)
 
-(use-package! wallabag
+(use-package wallabag
   ;; :defer t
   ;; :load-path "~/.config/emacs/.local/straight/repos/wallabag/"
   :hook
@@ -3089,7 +2954,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
     (let ((shrface-org nil)
           (shr-bullet (concat (char-to-string shrface-item-bullet) " "))
           ;; make it large enough, it would not fill the column
-          ;; I uses visual-line-mode, writeroom-mode for improving the reading experience instead
+          ;; I use visual-line-mode, writeroom-mode for improving the reading experience instead
           (shr-width 7000)
           (shr-indentation (if (string-equal system-type "android") 0 0))
           (shr-table-vertical-line "|")
@@ -3119,7 +2984,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
       (if paw-annotation-show-unknown-words-p
         (paw-focus-find-words)))))
 
-(use-package! paw
+(use-package paw
   :defer t
   :hook
   ;; my personal configs
@@ -3316,13 +3181,14 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
       (setq paw-dictionary-browse-function func)
       (setq paw-mdict-dictionary-function func)))
 
-  (after! wallabag
+  (with-eval-after-load 'wallabag
     (paw-server)))
 
 (defun paw-view-note-setup ()
    ;; (org-writeroom-setup)
   (when (fboundp 'visual-line-mode)
-    (visual-line-mode))
+    (visual-line-mode 1)
+    (visual-wrap-prefix-mode 1))
   ;; (org-modern-mode)
   (when (fboundp 'pangu-spacing-mode)
     (pangu-spacing-mode))
@@ -3348,7 +3214,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 ;;                       (url-hexify-string word))))
 ;;     (browse-url url)))
 
-;; (after! paw
+;; (with-eval-after-load 'paw
 ;; ;; override the original gt-init, to remove the Processing message
 ;; (cl-defmethod gt-init :around ((render gt-render) translator)
 ;;   (gt-log-funcall "init (%s %s)" render translator)
@@ -3393,7 +3259,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 ;;   (setq paw-go-translate-running-p nil))
 ;;   )
 
-(use-package! sdcv
+(use-package sdcv
   :defer t
   :config
   (setopt sdcv-env-lang "en_US.UTF-8")
@@ -3406,37 +3272,38 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
         '("Merriam-Webster's Advanced Learner's Dictionary (En-En)"))
   )
 
-(use-package! org-download
-  :defer t
+(use-package org-download
+  ;; :defer t
   :init
   (add-hook 'dired-mode-hook 'org-download-enable)
   :config
+  (setopt org-download-method 'attach)
   (setopt org-download-image-dir "~/Pictures/org-download"))
 
-(use-package! gt
+(use-package gt
   :defer t
   :config
   (setopt gt-langs '(en fr))
   (setopt gt-default-translator (gt-translator :engines (gt-google-engine))))
 
-(use-package! svg-lib
+(use-package svg-lib
   :defer t)
 
-(use-package! tldr
+(use-package tldr
   :defer t)
 
-(use-package! transient-showcase
+(use-package transient-showcase
   ;; :defer t
   )
 
-(use-package! shr-tag-pre-highlight
+(use-package shr-tag-pre-highlight
   :defer t
   :after shr
   :config
   (add-to-list 'shr-external-rendering-functions
                '(pre . shr-tag-pre-highlight)))
 
-(use-package! shrface
+(use-package shrface
   :defer t
   :config
   (setq shr-cookie-policy nil)
@@ -3513,7 +3380,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
  ;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
  ;; (setopt imaxima-use-maxima-mode-flag t)
  ;; (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
-(use-package! maxima
+(use-package maxima
   :defer t
   :init
   (add-hook 'maxima-mode-hook #'maxima-hook-function)
@@ -3567,11 +3434,12 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
    'org-babel-load-languages
    '((maxima . t))))
 
-(after! julia-repl
+(setq eglot-jl-language-server-project "/home/jw/.julia/environments/v1.12")
+(with-eval-after-load 'julia-repl
   (progn
     (julia-repl-set-terminal-backend 'vterm)))
 
-(use-package! pulsar
+(use-package pulsar
   ;; :defer t
   :config
   ;; Check the default value of `pulsar-pulse-functions'.  That is where
@@ -3644,22 +3512,42 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (add-hook 'imenu-after-jump-hook #'pulsar-recenter-top)
 (add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry))
 
-(use-package! reader
+(use-package reader
   :defer t)
 
-(after! pdf-tools
+(with-eval-after-load 'pdf-tools
   (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
 
-(use-package! math-preview
+(use-package anju
+  :config
+  (require 'org-mouse)
+  (add-hook 'prog-mode-hook #'context-menu-mode)
+  (add-hook 'text-mode-hook #'context-menu-mode)
+  (add-hook 'dired-mode-hook #'context-menu-mode)
+  (add-hook 'shell-mode-hook #'context-menu-mode)
+  (keymap-global-set "C-x 1" #'anju-toggle-one-window)
+  (anju-init))
+
+(use-package space-tree
+  :config
+  (space-tree-init)
+   )
+
+(use-package math-preview
   :defer t
   :config
   (setopt math-preview-command "/home/jw/projects/html/math-preview/math-preview.js"))
 
-(use-package! typst-ts-mode
+(use-package typst-ts-mode
   ;; :defer t
   :config
   (keymap-set typst-ts-mode-map "C-c C-c" #'typst-ts-tmenu)
   )
+
+(use-package cargo-mode
+  ;; :defer t
+  :hook
+  (rust-mode . cargo-minor-mode))
 
 ;;; A Help Transient on C-S-h
 (transient-define-prefix hrm-help-transient ()

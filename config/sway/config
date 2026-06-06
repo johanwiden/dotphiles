@@ -27,7 +27,8 @@ set $transparent #00000000
 set $lucent    #00000088
 
 # Your preferred terminal emulator
-set $term foot
+# set $term foot
+set $term terminator
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -35,16 +36,39 @@ set $up k
 set $right l
 
 # Your preferred application launcher
+# set $menu wmenu-run
+set $menu wofi --show drun
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-include /etc/sway/config-vars.d/*
+# ------------------------------------------------------------
+# 2. Performance Tweaks
+# ------------------------------------------------------------
+# damage tracking incremental
+# focus_follows_mouse yes
+# default_border pixel
+# default_floating_border pixel
+# unfocused_floating_opacity 0.95
+
+# output * render_direct_scanout on
+# output * adaptive_sync on
+# output * max_render_time 6
+
+include /etc/sway/config.d/*
+
+# Change cursor (mouse pointer) theme and size
+seat seat0 xcursor_theme Yaru-red 48
+
+# Systemd and dbus activation environments
+exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * scale_filter nearest
 #
 # Example configuration:
 #
@@ -54,7 +78,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Notification daemon: apt mako-notifier
 # If I start dunst, it may win over mako.
-# exec --no-startup-id dunst
+exec --no-startup-id dunst
 
 ### Idle configuration
 #
@@ -91,16 +115,18 @@ exec swayidle -w \
 input "type:keyboard" {
     xkb_model pc104
     # xkb_layout us,se,ru
-    xkb_layout us,ru
+    # xkb_layout us,ru
+    xkb_layout us
     # xkb_variant altgr-intl,,phonetic
-    xkb_variant altgr-intl,phonetic
-    xkb_options "grp:rctrl_toggle,ctrl:nocaps"
+    # xkb_variant altgr-intl,phonetic
+    xkb_variant altgr-intl
+    # xkb_options "grp:rctrl_toggle,ctrl:nocaps"
 }
 
 #exec xrdb -override ~/dawesome.xres
 
 # GTK settings
-exec --no-startup-id xsettingsd
+# exec --no-startup-id xsettingsd
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -108,7 +134,7 @@ exec --no-startup-id xsettingsd
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
 
 # enable window icons for all windows. sway: all not recognized
 # for_window [all] title_window_icon on
@@ -116,7 +142,7 @@ font pango:DejaVu Sans Mono 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id dex --autostart --environment GNOME
+# exec --no-startup-id dex --autostart --environment GNOME
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -145,9 +171,34 @@ exec --no-startup-id dex --autostart --environment GNOME
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use pamixer to adjust volume in PulseAudio.
-bindsym XF86AudioMute          exec --no-startup-id pamixer --toggle-mute
-bindsym XF86AudioLowerVolume   exec --no-startup-id pamixer --decrease 5
-bindsym XF86AudioRaiseVolume   exec --no-startup-id pamixer --increase 5
+# bindsym XF86AudioMute          exec --no-startup-id pamixer --toggle-mute
+# bindsym XF86AudioLowerVolume   exec --no-startup-id pamixer --decrease 5
+# bindsym XF86AudioRaiseVolume   exec --no-startup-id pamixer --increase 5
+
+### Key bindings
+# To see all currently bound keys:
+#   i3keys web 8123
+#   open web browser at http://localhost:8123
+# Homepage for i3keys: https://github.com/RasmusLindroth/i3keys
+# Basics:
+#
+
+# %%hotkey: start a terminal %%
+bindsym $mod+Return exec $term
+
+# %%hotkey: kill focused window %%
+bindsym $mod+Shift+q kill
+
+# %%hotkey: Start your launcher %%
+bindsym $mod+d exec $menu
+
+set $rofi /usr/bin/rofi
+# # %%hotkey: rofi desktop app launcher %%
+bindsym $mod+F6 exec $rofi -show drun
+# # %%hotkey: rofi app launcher %%
+bindsym $mod+Shift+F6 exec $rofi -show run
+# # %%hotkey: rofi switch to X11 window %%
+bindsym $mod+Ctrl+F6 exec $rofi -show window
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -160,29 +211,6 @@ floating_modifier $mod normal
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag enable
-
-### Key bindings
-#
-# Basics:
-#
-
-# %%hotkey: start a terminal %%
-bindsym $mod+Return exec $term
-#bindsym $mod+Return exec i3-sensible-terminal
-
-# %%hotkey: kill focused window %%
-bindsym $mod+Shift+q kill
-
-# %%hotkey: Start your launcher %%
-# bindsym $mod+space exec $menu
-
-set $rofi /usr/local/bin/rofi
-# %%hotkey: rofi desktop app launcher %%
-bindsym $mod+space exec $rofi -show drun
-# %%hotkey: rofi app launcher %%
-bindsym $mod+Shift+space exec $rofi -show run
-# %%hotkey: rofi switch to X11 window %%
-bindsym $mod+Ctrl+space exec $rofi -show window
 
 # Disable focus wrapping
 focus_wrapping no
@@ -326,6 +354,16 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# https://sr.ht/~tsdh/swayr
+bindsym $mod+x           exec swayr switch-window
+bindsym $mod+Shift+x     exec swayr switch-workspace-or-window
+# bindsym $mod+Delete      exec swayr quit-window
+bindsym $mod+Tab         exec swayr switch-to-urgent-or-lru-window
+bindsym $mod+Next        exec swayr next-window all-workspaces
+bindsym $mod+Prior       exec swayr prev-window all-workspaces
+# bindsym $mod+c           exec swayr execute-swaymsg-command
+# bindsym $mod+Shift+c     exec swayr execute-swayr-command
+
 # %%hotkey: reload the configuration file %%
 bindsym $mod+Shift+c reload
 # hotkey: exit sway (logs you out of your session) %%
@@ -350,16 +388,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10px
-        bindsym j resize grow height 10px
-        bindsym k resize shrink height 10px
-        bindsym l resize grow width 10px
+        bindsym h resize shrink width 20px
+        bindsym j resize grow height 20px
+        bindsym k resize shrink height 20px
+        bindsym l resize grow width 20px
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10px
-        bindsym Down resize grow height 10px
-        bindsym Up resize shrink height 10px
-        bindsym Right resize grow width 10px
+        bindsym Left resize shrink width 20px
+        bindsym Down resize grow height 20px
+        bindsym Up resize shrink height 20px
+        bindsym Right resize grow width 20px
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -450,7 +488,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 # %%hotkey: System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown %%
-bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+F10 mode "$mode_system"
 
 # %%hotkey: bar toggle, hide or show %%
 bindsym $mod+m bar mode toggle
@@ -459,9 +497,10 @@ bindsym $mod+m bar mode toggle
 seat seat0 hide_cursor 5000
 
 # Dynamically update recoll full text search database
-exec --no-startup-id /usr/share/recoll/examples/rclmon.sh start
+# exec --no-startup-id /usr/share/recoll/examples/rclmon.sh start
+exec --no-startup-id ~/bin/rclmon.sh start
 
 # https://sr.ht/~tsdh/swayr
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 
-include /etc/sway/config.d/*
+# include /etc/sway/config.d/*

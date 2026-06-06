@@ -1,28 +1,28 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1438,
-      "width": 1297,
+      "height": 2131,
+      "width": 1296,
       "x": -11,
-      "y": -49
+      "y": -38
     },
     "full_screened": false,
     "geometry": {
-      "height": 1378,
-      "width": 1275,
+      "height": 2093,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
-      "height": 1378,
-      "width": 1275,
+      "height": 2093,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////1////zwAABQUAAAVsAAAAAAAAAAAAAAT6AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPoAAAVh"
+      "__value__": "AdnQywADAAD////1////2gAABQQAAAgsAAAAAAAAAAAAAAT5AAAILAAAAAAAAAAADwAAAAAAAAAAAAAABPkAAAgs"
     },
     "screen": {
       "depth": 32,
@@ -56,7 +56,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAIJPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAgkAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAAChAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE+wAABWIAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAESAAAIJPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawIAAAAAAAAAAAAAARIAAAYT+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAAAAAgkAAAAmgD///8AAAABAAAA4wAABhP8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAAAABhMAAAChAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAE+gAACC0AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "saved-search-settings": {
@@ -164,6 +164,33 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "Ellen Datlow"
+        ],
+        "key": "/home/jw/calibre_library/Ellen Datlow/The Big Book of Science Fiction and Fantasy (1927)/The Big Book of Science Fiction and Fantas - Ellen Datlow.epub",
+        "pathtoebook": "/home/jw/calibre_library/Ellen Datlow/The Big Book of Science Fiction and Fantasy (1927)/The Big Book of Science Fiction and Fantas - Ellen Datlow.epub",
+        "timestamp": "2026-04-10T13:23:30.391Z",
+        "title": "The Big Book of Science Fiction and Fantasy"
+      },
+      {
+        "authors": [
+          "Ellen Datlow"
+        ],
+        "key": "/home/jw/calibre_library/Ellen Datlow/Fearful Symmetries (1928)/Fearful Symmetries - Ellen Datlow.epub",
+        "pathtoebook": "/home/jw/calibre_library/Ellen Datlow/Fearful Symmetries (1928)/Fearful Symmetries - Ellen Datlow.epub",
+        "timestamp": "2026-04-10T13:07:29.596Z",
+        "title": "Fearful Symmetries"
+      },
+      {
+        "authors": [
+          "Ellen Datlow and Terri Windling"
+        ],
+        "key": "/home/jw/calibre_library/Ellen Datlow/Salon Fantastique (1929)/Salon Fantastique - Ellen Datlow.epub",
+        "pathtoebook": "/home/jw/calibre_library/Ellen Datlow/Salon Fantastique (1929)/Salon Fantastique - Ellen Datlow.epub",
+        "timestamp": "2026-04-10T12:57:18.814Z",
+        "title": "Salon Fantastique"
+      },
       {
         "key": "/home/jw/Downloads/japan-resa-förslag.md",
         "pathtoebook": "/home/jw/Downloads/japan-resa-förslag.md",
@@ -346,33 +373,6 @@
         "pathtoebook": "/home/jw/Downloads/eb36629de8.epub",
         "timestamp": "2023-01-13T09:56:54.969Z",
         "title": "eb36629de8"
-      },
-      {
-        "authors": [
-          "Jonathan Luna, Sarah Vaughn"
-        ],
-        "key": "/home/jw/Downloads/alexandada/alexandada_vol1.epub",
-        "pathtoebook": "/home/jw/Downloads/alexandada/alexandada_vol1.epub",
-        "timestamp": "2022-11-27T14:23:25.575Z",
-        "title": "Alex + Ada Vol. 1"
-      },
-      {
-        "authors": [
-          "Michel Fiffe"
-        ],
-        "key": "/home/jw/Downloads/copra_vol1.epub",
-        "pathtoebook": "/home/jw/Downloads/copra_vol1.epub",
-        "timestamp": "2022-11-27T14:07:56.348Z",
-        "title": "Copra Round 1"
-      },
-      {
-        "authors": [
-          "Edmund Weitz"
-        ],
-        "key": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-        "pathtoebook": "/home/jw/calibre_library/Edmund Weitz/Common Lisp Recipes (1295)/Common Lisp Recipes - Edmund Weitz.epub",
-        "timestamp": "2022-11-16T21:55:53.011Z",
-        "title": "Common Lisp Recipes"
       }
     ],
     "user_color_schemes": {

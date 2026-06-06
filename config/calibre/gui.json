@@ -79,6 +79,7 @@
     "__class__": "bytearray",
     "__value__": "AAAA/wAAAAEAAAACAAABAAAAAE8A/////wEAAAABAA=="
   },
+  "bookshelf view visible": false,
   "cover_browser_splitter_vertical_state": [
     false,
     300
@@ -263,28 +264,79 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1438,
-      "width": 1296,
-      "x": -11,
-      "y": -49
+      "height": 1378,
+      "width": 1272,
+      "x": 0,
+      "y": 0
     },
     "full_screened": false,
     "geometry": {
       "height": 1378,
-      "width": 1274,
+      "width": 1272,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
       "height": 1378,
-      "width": 1274,
+      "width": 1272,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////1////zwAABQQAAAVsAAAAAAAAAAAAAAT5AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPkAAAVh"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAABPcAAAVhAAAAAAAAAAAAAAT3AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPcAAAVh"
+    },
+    "screen": {
+      "depth": 32,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "SAM",
+      "model": "Odyssey G70NC",
+      "name": "HDMI-1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 2160,
+        "width": 3840
+      },
+      "virtual_geometry": {
+        "height": 2160,
+        "width": 3840,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "geometry-of-connect-to-folder-geometry": {
+    "frame_geometry": {
+      "height": 589,
+      "width": 600,
+      "x": 0,
+      "y": 0
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 589,
+      "width": 600,
+      "x": 0,
+      "y": 0
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 589,
+      "width": 600,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAAAlcAAAJMAAAAAAAAAAAAAAJXAAACTAAAAAAAAAAADwAAAAAAAAAAAAAAAlcAAAJM"
     },
     "screen": {
       "depth": 32,
@@ -467,10 +519,10 @@
   },
   "geometry-of-metasingle_window_geometry3": {
     "frame_geometry": {
-      "height": 1588,
-      "width": 1302,
-      "x": -11,
-      "y": -49
+      "height": 1528,
+      "width": 1280,
+      "x": 0,
+      "y": 0
     },
     "full_screened": false,
     "geometry": {
@@ -488,7 +540,7 @@
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAD////1////zwAABQoAAAYCAAAAAAAAAAAAAAT/AAAF9wAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAX3"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAABP8AAAX3AAAAAAAAAAAAAAT/AAAF9wAAAAAAAAAADwAAAAAAAAAAAAAABP8AAAX3"
     },
     "screen": {
       "depth": 32,
@@ -628,7 +680,7 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 660
+    "/home/jw/calibre_library": 686
   },
   "main_window_central_widget_state": {
     "layout": "wide",

@@ -50,6 +50,7 @@
 
 (package! ace-link)
 (package! activities)
+(package! affe)
 (package! alert)
 (package! arxiv-mode)
 
@@ -59,10 +60,12 @@
 ;; (package! bufferlo)                     ;
 ;; (package! bufferlo
 ;;   :recipe (:host github :repo "florommel/bufferlo" :branch "fix-tab-group-restore"))
+(package! anju)
 (package! bufferlo
   :recipe (:host github :repo "florommel/bufferlo"))
 
 (package! calibredb)
+(package! cargo-mode)
 (package! casual-suite)
 ;; (package! casual-eww
 ;;   :recipe (:host github :repo "dandrake/casual-eww"))
@@ -81,6 +84,8 @@
   :recipe (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el")))
 (package! consult-omni
   :recipe (:host github :repo "armindarvish/consult-omni" :files (:defaults "sources/*.el")))
+(package! consult-ripfd
+  :recipe (:host github :repo "jdtsmith/consult-ripfd"))
 (package! consult-recoll
   :recipe (:host github :repo "emacs-straight/consult-recoll"))
 
@@ -92,17 +97,22 @@
 ;; (package! dired+
 ;;   :recipe (:host github :repo "emacsmirror/dired-plus"))
 
+(package! ef-themes)
 (package! eldoc-box)
-(package! elfeed)
-(package! elfeed-org)
+;; (package! elfeed)
+;; (package! elfeed-org)
 (package! epkg)
 (package! evil-matchit)
 
 ;; (package! facemenu+
 ;;   :recipe (:host github :repo "emacsmirror/facemenu-plus"))
+(package! flash)
 (package! focus)
 (package! fontaine)
 
+;; (package! ghostel)
+;; (package! evil-ghostel)
+;; (package! evil-ghostel :recipe (:host github :repo "dakra/ghostel" :files ("extensions/evil-ghostel/*.el")))
 (package! ghub)
 (package! gt)
 ;; (package! gt
@@ -137,10 +147,9 @@
 (package! maxima)
 (package! mistty)
 (package! mixed-pitch)
-(package! modus-themes
-  :recipe (:host gitlab :repo "protesilaos/modus-themes" :branch "main"))
-(package! mouse3
-  :recipe (:host github :repo "emacsmirror/mouse3"))
+(package! modus-themes)
+;; (package! mouse3
+;;   :recipe (:host github :repo "emacsmirror/mouse3"))
 
 (package! nov)
 
@@ -155,6 +164,7 @@
 (package! org-ql)
 (package! org-recoll
   :recipe (:host github :repo "alraban/org-recoll"))
+(package! org-remark)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-similarity
   :recipe (:host github :repo "soldeace/org-similarity" :branch "main"))
@@ -190,6 +200,8 @@
 (package! shr-tag-pre-highlight)
 (package! shrface
   :recipe (:host github :repo "chenyanming/shrface"))
+(package! space-tree
+  :recipe (:host github :repo "chiply/space-tree"))
 (package! svg-lib)
 
 (package! tab-bar-groups)
@@ -204,7 +216,7 @@
 (package! typst-ts-mode
   :recipe (:host codeberg :repo "meow_king/typst-ts-mode"))
 
-(package! unfill)
+;; (package! unfill)
 
 (package! visual-replace)
 

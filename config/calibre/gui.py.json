@@ -46,6 +46,7 @@
   "jobs_search_history": [],
   "lrf_viewer_search_history": [],
   "main_search_history": [
+    "scifi",
     "Casanova",
     "adventureman",
     "Fast Mergeable Integer Maps",
@@ -69,8 +70,7 @@
     "reis hans",
     "reis",
     "мы",
-    "Einstein",
-    "the roots of lisp"
+    "Einstein"
   ],
   "main_window_geometry": {
     "__class__": "bytearray",
