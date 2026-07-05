@@ -61,8 +61,11 @@ include /etc/sway/config.d/*
 seat seat0 xcursor_theme Yaru-red 48
 
 # Systemd and dbus activation environments
-exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+# exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+# exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+# announce a running sway session to systemd
+exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 ### Output configuration
 #
@@ -85,8 +88,8 @@ exec --no-startup-id dunst
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 1170 'notify-send --app-name=screenlockwarning "Screen will lock in 30 seconds"' \
-         timeout 1200 '/usr/local/bin/swaylock -f --grace 10 --fade-in 8' \
+         timeout 1140 'notify-send --app-name=screenlockwarning "Screen will lock in 60 seconds"' \
+         timeout 1200 '/usr/bin/swaylock -f' \
          timeout 1500 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 # exec swayidle -w \
@@ -315,7 +318,7 @@ bindsym $mod+minus scratchpad show
 # If there are multiple scratchpad windows, this command cycles through them.
 
 # %%hotkey: show i3 keybindings %%
-bindsym $mod+question exec ~/bin/hotkeys-sway
+bindsym $mod+question exec ~/bin/rofi-sway-keybindings.sh
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -472,8 +475,8 @@ bar {
   modifier none
 }
 
-# set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+# set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (d) shutdown
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (d) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id swayexit lock, mode "default"
     bindsym e exec --no-startup-id swayexit logout, mode "default"
@@ -481,7 +484,7 @@ mode "$mode_system" {
     # Hibernate does not work with Secure boot
     # bindsym h exec --no-startup-id swayexit hibernate, mode "default"
     bindsym r exec --no-startup-id swayexit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id swayexit shutdown, mode "default"
+    bindsym d exec --no-startup-id swayexit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

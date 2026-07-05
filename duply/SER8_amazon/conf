@@ -171,5 +171,5 @@ DUPL_PARAMS="$DUPL_PARAMS --full-if-older-than $MAX_FULLBKP_AGE "
 
 # more duplicity command line options can be added in the following way
 # don't forget to leave a separating space char at the end
-#DUPL_PARAMS="$DUPL_PARAMS --put_your_options_here " 
-
+#DUPL_PARAMS="$DUPL_PARAMS --put_your_options_here "
+DUPL_PARAMS="$DUPL_PARAMS --progress "

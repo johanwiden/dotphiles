@@ -264,28 +264,28 @@
   },
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1378,
-      "width": 1272,
-      "x": 0,
-      "y": 0
+      "height": 1438,
+      "width": 1296,
+      "x": -11,
+      "y": -49
     },
     "full_screened": false,
     "geometry": {
       "height": 1378,
-      "width": 1272,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "maximized": false,
     "normal_geometry": {
       "height": 1378,
-      "width": 1272,
+      "width": 1274,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAABPcAAAVhAAAAAAAAAAAAAAT3AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPcAAAVh"
+      "__value__": "AdnQywADAAD////1////zwAABQQAAAVsAAAAAAAAAAAAAAT5AAAFYQAAAAAAAAAADwAAAAAAAAAAAAAABPkAAAVh"
     },
     "screen": {
       "depth": 32,
@@ -680,7 +680,8 @@
     "__value__": "AdnQywACAAAAAA5jAAABSAAAENsAAANlAAAOYwAAAUgAABDbAAADZQAAAAEAAAAAB4A="
   },
   "library_usage_stats": {
-    "/home/jw/calibre_library": 686
+    "/home/jw/Dokument/calibre_library": 3,
+    "/home/jw/calibre_library": 688
   },
   "main_window_central_widget_state": {
     "layout": "wide",

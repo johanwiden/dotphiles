@@ -8,7 +8,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export EDITOR="emacsclient -c"
+export EDITOR="emacsclient --alternate-editor= -c"
 # export EDITOR=emacs
 export EMACSDIR=~/.config/emacs
 #export BROWSER=google-chrome
@@ -28,58 +28,58 @@ export QT_IM_MODULE=fcitx5
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        source "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		source "$HOME/.bashrc"
+	fi
 fi
 
 if [ -d "$HOME/Android/Sdk/tools" ]; then
-    PATH="$HOME/Android/Sdk/tools:$PATH"
+	PATH="$HOME/Android/Sdk/tools:$PATH"
 fi
 
 if [ -d "$HOME/Android/Sdk/tools/bin" ]; then
-    PATH="$HOME/Android/Sdk/tools/bin:$PATH"
+	PATH="$HOME/Android/Sdk/tools/bin:$PATH"
 fi
 
 if [ -d "$HOME/Android/Sdk/platform-tools" ]; then
-    PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+	PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 fi
 
 if [ -d "$HOME/Android/Sdk/build-tools/33.0.1" ]; then
-    PATH="$HOME/Android/Sdk/build-tools/33.0.1:$PATH"
+	PATH="$HOME/Android/Sdk/build-tools/33.0.1:$PATH"
 fi
 
 if [ -d "/usr/lib/android-ndk" ]; then
-    PATH="/usr/lib/android-ndk:$PATH"
+	PATH="/usr/lib/android-ndk:$PATH"
 fi
 
 if [ -d "$HOME/Android/Sdk/emulator" ]; then
-    PATH="$HOME/Android/Sdk/emulator:$PATH"
+	PATH="$HOME/Android/Sdk/emulator:$PATH"
 fi
 
 export ANDROID_HOME=$HOME/Android/Sdk
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/rakudo/share/perl6/site/bin" ]; then
-    PATH="$HOME/rakudo/share/perl6/site/bin:$PATH"
+	PATH="$HOME/rakudo/share/perl6/site/bin:$PATH"
 fi
 if [ -d "$HOME/rakudo/bin" ]; then
-    PATH="$HOME/rakudo/bin:$PATH"
+	PATH="$HOME/rakudo/bin:$PATH"
 fi
 # rbenv, to install and support several ruby versions
 if [ -d "$HOME/.rbenv/bin" ]; then
-    PATH="$HOME/.rbenv/bin:$PATH"
+	PATH="$HOME/.rbenv/bin:$PATH"
 fi
 if [ -d "$HOME/.config/emacs/bin" ]; then
-    PATH="$HOME/.config/emacs/bin:$PATH"
+	PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 dot_local_bin="$HOME/.local/bin"
 if [ -d "${dot_local_bin}" ]; then
-    PATH="${dot_local_bin}:$PATH"
+	PATH="${dot_local_bin}:$PATH"
 fi
 if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
+	PATH="$HOME/bin:$PATH"
 fi
 
 export NODE_PATH=${NODE_PATH}:$(npm root -g)
@@ -89,23 +89,23 @@ sbcl_install_dir="$HOME/.roswell/impls/x86-64/linux/sbcl-bin/2.2.9"
 export SBCL_HOME="${sbcl_install_dir}/lib/sbcl"
 sbcl_bin="${sbcl_install_dir}/bin"
 if [ -d "${sbcl_bin}" ]; then
-    PATH="${sbcl_bin}:$PATH"
+	PATH="${sbcl_bin}:$PATH"
 fi
 roswell_bin="$HOME/.roswell/bin"
 if [ -d "${roswell_bin}" ]; then
-    PATH="${roswell_bin}:$PATH"
+	PATH="${roswell_bin}:$PATH"
 fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
+	PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 if [ -d "$HOME/gpt4all/bin" ]; then
-    PATH="$HOME/gpt4all/bin:$PATH"
+	PATH="$HOME/gpt4all/bin:$PATH"
 fi
 
 if [ -d "$HOME/.poetry/bin" ]; then
-    PATH="$HOME/.poetry/bin:$PATH"
+	PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 export JULIA_LOAD_PATH="/home/jw/projects/julia:$JULIA_LOAD_PATH"
@@ -117,23 +117,23 @@ case ":$PATH:" in
 *:/home/jw/.juliaup/bin:*) ;;
 
 *)
-    export PATH=/home/jw/.juliaup/bin${PATH:+:${PATH}}
-    ;;
+	export PATH=/home/jw/.juliaup/bin${PATH:+:${PATH}}
+	;;
 esac
 
 # <<< juliaup initialize <<<
 
 if [ -d "$HOME/perl5/bin" ]; then
-    PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
-    PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
-    export PERL5LIB
-    PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
-    export PERL_LOCAL_LIB_ROOT
-    PERL_MB_OPT="--install_base \"$HOME/perl5\""
-    export PERL_MB_OPT
-    PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
-    export PERL_MM_OPT
-    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+	PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
+	PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+	export PERL5LIB
+	PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+	export PERL_LOCAL_LIB_ROOT
+	PERL_MB_OPT="--install_base \"$HOME/perl5\""
+	export PERL_MB_OPT
+	PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+	export PERL_MM_OPT
+	eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
 
 # gpg has to be started here (or in .xinitrc.exwm), if we want to have encryption in exwm
@@ -146,8 +146,8 @@ fcitx5 -d >/tmp/jw_fcitx5.log 2>&1
 . "$HOME/.cargo/env"
 
 if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty4' ]; then
-    export XDG_CURRENT_DESKTOP=sway:wlroots
-    exec /usr/bin/sway >/tmp/startsway.log 2>&1
+	export XDG_CURRENT_DESKTOP=sway:wlroots
+	exec /usr/bin/sway >/tmp/startsway.log 2>&1
 fi
 
 # if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty5' ]; then

@@ -3,16 +3,16 @@
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
-;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
-;;      documentation. There you'll find a link to Doom's Module Index where all
-;;      of our modules are listed, including what flags they support.
+;; NOTE: Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
+;;   documentation. There you'll find a link to Doom's Module Index where all of
+;;   our modules are listed, including what flags they support.
 
-;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or
-;;      'C-c c k' for non-vim users) to view its documentation. This works on
-;;      flags as well (those symbols that start with a plus).
+;; NOTE: Move your cursor over a module's name (or its flags) and press 'K' (or
+;;   'C-c c k' for non-vim users) to view its documentation. This works on flags
+;;   as well (those symbols that start with a plus).
 ;;
-;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
-;;      directory (for easy access to its source code).
+;;   Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
+;;   directory (for easy access to its source code).
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -24,21 +24,9 @@
        ;;company           ; the ultimate code completion backend
        (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
-       ;; (new-helm           ; restructured helm module (more flags...)
-       ;;  +ack-grep
-       ;;  ;;+autoresize
-       ;;  ;;+childframe
-       ;;  +fuzzy
-       ;;  ;;+helm-popup-layout
-       ;;  +helm-mode
-       ;;  +icons
-       ;;  ;;+nerd-icons
-       ;;  ;;+treemacs-icons
-       ;;  +remap-commands)
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
        (vertico +icons)  ; the search engine of the future
-       ;; (vertico +childframe +icons)  ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -55,13 +43,13 @@
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        ;; (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       (smooth-scroll +interpolate)     ; So smooth you won't believe it's not butter
+       ;;smooth-scroll     ; So smooth you won't believe it's not butter
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
-       ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       (window-select +numbers)     ; visually switch windows
+       ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       window-select     ; visually switch windows
        ;; workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
@@ -76,7 +64,7 @@
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       ;;snippets          ; my elves. They type so I don't have to
+       ;; snippets          ; my elves. They type so I don't have to
        (whitespace +guess +trim)  ; a butler for your whitespace
        word-wrap         ; soft wrapping with language-aware indent
 
@@ -128,11 +116,11 @@
 
        :lang
        ;;ada               ; In strong typing we (blindly) trust
-       ;;agda              ; types of types of types of types...
+       ;;(agda +local)     ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        (cc +lsp +tree-sitter)  ; C > C++ == 1
        ;;clojure           ; java with a lisp
-       ;; common-lisp       ; if you've seen one lisp, you've seen them all
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -156,11 +144,13 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        (json +tree-sitter)   ; At least it ain't XML
+       ;;json              ; At least it ain't XML
        ;;janet             ; Fun fact: Janet is me!
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
-       ;;(javascript +tree-sitter)  ; all(hope(abandon(ye(who(enter(here))))))
-       ;; (julia +snail)      ; a better, faster MATLAB
-       (julia +lsp +tree-sitter)      ; a better, faster MATLAB
+       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;; (julia +lsp +tree-sitter)      ; a better, faster MATLAB. Hangs doom doctor!
+       ;; (julia +tree-sitter)      ; a better, faster MATLAB.
+       ;; (julia +snail +lsp +tree-sitter)      ; a better, faster MATLAB.
        ;;kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
@@ -172,33 +162,28 @@
        ;;ocaml             ; an objective camel
        ;;odin              ; C, minus its footguns
        (org               ; organize your plain life in plain text
-        +noter
-        +journal
         +roam
-        +hugo
-        +pandoc
-        +present)
+        +pandoc)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;graphviz          ; diagrams for confusing yourself even more
        ;;purescript        ; javascript, but functional
-       ;; (python +conda +tree-sitter)  ; beautiful is better than ugly
        (python +tree-sitter)  ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
-       raku              ; the artist formerly known as perl6
+       ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp +tree-sitter)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;; (scheme +guile)   ; a fully conniving family of lisps
-       (sh +fish)  ; she sells {ba,z,fi}sh shells on the C xor
+       ;;(scheme +guile)   ; a fully conniving family of lisps
+       sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       (web +tree-sitter)    ; the tubes
+       ;;web               ; the tubes
        (yaml +tree-sitter)              ; JSON, but readable
        ;;zig               ; C, but simpler
 
@@ -215,5 +200,5 @@
        ;;(rss +org)        ; emacs as an RSS reader
 
        :config
-       literate
+       ;;literate
        (default +bindings +gnupg +smartparens))

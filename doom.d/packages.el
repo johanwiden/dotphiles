@@ -88,6 +88,7 @@
   :recipe (:host github :repo "jdtsmith/consult-ripfd"))
 (package! consult-recoll
   :recipe (:host github :repo "emacs-straight/consult-recoll"))
+(package! cursory)
 
 (package! denote)
 (package! denote-explore)
@@ -110,7 +111,7 @@
 (package! focus)
 (package! fontaine)
 
-;; (package! ghostel)
+(package! ghostel)
 ;; (package! evil-ghostel)
 ;; (package! evil-ghostel :recipe (:host github :repo "dakra/ghostel" :files ("extensions/evil-ghostel/*.el")))
 (package! ghub)
@@ -145,7 +146,6 @@
 (package! major-mode-hydra)
 (package! math-preview)
 (package! maxima)
-(package! mistty)
 (package! mixed-pitch)
 (package! modus-themes)
 ;; (package! mouse3

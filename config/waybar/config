@@ -10,7 +10,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
-    "modules-right": ["cpu", "network", "bluetooth", "memory", "disk", "disk#comics", "temperature", "sway/language", "clock", "tray"],
+    "modules-right": ["cpu", "network", "bluetooth", "memory", "disk", "disk#comics", "temperature", "temperature#comics", "temperature#root", "sway/language", "clock", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -118,7 +118,23 @@
     },
     "temperature": {
         "thermal-zone": 0,
-        // "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "temperature#comics": {
+        // "thermal-zone": 0,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.2/0000:01:00.0/nvme/nvme0/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "temperature#root": {
+        // "thermal-zone": 0,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:02.4/0000:05:00.0/nvme/nvme1/hwmon3/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
