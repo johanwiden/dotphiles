@@ -456,7 +456,6 @@
  ;;jit-lock-defer-time 0
  ;;fast-but-imprecise-scrolling t ; Set by doom
  ;;sentence-end-double-space nil    ; End a sentence after a dot and a space. Set by doom
- cursor-type t
  window-combination-resize t      ; Resize windows proportionally
  history-delete-duplicates t
  next-error-message-highlight t
@@ -468,15 +467,14 @@
  large-file-warning-threshold 5000000000
  show-paren-context-when-offscreen 'overlay
  shr-color-visible-luminance-min 80)
-                                        ; (customize-set-variable 'user-emacs-directory "/home/jw/bookmarks/cache/")
-                                        ; (customize-set-variable 'projectile-cache-file (expand-file-name "projectile.cache" user-emacs-directory))
-                                        ; (customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
-                                        ; (customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
-                                        ; (setopt doom-cache-dir user-emacs-directory)
-                                        ; (setopt doom-profile-cache-dir user-emacs-directory)
-                                        ; (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" user-emacs-directory))
+;; (customize-set-variable 'user-emacs-directory "/home/jw/bookmarks/cache/")
+;; (customize-set-variable 'projectile-cache-file (expand-file-name "projectile.cache" user-emacs-directory))
+;; (customize-set-variable 'projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-emacs-directory))
+;; (customize-set-variable 'fontaine-latest-state-file (expand-file-name "fontaine-latest-state.eld" user-emacs-directory))
+;; (setopt doom-cache-dir user-emacs-directory)
+;; (setopt doom-profile-cache-dir user-emacs-directory)
+;; (customize-set-variable 'bookmark-default-file (expand-file-name "bookmarks" user-emacs-directory))
 (customize-set-variable 'bookmark-save-flag 1) ; Save bookmark list immediately when it has been updated.
-(customize-set-variable 'cursor-type t)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (with-eval-after-load 'recentf
   (progn
@@ -626,7 +624,7 @@
 (with-eval-after-load 'org
   (require 'ox-gfm nil t))
 
-;;;: org-books
+;;;; org-books
 (use-package org-books
   :after org
   :config
@@ -796,7 +794,7 @@
   ;; (text-mode . writegood-mode)
   )
 
-                                        ;:: epkg
+;;: epkg
 (setopt epkg-repository "~/epkgs/")
 
 ;;; Regular expressions
@@ -805,7 +803,7 @@
   :config
   (pcre-mode t))
 
-;;: Avy
+;;; Avy
 ;; https://karthinks.com/software/avy-can-do-anything/
 (with-eval-after-load 'avy
   (setopt avy-all-windows t)
@@ -917,7 +915,7 @@
 
 ;; (add-hook 'post-command-hook 'my-set-cursor-color)
 
-                                        ;:; Handling of whitespace
+;;; Handling of whitespace
 ;;;; whitespace variables
 (global-whitespace-mode t) ; Tell Doom that I want control over whitespace-style
 (setq-default whitespace-style
@@ -925,8 +923,7 @@
                 tabs
                 trailing
                 empty
-                )
-              )
+                ))
 
 (add-hook 'prog-mode-hook
           (lambda () (interactive)
@@ -1179,7 +1176,7 @@ Also used for highlighting.")))
   :config
   (ace-link-setup-default))
 
-;;;: Follow links in w3m
+;;;; Follow links in w3m
 ;; Follow links in w3m. For keybindings see [[*launcher map]]
 (setq browse-url-mosaic-program nil)
 ;; (setopt browse-url-browser-function 'w3m-browse-url)
@@ -1522,19 +1519,98 @@ Also see `my/search-occur-url'."
 
 ;;; hyperbole
 (use-package hyperbole
-                                        ; :defer t
+  ;; :defer t
   :config
+  (global-set-key (kbd "C-c v") 'action-key)
+  (global-set-key (kbd "C-c a") 'assist-key)
   (hyperbole-mode 1)
-  (setopt hsys-org-enable-smart-keys t)
+  (hywiki-mode :all)
+  ;; (setopt hsys-org-enable-smart-keys t)
   ;; (global-set-key (kbd "S-s-<return>") 'hkey-either)
   ;; (global-set-key (kbd "s-S") 'assist-key)
 
   ;; (with-eval-after-load 'ace-window
   ;;   (hkey-ace-window-setup))
   ;; (global-set-key (kbd "s-o") 'hkey-operate)
+
+  ;; Make sure following a WikiWord always lands in a real page file on disk,
+  ;; titled with the WikiWord, even if HyWiki's referent hash and the pages on
+  ;; disk have drifted apart (see `zetta-hywiki-ensure-page-file').
+  (advice-add 'hywiki-display-page :before #'zetta-hywiki-ensure-page-file)
+
+  ;; Stop the whole-frame flash when typing WikiWords with an empty ~/hywiki/
+  ;; (see `zetta-hywiki-skip-empty-rehighlight').
+  (advice-add 'hywiki-maybe-highlight-wikiwords-in-frame :around
+              #'zetta-hywiki-skip-empty-rehighlight)
   )
 
-;;: Hydra
+(with-eval-after-load 'hyperbole
+  (progn
+    (setq hyperbole-web-search-alist
+          (assoc-delete-all "ducKduckgo" hyperbole-web-search-alist))
+    (push '("Kagi" . "https://kagi.com/search?q=%s") hyperbole-web-search-alist)
+    (hyperbole-update-menus)))
+
+;; --- HyWiki: make sure a WikiWord always has a real page file on disk ---
+;; HyWiki writes a page file when it first creates the page, but a WikiWord can
+;; end up registered in its referent hash with no file behind it -- the hash and
+;; the on-disk pages drift apart, or the file is deleted later.  Then the Action
+;; Key only opens an empty, file-less buffer that reports "no changes to save",
+;; so nothing is written and the WikiWord stops being highlighted after a
+;; restart.  Every follow/create path funnels through `hywiki-display-page', so
+;; seed a missing (or empty, not-yet-open) page file with an Org title there.
+
+(defun zetta-hywiki-ensure-page-file (&optional wikiword file-name)
+  "Ensure the HyWiki page file for WIKIWORD/FILE-NAME is a real, titled file.
+Advised onto `hywiki-display-page' as `:before'.  Writes the page file with an
+Org `#+title:' line when it is missing, or when it exists but is empty and not
+already open in a buffer -- so following a WikiWord always lands in a real,
+non-empty page, even if HyWiki's referent hash and the on-disk pages have
+drifted apart.  Any #section:Lnum:Cnum suffix is stripped first so we seed the
+real page rather than a `WikiWord#Section' stub.  Files with content, or already
+open in a buffer, are untouched."
+  ;; Resolve (and seed) the *page* file: strip any #section:Lnum:Cnum suffix
+  ;; first, because `hywiki-get-page-file' otherwise appends it to the file name
+  ;; (e.g. `HyWikiWord.org#Description') and we would create that stub instead of
+  ;; the real page -- so following `WikiWord#Section' opens an empty buffer
+  ;; rather than the section.  As a final guard, never seed a name still carrying
+  ;; a `#'.
+  (let* ((reference (or file-name wikiword))
+         (page (and reference (hywiki-word-strip-suffix reference)))
+         (file (and page (ignore-errors (hywiki-get-page-file page)))))
+    (when (and (stringp file)
+               (not (string-search "#" (file-name-nondirectory file)))
+               (file-writable-p file)
+               (not (get-file-buffer file))
+               (or (not (file-exists-p file))
+                   (let ((size (file-attribute-size (file-attributes file))))
+                     (and size (zerop size)))))
+      (let ((title (file-name-sans-extension (file-name-nondirectory file))))
+        (write-region (format "#+title: %s\n\n" title) nil file nil 0)))))
+
+;; HyWiki flashes the whole frame on every keystroke of a capital-letter word
+;; when `~/hywiki/' holds NO pages.  With an empty referent hash,
+;; `hywiki-get-referent-hasht' computes an empty `hywiki--any-wikiword-regexp-list'
+;; (nil `mapcar'), so its own `(unless ... regexp-list ...)' guard never latches
+;; and it re-highlights every window in the frame -- each via `sit-for 0' -- on
+;; every WikiWord lookup, which HyWiki performs per `post-self-insert' while you
+;; type a candidate WikiWord.  Each forced redisplay repaints the SVG tab/mode/
+;; header lines: a visible whole-frame flash on every keystroke.  With zero pages
+;; there is nothing to highlight, so skip the frame-wide re-highlight pass while
+;; the referent hash is empty.  (Upstream Hyperbole bug; guarded here.)
+(defun zetta-hywiki-skip-empty-rehighlight (orig &rest args)
+  "Skip HyWiki's frame-wide WikiWord re-highlight when there are no pages.
+Around advice for `hywiki-maybe-highlight-wikiwords-in-frame'.  When the HyWiki
+referent hash is empty there are no WikiWords to highlight, yet
+`hywiki-get-referent-hasht' still triggers the re-highlight (with `sit-for') on
+every lookup -- a whole-frame flash on each keystroke of a candidate WikiWord.
+Run ORIG only when the referent hash is non-empty."
+  (unless (and (boundp 'hywiki--referent-hasht)
+               (hash-table-p hywiki--referent-hasht)
+               (zerop (hash-table-count hywiki--referent-hasht)))
+    (apply orig args)))
+
+;;; Hydra
 ;;;; Pretty hydra
 ;; pretty-hydra provides a macro pretty-hydra-define to make it easy to create hydras with a pretty table layout with some other bells and whistles.
 ;; Based on pretty-hydra, major-mode-hydra allows you to create pretty hydras with a similar API and summon them with the same key across different major modes.
@@ -1543,7 +1619,7 @@ Also see `my/search-occur-url'."
   :bind
   ("M-SPC" . major-mode-hydra))
 
-;;;:; major-mode-hydra emacs-lisp-mode
+;;;;; major-mode-hydra emacs-lisp-mode
 (major-mode-hydra-define emacs-lisp-mode nil
   ("Eval"
    (("b" eval-buffer "buffer")
@@ -1817,7 +1893,7 @@ _w_ where is something defined
 (use-package arxiv-mode
   :defer t)
 
-;;: pdftottext
+;;; pdftottext
 (use-package pdftotext
   :defer t
   ;; For prettyness
@@ -1841,7 +1917,7 @@ _w_ where is something defined
                                        (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
                                        (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)))))
 
-;;: xah-math-input
+;;; xah-math-input
 (use-package xah-math-input
   :defer t
   :config
@@ -2217,6 +2293,14 @@ window."
   ;;  consult--source-recent-file consult--source-project-recent-file
   ;;  :preview-key "M-.")
   (global-set-key (kbd "C-s") 'consult-line)
+
+  (setq consult-fd-args
+        '((if (executable-find "fdfind" 'remote) "fdfind" "fd") "--color=never"
+          "--full-path --absolute-path" "--no-ignore --hidden --exclude .git"
+          (if (featurep :system 'windows) "--path-separator=/")))
+
+  (setq consult-find-args
+        "find .")
 
   (defun show-narrow-help (&rest _)
     (cl-letf (((symbol-function #'minibuffer-message) #'message))
@@ -2821,54 +2905,15 @@ This is the function to be used for the hook `completion-at-point-functions'."
   )
 
 ;;; affe
-(defvar rg-ignore-flags
-  "-g \"!*.mp3\" -g \"!*.jpg\" -g \"!*.JPG\" -g \"!*.jpeg\" -g \"!*.png\"
-  -g \"!*.mkv\" -g \"!*.mp4\" -g \"!*.avi\" -g \"!*.zip\" -g \"!*.ddl\"
-  -g \"!*.ods\" -g \"!*.xlsx\" -g \"!*.m3u\" -g \"!*.url\" -g \"!*.aac\"
-  -g \"!*.mpc\" -g \"!*.sql\" -g \"!*.ydb\" -g \"!dist/\"
-  -g \"!.git/\" -g \"!git/*\" -g \"!node_modules/\" -g \"!*cache/\"
-  -g \"!.cache\" -g \"!vendor/\"
-  -g \"!.pki/\" -g \"!.local/share/*/\"
-  -g \"!coverage\" -g \"!build/\" -g \"!var/\" -g \"!npm/\"
-  -g \"!Library/\" -g \"!.DS_Store\" -g \"!.stfolder\""
-  "Exclusion flags for usage with ripgrep commands.")
-
-(defvar rg-find-files-command
-  (format "rg -L --ignore --hidden --files --color=never %s" rg-ignore-flags)
-  "Command for finding files with ripgrep.")
-
-(defvar rg-find-directories-command
-  (format "rg-dir -L --ignore --hidden --color=never %s" rg-ignore-flags)
-  "Command for finding directories with ripgrep.")
-
-(defun affe-find-file (&optional dir) (interactive) ; default dir is cwd
-       (setq affe-find-command rg-find-files-command)
-       (affe-find dir))
-
-(defun affe-find-directory (&optional dir) (interactive) ; default dir is cwd
-       (setq affe-find-command rg-find-directories-command)
-       (affe-find dir))
-
-(defun affe-find-file-home () (interactive)
-       (affe-find-file (substitute-in-file-name "$HOME")))
-
-(defun affe-find-directory-home () (interactive)
-       (affe-find-directory (substitute-in-file-name "$HOME")))
-
 (use-package affe
-  ;; :bind (("H-f"   . affe-find-file-home)
-  ;;        ("H-M-f" . affe-find-file)
-  ;;        ("H-s"   . affe-find-directory-home))
-  ;; :custom
-  ;; (affe-count 5000)
+  :after consult
   :config
   ;; Manual preview key for `affe-grep'
   (consult-customize affe-grep :preview-key "M-.")
   (defun affe-orderless-regexp-compiler (input _type _ignorecase)
     (setq input (cdr (orderless-compile input)))
     (cons input (apply-partially #'orderless--highlight input t)))
-  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
-  )
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
 
 ;;; browser
 (defun ambrevar/call-process-to-string (program &rest args)
@@ -3956,66 +4001,85 @@ This is the function to be used for the hook `completion-at-point-functions'."
 
 ;;; cursory
 (use-package cursory
-  ;; :ensure t
+  :ensure t
   :demand t
   :if (display-graphic-p)
+  :init
+  (setq cursory-presets
+        '((box
+           :cursor-color success ; will typically be green
+           :blink-cursor-interval 1.2)
+          (box-no-blink
+           :inherit box
+           :blink-cursor-mode -1)
+          (bar
+           :cursor-type (bar . 2)
+           :cursor-color error ; will typically be red
+           :blink-cursor-interval 0.8)
+          (bar-no-other-window
+           :inherit bar
+           :cursor-in-non-selected-windows nil)
+          (bar-no-blink
+           :inherit bar
+           :blink-cursor-mode -1)
+          (underscore
+           :cursor-color warning ; will typically be yellow
+           :cursor-type (hbar . 3)
+           :blink-cursor-interval 0.3
+           :blink-cursor-blinks 50)
+          (underscore-no-other-window
+           :inherit underscore
+           :cursor-in-non-selected-windows nil)
+          (underscore-thick
+           :inherit underscore
+           :cursor-type (hbar . 8)
+           :cursor-in-non-selected-windows (hbar . 3))
+          (t ; the default values
+           :cursor-color unspecified ; use the theme's original
+           :cursor-type box
+           :cursor-in-non-selected-windows hollow
+           :blink-cursor-mode 1
+           :blink-cursor-blinks 10
+           :blink-cursor-interval 0.2
+           :blink-cursor-delay 0.2)))
   :config
-  :bind
-  ;; We have to use the "point" mnemonic, because C-c c is often the
-  ;; suggested binding for `org-capture' and is the one I use as well.
-  ("C-c p" . cursory-set-preset))
+  ;; I am using the default value of `cursory-latest-state-file'.
 
-(with-eval-after-load 'cursory
-  (progn
-    (setq cursory-presets
-          '((box
-             :cursor-color success ; will typically be green
-             :blink-cursor-interval 1.2)
-            (box-no-blink
-             :inherit box
-             :blink-cursor-mode -1)
-            (bar
-             :cursor-type (bar . 2)
-             :cursor-color error ; will typically be red
-             :blink-cursor-interval 0.8)
-            (bar-no-other-window
-             :inherit bar
-             :cursor-in-non-selected-windows nil)
-            (bar-no-blink
-             :inherit bar
-             :blink-cursor-mode -1)
-            (underscore
-             :cursor-color warning ; will typically be yellow
-             :cursor-type (hbar . 3)
-             :blink-cursor-interval 0.3
-             :blink-cursor-blinks 50)
-            (underscore-no-other-window
-             :inherit underscore
-             :cursor-in-non-selected-windows nil)
-            (underscore-thick
-             :inherit underscore
-             :cursor-type (hbar . 8)
-             :cursor-in-non-selected-windows (hbar . 3))
-            (t ; the default values
-             :cursor-color unspecified ; use the theme's original
-             :cursor-type box
-             :cursor-in-non-selected-windows hollow
-             :blink-cursor-mode 1
-             :blink-cursor-blinks 10
-             :blink-cursor-interval 0.2
-             :blink-cursor-delay 0.2)))
+  ;; Set last preset or fall back to desired style from
+  ;; `cursory-presets'.  Alternatively, use the function
+  ;; `cursory-set-last-or-fallback' (can be added to the
+  ;; `after-init-hook'.
+  (cursory-set-preset (or (cursory-restore-latest-preset) 'bar))
 
-    ;; I am using the default value of `cursory-latest-state-file'.
+  ;; Persist configurations between Emacs sessions.  Also apply the
+  ;; :cursor-color again when swithcing to another theme.
+  (cursory-mode 1))
 
-    ;; Set last preset or fall back to desired style from
-    ;; `cursory-presets'.  Alternatively, use the function
-    ;; `cursory-set-last-or-fallback' (can be added to the
-    ;; `after-init-hook'.
-    (cursory-set-preset (or (cursory-restore-latest-preset) 'bar))
+;;; fussy
+(use-package fussy
+  ;; :ensure t
+  :after corfu
+  :config
+  (fussy-setup-fzf)
+  (fussy-eglot-setup)
+  (fussy-corfu-setup))
 
-    ;; Persist configurations between Emacs sessions.  Also apply the
-    ;; :cursor-color again when switching to another theme.
-    (cursory-mode 1)))
+;;; ivy, used by fzfa
+;; (use-package ivy)
+
+;;; fzfa
+(use-package fzfa
+  ;; :ensure t
+  :defer t ;; Lazy loaded.
+  :init
+  ;; (setq fzfa-fd-command "fd --no-ignore --hidden")
+  (fzfa-sync-autoloads))
+
+;;; rg
+(use-package rg
+  ;; :ensure t
+  :config
+  (rg-enable-menu))
 
 ;;; Enable server mode (daemon) for this Emacs session
 (server-start)

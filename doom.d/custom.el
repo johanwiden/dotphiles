@@ -4,8 +4,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(hsys-org-enable-smart-keys :buttons)
  '(org-fold-core-style 'overlays)
- '(package-selected-packages '(ace-window switchy-window))
+ '(package-selected-packages '(ace-window el-mock markdown-mode switchy-window))
  '(safe-local-variable-values
    '((denote-mode . t)
      (dirvish-emerge-groups ("Recent" (predicate . recent-files-2h) nil nil)

@@ -110,6 +110,8 @@
 (package! flash)
 (package! focus)
 (package! fontaine)
+(package! fussy)
+(package! fzfa)
 
 (package! ghostel)
 ;; (package! evil-ghostel)
@@ -129,11 +131,13 @@
 (package! hungry-delete)
 (package! hydra)
 (package! hyperbole
+  :pin "c467a935e89ca2e0738d662f7c0db04b3b8ae9d1"
   :recipe (:host github :repo "rswgnu/hyperbole"))
 
 (package! igist)
 (package! immersive-translate
   :recipe (:host github :repo "Elilif/emacs-immersive-translate"))
+(package! ivy) ; Used by package fussy
 
 (package! jieba
   :recipe (:host github :repo "kisaragi-hiu/emacs-jieba"))
@@ -192,6 +196,7 @@
            :files ("*.el" "render-core.so")
            :pre-build ("make" "clean" "all")))
 (package! request)
+(package! rg)
 (package! rime
   :recipe (:host github :repo "DogLooksGood/emacs-rime" :files ("*.el" "Makefile" "lib.c")))
 
